@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapon_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/rocket_launcher_roof.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+weapon_id = &"rocket_launcher"
+weapon_type = 2
+display_name = "РАКЕТНИЦА"
+tactical_role = "УДАР ПО ЛИДЕРУ И ГРУППЕ"
+fire_rate = 0.55
+spread = 0.015
+max_active_bullets = 8
+magazine_size = 2
+reload_time = 3.0
+bullet_speed = 380.0
+bullet_damage = 42.0
+bullet_lifetime = 2.3
+bullet_radius = 5.0
+trail_length = 22.0
+bullet_color = Color(1, 0.48, 0.1, 1)
+splash_radius = 105.0
+homing_strength = 1.25
+effective_range = 680.0
+texture = ExtResource("2")
+preview_scale = 0.29

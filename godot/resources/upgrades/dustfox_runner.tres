@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"dustfox_runner"
+display_name = "БЕГУН ДЮН"
+description = "Больше скорости и разгона для чистой гоночной траектории. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 3600
+allowed_vehicles = PackedStringArray("dustfox")
+exclusive_group = &"dustfox_final"
+modifiers = {"max_speed": 10.0, "acceleration": 140.0, "traction": 0.8}

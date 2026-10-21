@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/needle/needle_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"needle"
+display_name = "NEEDLE"
+description = "Фронтирный болид с длинным носом и максимальной скоростью на чистой дуге."
+vehicle_class = 1
+passive_id = &"dust_apex"
+passive_name = "ПЫЛЕВОЙ АПЕКС"
+passive_description = "Чистый сектор даёт резкое ускорение; эффект быстро восстанавливается."
+career_unlock_event = &"copper_ravine"
+passive_apex_duration = 2.0
+passive_apex_speed_multiplier = 1.15
+passive_apex_acceleration_multiplier = 1.6
+passive_apex_cooldown = 3.8
+length = 45.0
+width = 22.0
+max_speed = 200.0
+acceleration = 850.0
+traction = 18.5
+steer_rate = 6.8
+max_health = 74.0
+mass = 690.0
+ram_power = 0.78
+engine_health = 58.0
+damage_color = Color(0.06, 0.13, 0.15, 0.82)
+engine_pitch_base = 1.0
+engine_pitch_range = 0.92
+engine_volume_offset_db = -1.5
+body_color = Color(0.08, 0.62, 0.72, 1)
+texture = ExtResource("2")

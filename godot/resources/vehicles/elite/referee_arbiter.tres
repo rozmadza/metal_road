@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/referee/referee_base.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"boss_referee_arbiter"
+display_name = "АРБИТР"
+description = "Босс-рефери арены: медленная осадная машина с пилой и огнемётом."
+vehicle_class = 3
+passive_id = &"arbiter"
+passive_name = "ПРАВО СИЛЬНОГО"
+passive_description = "Преследует игрока, но перемалывает любого, кто встанет на пути."
+length = 74.0
+width = 45.0
+corner_bevel_ratio = 0.2
+mass = 4600.0
+max_speed = 84.0
+acceleration = 360.0
+brake_force = 1700.0
+drag = 0.985
+traction = 29.0
+steer_rate = 2.7
+max_health = 400.0
+damage_resistance = 0.34
+collision_min_speed = 32.0
+impact_safe_speed = 14.0
+ram_power = 2.45
+front_impact_factor = 0.48
+side_impact_factor = 1.08
+rear_impact_factor = 0.96
+body_color = Color(0.18, 0.13, 0.09, 1)
+outline_color = Color(0.85, 0.3, 0.03, 1)
+texture = ExtResource("2")
+engine_health = 310.0
+wheels_health = 270.0
+engine_min_factor = 0.85
+steering_min_factor = 0.6
+traction_min_factor = 0.5
+weapon_damage_multiplier = 1.28
+

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/phantom/phantom_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"phantom"
+display_name = "PHANTOM"
+description = "Сверхлёгкий прототип, превращающий чистую траекторию в рывок."
+vehicle_class = 1
+passive_id = &"apex_boost"
+passive_name = "ХИЩНАЯ ТРАЕКТОРИЯ"
+passive_description = "Чистый быстрый сектор даёт усиленный рывок на 1,8 секунды."
+passive_apex_duration = 1.8
+passive_apex_speed_multiplier = 1.12
+passive_apex_acceleration_multiplier = 1.5
+passive_apex_cooldown = 5.0
+length = 43.0
+width = 21.0
+max_speed = 188.0
+acceleration = 820.0
+traction = 18.0
+steer_rate = 7.2
+max_health = 72.0
+mass = 690.0
+ram_power = 0.75
+body_color = Color(0.95, 0.75, 0.08, 1)
+texture = ExtResource("2")

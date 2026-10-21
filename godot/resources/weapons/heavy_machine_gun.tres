@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/weapon_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/weapons/heavy_machine_gun/heavy_machine_gun_roof.png" id="2"]
+[resource]
+script = ExtResource("1")
+weapon_id = &"heavy_machine_gun"
+weapon_type = 0
+display_name = "ТЯЖЁЛЫЙ ПУЛЕМЁТ"
+tactical_role = "БРОНЕБОЙНЫЙ ОГОНЬ"
+fire_rate = 1.8
+bullet_damage = 13.0
+bullet_speed = 630.0
+spread = 0.07
+max_active_bullets = 36
+magazine_size = 10
+reload_time = 2.2
+effective_range = 520.0
+texture = ExtResource("2")
+preview_scale = 0.25

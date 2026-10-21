@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="TrackConfig" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/track_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/frontier/frontier_road.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/frontier/frontier_ground.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+track_width = 240.0
+lane_count = 6
+centerline = PackedVector2Array(200, 300, 650, 180, 1100, 220, 1500, 120, 1900, 260, 2250, 520, 2380, 900, 2220, 1240, 2380, 1580, 2120, 1900, 1700, 2020, 1340, 1880, 980, 2070, 560, 1940, 260, 1650, 120, 1270, 260, 920, 80, 620)
+waypoint_radius = 90.0
+progress_step_tolerance = 110.0
+biome_id = &"rust_frontier"
+biome_name = "РЖАВЫЙ ФРОНТИР"
+biome_description = "Длинное скоростное кольцо через заброшенные нефтепромыслы. Пылевая буря волнами снижает видимость и сцепление."
+surface_tint = Color(0.34, 0.32, 0.3, 1)
+surface_detail = 0.31
+background_modulate = Color(0.62, 0.43, 0.27, 1)
+edge_color = Color(0.76, 0.45, 0.18, 1)
+centerline_color = Color(0.95, 0.68, 0.28, 0.72)
+finish_line_color = Color(0.95, 0.76, 0.3, 1)
+road_traction = 0.94
+road_steering = 0.96
+offroad_traction = 0.4
+offroad_steering = 0.52
+decor_style = 3
+hazard_count = 7
+hazard_profile = &"frontier"
+bonus_hotspots = PackedFloat32Array(0.12, 0.31, 0.53, 0.74, 0.9)
+weather_type = &"dust_storm"
+storm_strength = 0.68
+storm_interval = 28.0
+storm_duration = 11.0
+storm_traction = 0.84
+surface_texture = ExtResource("2")
+background_texture = ExtResource("3")
+laps = 3
+combat_enabled = true

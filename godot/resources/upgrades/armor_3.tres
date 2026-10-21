@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"armor_3"
+display_name = "БРОНЯ III"
+description = "Тяжёлый бронекомплект для штурмовиков и джаггернаутов."
+category = &"armor"
+level = 3
+cost = 2900
+required_upgrade = &"armor_2"
+allowed_classes = PackedInt32Array(2, 3)
+modifiers = {"max_health": 45.0, "damage_resistance": 0.08}

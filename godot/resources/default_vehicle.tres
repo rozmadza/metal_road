@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/sport/sport_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"sport_demo"
+display_name = "SPORT DEMO"
+length = 40.0
+width = 24.0
+mass = 1000.0
+moment = 180000.0
+max_speed = 165.0
+acceleration = 800.0
+brake_force = 1200.0
+drag = 0.98
+traction = 15.0
+steer_rate = 5.0
+steer_speed_factor = 0.3
+angular_damping = 0.95
+max_health = 100.0
+collision_min_speed = 70.0
+collision_damage = 0.18
+impact_safe_speed = 25.0
+impact_damage_full_speed = 125.0
+impact_min_damage = 5.0
+impact_max_damage = 68.0
+impact_damage_cap = 78.0
+side_impact_factor = 1.35
+rear_impact_factor = 1.15
+texture = ExtResource("2")

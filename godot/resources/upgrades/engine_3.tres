@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"engine_3"
+display_name = "ДВИГАТЕЛЬ III"
+description = "Гоночная силовая установка для рейдеров и перехватчиков."
+category = &"engine"
+level = 3
+cost = 2400
+required_upgrade = &"engine_2"
+allowed_classes = PackedInt32Array(0, 1)
+modifiers = {"max_speed": 6.0, "acceleration": 180.0}

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/raider/raider_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"raider"
+display_name = "RAIDER"
+description = "Надёжная универсальная машина для любой трассы."
+vehicle_class = 0
+passive_id = &"salvager"
+passive_name = "СБОРЩИК"
+passive_description = "Оружие, ускорение и таран действуют на 35% дольше."
+passive_bonus_duration_multiplier = 1.35
+max_speed = 165.0
+acceleration = 620.0
+traction = 15.0
+steer_rate = 5.0
+max_health = 100.0
+mass = 1000.0
+body_color = Color(0.05, 0.72, 0.42, 1)
+texture = ExtResource("2")

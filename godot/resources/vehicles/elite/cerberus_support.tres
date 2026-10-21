@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/elite_cerberus/cerberus_support.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"elite_cerberus_support"
+display_name = "CERBERUS · ОРАКУЛ"
+description = "Закрытая машина огневой поддержки элитного отряда. Не продаётся."
+vehicle_class = 2
+passive_id = &"elite_support"
+passive_name = "ПЕРЕКРЁСТНЫЙ ОГОНЬ"
+passive_description = "Держит дистанцию и перекрывает путь шквальным огнём."
+length = 52.0
+width = 29.0
+corner_bevel_ratio = 0.17
+mass = 1620.0
+max_speed = 146.0
+acceleration = 640.0
+traction = 21.0
+steer_rate = 4.4
+max_health = 205.0
+damage_resistance = 0.23
+ram_power = 1.18
+body_color = Color(0.2, 0.18, 0.17, 1)
+outline_color = Color(0.55, 0.08, 0.07, 1)
+texture = ExtResource("2")
+engine_health = 126.0
+wheels_health = 112.0
+weapon_damage_multiplier = 1.38
+weapon_fire_rate_multiplier = 1.2
+

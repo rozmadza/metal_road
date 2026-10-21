@@ -1,0 +1,242 @@
+extends Node2D
+class_name BonusSpawner
+
+signal bonus_announced(kind: BonusPickup.Kind, world_position: Vector2, duration: float)
+signal bonus_spawned(pickup: BonusPickup)
+signal bonus_collected(vehicle: Vehicle, kind: BonusPickup.Kind)
+
+@export var spawn_interval: float = 8.0
+@export var first_spawn_delay: float = 5.0
+@export var warning_duration: float = 3.0
+@export var active_lifetime: float = 12.0
+@export var max_active: int = 1
+## A delivery may contain several crates that are announced and armed on the
+## same physics tick. Race mode keeps the default single contested pickup;
+## Survival configures larger action-oriented batches.
+@export_range(1, 6, 1) var batch_size: int = 1
+@export_range(0, 6, 1) var minimum_weapons_per_batch: int = 0
+@export_range(80.0, 500.0, 10.0) var minimum_spawn_separation: float = 180.0
+@export var pickup_scene: PackedScene = preload("res://scenes/BonusPickup.tscn")
+
+var track: Track
+var arena: Arena
+var _time_to_event := 2.0
+var _active_time := 0.0
+var _warning := false
+var _current_pickup: BonusPickup
+var _pending_pickups: Array[BonusPickup] = []
+var _active_pickups: Array[BonusPickup] = []
+var _active_lifetimes: Dictionary = {}
+var _rng := RandomNumberGenerator.new()
+var _spawn_index := 0
+var _kind_bag: Array[int] = []
+var weapon_paths := [
+	"res://resources/weapons/machine_gun.tres",
+	"res://resources/weapons/heavy_machine_gun.tres",
+	"res://resources/weapons/shotgun.tres",
+	"res://resources/weapons/rocket_launcher.tres",
+	"res://resources/weapons/mine_layer.tres",
+	"res://resources/weapons/flamethrower.tres",
+	"res://resources/weapons/emp_cannon.tres",
+]
+
+
+func _ready() -> void:
+	_rng.randomize()
+	_begin_first_cycle()
+
+
+func setup_for_track(value: Track) -> void:
+	track = value
+	arena = null
+
+
+func setup_for_arena(value: Arena) -> void:
+	arena = value
+	track = null
+
+
+func _physics_process(delta: float) -> void:
+	_update_active_pickups(delta)
+
+	_time_to_event -= delta
+	if _time_to_event > 0.0:
+		return
+	if _warning:
+		_arm_announced_pickup()
+	else:
+		_announce_next_pickup()
+
+
+func reset() -> void:
+	for node in get_tree().get_nodes_in_group("bonus_pickups"):
+		if is_instance_valid(node) and node.get_parent() == self:
+			node.queue_free()
+	_current_pickup = null
+	_pending_pickups.clear()
+	_active_pickups.clear()
+	_active_lifetimes.clear()
+	_kind_bag.clear()
+	_spawn_index = 0
+	_begin_first_cycle()
+
+
+## Immediate active spawn retained for tests and scripted events.
+func spawn_random_bonus(forced_kind: int = -1) -> BonusPickup:
+	if not _pending_pickups.is_empty() or is_instance_valid(_current_pickup) or pickup_scene == null or _active_pickups.size() >= max_active:
+		return null
+	var chosen_kind := forced_kind if forced_kind >= 0 else _draw_kind()
+	var pickup := _create_pickup(chosen_kind, true)
+	if pickup != null:
+		_register_active(pickup)
+		bonus_spawned.emit(pickup)
+	return pickup
+
+
+func _announce_next_pickup() -> void:
+	if not _pending_pickups.is_empty() or is_instance_valid(_current_pickup):
+		return
+	if _active_pickups.size() >= max_active:
+		_begin_cooldown()
+		return
+	var available_slots := mini(batch_size, max_active - _active_pickups.size())
+	var reserved_positions: Array[Vector2] = []
+	for index in available_slots:
+		var chosen_kind := BonusPickup.Kind.WEAPON if index < mini(minimum_weapons_per_batch, available_slots) else _draw_kind()
+		var pickup := _create_pickup(chosen_kind, false, reserved_positions)
+		if pickup == null:
+			continue
+		_pending_pickups.append(pickup)
+		reserved_positions.append(pickup.global_position)
+	if _pending_pickups.is_empty():
+		_begin_cooldown()
+		return
+	_current_pickup = _pending_pickups[0]
+	_warning = true
+	_time_to_event = warning_duration
+	bonus_announced.emit(_current_pickup.kind, _current_pickup.global_position, warning_duration)
+
+
+func _arm_announced_pickup() -> void:
+	_warning = false
+	if _pending_pickups.is_empty() and is_instance_valid(_current_pickup):
+		_pending_pickups.append(_current_pickup)
+	if _pending_pickups.is_empty():
+		_begin_cooldown()
+		return
+	for pickup in _pending_pickups.duplicate():
+		if not is_instance_valid(pickup):
+			continue
+		pickup.set_armed(true)
+		_register_active(pickup)
+		bonus_spawned.emit(pickup)
+	_pending_pickups.clear()
+	_current_pickup = null
+	_begin_cooldown()
+
+
+func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
+	var pickup := pickup_scene.instantiate() as BonusPickup
+	if pickup == null:
+		return null
+	var weapon: WeaponConfig = null
+	if chosen_kind == BonusPickup.Kind.WEAPON:
+		weapon = load(weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]) as WeaponConfig
+	pickup.setup(chosen_kind as BonusPickup.Kind, weapon, is_armed)
+	add_child(pickup)
+	pickup.global_position = _next_position(reserved_positions)
+	pickup.collected.connect(_on_collected)
+	_spawn_index += 1
+	return pickup
+
+
+func _draw_kind() -> int:
+	if _kind_bag.is_empty():
+		_kind_bag.assign([
+			BonusPickup.Kind.WEAPON,
+			BonusPickup.Kind.REPAIR,
+			BonusPickup.Kind.SPEED_BOOST,
+			BonusPickup.Kind.RAM_BOOST,
+		])
+		_kind_bag.shuffle()
+	return _kind_bag.pop_back()
+
+
+func _begin_first_cycle() -> void:
+	_warning = false
+	_active_time = 0.0
+	_time_to_event = maxf(0.0, first_spawn_delay - warning_duration)
+
+
+func _begin_cooldown() -> void:
+	_warning = false
+	_active_time = 0.0
+	_time_to_event = spawn_interval
+
+
+func _next_position(reserved_positions: Array[Vector2] = []) -> Vector2:
+	if track != null:
+		var distance := _rng.randf_range(0.0, track.get_total_length())
+		if not track.config.bonus_hotspots.is_empty() and _spawn_index % 3 != 2:
+			distance = track.get_total_length() * float(track.config.bonus_hotspots[_spawn_index % track.config.bonus_hotspots.size()])
+		var center := track.get_point_at_distance(distance)
+		var info := track.get_closest_segment(center)
+		var normal: Vector2 = track.segment_normals[int(info.segment_index)]
+		return center + normal * _rng.randf_range(-track.half_width * 0.45, track.half_width * 0.45)
+	if arena != null:
+		var bounds := arena.get_bounds()
+		for _attempt in 48:
+			var candidate := Vector2(
+				_rng.randf_range(bounds.position.x + 75.0, bounds.end.x - 75.0),
+				_rng.randf_range(bounds.position.y + 75.0, bounds.end.y - 75.0)
+			)
+			var blocked := false
+			for rect in arena.get_obstacles():
+				# Leave room for a full car to enter the enlarged pickup field.
+				if rect.grow(86.0).has_point(candidate):
+					blocked = true
+					break
+			if not blocked:
+				for reserved in reserved_positions:
+					if candidate.distance_to(reserved) < minimum_spawn_separation:
+						blocked = true
+						break
+			if not blocked:
+				for active in _active_pickups:
+					if is_instance_valid(active) and candidate.distance_to(active.global_position) < minimum_spawn_separation:
+						blocked = true
+						break
+			if not blocked:
+				return candidate
+	return Vector2.ZERO
+
+
+func _on_collected(pickup: BonusPickup, vehicle: Vehicle) -> void:
+	bonus_collected.emit(vehicle, pickup.kind)
+	_active_pickups.erase(pickup)
+	_active_lifetimes.erase(pickup)
+	if pickup == _current_pickup:
+		_pending_pickups.erase(pickup)
+		_current_pickup = _pending_pickups[0] if not _pending_pickups.is_empty() else null
+		_begin_cooldown()
+
+
+func _register_active(pickup: BonusPickup) -> void:
+	if not _active_pickups.has(pickup):
+		_active_pickups.append(pickup)
+	_active_lifetimes[pickup] = active_lifetime
+
+
+func _update_active_pickups(delta: float) -> void:
+	for pickup in _active_pickups.duplicate():
+		if not is_instance_valid(pickup):
+			_active_pickups.erase(pickup)
+			_active_lifetimes.erase(pickup)
+			continue
+		var remaining := float(_active_lifetimes.get(pickup, active_lifetime)) - delta
+		if remaining <= 0.0:
+			_active_pickups.erase(pickup)
+			_active_lifetimes.erase(pickup)
+			pickup.queue_free()
+		else:
+			_active_lifetimes[pickup] = remaining

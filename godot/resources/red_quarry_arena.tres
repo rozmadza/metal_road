@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="ArenaConfig" load_steps=7 format=3]
+[ext_resource type="Script" path="res://scripts/arena_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/desert_ground.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/school_bus_topdown.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/semi_truck_topdown.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/tire_scrap_heap_topdown.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/crushed_cars_topdown.png" id="6"]
+[resource]
+script = ExtResource("1")
+size = Vector2(1320, 920)
+obstacles = Array[Rect2]([Rect2(300,180,150,90),Rect2(870,180,150,90),Rect2(565,380,190,160),Rect2(300,650,150,90),Rect2(870,650,150,90)])
+explosive_barrels = Array[Vector2]([Vector2(200,240),Vector2(1120,680),Vector2(1120,240)])
+tire_walls = Array[Vector2]([Vector2(200,680)])
+concrete_blocks = Array[Vector2]([Vector2(660,180),Vector2(660,740)])
+floor_color = Color(0.29,0.18,0.1,1)
+floor_texture = ExtResource("2")
+biome_id = &"red_quarry"
+biome_name = "КРАСНЫЙ КАРЬЕР"
+biome_description = "Открытая карьерная площадка. Перед камнепадом опасная зона отмечается на земле."
+school_bus_texture = ExtResource("3")
+semi_truck_texture = ExtResource("4")
+tire_heap_texture = ExtResource("5")
+crushed_cars_texture = ExtResource("6")
+crushed_container_texture = ExtResource("4")
+mechanic_id = &"rockfall"
+mechanic_label = "КАМНЕПАД: ПОКИНЬТЕ ЗОНУ"
+hazard_interval = 12.0

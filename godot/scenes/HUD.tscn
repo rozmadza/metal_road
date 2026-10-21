@@ -1,0 +1,154 @@
+[gd_scene load_steps=8 format=3]
+[ext_resource type="Script" path="res://scripts/debug_hud.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/VehicleReadout.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/race_minimap.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/speed_fx.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/cinematic_fx.gd" id="5"]
+[ext_resource type="Script" path="res://scripts/tutorial_coach.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/pause_overlay.gd" id="7"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1")
+
+[node name="SpeedFX" type="Control" parent="."]
+z_index = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4")
+
+[node name="CinematicFX" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5")
+
+[node name="Top" type="MarginContainer" parent="."]
+anchor_right = 1.0
+offset_top = 8.0
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+
+[node name="Status" type="Label" parent="Top/Panel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.93, 0.86, 0.7, 1)
+text = "МЕСТО  1/6     КРУГ  1/3     ВРЕМЯ  00:00.00"
+
+[node name="Minimap" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -205.0
+offset_top = 48.0
+offset_right = -14.0
+offset_bottom = 164.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("3")
+
+[node name="Banner" type="Label" parent="."]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 96.0
+offset_bottom = 154.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.72, 0.2, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 38
+text = "3"
+horizontal_alignment = 1
+
+[node name="BossPanel" type="PanelContainer" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 58.0
+offset_right = 260.0
+offset_bottom = 93.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Row" type="HBoxContainer" parent="BossPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Name" type="Label" parent="BossPanel/Row"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.47, 0.25, 1)
+text = "БОСС"
+
+[node name="Health" type="ProgressBar" parent="BossPanel/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="Phase" type="Label" parent="BossPanel/Row"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.75, 0.3, 1)
+text = "ФАЗА 1/3"
+
+[node name="Readout" parent="." instance=ExtResource("2")]
+
+[node name="Tutorial" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 230.0
+offset_top = -168.0
+offset_right = -230.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("6")
+
+[node name="PauseOverlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7")
+
+[node name="DebugPanel" type="Panel" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -252.0
+offset_top = 65.0
+offset_right = -12.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="Info" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -240.0
+offset_top = 72.0
+offset_right = -22.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 13
+mouse_filter = 2

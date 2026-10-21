@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapon_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/weapons/flamethrower/flamethrower_roof.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+weapon_id = &"flamethrower"
+weapon_type = 4
+display_name = "ОГНЕМЁТ"
+tactical_role = "НЕПРЕРЫВНЫЙ БЛИЖНИЙ БОЙ"
+fire_rate = 7.0
+spread = 0.18
+max_active_bullets = 34
+projectiles_per_shot = 2
+magazine_size = 30
+reload_time = 2.1
+bullet_speed = 270.0
+bullet_damage = 2.8
+bullet_lifetime = 0.5
+bullet_radius = 7.0
+trail_length = 5.0
+bullet_color = Color(1, 0.32, 0.04, 1)
+effective_range = 150.0
+texture = ExtResource("2")
+preview_scale = 0.28

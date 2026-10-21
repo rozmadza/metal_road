@@ -1,0 +1,316 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/pre_race.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/MenuBackdrop.tscn" id="2_backdrop"]
+[ext_resource type="Script" path="res://scripts/garage_vehicle_preview.gd" id="3_preview"]
+[ext_resource type="PackedScene" path="res://scenes/UISounds.tscn" id="4_sounds"]
+[ext_resource type="Script" path="res://scripts/track_preview.gd" id="5_preview"]
+
+[node name="PreRace" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" parent="." instance=ExtResource("2_backdrop")]
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.015, 0.022, 0.027, 0.78)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 20
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="Heading" type="VBoxContainer" parent="Margin/Layout/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="Title" type="Label" parent="Margin/Layout/Header/Heading"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ПОДГОТОВКА К ГОНКЕ"
+
+[node name="Hint" type="Label" parent="Margin/Layout/Header/Heading"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.67, 0.72, 0.73, 1)
+theme_override_font_sizes/font_size = 12
+text = "ВЫБЕРИТЕ МАШИНУ · СРАВНИТЕ ХАРАКТЕРИСТИКИ · ПОДТВЕРДИТЕ ВЫЕЗД"
+
+[node name="Mode" type="VBoxContainer" parent="Margin/Layout/Header"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="TrackPreview" type="Control" parent="Margin/Layout/Header"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 72)
+layout_mode = 2
+script = ExtResource("5_preview")
+
+[node name="ModeName" type="Label" parent="Margin/Layout/Header/Mode"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.69, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "IRON CIRCUIT"
+horizontal_alignment = 2
+
+[node name="ModeDetails" type="Label" parent="Margin/Layout/Header/Mode"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.78, 0.8, 1)
+theme_override_font_sizes/font_size = 11
+text = "3 КРУГА · 6 УЧАСТНИКОВ · ОРУЖИЕ НА ТРАССЕ"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="ArenaSelect" type="OptionButton" parent="Margin/Layout/Header/Mode"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ВЫБОР АРЕНЫ"
+
+[node name="DailyRun" type="CheckButton" parent="Margin/Layout/Header/Mode"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ЕЖЕДНЕВНЫЙ ЗАБЕГ"
+
+[node name="Divider" type="HSeparator" parent="Margin/Layout"]
+layout_mode = 2
+
+[node name="Body" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="CatalogPanel" type="PanelContainer" parent="Margin/Layout/Body"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+
+[node name="Catalog" type="VBoxContainer" parent="Margin/Layout/Body/CatalogPanel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CatalogTitle" type="Label" parent="Margin/Layout/Body/CatalogPanel/Catalog"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.7, 0.34, 1)
+theme_override_font_sizes/font_size = 13
+text = "КАТАЛОГ / КЛАСС"
+
+[node name="ClassFilters" type="HBoxContainer" parent="Margin/Layout/Body/CatalogPanel/Catalog"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="AllFilter" type="Button" parent="Margin/Layout/Body/CatalogPanel/Catalog/ClassFilters"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_type_variation = &"IndustrialButton"
+text = "ВСЕ"
+metadata/class_filter = -1
+
+[node name="RaiderFilter" type="Button" parent="Margin/Layout/Body/CatalogPanel/Catalog/ClassFilters"]
+custom_minimum_size = Vector2(74, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_type_variation = &"IndustrialButton"
+text = "РЕЙДЕР"
+metadata/class_filter = 0
+
+[node name="InterceptorFilter" type="Button" parent="Margin/Layout/Body/CatalogPanel/Catalog/ClassFilters"]
+custom_minimum_size = Vector2(84, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_type_variation = &"IndustrialButton"
+text = "ПЕРЕХВАТ"
+metadata/class_filter = 1
+
+[node name="AssaultFilter" type="Button" parent="Margin/Layout/Body/CatalogPanel/Catalog/ClassFilters"]
+custom_minimum_size = Vector2(76, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_type_variation = &"IndustrialButton"
+text = "ШТУРМ"
+metadata/class_filter = 2
+
+[node name="JuggernautFilter" type="Button" parent="Margin/Layout/Body/CatalogPanel/Catalog/ClassFilters"]
+custom_minimum_size = Vector2(84, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+theme_type_variation = &"IndustrialButton"
+text = "ТЯЖЕЛЫЙ"
+metadata/class_filter = 3
+
+[node name="Scroll" type="ScrollContainer" parent="Margin/Layout/Body/CatalogPanel/Catalog"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VehicleGrid" type="GridContainer" parent="Margin/Layout/Body/CatalogPanel/Catalog/Scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="DetailsPanel" type="PanelContainer" parent="Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Details" type="VBoxContainer" parent="Margin/Layout/Body/DetailsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VehicleHeader" type="HBoxContainer" parent="Margin/Layout/Body/DetailsPanel/Details"]
+layout_mode = 2
+
+[node name="VehicleName" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details/VehicleHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 27
+text = "RAIDER"
+
+[node name="Ownership" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details/VehicleHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "●  ГОТОВА К ВЫЕЗДУ"
+vertical_alignment = 1
+
+[node name="VehicleClass" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.84, 0.94, 1)
+theme_override_font_sizes/font_size = 13
+text = "РЕЙДЕР / СБОРЩИК"
+
+[node name="VehiclePreview" type="Control" parent="Margin/Layout/Body/DetailsPanel/Details"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 205)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("3_preview")
+
+[node name="Description" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.77, 0.77, 1)
+theme_override_font_sizes/font_size = 12
+text = "Универсальная машина пустошей."
+autowrap_mode = 2
+
+[node name="InfoRow" type="HBoxContainer" parent="Margin/Layout/Body/DetailsPanel/Details"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Stats" type="RichTextLabel" parent="Margin/Layout/Body/DetailsPanel/Details/InfoRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(270, 126)
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+theme_override_font_sizes/normal_font_size = 12
+
+[node name="Special" type="VBoxContainer" parent="Margin/Layout/Body/DetailsPanel/Details/InfoRow"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="PassiveHeading" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details/InfoRow/Special"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.7, 0.34, 1)
+theme_override_font_sizes/font_size = 12
+text = "ПАССИВНАЯ ОСОБЕННОСТЬ"
+
+[node name="Passive" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details/InfoRow/Special"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "СБОРЩИК\nОписание особенности"
+autowrap_mode = 2
+
+[node name="Upgrades" type="Label" parent="Margin/Layout/Body/DetailsPanel/Details/InfoRow/Special"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.75, 0.7, 1)
+theme_override_font_sizes/font_size = 11
+text = "УСТАНОВЛЕНО: НЕТ"
+autowrap_mode = 2
+
+[node name="Footer" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="Margin/Layout/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "НАЗАД"
+
+[node name="GarageButton" type="Button" parent="Margin/Layout/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(230, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ОТКРЫТЬ ГАРАЖ"
+
+[node name="LineupButton" type="Button" parent="Margin/Layout/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(230, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "СОСТАВ УЧАСТНИКОВ"
+
+[node name="FooterSpacer" type="Control" parent="Margin/Layout/Footer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StartButton" type="Button" parent="Margin/Layout/Footer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "НАЧАТЬ ГОНКУ"
+
+[node name="UISounds" parent="." instance=ExtResource("4_sounds")]

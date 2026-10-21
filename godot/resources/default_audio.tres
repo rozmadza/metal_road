@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="AudioConfig" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/audio_config.gd" id="1"]
+[ext_resource type="AudioStream" path="res://assets/music/theme.wav" id="2"]
+[ext_resource type="AudioStream" path="res://assets/sounds/engine.wav" id="3"]
+[ext_resource type="AudioStream" path="res://assets/sounds/fire.wav" id="4"]
+[ext_resource type="AudioStream" path="res://assets/sounds/collision.wav" id="5"]
+[ext_resource type="AudioStream" path="res://assets/sounds/finish.wav" id="6"]
+
+[ext_resource type="AudioStream" path="res://assets/sounds/combat/vehicle_explosion.wav" id="7"]
+
+[resource]
+script = ExtResource("1")
+music = ExtResource("2")
+engine = ExtResource("3")
+fire = ExtResource("4")
+collision = ExtResource("5")
+finish = ExtResource("6")
+
+explosion = ExtResource("7")

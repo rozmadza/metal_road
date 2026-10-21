@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/warhound/warhound_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"warhound"
+display_name = "WARHOUND"
+description = "Штурмовой маслкар Фронтира, рассчитанный на охоту за лидером."
+vehicle_class = 2
+passive_id = &"hot_barrel"
+passive_name = "ГОРЯЧИЙ СТВОЛ"
+passive_description = "Любое временное оружие наносит на 32% больше урона."
+career_unlock_event = &"copper_ravine"
+career_unlock_objective = true
+passive_weapon_damage_multiplier = 1.32
+length = 44.0
+width = 26.0
+max_speed = 176.0
+acceleration = 690.0
+traction = 16.0
+steer_rate = 5.1
+max_health = 124.0
+mass = 1230.0
+collision_damage = 0.26
+ram_power = 1.15
+damage_resistance = 0.1
+engine_health = 78.0
+damage_color = Color(0.18, 0.035, 0.025, 0.86)
+engine_pitch_base = 0.72
+engine_pitch_range = 0.58
+engine_volume_offset_db = 1.2
+body_color = Color(0.68, 0.08, 0.06, 1)
+texture = ExtResource("2")

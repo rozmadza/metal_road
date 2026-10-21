@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapon_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+weapon_id = &"referee_flamethrower"
+weapon_type = 4
+display_name = "ПЕЧЬ АРБИТРА"
+tactical_role = "РЕДКИЙ ОГНЕННЫЙ ЗАЛП"
+fire_rate = 6.0
+spread = 0.14
+max_active_bullets = 60
+projectiles_per_shot = 3
+magazine_size = 72
+reload_time = 2.8
+bullet_speed = 300.0
+bullet_damage = 3.4
+bullet_lifetime = 1.0
+bullet_radius = 10.0
+trail_length = 6.0
+bullet_color = Color(1, 0.3, 0.025, 1)
+effective_range = 300.0
+

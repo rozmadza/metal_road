@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/marauder/marauder_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"marauder"
+display_name = "MARAUDER"
+description = "Бронированный штурмовик, способный выдержать затяжную перестрелку."
+vehicle_class = 2
+passive_id = &"weapon_overdrive"
+passive_name = "ТЯЖЁЛЫЙ БОЕПРИПАС"
+passive_description = "Временное оружие наносит на 18% больше урона."
+passive_weapon_damage_multiplier = 1.18
+length = 43.0
+width = 25.0
+max_speed = 170.0
+acceleration = 650.0
+traction = 15.5
+steer_rate = 4.9
+max_health = 132.0
+mass = 1180.0
+collision_damage = 0.24
+ram_power = 1.12
+damage_resistance = 0.08
+body_color = Color(0.72, 0.12, 0.08, 1)
+texture = ExtResource("2")

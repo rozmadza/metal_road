@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/bikers/referee_biker_cutout_v2.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"referee_biker"
+display_name = "ГОНЧАЯ АРБИТРА"
+description = "Быстрый мотоциклист сопровождения. Опасен группой, но уязвим для тарана и оружия."
+vehicle_class = 1
+passive_id = &"referee_pack"
+passive_name = "СТАЯ"
+passive_description = "Шесть мотоциклистов окружают игрока и ведут перекрёстный огонь."
+length = 25.0
+width = 9.5
+corner_bevel_ratio = 0.28
+mass = 285.0
+moment = 13500.0
+max_speed = 178.0
+acceleration = 1180.0
+brake_force = 1050.0
+drag = 0.987
+traction = 11.5
+steer_rate = 8.4
+steer_speed_factor = 0.3
+angular_damping = 0.93
+max_health = 54.0
+damage_resistance = 0.0
+collision_min_speed = 38.0
+impact_safe_speed = 18.0
+impact_damage_full_speed = 112.0
+impact_min_damage = 4.0
+impact_max_damage = 27.0
+impact_damage_cap = 32.0
+impact_cooldown = 0.72
+ram_power = 0.62
+front_impact_factor = 0.82
+side_impact_factor = 1.42
+rear_impact_factor = 1.24
+body_color = Color(0.22, 0.16, 0.12, 1)
+outline_color = Color(0.88, 0.23, 0.08, 1)
+texture = ExtResource("2")
+texture_rotation_degrees = 90.0
+engine_health = 36.0
+wheels_health = 30.0
+engine_damage_share = 0.72
+wheels_damage_share = 0.62
+body_damage_multiplier = 1.2
+engine_damage_multiplier = 1.28
+wheels_damage_multiplier = 1.35
+engine_min_factor = 0.85
+steering_min_factor = 0.38
+traction_min_factor = 0.18
+wheels_repair_rate = 0.4
+wheels_repair_delay = 6.0
+engine_pitch_base = 1.22
+engine_pitch_range = 0.48
+engine_volume_offset_db = -2.0

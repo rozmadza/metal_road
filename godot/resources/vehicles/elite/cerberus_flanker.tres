@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/elite_cerberus/cerberus_flanker.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"elite_cerberus_flanker"
+display_name = "CERBERUS · ПРИЗРАК"
+description = "Закрытый перехватчик элитного отряда. Не продаётся."
+vehicle_class = 1
+passive_id = &"elite_emp"
+passive_name = "МЁРТВАЯ ЗОНА"
+passive_description = "Обходит строй и подавляет управление электромагнитными импульсами."
+length = 47.0
+width = 22.5
+corner_bevel_ratio = 0.2
+mass = 880.0
+max_speed = 198.0
+acceleration = 980.0
+traction = 18.5
+steer_rate = 7.4
+max_health = 138.0
+damage_resistance = 0.13
+ram_power = 0.92
+body_color = Color(0.2, 0.18, 0.17, 1)
+outline_color = Color(0.55, 0.08, 0.07, 1)
+texture = ExtResource("2")
+engine_health = 92.0
+wheels_health = 84.0
+weapon_damage_multiplier = 1.18
+weapon_fire_rate_multiplier = 1.12
+

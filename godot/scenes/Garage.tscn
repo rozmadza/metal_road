@@ -1,0 +1,268 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/garage.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/MenuBackdrop.tscn" id="2"]
+[ext_resource type="Resource" path="res://resources/default_vehicle.tres" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/UISounds.tscn" id="5"]
+[ext_resource type="Script" path="res://scripts/garage_vehicle_preview.gd" id="6"]
+
+[node name="Garage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+vehicle_config = ExtResource("3")
+
+[node name="Background" parent="." instance=ExtResource("2")]
+
+[node name="Shade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02, 0.025, 0.03, 0.7)
+mouse_filter = 2
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Layout" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ГАРАЖ / 01"
+
+[node name="Subtitle" type="Label" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "ТЕКУЩАЯ МАШИНА · ГОТОВА К ВЫЕЗДУ"
+
+[node name="Body" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 24
+
+[node name="VehiclePanel" type="PanelContainer" parent="Margin/Layout/Body"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Vehicle" type="VBoxContainer" parent="Margin/Layout/Body/VehiclePanel"]
+layout_mode = 2
+
+[node name="VehicleName" type="Label" parent="Margin/Layout/Body/VehiclePanel/Vehicle"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "SPORT"
+
+[node name="VehicleSelect" type="OptionButton" parent="Margin/Layout/Body/VehiclePanel/Vehicle"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "RAIDER"
+
+[node name="Class" type="Label" parent="Margin/Layout/Body/VehiclePanel/Vehicle"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "БОЕВОЕ КУПЕ"
+
+[node name="VehiclePreview" type="Control" parent="Margin/Layout/Body/VehiclePanel/Vehicle"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 190)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("6")
+
+[node name="Ready" type="Label" parent="Margin/Layout/Body/VehiclePanel/Vehicle"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.85, 0.71, 1)
+text = "●  ВАША МАШИНА"
+
+[node name="StatsPanel" type="PanelContainer" parent="Margin/Layout/Body"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+
+[node name="Info" type="VBoxContainer" parent="Margin/Layout/Body/StatsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Heading" type="Label" parent="Margin/Layout/Body/StatsPanel/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.72, 0.38, 1)
+text = "ХАРАКТЕРИСТИКИ"
+
+[node name="Stats" type="Label" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/line_spacing = 2
+theme_override_font_sizes/font_size = 12
+
+[node name="BonusInfo" type="Label" parent="Margin/Layout/Body/StatsPanel/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.82, 0.91, 1)
+theme_override_font_sizes/font_size = 12
+text = "БОНУСЫ И ОРУЖИЕ — НА ТРАССЕ"
+
+[node name="Credits" type="Label" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.72, 0.38, 1)
+text = "CREDITS  0"
+theme_override_font_sizes/font_size = 13
+
+[node name="Ownership" type="Label" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ВЛАДЕНИЕ: ДОСТУПНО"
+theme_override_font_sizes/font_size = 12
+
+[node name="EconomyActions" type="HBoxContainer" parent="Margin/Layout/Body/StatsPanel/Info"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="PurchaseButton" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/EconomyActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "КУПИТЬ"
+
+[node name="SellButton" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/EconomyActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "ПРОДАТЬ"
+
+[node name="ModuleHeading" type="Label" parent="Margin/Layout/Body/StatsPanel/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.72, 0.38, 1)
+theme_override_font_sizes/font_size = 12
+text = "МОДУЛИ / 4 СЛОТА"
+
+[node name="InstalledModules" type="RichTextLabel" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+theme_override_font_sizes/normal_font_size = 11
+text = "ДВИГАТЕЛЬ 0/3  ·  БРОНЯ 0/3\nХОДОВАЯ 0/3  ·  ОРУЖИЕ 0/3"
+
+[node name="UpgradeSelect" type="OptionButton" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "АПГРЕЙД"
+
+[node name="UpgradeDetails" type="RichTextLabel" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 86)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = false
+scroll_active = true
+theme_override_font_sizes/normal_font_size = 11
+text = "ВЫБЕРИТЕ МОДУЛЬ"
+
+[node name="UpgradeButton" type="Button" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "АПГРЕЙД"
+
+[node name="SpecializationActions" type="HBoxContainer" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="SpecializationA" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/SpecializationActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "ВЕТКА A"
+
+[node name="SpecializationB" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/SpecializationActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "ВЕТКА B"
+
+[node name="BuildActions" type="HBoxContainer" parent="Margin/Layout/Body/StatsPanel/Info"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="BuildFactory" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/BuildActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "ШТАТНАЯ"
+
+[node name="BuildA" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/BuildActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "СБОРКА A"
+
+[node name="BuildB" type="Button" parent="Margin/Layout/Body/StatsPanel/Info/BuildActions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "СБОРКА B"
+
+[node name="Actions" type="HBoxContainer" parent="Margin/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BackButton" type="Button" parent="Margin/Layout/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "НАЗАД"
+
+[node name="RaceButton" type="Button" parent="Margin/Layout/Actions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "ГОНКА"
+
+[node name="SurvivalButton" type="Button" parent="Margin/Layout/Actions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+text = "ВЫЖИВАНИЕ"
+
+[node name="UISounds" parent="." instance=ExtResource("5")]

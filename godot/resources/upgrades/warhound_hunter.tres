@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"warhound_hunter"
+display_name = "ОХОТНИЧЬЯ БРОНЯ"
+description = "Живучесть и мощный контактный бой против лидера. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 4500
+allowed_vehicles = PackedStringArray("warhound")
+exclusive_group = &"warhound_final"
+modifiers = {"max_health": 22.0, "ram_power": 0.18, "damage_resistance": 0.04}

@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/survival_upgrade_overlay.gd" id="1"]
+
+[node name="SurvivalUpgradeOverlay" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.015, 0.018, 0.88)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(1040, 350)
+layout_mode = 2
+
+[node name="Layout" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Heading" type="Label" parent="Center/Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.68, 0.22, 1)
+theme_override_font_sizes/font_size = 30
+text = "ВОЛНА ПРОЙДЕНА"
+horizontal_alignment = 1
+
+[node name="Subheading" type="Label" parent="Center/Panel/Layout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.82, 0.82, 1)
+theme_override_font_sizes/font_size = 14
+text = "ВЫБЕРИТЕ УСИЛЕНИЕ"
+horizontal_alignment = 1
+
+[node name="Choices" type="HBoxContainer" parent="Center/Panel/Layout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Choice1" type="Button" parent="Center/Panel/Layout/Choices"]
+custom_minimum_size = Vector2(300, 184)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+theme_override_font_sizes/font_size = 15
+text = "УЛУЧШЕНИЕ 1"
+autowrap_mode = 2
+
+[node name="Choice2" type="Button" parent="Center/Panel/Layout/Choices"]
+custom_minimum_size = Vector2(300, 184)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+theme_override_font_sizes/font_size = 15
+text = "УЛУЧШЕНИЕ 2"
+autowrap_mode = 2
+
+[node name="Choice3" type="Button" parent="Center/Panel/Layout/Choices"]
+custom_minimum_size = Vector2(300, 184)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"IndustrialButton"
+theme_override_font_sizes/font_size = 15
+text = "УЛУЧШЕНИЕ 3"
+autowrap_mode = 2
+
+[node name="Hint" type="Label" parent="Center/Panel/Layout"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.67, 0.66, 1)
+text = "УСИЛЕНИЯ ДЕЙСТВУЮТ ДО КОНЦА ТЕКУЩЕГО ЗАБЕГА"
+horizontal_alignment = 1

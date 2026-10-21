@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/weapon_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/weapons/shotgun/shotgun_roof.png" id="2"]
+[resource]
+script = ExtResource("1")
+weapon_id = &"shotgun"
+weapon_type = 1
+display_name = "ДРОБОВИК"
+tactical_role = "РАЗРУШИТЕЛЬНЫЙ ЗАЛП ВБЛИЗИ"
+fire_rate = 1.2
+bullet_damage = 4.5
+bullet_speed = 560.0
+spread = 0.18
+max_active_bullets = 24
+projectiles_per_shot = 6
+magazine_size = 5
+reload_time = 2.4
+bullet_lifetime = 0.55
+effective_range = 250.0
+texture = ExtResource("2")
+preview_scale = 0.24

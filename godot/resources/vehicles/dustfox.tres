@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/dustfox/dustfox_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"dustfox"
+display_name = "DUST FOX"
+description = "Лёгкий разведчик Фронтира: быстрый поиск припасов и стабильность на песке."
+vehicle_class = 0
+passive_id = &"frontier_stash"
+passive_name = "КАРАВАННЫЙ ЗАПАС"
+passive_description = "Оружие, ускорение и таран действуют на 65% дольше."
+career_unlock_event = &"frontier_express"
+passive_bonus_duration_multiplier = 1.65
+length = 41.0
+width = 25.0
+max_speed = 172.0
+acceleration = 735.0
+traction = 17.5
+steer_rate = 6.0
+max_health = 96.0
+mass = 820.0
+ram_power = 0.9
+wheels_health = 72.0
+wheels_repair_rate = 2.6
+damage_color = Color(0.18, 0.1, 0.035, 0.82)
+engine_pitch_base = 0.9
+engine_pitch_range = 0.82
+engine_volume_offset_db = -0.8
+body_color = Color(0.92, 0.55, 0.12, 1)
+texture = ExtResource("2")

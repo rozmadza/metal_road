@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="VehicleCatalog" load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_catalog.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/vehicles/raider.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/vehicles/viper.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/vehicles/crusher.tres" id="4"]
+[ext_resource type="Resource" path="res://resources/vehicles/wasteland_gt.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/vehicles/nomad.tres" id="6"]
+[ext_resource type="Resource" path="res://resources/vehicles/phantom.tres" id="7"]
+[ext_resource type="Resource" path="res://resources/vehicles/marauder.tres" id="8"]
+[ext_resource type="Resource" path="res://resources/vehicles/behemoth.tres" id="9"]
+[ext_resource type="Resource" path="res://resources/vehicles/dustfox.tres" id="10"]
+[ext_resource type="Resource" path="res://resources/vehicles/needle.tres" id="11"]
+[ext_resource type="Resource" path="res://resources/vehicles/warhound.tres" id="12"]
+[ext_resource type="Resource" path="res://resources/vehicles/bastion.tres" id="13"]
+
+[resource]
+script = ExtResource("1")
+vehicles = Array[VehicleConfig]([ExtResource("2"), ExtResource("6"), ExtResource("10"), ExtResource("3"), ExtResource("7"), ExtResource("11"), ExtResource("5"), ExtResource("8"), ExtResource("12"), ExtResource("4"), ExtResource("9"), ExtResource("13")])

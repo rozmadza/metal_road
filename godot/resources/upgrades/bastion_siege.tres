@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"bastion_siege"
+display_name = "ОСАДНЫЙ КЛИН"
+description = "Максимальный урон тараном и усиленный корпус. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 4800
+allowed_vehicles = PackedStringArray("bastion")
+exclusive_group = &"bastion_final"
+modifiers = {"ram_power": 0.35, "max_health": 20.0}

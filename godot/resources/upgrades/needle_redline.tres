@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"needle_redline"
+display_name = "КРАСНАЯ ЗОНА"
+description = "Предельный разгон и скорость в обмен на универсальность. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 4200
+allowed_vehicles = PackedStringArray("needle")
+exclusive_group = &"needle_final"
+modifiers = {"max_speed": 8.0, "acceleration": 180.0}

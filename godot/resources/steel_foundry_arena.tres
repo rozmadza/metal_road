@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ArenaConfig" load_steps=7 format=3]
+[ext_resource type="Script" path="res://scripts/arena_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/industrial_ground.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/school_bus_topdown.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/semi_truck_topdown.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/tire_scrap_heap_topdown.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/crushed_container_topdown.png" id="6"]
+[resource]
+script = ExtResource("1")
+size = Vector2(1180, 820)
+obstacles = Array[Rect2]([Rect2(210,120,120,220),Rect2(210,500,120,220),Rect2(520,300,140,220),Rect2(850,120,120,220),Rect2(850,500,120,220)])
+oil_spots = Array[Vector2]([Vector2(420,410)])
+explosive_barrels = Array[Vector2]([Vector2(380,170),Vector2(790,650)])
+concrete_blocks = Array[Vector2]([Vector2(590,120),Vector2(590,700)])
+metal_fences = Array[Vector2]([Vector2(390,600),Vector2(790,220)])
+floor_color = Color(0.12,0.13,0.14,1)
+floor_texture = ExtResource("2")
+biome_id = &"steel_foundry"
+biome_name = "СТАЛЬНОЙ ПРЕСС"
+biome_description = "Литейный цех с узкими коридорами и периодическими ударами промышленного пресса."
+school_bus_texture = ExtResource("3")
+semi_truck_texture = ExtResource("4")
+tire_heap_texture = ExtResource("5")
+crushed_cars_texture = ExtResource("3")
+crushed_container_texture = ExtResource("6")
+mechanic_id = &"press"
+mechanic_label = "ПРЕСС: ПОКИНЬТЕ КРАСНУЮ ЗОНУ"
+hazard_interval = 13.0

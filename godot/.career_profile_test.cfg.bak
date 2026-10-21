@@ -1,0 +1,101 @@
+[profile]
+
+save_version=10
+credits=3050
+owned_vehicles=PackedStringArray("raider", "nomad", "viper")
+owned_weapons=PackedStringArray("machine_gun")
+vehicle_states={
+"nomad": {
+"best_finish": 0,
+"best_time": 0.0,
+"build": &"factory",
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+},
+"raider": {
+"best_finish": 0,
+"best_time": 0.0,
+"build": &"factory",
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+},
+"viper": {
+"best_finish": 0,
+"best_time": 0.0,
+"build": &"factory",
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+}
+}
+weapon_upgrades=PackedStringArray()
+career={
+"bosses_defeated": [],
+"career_level": 3,
+"championship_active": true,
+"championship_complete": false,
+"championship_index": 2,
+"championship_points": {
+"bolt": 12,
+"grit": 5,
+"nyx": 8,
+"razor": 8,
+"zero": 3,
+"ВЫ": 20
+},
+"championship_tier": 0,
+"completed_events": [&"iron_open", &"dust_elimination"],
+"completed_objectives": [&"iron_open", &"dust_elimination"],
+"daily_best": {},
+"daily_claims": [],
+"driver_id": &"",
+"event_medals": {
+"dust_elimination": 3,
+"iron_open": 3
+},
+"last_rival_news": ["RAZOR: УРОВЕНЬ 3 · ДВ 1 · ХД 1", "BOLT: УРОВЕНЬ 3 · ДВ 1 · ХД 1", "NYX: УРОВЕНЬ 3 · ДВ 1 · ХД 1"],
+"personal_rival_id": &"grit",
+"rival_levels": {
+"bolt": 3,
+"grit": 3,
+"nyx": 3,
+"razor": 3,
+"zero": 3
+},
+"rivalry_scores": {
+"bolt": 0,
+"grit": 13,
+"nyx": 4,
+"razor": 1,
+"zero": 4
+},
+"season_points": {
+"bolt": 3,
+"grit": 15,
+"nyx": 8,
+"player": 17,
+"razor": 5,
+"zero": 8
+},
+"season_scored_events": [&"iron_open", &"dust_elimination"],
+"survival_daily_claims": [],
+"survival_records": {
+"best_combo": 0,
+"best_round": 0,
+"best_score": 0,
+"boss_kills": 0,
+"daily_scores": {}
+},
+"tutorial_complete": false
+}

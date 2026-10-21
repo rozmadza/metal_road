@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/elite_cerberus/cerberus_vanguard.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"elite_cerberus_vanguard"
+display_name = "CERBERUS · ТАРАН"
+description = "Закрытая боевая платформа элитного отряда. Не продаётся."
+vehicle_class = 3
+passive_id = &"elite_ram"
+passive_name = "КЛЫК ЦЕРБЕРА"
+passive_description = "Постоянный усиленный таран и тяжёлая фронтальная броня."
+length = 54.0
+width = 31.0
+corner_bevel_ratio = 0.22
+mass = 2250.0
+max_speed = 126.0
+acceleration = 590.0
+traction = 23.0
+steer_rate = 3.5
+max_health = 245.0
+damage_resistance = 0.29
+collision_min_speed = 44.0
+ram_power = 1.9
+front_impact_factor = 0.52
+side_impact_factor = 1.22
+rear_impact_factor = 1.08
+body_color = Color(0.2, 0.18, 0.17, 1)
+outline_color = Color(0.55, 0.08, 0.07, 1)
+texture = ExtResource("2")
+engine_health = 135.0
+wheels_health = 125.0
+

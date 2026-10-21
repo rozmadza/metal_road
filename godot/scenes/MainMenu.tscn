@@ -1,0 +1,356 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" path="res://scenes/MenuBackdrop.tscn" id="2"]
+[ext_resource type="Texture2D" path="res://assets/ui/menu/metal_road_logo.png" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/UISounds.tscn" id="4"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" parent="." instance=ExtResource("2")]
+
+[node name="Content" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 22
+mouse_filter = 2
+
+[node name="Layout" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Left" type="VBoxContainer" parent="Content/Layout"]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Eyebrow" type="Label" parent="Content/Layout/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.64, 0.32, 1)
+theme_override_font_sizes/font_size = 12
+text = "COMBAT RACING  /  NO CLEAN GETAWAYS"
+
+[node name="Logo" type="TextureRect" parent="Content/Layout/Left"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 158)
+layout_mode = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="Tagline" type="Label" parent="Content/Layout/Left"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.73, 0.77, 0.77, 1)
+theme_override_font_sizes/font_size = 14
+text = "СКОРОСТЬ. МЕТАЛЛ. НИКАКОЙ ПОЩАДЫ."
+
+[node name="Spacer" type="Control" parent="Content/Layout/Left"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuBox" type="VBoxContainer" parent="Content/Layout/Left"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RaceButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ГОНКА"
+alignment = 0
+
+[node name="CareerButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "КАРЬЕРА"
+alignment = 0
+
+[node name="SurvivalButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ВЫЖИВАНИЕ"
+alignment = 0
+
+[node name="GarageButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ГАРАЖ"
+alignment = 0
+
+[node name="ProgressButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 42)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ПРОГРЕСС"
+alignment = 0
+
+[node name="SettingsButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "НАСТРОЙКИ"
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="Content/Layout/Left/MenuBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(310, 46)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "ВЫХОД"
+alignment = 0
+
+[node name="FooterSpace" type="Control" parent="Content/Layout/Left"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Footer" type="Label" parent="Content/Layout/Left"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_color = Color(0.6, 0.65, 0.67, 1)
+text = "WASD / GAMEPAD · РУЛЬ    SPACE / A · ОГОНЬ    v1.0.0"
+
+[node name="OpenSpace" type="Control" parent="Content/Layout"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="CreditsButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -54.0
+offset_right = -26.0
+offset_bottom = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "АВТОРЫ · v1.0.0"
+
+[node name="SettingsShade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.02, 0.025, 0.87)
+
+[node name="SettingsPanel" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="SettingsPanel"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="SettingsPanel/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPanel/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SettingsTitle" type="Label" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+text = "НАСТРОЙКИ"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+
+[node name="VolumeRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="VolumeLabel" type="Label" parent="SettingsPanel/Panel/Margin/VBox/VolumeRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Громкость"
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsPanel/Panel/Margin/VBox/VolumeRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="MusicRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="MusicLabel" type="Label" parent="SettingsPanel/Panel/Margin/VBox/MusicRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Музыка"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsPanel/Panel/Margin/VBox/MusicRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SfxRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SfxLabel" type="Label" parent="SettingsPanel/Panel/Margin/VBox/SfxRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Эффекты"
+
+[node name="SfxSlider" type="HSlider" parent="SettingsPanel/Panel/Margin/VBox/SfxRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="EngineRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="EngineLabel" type="Label" parent="SettingsPanel/Panel/Margin/VBox/EngineRow"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Двигатель"
+
+[node name="EngineSlider" type="HSlider" parent="SettingsPanel/Panel/Margin/VBox/EngineRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="FullscreenCheck" type="CheckBox" parent="SettingsPanel/Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Полный экран"
+theme_override_constants/h_separation = 12
+
+[node name="ResolutionRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+[node name="Label" type="Label" parent="SettingsPanel/Panel/Margin/VBox/ResolutionRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Разрешение"
+[node name="ResolutionOption" type="OptionButton" parent="SettingsPanel/Panel/Margin/VBox/ResolutionRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="LanguageRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+[node name="Label" type="Label" parent="SettingsPanel/Panel/Margin/VBox/LanguageRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Язык"
+[node name="LanguageOption" type="OptionButton" parent="SettingsPanel/Panel/Margin/VBox/LanguageRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ControlsButton" type="Button" parent="SettingsPanel/Panel/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_type_variation = &"IndustrialButton"
+text = "УПРАВЛЕНИЕ"
+
+[node name="DifficultyRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/Panel/Margin/VBox/DifficultyRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Сложность"
+
+[node name="DifficultyOption" type="OptionButton" parent="SettingsPanel/Panel/Margin/VBox/DifficultyRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ShakeRow" type="HBoxContainer" parent="SettingsPanel/Panel/Margin/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/Panel/Margin/VBox/ShakeRow"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Тряска камеры"
+
+[node name="ShakeSlider" type="HSlider" parent="SettingsPanel/Panel/Margin/VBox/ShakeRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="ReducedFlashesCheck" type="CheckBox" parent="SettingsPanel/Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Уменьшить вспышки и ЭМИ-помехи"
+theme_override_constants/h_separation = 12
+
+[node name="HighContrastCheck" type="CheckBox" parent="SettingsPanel/Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Повышенная контрастность интерфейса"
+theme_override_constants/h_separation = 12
+
+[node name="TutorialCheck" type="CheckBox" parent="SettingsPanel/Panel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Показывать обучение"
+theme_override_constants/h_separation = 12
+
+[node name="BackButton" type="Button" parent="SettingsPanel/Panel/Margin/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 48)
+layout_mode = 2
+text = "Назад"
+
+[node name="UISounds" parent="." instance=ExtResource("4")]

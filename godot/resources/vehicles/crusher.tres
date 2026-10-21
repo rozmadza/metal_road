@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/crusher/crusher_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"crusher"
+display_name = "CRUSHER"
+description = "Тяжёлый разрушитель, превращающий массу и броню в оружие."
+vehicle_class = 3
+passive_id = &"reinforced_ram"
+passive_name = "УСИЛЕННЫЙ ТАРАН"
+passive_description = "Фронтальные столкновения наносят на 25% больше урона."
+max_speed = 135.0
+acceleration = 540.0
+traction = 19.0
+steer_rate = 3.8
+max_health = 155.0
+mass = 1550.0
+collision_min_speed = 55.0
+collision_damage = 0.28
+ram_power = 1.25
+damage_resistance = 0.12
+body_color = Color(0.78, 0.22, 0.1, 1)
+texture = ExtResource("2")

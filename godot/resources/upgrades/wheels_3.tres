@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"wheels_3"
+display_name = "ХОДОВАЯ III"
+description = "Раллийная ходовая для рейдеров и перехватчиков."
+category = &"wheels"
+level = 3
+cost = 2350
+required_upgrade = &"wheels_2"
+allowed_classes = PackedInt32Array(0, 1)
+modifiers = {"traction": 2.2, "steer_rate": 0.35, "wheels_repair_rate": 2.5}

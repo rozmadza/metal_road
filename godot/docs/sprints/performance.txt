@@ -1,0 +1,2 @@
+Six cars, critical smoke/fire, continuous fire, arena obstacles; 2s warmup + 10s sample.
+Mean 16.64 ms, p95 16.67 ms, mean FPS 60.1; peak bullets 0; emitters 18.

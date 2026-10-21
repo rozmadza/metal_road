@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"armament_1"
+display_name = "ВООРУЖЕНИЕ I"
+description = "Усиленная подача боеприпасов для любого подобранного оружия."
+category = &"weapon"
+level = 1
+cost = 800
+modifiers = {"weapon_damage_multiplier": 0.1, "weapon_fire_rate_multiplier": 0.05}

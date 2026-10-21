@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"wheels_1"
+display_name = "КОЛЁСА I"
+description = "Самозатягивающийся состав и усиленные боковины."
+category = &"wheels"
+level = 1
+cost = 550
+modifiers = {"wheels_repair_rate": 3.5}

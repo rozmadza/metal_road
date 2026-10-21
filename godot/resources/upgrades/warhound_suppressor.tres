@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"warhound_suppressor"
+display_name = "ОГНЕВОЙ ВАЛ"
+description = "Усиленный боеприпас и повышенный темп огня. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 4500
+allowed_vehicles = PackedStringArray("warhound")
+exclusive_group = &"warhound_final"
+modifiers = {"weapon_damage_multiplier": 0.18, "weapon_fire_rate_multiplier": 0.12}

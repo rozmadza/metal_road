@@ -1,0 +1,76 @@
+extends RefCounted
+class_name SurvivalRunData
+
+const ARENAS := [
+	{"id": &"scrapyard", "name": "SCRAPYARD ARENA", "path": "res://resources/default_arena.tres", "mechanic": "КОМПАКТНЫЙ БОЙ · МНОГО УКРЫТИЙ"},
+	{"id": &"oil_cauldron", "name": "НЕФТЯНОЙ КОТЁЛ", "path": "res://resources/oil_cauldron_arena.tres", "mechanic": "ПЫЛЕВЫЕ БУРИ · ВЗРЫВНЫЕ БОЧКИ"},
+	{"id": &"steel_foundry", "name": "СТАЛЬНОЙ ПРЕСС", "path": "res://resources/steel_foundry_arena.tres", "mechanic": "ДВИЖУЩИЕСЯ ПРЕССЫ · УЗКИЕ КОРИДОРЫ"},
+	{"id": &"flooded_depot", "name": "ЗАТОПЛЕННОЕ ДЕПО", "path": "res://resources/flooded_depot_arena.tres", "mechanic": "ВОЛНЫ ВОДЫ · ПАДЕНИЕ СЦЕПЛЕНИЯ"},
+	{"id": &"red_quarry", "name": "КРАСНЫЙ КАРЬЕР", "path": "res://resources/red_quarry_arena.tres", "mechanic": "КАМНЕПАДЫ · ОТКРЫТЫЕ ПРОСТРАНСТВА"},
+]
+
+const PERKS := [
+	{"id": &"armor_skin", "name": "СЛОИСТАЯ БРОНЯ", "description": "+28 HP корпуса · +4% защиты", "modifiers": {"max_health": 28.0, "damage_resistance": 0.04}},
+	{"id": &"overdrive", "name": "КРАСНАЯ ЗОНА", "description": "+10 км/ч · +150 разгон", "modifiers": {"max_speed": 10.0, "acceleration": 150.0}},
+	{"id": &"combat_tires", "name": "БОЕВЫЕ ШИНЫ", "description": "+2 сцепление · +0,8 управление", "modifiers": {"traction": 2.0, "steer_rate": 0.8}},
+	{"id": &"heavy_rounds", "name": "БРОНЕБОЙНЫЕ БОЕПРИПАСЫ", "description": "+22% урон временного оружия", "modifiers": {"weapon_damage_multiplier": 0.22}},
+	{"id": &"rapid_feed", "name": "УСКОРЕННАЯ ПОДАЧА", "description": "+18% темп огня", "modifiers": {"weapon_fire_rate_multiplier": 0.18}},
+	{"id": &"ram_vampire", "name": "ХИЩНЫЙ ТАРАН", "description": "+25% мощность тарана · убийство лечит корпус", "modifiers": {"ram_power": 0.25}, "effect": &"kill_repair"},
+	{"id": &"salvage_magnet", "name": "МАГНИТ ПОСТАВОК", "description": "+45% длительность бонусов · поставки чаще", "modifiers": {"passive_bonus_duration_multiplier": 0.45}, "effect": &"supply_magnet"},
+	{"id": &"second_wind", "name": "ВТОРОЕ ДЫХАНИЕ", "description": "Один раз за волну пережить смертельный удар", "effect": &"second_wind"},
+	{"id": &"volatile_wrecks", "name": "ЦЕПНАЯ РЕАКЦИЯ", "description": "Уничтоженные враги взрываются и ранят соседей", "effect": &"volatile_wrecks"},
+	{"id": &"field_mechanic", "name": "ПОЛЕВОЙ МЕХАНИК", "description": "+15% ремонта между волнами", "effect": &"wave_repair"},
+	{"id": &"executioner", "name": "ПАЛАЧ", "description": "+35% очков за элит и боссов", "effect": &"elite_score"},
+	{"id": &"long_magazine", "name": "ДЛИННЫЙ МАГАЗИН", "description": "+35% времени работы оружия", "effect": &"weapon_duration"},
+]
+
+static var selected_arena_id: StringName = &"scrapyard"
+static var daily_mode := false
+
+
+static func arena_by_id(id: StringName) -> Dictionary:
+	for arena in ARENAS:
+		if arena.id == id: return arena
+	return ARENAS[0]
+
+
+static func selected_arena() -> Dictionary:
+	if daily_mode:
+		return ARENAS[abs(daily_seed()) % ARENAS.size()]
+	return arena_by_id(selected_arena_id)
+
+
+static func daily_key() -> String:
+	return Time.get_date_string_from_system()
+
+
+static func daily_seed() -> int:
+	return hash("metal-road-survival-" + daily_key())
+
+
+static func wave_plan(round_number: int) -> Dictionary:
+	var cycle := posmod(round_number - 1, 5) + 1
+	var tier := int((round_number - 1) / 5)
+	match cycle:
+		1: return {"id": &"skirmish", "name": "СХВАТКА", "enemies": mini(5 + tier, 7), "elites": mini(tier, 2), "boss": false, "supply_rate": 1.0}
+		2: return {"id": &"supply_rush", "name": "БИТВА ЗА ПОСТАВКИ", "enemies": mini(6 + tier, 7), "elites": 0, "boss": false, "supply_rate": 1.8}
+		3: return {"id": &"elite_team", "name": "ЭЛИТНЫЙ ОТРЯД", "enemies": mini(4 + tier, 6), "elites": mini(2 + tier, 4), "boss": false, "supply_rate": 1.15}
+		4: return {"id": &"onslaught", "name": "НАТИСК", "enemies": mini(6 + tier, 8), "elites": mini(1 + tier, 3), "boss": false, "supply_rate": 1.35}
+	return {"id": &"boss", "name": "СУД АРБИТРА", "enemies": 4, "elites": 4, "boss": true, "supply_rate": 1.25}
+
+
+static func perk_choices(round_number: int, owned_ids: Array) -> Array[Dictionary]:
+	var pool: Array[Dictionary] = []
+	for perk in PERKS:
+		if perk.id not in owned_ids: pool.append(perk)
+	if pool.size() < 3:
+		pool.assign(PERKS)
+	var rng := RandomNumberGenerator.new()
+	if daily_mode:
+		rng.seed = daily_seed() + round_number * 997
+	else:
+		rng.randomize()
+	var choices: Array[Dictionary] = []
+	while not pool.is_empty() and choices.size() < 3:
+		choices.append(pool.pop_at(rng.randi_range(0, pool.size() - 1)))
+	return choices

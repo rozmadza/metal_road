@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TrackConfig" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/track_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/industrial_road.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/industrial_ground.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+track_width = 210.0
+lane_count = 6
+centerline = PackedVector2Array(200, 150, 600, 150, 850, 200, 1080, 280, 1320, 260, 1550, 340, 1720, 500, 1770, 690, 1680, 860, 1740, 1040, 1640, 1190, 1450, 1260, 1240, 1220, 1050, 1150, 860, 1210, 650, 1300, 430, 1270, 230, 1190, 100, 1040, 90, 860, 180, 700, 120, 530, -250, 550, -250, 150)
+waypoint_radius = 76.0
+progress_step_tolerance = 90.0
+biome_id = &"industrial"
+biome_name = "СТАЛЕЛИТЕЙНЫЙ ПОЯС"
+biome_description = "Сухой асфальт, тяжёлые ограждения и взрывоопасные склады. Самый предсказуемый зацеп."
+surface_tint = Color(0.39, 0.44, 0.47, 1)
+surface_detail = 0.34
+background_modulate = Color(0.42, 0.43, 0.43, 1)
+edge_color = Color(0.55, 0.41, 0.22, 1)
+centerline_color = Color(0.82, 0.61, 0.24, 0.82)
+finish_line_color = Color(0.95, 0.68, 0.2, 1)
+road_traction = 1.0
+road_steering = 1.0
+offroad_traction = 0.58
+offroad_steering = 0.68
+decor_style = 0
+hazard_count = 3
+bonus_hotspots = PackedFloat32Array(0.16, 0.48, 0.78)
+surface_texture = ExtResource("2")
+background_texture = ExtResource("3")
+laps = 3
+combat_enabled = true

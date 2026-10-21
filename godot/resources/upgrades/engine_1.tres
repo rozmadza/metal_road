@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"engine_1"
+display_name = "ДВИГАТЕЛЬ I"
+description = "Облегчённый впуск и новая настройка подачи топлива."
+category = &"engine"
+level = 1
+cost = 600
+modifiers = {"max_speed": 12.0, "acceleration": 110.0}

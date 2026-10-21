@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/nomad/nomad_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"nomad"
+display_name = "NOMAD"
+description = "Экспедиционный рейдер с запасом прочности и долгими бонусами."
+vehicle_class = 0
+passive_id = &"salvager"
+passive_name = "ДАЛЬНИЙ РЕЙД"
+passive_description = "Оружие, ускорение и таран действуют на 50% дольше."
+passive_bonus_duration_multiplier = 1.5
+length = 42.0
+width = 25.0
+max_speed = 158.0
+acceleration = 600.0
+traction = 16.0
+steer_rate = 4.8
+max_health = 112.0
+mass = 1100.0
+ram_power = 1.05
+damage_resistance = 0.05
+body_color = Color(0.42, 0.48, 0.25, 1)
+texture = ExtResource("2")

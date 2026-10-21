@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"bastion_fortress"
+display_name = "ПОДВИЖНАЯ КРЕПОСТЬ"
+description = "Предельная броня и запас корпуса ценой части скорости. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 4800
+allowed_vehicles = PackedStringArray("bastion")
+exclusive_group = &"bastion_final"
+modifiers = {"max_health": 40.0, "damage_resistance": 0.08, "max_speed": -5.0}

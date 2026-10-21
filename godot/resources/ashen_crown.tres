@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TrackConfig" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/track_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/city_road.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/city_ground.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+track_width = 245.0
+lane_count = 6
+centerline = PackedVector2Array(180, 190, 500, 80, 830, 145, 1120, 70, 1460, 180, 1760, 390, 1680, 690, 1840, 960, 1640, 1250, 1320, 1320, 1030, 1190, 760, 1380, 430, 1270, 120, 1050, 260, 760, 80, 500)
+waypoint_radius = 88.0
+progress_step_tolerance = 105.0
+biome_id = &"ruined_city"
+biome_name = "ПЕПЕЛЬНАЯ КОРОНА"
+biome_description = "Финальный ночной маршрут: мокрое покрытие, максимальная плотность ловушек и самые ценные линии бонусов."
+surface_tint = Color(0.31, 0.35, 0.36, 1)
+surface_detail = 0.52
+background_modulate = Color(0.35, 0.35, 0.34, 1)
+edge_color = Color(0.68, 0.38, 0.16, 1)
+centerline_color = Color(0.95, 0.53, 0.16, 0.68)
+finish_line_color = Color(1, 0.78, 0.26, 1)
+road_traction = 0.77
+road_steering = 0.84
+offroad_traction = 0.46
+offroad_steering = 0.57
+decor_style = 2
+hazard_count = 6
+bonus_hotspots = PackedFloat32Array(0.1, 0.34, 0.59, 0.81)
+surface_texture = ExtResource("2")
+background_texture = ExtResource("3")
+laps = 4
+combat_enabled = true

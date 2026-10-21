@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/upgrade_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"dustfox_scavenger"
+display_name = "ИСКАТЕЛЬ"
+description = "Максимум пользы от припасов и быстрое восстановление колёс. Выбор окончательный."
+category = &"specialization"
+level = 1
+cost = 3600
+allowed_vehicles = PackedStringArray("dustfox")
+exclusive_group = &"dustfox_final"
+modifiers = {"passive_bonus_duration_multiplier": 0.35, "wheels_repair_rate": 1.4, "traction": 1.0}

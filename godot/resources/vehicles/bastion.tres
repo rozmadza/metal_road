@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/bastion/bastion_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"bastion"
+display_name = "BASTION"
+description = "Тяжёлый клин Фронтира: принимает огонь на броню и ломает построение тараном."
+vehicle_class = 3
+passive_id = &"unbreakable_nose"
+passive_name = "НЕСОКРУШИМЫЙ НОС"
+passive_description = "Фронтальный таран усилен на 60%, броня гасит 23% входящего урона."
+career_unlock_event = &"oil_cauldron"
+length = 49.0
+width = 31.0
+max_speed = 124.0
+acceleration = 500.0
+traction = 21.0
+steer_rate = 3.45
+max_health = 184.0
+mass = 1950.0
+collision_min_speed = 48.0
+collision_damage = 0.35
+ram_power = 1.6
+damage_resistance = 0.23
+front_impact_factor = 0.58
+engine_health = 100.0
+wheels_health = 92.0
+damage_color = Color(0.12, 0.07, 0.025, 0.88)
+engine_pitch_base = 0.55
+engine_pitch_range = 0.42
+engine_volume_offset_db = 2.5
+body_color = Color(0.3, 0.32, 0.34, 1)
+texture = ExtResource("2")

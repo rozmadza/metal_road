@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ArenaConfig" load_steps=7 format=3]
+[ext_resource type="Script" path="res://scripts/arena_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/city_ground.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/school_bus_topdown.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/semi_truck_topdown.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/tire_scrap_heap_topdown.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/crushed_cars_topdown.png" id="6"]
+[resource]
+script = ExtResource("1")
+size = Vector2(1220, 860)
+obstacles = Array[Rect2]([Rect2(180,170,220,70),Rect2(820,170,220,70),Rect2(500,360,220,140),Rect2(180,630,220,70),Rect2(820,630,220,70)])
+oil_spots = Array[Vector2]([Vector2(390,430),Vector2(830,430)])
+crates = Array[Vector2]([Vector2(150,430),Vector2(1070,430)])
+wrecks = Array[Vector2]([Vector2(610,170),Vector2(610,690)])
+floor_color = Color(0.1,0.17,0.19,1)
+grid_color = Color(0.18,0.32,0.35,1)
+floor_texture = ExtResource("2")
+biome_id = &"flooded_depot"
+biome_name = "ЗАТОПЛЕННОЕ ДЕПО"
+biome_description = "Вода периодически покрывает площадку и резко снижает сцепление всех машин."
+school_bus_texture = ExtResource("3")
+semi_truck_texture = ExtResource("4")
+tire_heap_texture = ExtResource("5")
+crushed_cars_texture = ExtResource("6")
+crushed_container_texture = ExtResource("4")
+mechanic_id = &"flood"
+mechanic_label = "ВОЛНА ВОДЫ: СЦЕПЛЕНИЕ СНИЖЕНО"
+hazard_interval = 15.0

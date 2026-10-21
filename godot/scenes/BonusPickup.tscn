@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/bonus_pickup.gd" id="1"]
+
+[sub_resource type="CircleShape2D" id="Circle"]
+radius = 50.0
+
+[node name="BonusPickup" type="Area2D"]
+script = ExtResource("1")
+z_index = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("Circle")

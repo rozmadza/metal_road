@@ -1,0 +1,79 @@
+[profile]
+
+save_version=8
+credits=850
+owned_vehicles=PackedStringArray("raider", "nomad")
+owned_weapons=PackedStringArray("machine_gun")
+vehicle_states={
+"nomad": {
+"best_finish": 0,
+"best_time": 0.0,
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+},
+"raider": {
+"best_finish": 0,
+"best_time": 0.0,
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+}
+}
+weapon_upgrades=PackedStringArray()
+career={
+"bosses_defeated": [],
+"career_level": 2,
+"championship_active": false,
+"championship_complete": false,
+"championship_index": 0,
+"championship_points": {
+"bolt": 0,
+"grit": 0,
+"nyx": 0,
+"razor": 0,
+"zero": 0,
+"ВЫ": 0
+},
+"championship_tier": 0,
+"completed_events": [&"iron_open"],
+"completed_objectives": [&"iron_open"],
+"daily_best": {},
+"daily_claims": [],
+"driver_id": &"flint",
+"event_medals": {
+"iron_open": 2
+},
+"last_rival_news": ["RAZOR: УРОВЕНЬ 2 · ДВ 1", "BOLT: УРОВЕНЬ 2 · ДВ 1", "NYX: УРОВЕНЬ 2 · ДВ 1"],
+"personal_rival_id": &"razor",
+"rival_levels": {
+"bolt": 2,
+"grit": 2,
+"nyx": 2,
+"razor": 2,
+"zero": 2
+},
+"rivalry_scores": {
+"bolt": 2,
+"grit": 0,
+"nyx": 1,
+"razor": 4,
+"zero": 0
+},
+"season_points": {
+"bolt": 5,
+"grit": 2,
+"nyx": 3,
+"player": 7,
+"razor": 10,
+"zero": 1
+},
+"season_scored_events": [&"iron_open"],
+"tutorial_complete": false
+}

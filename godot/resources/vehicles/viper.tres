@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="VehicleConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/vehicle_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vehicles/viper/viper_clean.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+vehicle_id = &"viper"
+display_name = "VIPER"
+description = "Лёгкий болид для скорости, обгонов и точного пилотирования."
+vehicle_class = 1
+passive_id = &"apex_boost"
+passive_name = "ИДЕАЛЬНАЯ ДУГА"
+passive_description = "Чистое быстрое прохождение сектора даёт ускорение на 2,4 секунды."
+passive_apex_duration = 2.4
+passive_apex_speed_multiplier = 1.1
+passive_apex_acceleration_multiplier = 1.35
+passive_apex_cooldown = 4.5
+max_speed = 195.0
+acceleration = 760.0
+traction = 17.0
+steer_rate = 6.5
+max_health = 82.0
+mass = 760.0
+ram_power = 0.85
+body_color = Color(0.12, 0.55, 0.95, 1)
+texture = ExtResource("2")

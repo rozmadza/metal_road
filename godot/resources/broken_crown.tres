@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="TrackConfig" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/track_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/city_road.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/environment/biomes/city_ground.png" id="3"]
+
+[resource]
+script = ExtResource("1")
+track_width = 235.0
+lane_count = 6
+centerline = PackedVector2Array(170, 170, 520, 90, 850, 220, 1160, 100, 1510, 180, 1760, 430, 1640, 720, 1810, 990, 1580, 1270, 1260, 1180, 960, 1360, 650, 1210, 320, 1320, 80, 1050, 220, 790, 70, 500)
+waypoint_radius = 84.0
+progress_step_tolerance = 100.0
+biome_id = &"ruined_city"
+biome_name = "РАЗБИТАЯ КОРОНА"
+biome_description = "Мокрый городской асфальт скользит, узкие боевые линии проходят среди обломков и бочек."
+surface_tint = Color(0.3, 0.37, 0.39, 1)
+surface_detail = 0.46
+background_modulate = Color(0.32, 0.39, 0.41, 1)
+edge_color = Color(0.24, 0.56, 0.59, 1)
+centerline_color = Color(0.32, 0.78, 0.82, 0.72)
+finish_line_color = Color(0.98, 0.7, 0.2, 1)
+road_traction = 0.8
+road_steering = 0.87
+offroad_traction = 0.5
+offroad_steering = 0.61
+decor_style = 2
+hazard_count = 5
+bonus_hotspots = PackedFloat32Array(0.12, 0.42, 0.68, 0.88)
+surface_texture = ExtResource("2")
+background_texture = ExtResource("3")
+laps = 20
+combat_enabled = true
