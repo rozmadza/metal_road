@@ -1,0 +1,173 @@
+--- a/godot/resources/default_arena.tres
++++ b/godot/resources/default_arena.tres
+@@ -10,19 +10,22 @@
+ 
+ [resource]
+ script = ExtResource("1")
+-size = Vector2(1000, 800)
++size = Vector2(1400, 1000)
+ wall_thickness = 20.0
+ spawn_margin = 80.0
+ structured_scrapyard = true
+-supply_hotspots = Array[Vector2]([Vector2(500, 130), Vector2(90, 320), Vector2(910, 350), Vector2(500, 660)])
+-obstacles = Array[Rect2]([Rect2(430, 300, 140, 120), Rect2(185, 205, 145, 44), Rect2(185, 390, 145, 44), Rect2(730, 240, 85, 70), Rect2(705, 440, 160, 44)])
+-oil_spots = Array[Vector2]([Vector2(815, 380)])
+-explosive_barrels = Array[Vector2]([Vector2(820, 210), Vector2(845, 260), Vector2(820, 310)])
+-crates = Array[Vector2]([Vector2(210, 280), Vector2(260, 290)])
+-tire_walls = Array[Vector2]([Vector2(620, 355)])
++supply_hotspots = Array[Vector2]([Vector2(700, 150), Vector2(150, 460), Vector2(1260, 460), Vector2(700, 850)])
++obstacles = Array[Rect2]([Rect2(630, 360, 140, 120), Rect2(270, 265, 145, 44), Rect2(270, 505, 145, 44), Rect2(1040, 280, 85, 70), Rect2(1025, 570, 160, 44)])
++oil_spots = Array[Vector2]([Vector2(1155, 470)])
++explosive_barrels = Array[Vector2]([Vector2(1160, 300), Vector2(1185, 350), Vector2(1160, 400)])
++crates = Array[Vector2]([Vector2(290, 225), Vector2(345, 225)])
++tire_walls = Array[Vector2]([Vector2(810, 440)])
+ wrecks = Array[Vector2]([])
+-concrete_blocks = Array[Vector2]([Vector2(235, 505), Vector2(755, 535)])
++concrete_blocks = Array[Vector2]([Vector2(355, 665), Vector2(1100, 700)])
+ metal_fences = Array[Vector2]([])
++spike_strip_positions = Array[Vector2]([Vector2(240, 720)])
++maneuver_lane_y = 780.0
++biome_description = "Промышленная свалка с широкими проездами и свободной нижней полосой."
+ floor_color = Color(0.11, 0.12, 0.15, 1)
+ grid_color = Color(0.17, 0.18, 0.22, 1)
+ wall_color = Color(0.34, 0.36, 0.42, 1)
+--- a/godot/scripts/arena_config.gd
++++ b/godot/scripts/arena_config.gd
+@@ -18,6 +18,10 @@
+ @export var wrecks: Array[Vector2] = []
+ @export var concrete_blocks: Array[Vector2] = []
+ @export var metal_fences: Array[Vector2] = []
++## Preserve the historical Survival strip on other arenas unless overridden.
++@export var spike_strip_positions: Array[Vector2] = [Vector2(150, 650)]
++## Ground paint only; never a physical lane restriction.
++@export var maneuver_lane_y := 590.0
+ @export var structured_scrapyard := false
+ @export var supply_hotspots: Array[Vector2] = []
+ @export_range(0.0, 1.0, 0.05) var dressing_opacity := 0.65
+--- a/godot/scripts/arena_dressing.gd
++++ b/godot/scripts/arena_dressing.gd
+@@ -31,33 +31,43 @@
+ func _draw() -> void:
+ 	var paint := Color(0.71, 0.61, 0.39, 0.32)
+ 	var dark := Color(0.035, 0.028, 0.02, 0.2)
++	var center := config.obstacles[0].get_center() if not config.obstacles.is_empty() else config.size * 0.5
++	var container_pad := config.obstacles[1].merge(config.obstacles[2]).grow(15) if config.obstacles.size() >= 3 else Rect2()
++	for point in config.crates: container_pad = container_pad.merge(Rect2(point-Vector2(20,20),Vector2(40,40)))
++	var danger_pad := config.obstacles[3] if config.obstacles.size() >= 4 else Rect2()
++	for point in config.explosive_barrels: danger_pad = danger_pad.merge(Rect2(point-Vector2(18,18),Vector2(36,36)))
++	# Match the authored OilSpot ellipse (66x34 radii), not a square placeholder.
++	for point in config.oil_spots: danger_pad = danger_pad.merge(Rect2(point-Vector2(66,34),Vector2(132,68)))
++	danger_pad = danger_pad.grow(15)
+ 	# The center ring and cluster pads visually connect cover to the floor.
+-	draw_arc(Vector2(500, 360), 112, 0, TAU, 64, Color(paint, 0.16), 14, true)
++	draw_arc(center, 112, 0, TAU, 64, Color(paint, 0.16), 14, true)
+ 	for quadrant in 4:
+ 		var angle := quadrant * PI * 0.5 + 0.12
+-		draw_arc(Vector2(500, 360), 122, angle, angle + 0.65, 12, paint, 2, true)
+-	_pad(Rect2(170, 190, 175, 270), paint)
+-	_pad(Rect2(700, 185, 165, 150), Color(0.9, 0.47, 0.15, 0.35))
+-	for index in 9:
+-		var x := 704.0 + index * 18
+-		draw_line(Vector2(x, 326), Vector2(x + 10, 338), Color(0.88, 0.53, 0.14, 0.3), 5, true)
++		draw_arc(center, 122, angle, angle + 0.65, 12, paint, 2, true)
++	_pad(container_pad, paint)
++	_pad(danger_pad, Color(0.9, 0.47, 0.15, 0.35))
++	for index in int(danger_pad.size.x / 18):
++		var x := danger_pad.position.x + 4 + index * 18
++		draw_line(Vector2(x, danger_pad.end.y), Vector2(x + 10, danger_pad.end.y + 12), Color(0.88, 0.53, 0.14, 0.3), 5, true)
+ 	# Open maneuver lane: quiet broken paint, no new physical objects.
+-	for index in 12:
++	for index in int((config.size.x - 200) / 68):
+ 		var x := 100.0 + index * 68
+-		draw_line(Vector2(x, 590), Vector2(x + 28, 590), Color(paint, 0.2), 2, true)
++		draw_line(Vector2(x, config.maneuver_lane_y), Vector2(x + 28, config.maneuver_lane_y), Color(paint, 0.2), 2, true)
++	for point in config.spike_strip_positions:
++		_pad(Rect2(point-Vector2(52,24),Vector2(104,48)),Color(0.85,0.49,0.17,0.3))
+ 	var rng := RandomNumberGenerator.new()
+ 	rng.seed = 4217
+-	for index in 32:
+-		var center := Vector2(rng.randf_range(60, 940), rng.randf_range(100, 720))
++	for index in int(config.size.x * config.size.y / 25000):
++		var stain_center := Vector2(rng.randf_range(60, config.size.x-60), rng.randf_range(100, config.size.y-80))
+ 		var size := Vector2(rng.randf_range(10, 30), rng.randf_range(3, 9))
+ 		var points := PackedVector2Array()
+ 		for vertex in 12:
+ 			var angle := TAU * vertex / 12.0
+-			points.append(center + Vector2(cos(angle), sin(angle)) * size * rng.randf_range(0.7, 1.0))
++			points.append(stain_center + Vector2(cos(angle), sin(angle)) * size * rng.randf_range(0.7, 1.0))
+ 		draw_colored_polygon(points, dark)
+ 	# Paired skid arcs around the anchor and across the lower approach.
+ 	for radius in [145.0, 154.0, 240.0, 249.0]:
+-		draw_arc(Vector2(500, 350), radius, 0.2, 2.75, 42, Color(0.025, 0.023, 0.02, 0.2), 3, true)
++		draw_arc(center-Vector2(0,10), radius, 0.2, 2.75, 42, Color(0.025, 0.023, 0.02, 0.2), 3, true)
+ 	for index in config.supply_hotspots.size():
+ 		var p := config.supply_hotspots[index]
+ 		draw_circle(p, 28, Color(0.04, 0.10, 0.11, 0.24))
+--- a/godot/scripts/survival.gd
++++ b/godot/scripts/survival.gd
+@@ -147,6 +147,11 @@
+ 	hud.pause_overlay.restart_requested.connect(_on_retry_requested)
+ 	hud.pause_overlay.menu_requested.connect(func(): SceneTransition.go(CareerSession.CAREER_SCENE if not career_event.is_empty() else MENU_SCENE, "ВЫХОД С АРЕНЫ"))
+ 	camera.target = player
++	# A structured arena has authored perimeter walls. Include the wall, not
++	# the old extra 20 units of empty exterior; retain zoom/car screen scale.
++	if arena.config.structured_scrapyard:
++		camera.margin = arena.config.wall_thickness
++		hud.avoid_tutorial_overlap = true
+ 	camera.set_bounds(arena.get_bounds())
+ 	audio.set_biome_profile(arena.config.biome_id)
+ 	audio.enable_survival_metal()
+@@ -245,7 +250,7 @@
+ 
+ func _setup_spike_strips() -> void:
+ 	var scene := preload("res://scenes/SpikeStrip.tscn")
+-	for point in [Vector2(150, 650)]:
++	for point in arena.config.spike_strip_positions:
+ 		var spike := scene.instantiate() as SpikeStrip
+ 		arena.add_child(spike)
+ 		spike.position = point
+--- a/godot/scripts/survival_run_data.gd
++++ b/godot/scripts/survival_run_data.gd
+@@ -2,7 +2,7 @@
+ class_name SurvivalRunData
+ 
+ const ARENAS := [
+-	{"id": &"scrapyard", "name": "SCRAPYARD ARENA", "path": "res://resources/default_arena.tres", "mechanic": "КОМПАКТНЫЙ БОЙ · МНОГО УКРЫТИЙ"},
++	{"id": &"scrapyard", "name": "SCRAPYARD ARENA", "path": "res://resources/default_arena.tres", "mechanic": "ПРОСТОРНЫЕ ПРОЕЗДЫ · ТАКТИЧЕСКИЕ УКРЫТИЯ"},
+ 	{"id": &"oil_cauldron", "name": "НЕФТЯНОЙ КОТЁЛ", "path": "res://resources/oil_cauldron_arena.tres", "mechanic": "ПЫЛЕВЫЕ БУРИ · ВЗРЫВНЫЕ БОЧКИ"},
+ 	{"id": &"steel_foundry", "name": "СТАЛЬНОЙ ПРЕСС", "path": "res://resources/steel_foundry_arena.tres", "mechanic": "ДВИЖУЩИЕСЯ ПРЕССЫ · УЗКИЕ КОРИДОРЫ"},
+ 	{"id": &"flooded_depot", "name": "ЗАТОПЛЕННОЕ ДЕПО", "path": "res://resources/flooded_depot_arena.tres", "mechanic": "ВОЛНЫ ВОДЫ · ПАДЕНИЕ СЦЕПЛЕНИЯ"},
+--- a/godot/scripts/arena_hud.gd
++++ b/godot/scripts/arena_hud.gd
+@@ -8,6 +8,8 @@
+ @onready var pause_overlay: PauseOverlay = $PauseOverlay
+ var _message_timer := 0.0
+ var interaction_prompt: Label
++## Opt-in for the expanded scrapyard's edge-clamped camera; Race is untouched.
++var avoid_tutorial_overlap := false
+ 
+ func _ready() -> void:
+ 	interaction_prompt = Label.new()
+@@ -80,6 +82,22 @@
+ 		%BossHealth.value = boss.health
+ 		var boss_name := String(boss.get_meta("boss_name", boss.config.display_name))
+ 		%BossLabel.text = "%s · %d%%" % [boss_name, roundi(boss.health / maxf(boss.config.max_health, 1.0) * 100.0)]
++	_keep_tutorial_clear(player)
++
++func _keep_tutorial_clear(player: Vehicle) -> void:
++	if not avoid_tutorial_overlap or not tutorial.visible: return
++	var transform := player.get_global_transform_with_canvas()
++	var vertices := player.config.get_body_vertices()
++	var car_rect := Rect2(transform * (vertices[0] * Vehicle.COLLISION_SCALE), Vector2.ZERO)
++	for vertex in vertices: car_rect = car_rect.expand(transform * (vertex * Vehicle.COLLISION_SCALE))
++	# Always compare to the ORIGINAL slot, not last frame's moved panel, to
++	# prevent oscillation. Keep below the boss/message strips when moved.
++	var original := tutorial.get_global_rect()
++	var height := get_viewport().get_visible_rect().size.y
++	original.position.y = height - 168
++	var blocked := original.intersects(car_rect.grow(20))
++	tutorial.offset_top = 180 - height if blocked else -168.0
++	tutorial.offset_bottom = 236 - height if blocked else -112.0
+ 
+ func show_message(text: String, duration: float) -> void:
+ 	_message.text = text

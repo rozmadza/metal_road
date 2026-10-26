@@ -1,0 +1,76 @@
+{
+  "combat": {
+    "max_player_travel": 548.177490234375,
+    "player_alive": true,
+    "player_health": 27.9657621383667,
+    "two_ai_moving_frames": 794
+  },
+  "group": [
+    {
+      "actor": 4,
+      "arrival_seconds": 19.0666666666667,
+      "cancelled": 1,
+      "detours": 1,
+      "requests": 3
+    },
+    {
+      "actor": 5,
+      "arrival_seconds": 24.0666666666667,
+      "cancelled": 2,
+      "detours": 2,
+      "requests": 4
+    },
+    {
+      "actor": 3,
+      "arrival_seconds": 24.7,
+      "cancelled": 0,
+      "detours": 2,
+      "requests": 1
+    },
+    {
+      "actor": 6,
+      "arrival_seconds": 27.9166666666667,
+      "cancelled": 2,
+      "detours": 1,
+      "requests": 3
+    },
+    {
+      "actor": 2,
+      "arrival_seconds": 28.0333333333333,
+      "cancelled": 0,
+      "detours": 0,
+      "requests": 3
+    },
+    {
+      "actor": 0,
+      "arrival_seconds": 32.2333333333333,
+      "cancelled": 0,
+      "detours": 2,
+      "requests": 2
+    },
+    {
+      "actor": 1,
+      "arrival_seconds": 34.0166666666667,
+      "cancelled": 0,
+      "detours": 1,
+      "requests": 3
+    },
+    {
+      "actor": 7,
+      "arrival_seconds": 34.75,
+      "cancelled": 0,
+      "detours": 1,
+      "requests": 4
+    }
+  ],
+  "group_reached": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ArenaConfig" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/arena_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/mud_ground.png" id="2_mud"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/school_bus_topdown.png" id="3_bus"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/semi_truck_topdown.png" id="4_truck"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/tire_scrap_heap_topdown.png" id="5_tires"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/crushed_cars_topdown.png" id="6_cars"]
+[ext_resource type="Texture2D" path="res://assets/environment/arena/crushed_container_topdown.png" id="7_container"]
+
+[resource]
+script = ExtResource("1")
+size = Vector2(1000, 800)
+wall_thickness = 20.0
+spawn_margin = 80.0
+structured_scrapyard = true
+supply_hotspots = Array[Vector2]([Vector2(500, 130), Vector2(90, 320), Vector2(910, 350), Vector2(500, 660)])
+obstacles = Array[Rect2]([Rect2(430, 300, 140, 120), Rect2(185, 205, 145, 44), Rect2(185, 390, 145, 44), Rect2(730, 240, 85, 70), Rect2(705, 440, 160, 44)])
+oil_spots = Array[Vector2]([Vector2(815, 380)])
+explosive_barrels = Array[Vector2]([Vector2(820, 210), Vector2(845, 260), Vector2(820, 310)])
+crates = Array[Vector2]([Vector2(210, 280), Vector2(260, 290)])
+tire_walls = Array[Vector2]([Vector2(620, 355)])
+wrecks = Array[Vector2]([])
+concrete_blocks = Array[Vector2]([Vector2(235, 505), Vector2(755, 535)])
+metal_fences = Array[Vector2]([])
+floor_color = Color(0.11, 0.12, 0.15, 1)
+grid_color = Color(0.17, 0.18, 0.22, 1)
+wall_color = Color(0.34, 0.36, 0.42, 1)
+obstacle_color = Color(0.26, 0.28, 0.33, 1)
+obstacle_edge_color = Color(0.44, 0.46, 0.54, 1)
+floor_texture = ExtResource("2_mud")
+school_bus_texture = ExtResource("3_bus")
+semi_truck_texture = ExtResource("4_truck")
+tire_heap_texture = ExtResource("5_tires")
+crushed_cars_texture = ExtResource("6_cars")
+crushed_container_texture = ExtResource("7_container")

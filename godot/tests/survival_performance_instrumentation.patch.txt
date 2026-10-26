@@ -1,0 +1,189 @@
+*** Begin Patch
+*** Update File: <ROOT>/scripts/arena_bot.gd
+@@
+-func get_commands(delta: float = 0.0) -> Dictionary:
++func get_commands(delta: float = 0.0) -> Dictionary:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: Dictionary = _audit_original_get_commands(delta)
++	preload("res://tests/survival_perf_stats.gd").record("ai.commands", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original_get_commands(delta: float = 0.0) -> Dictionary:
+@@
+-func _try_traffic_detour() -> bool:
++func _try_traffic_detour() -> bool:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: bool = _audit_original__try_traffic_detour()
++	preload("res://tests/survival_perf_stats.gd").record("ai.detour", Time.get_ticks_usec()-_audit_started, str(_audit_value))
++	return _audit_value
++
++
++func _audit_original__try_traffic_detour() -> bool:
+@@
+-func _traffic_limit(desired: float, forward: Vector2) -> Dictionary:
++func _traffic_limit(desired: float, forward: Vector2) -> Dictionary:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: Dictionary = _audit_original__traffic_limit(desired, forward)
++	preload("res://tests/survival_perf_stats.gd").record("ai.traffic_limit", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original__traffic_limit(desired: float, forward: Vector2) -> Dictionary:
+*** Update File: <ROOT>/scripts/arena_navigation.gd
+@@
+ 	if _grids.has(key): return _grids[key]
++	var _audit_grid_started := Time.get_ticks_usec()
+@@
+ 	_grids[key] = grid
++	preload("res://tests/survival_perf_stats.gd").record("nav.grid_build",Time.get_ticks_usec()-_audit_grid_started,str(radius))
+ 	return grid
+@@
+-func route_result(start: Vector2, goal: Vector2, radius: float) -> Dictionary:
++func route_result(start: Vector2, goal: Vector2, radius: float) -> Dictionary:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: Dictionary = _audit_original_route_result(start, goal, radius)
++	preload("res://tests/survival_perf_stats.gd").record("nav.route", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original_route_result(start: Vector2, goal: Vector2, radius: float) -> Dictionary:
+*** Update File: <ROOT>/scripts/arena.gd
+@@
+-func _ready() -> void:
++func _ready() -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__ready()
++	preload("res://tests/survival_perf_stats.gd").record("arena.ready", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__ready() -> void:
+@@
+-func _build_obstacle_polygon(texture: Texture2D, rect: Rect2) -> PackedVector2Array:
++func _build_obstacle_polygon(texture: Texture2D, rect: Rect2) -> PackedVector2Array:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: PackedVector2Array = _audit_original__build_obstacle_polygon(texture, rect)
++	preload("res://tests/survival_perf_stats.gd").record("arena.hull", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original__build_obstacle_polygon(texture: Texture2D, rect: Rect2) -> PackedVector2Array:
+*** Update File: <ROOT>/scripts/survival.gd
+@@
+-func _restore_arena() -> void:
++func _restore_arena() -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__restore_arena()
++	preload("res://tests/survival_perf_stats.gd").record("survival.restore_arena", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__restore_arena() -> void:
+@@
+-func _physics_process(_delta: float) -> void:
++func _physics_process(_delta: float) -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__physics_process(_delta)
++	preload("res://tests/survival_perf_stats.gd").record("survival.physics", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__physics_process(_delta: float) -> void:
+@@
+-func _process(delta: float) -> void:
++func _process(delta: float) -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__process(delta)
++	preload("res://tests/survival_perf_stats.gd").record("survival.process", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__process(delta: float) -> void:
+@@
+-func start_round(round_number: int) -> void:
++func start_round(round_number: int) -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original_start_round(round_number)
++	preload("res://tests/survival_perf_stats.gd").record("survival.start_round", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original_start_round(round_number: int) -> void:
+@@
+-func _spawn_bot(spawn: Vector2, index: int, force_boss: bool = false) -> Vehicle:
++func _spawn_bot(spawn: Vector2, index: int, force_boss: bool = false) -> Vehicle:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: Vehicle = _audit_original__spawn_bot(spawn, index, force_boss)
++	preload("res://tests/survival_perf_stats.gd").record("survival.spawn_bot", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original__spawn_bot(spawn: Vector2, index: int, force_boss: bool = false) -> Vehicle:
+*** Update File: <ROOT>/scripts/vehicle.gd
+@@
+-func _on_body_entered(body: Node) -> void:
++func _on_body_entered(body: Node) -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__on_body_entered(body)
++	preload("res://tests/survival_perf_stats.gd").record("vehicle.collision", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__on_body_entered(body: Node) -> void:
+@@
+-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
++func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__integrate_forces(state)
++	preload("res://tests/survival_perf_stats.gd").record("vehicle.integrate", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+*** Update File: <ROOT>/scripts/combat_vfx.gd
+@@
+-func _process(delta: float) -> void:
++func _process(delta: float) -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__process(delta)
++	preload("res://tests/survival_perf_stats.gd").record("vfx.process", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__process(delta: float) -> void:
+@@
+-func _draw() -> void:
++func _draw() -> void:
++	var _audit_started := Time.get_ticks_usec()
++	_audit_original__draw()
++	preload("res://tests/survival_perf_stats.gd").record("vfx.draw", Time.get_ticks_usec()-_audit_started, "")
++
++
++func _audit_original__draw() -> void:
+*** Update File: <ROOT>/scripts/bonus_spawner.gd
+@@
+-func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
++func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: BonusPickup = _audit_original__create_pickup(chosen_kind, is_armed, reserved_positions)
++	preload("res://tests/survival_perf_stats.gd").record("bonus.create", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original__create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
+@@
+-func _next_position(reserved_positions: Array[Vector2] = []) -> Dictionary:
++func _next_position(reserved_positions: Array[Vector2] = []) -> Dictionary:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: Dictionary = _audit_original__next_position(reserved_positions)
++	preload("res://tests/survival_perf_stats.gd").record("bonus.position", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++func _audit_original__next_position(reserved_positions: Array[Vector2] = []) -> Dictionary:
+*** Update File: <ROOT>/scripts/loadout_profile.gd
+@@
+-static func vehicle_catalog() -> VehicleCatalog:
++static func vehicle_catalog() -> VehicleCatalog:
++	var _audit_started := Time.get_ticks_usec()
++	var _audit_value: VehicleCatalog = _audit_original_vehicle_catalog()
++	preload("res://tests/survival_perf_stats.gd").record("catalog.load", Time.get_ticks_usec()-_audit_started, "")
++	return _audit_value
++
++
++static func _audit_original_vehicle_catalog() -> VehicleCatalog:
+*** End Patch
+
