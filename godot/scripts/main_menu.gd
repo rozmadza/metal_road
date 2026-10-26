@@ -23,6 +23,7 @@ const CREDITS_SCENE := "res://scenes/Credits.tscn"
 
 const SETTINGS_PATH := "user://settings.cfg"
 const SETTINGS_VERSION := 2
+const WINDOW_SIZES := [Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080)]
 static var settings_path_override := ""
 const BUS_NAMES := [&"Master", &"Music", &"SFX", &"Engine", &"UI", &"Weapons", &"Impacts"]
 var _settings := ConfigFile.new()
@@ -123,20 +124,35 @@ func _on_engine_changed(value: float) -> void:
 
 
 func _on_fullscreen_toggled(enabled: bool) -> void:
-	var mode := (
-		DisplayServer.WINDOW_MODE_FULLSCREEN
-		if enabled
-		else DisplayServer.WINDOW_MODE_WINDOWED
-	)
-	DisplayServer.window_set_mode(mode)
+	_apply_window_settings(enabled, %ResolutionOption.selected)
 	_save_settings()
 
 
 func _on_resolution_selected(index: int) -> void:
-	var sizes := [Vector2i(1280, 720), Vector2i(1600, 900), Vector2i(1920, 1080)]
-	if not _fullscreen_check.button_pressed:
-		DisplayServer.window_set_size(sizes[clampi(index, 0, sizes.size() - 1)])
+	_apply_window_settings(_fullscreen_check.button_pressed, index)
 	_save_settings()
+
+
+func _apply_window_settings(fullscreen: bool, resolution_index: int) -> void:
+	var index := clampi(resolution_index, 0, WINDOW_SIZES.size() - 1)
+	var target_size: Vector2i = WINDOW_SIZES[index]
+	if fullscreen:
+		# Borderless fullscreen always uses the desktop resolution, which made the
+		# resolution selector appear to do nothing. Set the requested size while
+		# windowed, then enter exclusive fullscreen so the display mode can follow it.
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_size(target_size)
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		return
+	# Leave fullscreen before resizing; window_set_size is ignored by some
+	# desktop backends while the window is still in fullscreen mode.
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	DisplayServer.window_set_size(target_size)
+	var screen := DisplayServer.window_get_current_screen()
+	var screen_position := DisplayServer.screen_get_position(screen)
+	var screen_size := DisplayServer.screen_get_size(screen)
+	DisplayServer.window_set_position(screen_position + (screen_size - target_size) / 2)
+	DisplayServer.window_set_min_size(Vector2i(960, 540))
 
 
 func _on_language_selected(index: int) -> void:
@@ -222,8 +238,7 @@ func _load_settings() -> void:
 	_set_bus_value(&"Weapons", _sfx_slider.value)
 	_set_bus_value(&"Impacts", _sfx_slider.value)
 	_set_bus_value(&"Engine", _engine_slider.value)
-	if _fullscreen_check.button_pressed:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	_apply_window_settings(_fullscreen_check.button_pressed, resolution_index)
 	_save_settings()
 
 

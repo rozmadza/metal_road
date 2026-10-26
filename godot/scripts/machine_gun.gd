@@ -7,6 +7,8 @@ class_name MachineGun
 
 signal fired
 
+const CREW_AIM_CONE := 0.16
+
 @export var config: WeaponConfig
 @export var bullet_scene: PackedScene
 
@@ -88,6 +90,8 @@ func _shoot() -> void:
 	var muzzle := get_muzzle_position()
 	if config.weapon_type == WeaponConfig.WeaponType.MINE:
 		muzzle = shooter.to_global(Vector2(-shooter.config.length * 0.44, 0.0))
+	else:
+		forward = _crew_aim_direction(shooter, muzzle, forward)
 	for projectile_index in config.projectiles_per_shot:
 		if _active_bullet_count() >= config.max_active_bullets:
 			break
@@ -109,6 +113,31 @@ func _shoot() -> void:
 	muzzle_flash_time = 0.11 if config.weapon_type in [WeaponConfig.WeaponType.ROCKET, WeaponConfig.WeaponType.SHOTGUN] else 0.065
 	queue_redraw()
 	fired.emit()
+
+
+func _crew_aim_direction(shooter: Vehicle, muzzle: Vector2, forward: Vector2) -> Vector2:
+	var best_direction := forward
+	var best_angle := CREW_AIM_CONE
+	for node in get_tree().get_nodes_in_group("escaping_crew"):
+		var crew := node as EscapingCrew
+		if crew == null or not crew._active:
+			continue
+		var travel_time := muzzle.distance_to(crew.global_position) / maxf(config.bullet_speed, 1.0)
+		var aim_point := crew.global_position + crew.escape_direction * crew.run_speed * travel_time
+		var to_crew := aim_point - muzzle
+		if to_crew.is_zero_approx() or to_crew.length() > config.effective_range:
+			continue
+		var angle := absf(forward.angle_to(to_crew))
+		if angle >= best_angle:
+			continue
+		var query := PhysicsRayQueryParameters2D.create(muzzle, crew.global_position)
+		query.exclude = [shooter.get_rid()]
+		query.collide_with_areas = false
+		if not get_world_2d().direct_space_state.intersect_ray(query).is_empty():
+			continue
+		best_direction = to_crew.normalized()
+		best_angle = angle
+	return best_direction
 
 
 func _start_reload() -> void:

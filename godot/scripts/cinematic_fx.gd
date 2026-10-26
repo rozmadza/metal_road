@@ -12,6 +12,7 @@ var emp_flash := 0.0
 var finish_amount := 0.0
 var pickup_color := Color(0.35, 0.9, 1.0)
 var _time := 0.0
+var _finish_tween: Tween
 
 
 func _ready() -> void:
@@ -47,11 +48,14 @@ func pulse_emp() -> void:
 
 
 func set_finish_cinematic(enabled: bool) -> void:
+	if _finish_tween != null: _finish_tween.kill()
 	var tween := create_tween()
+	_finish_tween = tween
 	tween.tween_property(self, "finish_amount", 1.0 if enabled else 0.0, 0.38).set_trans(Tween.TRANS_QUAD)
 
 
 func reset() -> void:
+	if _finish_tween != null: _finish_tween.kill()
 	damage_flash = 0.0
 	explosion_flash = 0.0
 	pickup_flash = 0.0

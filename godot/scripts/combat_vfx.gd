@@ -2,6 +2,8 @@ extends Node2D
 class_name CombatVFX
 ## Shared transient world-space effects for all weapons and destructibles.
 
+const MAX_EVENTS := 48
+enum Priority { IMPACT, LARGE_IMPACT, IMPORTANT }
 var events: Array[Dictionary] = []
 
 
@@ -19,25 +21,33 @@ func _process(delta: float) -> void:
 
 
 func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0) -> void:
-	_trim_events()
-	events.append({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48})
-	set_process(true)
+	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48}, Priority.IMPORTANT)
 
 
-func spawn_impact(world_position: Vector2, color: Color = Color(1.0, 0.78, 0.25)) -> void:
-	_trim_events()
-	events.append({"kind": &"impact", "position": world_position, "color": color, "radius": 28.0, "time": 0.24, "duration": 0.24})
-	set_process(true)
+func spawn_impact(world_position: Vector2, color: Color = Color(1.0, 0.78, 0.25), large_hit: bool = false) -> void:
+	_add_event({"kind": &"impact", "position": world_position, "color": color, "radius": 28.0, "time": 0.24, "duration": 0.24}, Priority.LARGE_IMPACT if large_hit else Priority.IMPACT)
 
 
 func spawn_pickup(world_position: Vector2, color: Color = Color(0.25, 0.92, 1.0)) -> void:
-	_trim_events()
-	events.append({"kind": &"pickup", "position": world_position, "color": color, "radius": 54.0, "time": 0.55, "duration": 0.55})
-	set_process(true)
+	_add_event({"kind": &"pickup", "position": world_position, "color": color, "radius": 54.0, "time": 0.55, "duration": 0.55}, Priority.IMPORTANT)
 
-func _trim_events() -> void:
-	if events.size() >= 48:
-		events.pop_front()
+
+func _add_event(event: Dictionary, priority: Priority) -> void:
+	# Expired entries must not reserve a slot before the next process tick.
+	events = events.filter(func(existing: Dictionary): return float(existing.time) > 0.0)
+	if events.size() >= MAX_EVENTS:
+		var victim := 0
+		for index in range(1, events.size()):
+			if int(events[index].priority) < int(events[victim].priority):
+				victim = index
+		# Low-value sparks cannot evict explosions or pickup feedback.
+		if int(events[victim].priority) > priority:
+			return
+		# Stable scan selects the oldest entry at the lowest priority.
+		events.remove_at(victim)
+	event.priority = priority
+	events.append(event)
+	set_process(true)
 
 
 func _draw() -> void:

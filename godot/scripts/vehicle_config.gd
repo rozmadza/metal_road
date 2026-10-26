@@ -57,6 +57,7 @@ func class_label() -> String:
 @export_range(1.0, 200.0, 1.0) var max_speed: float = 160.0
 @export_range(1.0, 20000.0, 1.0) var acceleration: float = 800.0
 @export_range(1.0, 20000.0, 1.0) var brake_force: float = 1200.0
+@export_range(40.0, 500.0, 5.0) var brake_deceleration_limit: float = 140.0
 ## Fraction of forward speed kept per physics step (rolling resistance).
 @export_range(0.5, 1.0, 0.001) var drag: float = 0.98
 ## Lateral (sideways) grip coefficient. Higher = less sliding.
@@ -82,8 +83,15 @@ func class_label() -> String:
 
 @export_group("Steering")
 @export_range(0.0, 50.0, 0.1) var steer_rate: float = 5.0
-## Speed (px/s) at which steering is most effective.
+## Legacy resource field; rolling steering uses the speed curve below.
 @export_range(0.01, 1000.0, 0.01) var steer_speed_factor: float = 0.3
+@export_range(0.0, 10.0, 0.1) var steering_stop_speed: float = 1.5
+@export_range(10.0, 100.0, 1.0) var steering_full_speed: float = 45.0
+@export_range(50.0, 200.0, 1.0) var steering_high_speed_start: float = 80.0
+@export_range(0.2, 1.0, 0.01) var steering_high_speed_factor: float = 0.5
+## Full wheel travel per second, including when changing steering direction.
+@export_range(1.0, 12.0, 0.1) var steering_input_rate: float = 4.0
+@export_range(1.0, 20.0, 0.5) var steering_yaw_response: float = 10.0
 ## Fraction of angular velocity kept per physics step.
 @export_range(0.5, 1.0, 0.001) var angular_damping: float = 0.95
 

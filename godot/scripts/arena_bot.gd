@@ -46,7 +46,6 @@ var vehicle: Vehicle
 var _stuck_timer := 0.0
 var _reversing := 0.0
 var _recovery_steer := 1.0
-var _decision_elapsed := 0.0
 var _last_steer := 0.0
 var _last_throttle := 0.0
 var _locked_pickup: BonusPickup
@@ -70,18 +69,55 @@ var _drive_time := 0.0
 var _pickup_ignore_until: Dictionary = {}
 var _pickup_progress := INF
 var _pickup_stall := 0.0
-const DECISION_INTERVAL := 1.0 / 30.0
+var _route_status: StringName = &"NONE"
+var _resolved_goal := Vector2.ZERO
+var _traffic_stall := 0.0
+var _yield_until := 0.0
+var _yield_cooldown := 0.0
+var _yield_goal := Vector2.ZERO
+var _traffic_peer: Vehicle
+var yield_manoeuvres := 0
+var _recovery_shape: ConvexPolygonShape2D
+var _no_route_recoveries := 0
+var _traffic_nav: RefCounted
+var _detour_until := 0.0
+var _detour_retry := 0.0
+var _spawn_position := Vector2.ZERO
+var _failed_yields: Array[Dictionary] = []
+var _reverse_observed := false
+var _recovery_retry := 0.0
+var _blocked_reverse_position := Vector2(INF, INF)
+var _blocked_reverse_angle := 0.0
+var _blocked_peer_position := Vector2(INF, INF)
+var _blocked_reverse_room := 0.0
+var _blocked_reverse_arc := false
+var _forward_escape_until := 0.0
+var recovery_requested := 0
+var recovery_started := 0
+var recovery_completed := 0
+var recovery_cancelled := 0
+var recovery_rejected := 0
+var traffic_detours := 0
+var traffic_reason: StringName = &"clear"
+var _waiting_for_peer := false
+var _detour_signature: Array = []
 
 
 func _ready() -> void:
 	vehicle = get_parent() as Vehicle
-	_passing_side = -1.0 if vehicle.get_instance_id() % 2 == 0 else 1.0
+	_spawn_position = vehicle.global_position
+	# Geometry/spawn order is stable across unrelated ObjectDB allocations.
+	var slot := absi(roundi(_spawn_position.x / 24.0) + roundi(_spawn_position.y / 24.0))
+	_passing_side = -1.0 if slot % 2 == 0 else 1.0
 	_recovery_steer = _passing_side
-	_reaction_interval = 0.28 + float(vehicle.get_instance_id() % 4) * 0.04
-	_decision_elapsed = float(vehicle.get_instance_id() % 3) * DECISION_INTERVAL / 3.0
+	_reaction_interval = 0.28 + float(slot % 4) * 0.04
 	_progress_anchor = vehicle.global_position
 	_apply_strategy()
 	_apply_class_tactics()
+	_recovery_shape = ConvexPolygonShape2D.new()
+	var footprint := vehicle.config.get_body_vertices()
+	for index in footprint.size(): footprint[index] *= Vehicle.COLLISION_SCALE
+	_recovery_shape.points = footprint
 	if arena != null:
 		_nav = arena.navigation()
 		_clearance = _nav.clearance(vehicle)
@@ -90,11 +126,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if vehicle == null or not vehicle.alive:
 		return
-	_decision_elapsed += delta
-	if _decision_elapsed < DECISION_INTERVAL:
-		return
-	var commands := get_commands(_decision_elapsed)
-	_decision_elapsed = 0.0
+	var commands := get_commands(delta)
 	vehicle.apply_control(commands["throttle"], commands["brake"], commands["steer"],
 		false if external_weapon_control else commands["fire"])
 
@@ -105,6 +137,7 @@ func get_commands(delta: float = 0.0) -> Dictionary:
 	_drive_time += delta
 	_watch_pickup_progress(delta)
 	_update_intent(delta)
+	_update_traffic_yield(delta)
 	_update_path(delta)
 	var position := vehicle.global_position
 	var forward := Vector2.RIGHT.rotated(vehicle.rotation)
@@ -127,11 +160,19 @@ func get_commands(delta: float = 0.0) -> Dictionary:
 	var desired_speed := max_speed * clampf(cruise_throttle, 0.45, 0.95)
 	if _nav != null and _path.is_empty():
 		desired_speed = 0.0
+	var waiting_for_goal := false
+	if _nav != null and _route_status == &"NEAREST":
+		var remaining := position.distance_to(_resolved_goal)
+		desired_speed = minf(desired_speed, sqrt(2.0 * vehicle.config.brake_deceleration_limit * maxf(0.0, remaining - 18.0)))
+		waiting_for_goal = remaining < 26.0
+	elif _nav != null and _route_status == &"NONE":
+		waiting_for_goal = _nav.point_clear(position, _clearance) or _no_route_recoveries >= 2
+	waiting_for_goal = waiting_for_goal or _waiting_for_peer
 	if _intent == &"supply":
 		desired_speed = minf(desired_speed, maxf(28.0, position.distance_to(_intent_goal) * 1.15))
 	desired_speed = minf(desired_speed, sqrt(maxf(25.0, lateral_acceleration) / maxf(absf(curvature), 0.001)))
 	if absf(error) > 1.45: desired_speed = minf(desired_speed, 42.0 if not _is_boss() else 32.0)
-	var service_deceleration := maxf(80.0, vehicle.config.brake_force * 0.19)
+	var service_deceleration := minf(vehicle.config.brake_deceleration_limit, maxf(80.0, vehicle.config.brake_force * 0.19))
 	if _path_index + 1 < _path.size():
 		var next_leg := _path[_path_index + 1] - _path[_path_index]
 		var bend := absf(to_aim.angle_to(next_leg))
@@ -143,11 +184,15 @@ func get_commands(delta: float = 0.0) -> Dictionary:
 		var room: float = _nav.free_distance(position, travel, 260.0, vehicle.config.length * Vehicle.COLLISION_SCALE.x * 0.5 + 5.0)
 		desired_speed = minf(desired_speed, sqrt(2.0 * service_deceleration * maxf(0.0, room - 12.0)) * 0.82)
 	desired_speed = _traffic_speed(desired_speed, forward)
+	if _drive_time < _forward_escape_until:
+		# Footprint-limited forward creep when backing toward a wall cannot work.
+		var room := _motion_room(forward, 65.0)
+		desired_speed = minf(28.0, maxf(0.0, room - 5.0) * 1.4)
+	if _waiting_for_peer: desired_speed = 0.0
 	var target_yaw := maxf(absf(forward_speed), 24.0) * curvature
 	var yaw_limit := 1.55 if _is_boss() else (2.2 if _is_biker() else 1.9)
 	target_yaw = clampf(target_yaw, -yaw_limit, yaw_limit)
-	var speed_factor := absf(forward_speed) / maxf(vehicle.config.steer_speed_factor, 1.0)
-	if speed_factor > 1.0: speed_factor = maxf(0.5, 2.0 - speed_factor)
+	var speed_factor := vehicle.get_steering_speed_factor(forward_speed)
 	# Match Vehicle's steering response, including damping. Counter-yaw removes
 	# overshoot before the nose crosses the intended heading.
 	var nominal_yaw := vehicle.config.steer_rate * maxf(speed_factor, 0.35) * vehicle.damage.steering_factor() * 0.76
@@ -167,31 +212,37 @@ func get_commands(delta: float = 0.0) -> Dictionary:
 	if position.distance_to(_progress_anchor) > 12.0:
 		_progress_anchor = position
 		_stuck_timer = 0.0
-	elif speed < 12.0 and position.distance_to(_intent_goal) > 70.0 and not vehicle.is_emp_disabled():
+	elif speed < 12.0 and not vehicle.is_emp_disabled() and not waiting_for_goal:
 		_stuck_timer += delta
 	else:
 		_stuck_timer = maxf(0.0, _stuck_timer - delta)
-	if _reversing <= 0.0 and _stuck_timer >= maxf(stuck_timeout, 1.05):
+	if not waiting_for_goal and _reversing <= 0.0 and _stuck_timer >= maxf(stuck_timeout, 1.05) and _drive_time >= _recovery_retry:
+		if _route_status == &"NONE": _no_route_recoveries += 1
 		_stuck_timer = 0.0
-		_reversing = maxf(reverse_duration, 0.8)
-		_recovery_steer = -signf(error) if absf(error) > 0.15 else _passing_side
-		_path_clock = 0.0
-		_path.clear()
+		if not _request_reverse(-signf(error) if absf(error) > 0.15 else _passing_side, maxf(reverse_duration, 0.8)):
+			_forward_escape_until = _drive_time + 1.5
 	if _reversing > 0.0:
+		if not _reverse_observed and forward_speed < -3.0:
+			_reverse_observed = true
+			recovery_started += 1
 		_reversing = maxf(0.0, _reversing - delta)
+		var finished_reverse := _reversing == 0.0
 		throttle = -0.55 if forward_speed > -42.0 else 0.0
 		brake = 0.0
 		steer = _recovery_steer * 0.75
 		if _nav != null:
-			var rear_room: float = _nav.free_distance(position, -forward, 90.0, vehicle.config.length * Vehicle.COLLISION_SCALE.x * 0.5 + 6.0)
+			var rear_room := _reverse_room(forward)
 			var reverse_limit := minf(42.0, sqrt(2.0 * service_deceleration * maxf(0.0, rear_room - 16.0)) * 0.7)
 			if forward_speed < -reverse_limit:
 				throttle = 0.0
 				brake = 0.21
 			if rear_room < 16.0:
+				finished_reverse = false
+				_cancel_reverse()
 				_reversing = 0.0
 				throttle = 0.0
 				brake = 0.21
+		if finished_reverse: recovery_completed += 1
 		_last_throttle = throttle
 		_last_steer = steer
 	else:
@@ -206,6 +257,37 @@ func get_commands(delta: float = 0.0) -> Dictionary:
 
 func _is_biker() -> bool:
 	return bool(vehicle.get_meta("biker", false))
+
+
+func _reverse_room(forward: Vector2) -> float:
+	return _motion_room(-forward, 90.0)
+
+
+func _motion_room(direction: Vector2, length: float) -> float:
+	# A circular planner margin can trap a long car even when its oriented
+	# body has room to back out. Sweep the REAL footprint, including traffic.
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = _recovery_shape
+	query.transform = vehicle.global_transform
+	query.motion = direction * length
+	query.margin = 2.0
+	query.exclude = [vehicle.get_rid()]
+	query.collision_mask = vehicle.collision_mask
+	var fractions := vehicle.get_world_2d().direct_space_state.cast_motion(query)
+	var distance: float = fractions[0] * length
+	if arena == null: return distance
+	var half := Vector2(vehicle.config.length,vehicle.config.width) * Vehicle.COLLISION_SCALE * 0.5
+	var c := absf(cos(vehicle.rotation))
+	var s := absf(sin(vehicle.rotation))
+	var extent := Vector2(half.x*c+half.y*s,half.x*s+half.y*c)
+	var bounds: Rect2 = arena.get_bounds()
+	var backward := direction
+	for axis in 2:
+		if backward[axis] > 0.001:
+			distance = minf(distance,maxf(0.0,(bounds.end[axis]-extent[axis]-2.0-vehicle.global_position[axis])/backward[axis]))
+		elif backward[axis] < -0.001:
+			distance = minf(distance,maxf(0.0,(bounds.position[axis]+extent[axis]+2.0-vehicle.global_position[axis])/backward[axis]))
+	return distance
 
 
 func _is_boss() -> bool:
@@ -292,6 +374,10 @@ func _update_intent(delta: float) -> void:
 
 func _update_path(delta: float) -> void:
 	_path_clock -= delta
+	if _traffic_nav != null:
+		if _drive_time < _detour_until and _path_goal.distance_to(_intent_goal) < 75.0 and not _path.is_empty(): return
+		_traffic_nav = null
+		_path.clear()
 	if _nav == null:
 		_path = PackedVector2Array([_intent_goal])
 		_path_index = 0
@@ -299,8 +385,15 @@ func _update_path(delta: float) -> void:
 	var moved_goal := _path_goal.distance_to(_intent_goal) > 75.0
 	var finished := _path.is_empty() or _path_index >= _path.size()
 	var blocked: bool = not finished and _path_clock <= 0.0 and not _nav.segment_clear(vehicle.global_position, _path[_path_index], _clearance * 0.8)
-	if _path_clock <= 0.0 and (finished or moved_goal or blocked):
-		_path = _nav.route(vehicle.global_position, _intent_goal, _clearance)
+	if _path_clock <= 0.0 and (finished or moved_goal or blocked or _route_status != &"EXACT"):
+		var result: Dictionary = _nav.route_result(vehicle.global_position, _intent_goal, _clearance)
+		_path = result.path
+		_route_status = result.status
+		if _route_status == &"EXACT": _no_route_recoveries = 0
+		_resolved_goal = result.resolved
+		if _route_status != &"EXACT" and _intent == &"supply" and is_instance_valid(_locked_pickup):
+			_pickup_ignore_until[_locked_pickup.get_instance_id()] = _drive_time + 7.0
+			_locked_pickup = null
 		_path_goal = _intent_goal
 		_path_origin = vehicle.global_position
 		_path_index = 0
@@ -308,21 +401,214 @@ func _update_path(delta: float) -> void:
 	elif _path_clock <= 0.0:
 		_path_clock = 0.65
 		var anchor := _path[_path.size() - 2] if _path.size() > 1 else vehicle.global_position
-		if _nav.segment_clear(anchor, _intent_goal, _clearance):
+		if _route_status == &"EXACT" and _nav.segment_clear(anchor, _intent_goal, _clearance):
 			_path[_path.size() - 1] = _intent_goal
+			_resolved_goal = _intent_goal
 	# An unavailable route stays empty and is retried. A synthetic waypoint
 	# straight ahead used to mask invalid routes and drive into the obstacle.
 
 
+func _update_traffic_yield(delta: float) -> void:
+	_waiting_for_peer = false
+	if _nav == null: return
+	if _yield_until > 0.0 and _drive_time >= _yield_until:
+		if vehicle.global_position.distance_to(_yield_goal) > 40.0: _remember_yield_goal()
+		_yield_until = 0.0
+	if _drive_time < _yield_until:
+		_set_intent(&"yield", _yield_goal)
+		return
+	var forward := Vector2.RIGHT.rotated(vehicle.rotation)
+	var traffic := _traffic_limit(200.0, forward)
+	var peer := traffic.peer as Vehicle
+	if peer != _traffic_peer:
+		_traffic_stall = 0.0
+		_traffic_peer = peer
+	if peer == null or vehicle.get_speed() > 18.0 or float(traffic.speed) > 25.0:
+		_traffic_stall = 0.0
+		traffic_reason = &"clear" if peer == null else &"moving"
+		return
+	_traffic_stall += delta
+	var active := _active_driver(peer)
+	traffic_reason = &"temporary_stop" if active != null else &"inactive_blocker"
+	if _traffic_stall < 0.9 or _drive_time < _detour_retry: return
+	# An inactive/EMP driver cannot be asked to yield. Active opponents elect
+	# one manoeuvring driver by stable initial location, not incidental IDs.
+	if active != null and active._traffic_peer == vehicle and _has_priority_over(active) and active._drive_time >= active._recovery_retry and (_traffic_stall < 2.5 or active._reversing > 0.0):
+		traffic_reason = &"waiting_peer"
+		_waiting_for_peer = true
+		return
+	if _traffic_nav == null and _try_traffic_detour():
+		traffic_reason = &"bypass"
+		return
+	if _traffic_nav != null:
+		traffic_reason = &"bypass"
+		return
+	if _drive_time < _yield_cooldown: return
+	var rear := _reverse_room(forward)
+	if rear < 24.0:
+		_request_reverse(_passing_side, 1.25)
+		_forward_escape_until = _drive_time + 1.5
+		traffic_reason = &"rear_blocked"
+		return
+	for side in [_passing_side, -_passing_side]:
+		for retreat in [65.0, 120.0]:
+			var candidate: Vector2 = _safe_goal(vehicle.global_position - forward * retreat + forward.orthogonal() * side * (_clearance + 30.0))
+			if _failed_yield(candidate) or not _nav.point_clear(candidate, _clearance) or not _body_clear(candidate, vehicle.rotation): continue
+			var result: Dictionary = _nav.route_result(vehicle.global_position, candidate, _clearance)
+			if result.status != &"EXACT": continue
+			if not _request_reverse(side, maxf(reverse_duration, 1.25)): continue
+			_yield_goal = candidate
+			_yield_until = _drive_time + 6.0
+			_yield_cooldown = _drive_time + 12.0
+			_traffic_stall = 0.0
+			_path.clear()
+			_path_clock = 0.0
+			_stuck_timer = 0.0
+			yield_manoeuvres += 1
+			_set_intent(&"yield", candidate)
+			return
+	_yield_cooldown = _drive_time + 2.0
+
+
+func _active_driver(peer: Vehicle) -> ArenaBot:
+	var driver := peer.get_node_or_null("ArenaBot") as ArenaBot
+	if driver == null or not driver.is_physics_processing() or not driver.can_process() or peer.freeze or peer.is_emp_disabled(): return null
+	return driver
+
+
+func _has_priority_over(other: ArenaBot) -> bool:
+	if not is_equal_approx(_spawn_position.x, other._spawn_position.x): return _spawn_position.x < other._spawn_position.x
+	if not is_equal_approx(_spawn_position.y, other._spawn_position.y): return _spawn_position.y < other._spawn_position.y
+	return vehicle.get_index() < other.vehicle.get_index()
+
+
+func _body_clear(point: Vector2, angle: float) -> bool:
+	var query := PhysicsShapeQueryParameters2D.new()
+	query.shape = _recovery_shape
+	query.transform = Transform2D(angle, point)
+	query.margin = 2.0
+	query.collision_mask = vehicle.collision_mask
+	query.exclude = [vehicle.get_rid()]
+	return vehicle.get_world_2d().direct_space_state.intersect_shape(query, 1).is_empty()
+
+
+func _failed_yield(point: Vector2) -> bool:
+	for entry in _failed_yields:
+		if _drive_time < entry.until and point.distance_to(entry.point) < 45.0: return true
+	return false
+
+
+func _remember_yield_goal() -> void:
+	_failed_yields.append({"point":_yield_goal, "until":_drive_time + 12.0})
+	if _failed_yields.size() > 6: _failed_yields.pop_front()
+
+
+func _remember_failed_reverse(blocked_arc: bool = false) -> void:
+	_blocked_reverse_arc = blocked_arc
+	_blocked_reverse_position = vehicle.global_position
+	_blocked_reverse_angle = vehicle.rotation
+	_blocked_reverse_room = _reverse_room(Vector2.RIGHT.rotated(vehicle.rotation))
+	_blocked_peer_position = _traffic_peer.global_position if is_instance_valid(_traffic_peer) else Vector2(INF, INF)
+	_recovery_retry = _drive_time + 1.5
+	if _yield_until > _drive_time:
+		_remember_yield_goal()
+		_yield_until = 0.0
+		_yield_cooldown = _drive_time + 1.5
+		_reaction_clock = 0.0
+
+
+func _request_reverse(side: float, duration: float) -> bool:
+	if _reversing > 0.0 or _drive_time < _recovery_retry: return false
+	var peer_position := _traffic_peer.global_position if is_instance_valid(_traffic_peer) else Vector2(INF, INF)
+	var same_peer := peer_position == _blocked_peer_position or (peer_position.is_finite() and _blocked_peer_position.is_finite() and peer_position.distance_to(_blocked_peer_position) < 12.0)
+	var forward := Vector2.RIGHT.rotated(vehicle.rotation)
+	var rear := _reverse_room(forward) if _nav != null else 90.0
+	if vehicle.global_position.distance_to(_blocked_reverse_position) < 12.0 and absf(angle_difference(vehicle.rotation, _blocked_reverse_angle)) < 0.25 and same_peer and rear < maxf(24.0, _blocked_reverse_room + 8.0):
+		# A side blocker may leave without changing straight rear_room.
+		if not _blocked_reverse_arc or not (_reverse_arc_clear(side) or _reverse_arc_clear(-side)): return false
+	recovery_requested += 1
+	if rear < 24.0:
+		recovery_rejected += 1
+		_remember_failed_reverse()
+		return false
+	if not _reverse_arc_clear(side):
+		side = -side
+		if not _reverse_arc_clear(side):
+			recovery_rejected += 1
+			_remember_failed_reverse(true)
+			return false
+	_reversing = duration
+	_reverse_observed = false
+	_recovery_steer = side
+	_reaction_clock = 0.0
+	return true
+
+
+func _reverse_arc_clear(side: float) -> bool:
+	var forward := Vector2.RIGHT.rotated(vehicle.rotation)
+	for distance in [8.0, 16.0]:
+		if not _body_clear(vehicle.global_position - forward * distance, vehicle.rotation - side * distance * 0.006): return false
+	return true
+
+
+func _cancel_reverse() -> void:
+	recovery_cancelled += 1
+	_remember_failed_reverse()
+	_forward_escape_until = _drive_time + 1.5
+
+
+func _try_traffic_detour() -> bool:
+	_detour_retry = _drive_time + 2.0
+	var rectangles: Array[Rect2] = []
+	for node in get_tree().get_nodes_in_group("combatants"):
+		var other := node as Vehicle
+		if other == null or other == vehicle or other == _victim or not other.alive: continue
+		if other.global_position.distance_to(vehicle.global_position) > 320.0 or other.get_speed() > 28.0: continue
+		var vertices := other.config.get_body_vertices()
+		var rect := Rect2(other.global_transform * (vertices[0] * Vehicle.COLLISION_SCALE), Vector2.ZERO)
+		for vertex in vertices: rect = rect.expand(other.global_transform * (vertex * Vehicle.COLLISION_SCALE))
+		rectangles.append(rect.grow(6.0))
+	if rectangles.is_empty(): return false
+	var signature: Array = [vehicle.global_position.snapped(Vector2.ONE * 16.0), _intent_goal.snapped(Vector2.ONE * 24.0)]
+	for rect in rectangles: signature.append(Rect2(rect.position.snapped(Vector2.ONE * 12.0), rect.size.snapped(Vector2.ONE * 8.0)))
+	if signature == _detour_signature: return false
+	_detour_signature = signature
+	var planner: RefCounted = _nav.with_traffic(rectangles)
+	# Traffic corridors need lateral clearance, not a full turning circle at
+	# every point. Verify the oriented hull along each leg below.
+	var lateral := vehicle.config.width * Vehicle.COLLISION_SCALE.y * 0.5 + 12.0
+	var result: Dictionary = planner.route_result(vehicle.global_position, _intent_goal, lateral)
+	if result.status != &"EXACT" or result.path.is_empty(): return false
+	var anchor := vehicle.global_position
+	for point in result.path:
+		var angle: float = (point - anchor).angle()
+		var steps := maxi(1, ceili(anchor.distance_to(point) / 16.0))
+		for step in range(1, steps + 1):
+			if not _body_clear(anchor.lerp(point, float(step) / steps), angle): return false
+		anchor = point
+	_traffic_nav = planner
+	_path = result.path
+	_path_goal = _intent_goal
+	_resolved_goal = result.resolved
+	_route_status = result.status
+	_path_origin = vehicle.global_position
+	_path_index = 0
+	_detour_until = _drive_time + 10.0
+	traffic_detours += 1
+	_forward_escape_until = _drive_time + 2.0
+	return true
+
+
 func _path_aim(lookahead: float) -> Vector2:
 	if _path.is_empty(): return _intent_goal
+	var planner: RefCounted = _traffic_nav if _traffic_nav != null else _nav
 	var position := vehicle.global_position
 	while _path_index + 1 < _path.size():
 		var waypoint := _path[_path_index]
 		var passed := (position - waypoint).dot(waypoint - _path_origin) > 0.0
 		var close := position.distance_to(waypoint) < maxf(30.0, vehicle.get_speed() * 0.32)
 		if not (passed or close): break
-		if _nav != null and not _nav.segment_clear(position, _path[_path_index + 1], _clearance * 0.72): break
+		if planner != null and not planner.segment_clear(position, _path[_path_index + 1], _clearance * 0.72): break
 		_path_origin = _path[_path_index]
 		_path_index += 1
 	var projected := Geometry2D.get_closest_point_to_segment(position, _path_origin, _path[_path_index])
@@ -335,25 +621,41 @@ func _path_aim(lookahead: float) -> Vector2:
 			break
 		remaining -= leg
 		point = _path[index]
-	if _nav != null and not _nav.segment_clear(position, point, _clearance * 0.72):
+	if planner != null and not planner.segment_clear(position, point, _clearance * 0.72):
 		return _path[_path_index]
 	return point
 
 
 func _traffic_speed(desired: float, forward: Vector2) -> float:
+	return float(_traffic_limit(desired, forward).speed)
+
+
+func _projected_half(other: Vehicle, axis: Vector2) -> float:
+	var extent := 0.0
+	for vertex in other.config.get_body_vertices():
+		extent = maxf(extent, absf((vertex * Vehicle.COLLISION_SCALE).rotated(other.rotation).dot(axis)))
+	return extent
+
+
+func _traffic_limit(desired: float, forward: Vector2) -> Dictionary:
+	var peer: Vehicle
 	# Yield behind allies instead of adding another left/right steering force.
 	for node in get_tree().get_nodes_in_group("combatants"):
 		var other := node as Vehicle
 		if other == null or other == vehicle or not other.alive: continue
 		if other == _victim and not _is_biker(): continue
 		var offset := other.global_position - vehicle.global_position
+		if offset.length_squared() > 90000.0: continue
 		var ahead := offset.dot(forward)
-		var lane := (vehicle.config.width + other.config.width) * Vehicle.COLLISION_SCALE.y * 0.5 + 10.0
+		var lane := _projected_half(vehicle, forward.orthogonal()) + _projected_half(other, forward.orthogonal()) + 10.0
 		if ahead <= 0.0 or absf(offset.cross(forward)) > lane: continue
-		var gap := ahead - (vehicle.config.length + other.config.length) * Vehicle.COLLISION_SCALE.x * 0.5
+		var gap := ahead - _projected_half(vehicle, forward) - _projected_half(other, forward)
 		if gap < 95.0:
-			desired = minf(desired, maxf(0.0, other.linear_velocity.dot(forward)) + maxf(0.0, gap - 20.0) * 1.15)
-	return desired
+			var limit := maxf(0.0, other.linear_velocity.dot(forward)) + maxf(0.0, gap - 20.0) * 1.15
+			if limit < desired:
+				desired = limit
+				peer = other
+	return {"speed":desired, "peer":peer}
 
 
 ## The closest living combatant — in derby mode every other car is a target,

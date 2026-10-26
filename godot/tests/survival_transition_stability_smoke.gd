@@ -30,7 +30,7 @@ func run() -> void:
 	check(credits_after_first > credits_before, "victory reward is paid")
 	check(credits_after_second == credits_after_first, "duplicate finalization cannot pay twice")
 
-	survival.start_round(14)
+	survival.start_round(19)
 	check(survival._enemies.size() == 8, "eight-opponent late wave starts without truncated spawn array")
 	_cleanup()
 	PlayerProfile.path_override = ""

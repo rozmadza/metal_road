@@ -34,7 +34,7 @@ func _process(delta: float) -> bool:
 			return false
 		1:
 			_disable_enemies()
-			if _time >= _phase_time + 0.2:
+			if _time >= _phase_time + 5.2:
 				_check_bullet_damage()
 				for enemy in _enemies():
 					enemy.take_damage(1000.0)
@@ -44,8 +44,8 @@ func _process(delta: float) -> bool:
 		2:
 			_disable_enemies()
 			if _time >= _phase_time + 0.2:
-				_check(is_instance_valid(_game._boss) and _game._boss.alive, "Arbiter spawns after regular opponents")
-				_game._boss.take_damage(10000.0, &"body", _player)
+				_check(not is_instance_valid(_game._boss) and not _game._referee_spawn_pending, "ordinary wave has no Arbiter finale")
+				_check(_game._round_over and _game._player_won, "ordinary wave completes after regular opponents")
 				_phase = 3
 				_phase_time = _time
 			return false
@@ -53,7 +53,7 @@ func _process(delta: float) -> bool:
 			_disable_enemies()
 			if _time >= _phase_time + 2.6:
 				_check(_game._round == 2, "round advances after clearing enemies")
-				_check(_enemies().size() == 6, "round 2 adds one enemy (%d)" % _enemies().size())
+				_check(_enemies().size() == 4, "round 2 has four enemies (%d)" % _enemies().size())
 				_player.take_damage(1000.0)
 				_phase = 4
 				_phase_time = _time
@@ -69,11 +69,11 @@ func _process(delta: float) -> bool:
 
 func _check_spawn() -> void:
 	_check(_player.alive, "player is alive at round start")
-	_check(_enemies().size() == 5, "round 1 spawns five enemies (%d)" % _enemies().size())
-	_check(get_nodes_in_group("combatants").size() == 6, "player + 5 enemies are combatants")
+	_check(_enemies().size() == 2 and _game._pending_enemies.size() == 1, "round 1 starts with two enemies and one reinforcement")
+	_check(get_nodes_in_group("combatants").size() == 3, "player + 2 initial enemies are combatants")
 	_check(_enemies().all(func(enemy): return not enemy.gun.enabled), "bots start without bonus weapons")
 	_check("УНИЧТОЖЕНО 0" in _game.get_node("HUD/Top/Panel/Status").text, "HUD shows destroyed count")
-	_check("ОСТАЛОСЬ 5" in _game.get_node("HUD/Top/Panel/Status").text, "HUD shows remaining enemies")
+	_check("ОСТАЛОСЬ 3" in _game.get_node("HUD/Top/Panel/Status").text, "HUD includes the pending reinforcement")
 
 
 func _check_direct_damage() -> void:

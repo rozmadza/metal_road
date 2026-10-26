@@ -4,6 +4,7 @@ class_name EscapingCrew
 ## fight: each chooses a different route to the arena perimeter and runs.
 
 signal crushed(crew: EscapingCrew, vehicle: Vehicle)
+signal weapon_killed(crew: EscapingCrew, attacker: Node)
 signal escaped(crew: EscapingCrew)
 
 enum Role { PILOT, MECHANIC }
@@ -13,11 +14,12 @@ const MECHANIC_TEXTURE := preload("res://assets/characters/crew/mechanic_run_she
 
 @export var role: Role = Role.PILOT
 @export_range(30.0, 120.0, 1.0) var run_speed := 55.0
-@export_range(0.0, 2.0, 0.05) var crush_grace := 0.5
+@export_range(0.0, 2.0, 0.05) var crush_grace := 0.0
 
 var arena: Arena
 var escape_direction := Vector2.RIGHT
 var _active := true
+var health := 8.0
 var _age := 0.0
 var _run_frame_clock := 0.0
 var _sprite: Sprite2D
@@ -63,6 +65,10 @@ func _physics_process(delta: float) -> void:
 		_run_frame_clock += delta * lerpf(7.0, 9.0, inverse_lerp(45.0, 65.0, run_speed))
 		_sprite.frame = int(_run_frame_clock) % 4
 		_sprite.position.y = sin(_age * 12.0) * 0.35
+	if _age >= crush_grace:
+		for body in get_overlapping_bodies():
+			if crush(body as Vehicle):
+				return
 	if arena != null and not arena.get_bounds().grow(34.0).has_point(global_position):
 		_active = false
 		escaped.emit(self)
@@ -77,6 +83,17 @@ func crush(vehicle: Vehicle) -> bool:
 	_active = false
 	set_deferred("monitoring", false)
 	crushed.emit(self, vehicle)
+	queue_free()
+	return true
+
+
+func take_weapon_damage(amount: float, attacker: Node) -> bool:
+	if not _active or amount <= 0.0:
+		return false
+	health = 0.0
+	_active = false
+	set_deferred("monitoring", false)
+	weapon_killed.emit(self, attacker)
 	queue_free()
 	return true
 

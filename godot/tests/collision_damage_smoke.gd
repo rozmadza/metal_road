@@ -39,6 +39,29 @@ func run() -> void:
 	check(vehicle.health < before, "collision reduces body health")
 	check(vehicle.damage.wheels < wheels_before, "side impact damages wheels")
 
+	vehicle.health = vehicle.config.max_health
+	vehicle.global_rotation = -PI * 0.5
+	vehicle._last_velocity = Vector2(180.0, 0.0)
+	vehicle._previous_velocity = vehicle._last_velocity
+	var wall := StaticBody2D.new()
+	root.add_child(wall)
+	vehicle._on_body_entered(wall)
+	var wall_damage := vehicle.config.max_health - vehicle.health
+	check(wall_damage > 0.0 and wall_damage <= vehicle.config.impact_damage_cap * Vehicle.STATIC_IMPACT_DAMAGE_SCALE, "wall collision uses reduced damage cap")
+	vehicle._collision_cooldowns.clear()
+	vehicle._on_body_entered(wall)
+	var rocket := load("res://resources/weapons/rocket_launcher.tres") as WeaponConfig
+	check(vehicle.alive and vehicle.health > vehicle.config.max_health - rocket.bullet_damage, "two hard wall impacts deal less than one direct rocket hit")
+	wall.free()
+	vehicle.health = vehicle.config.max_health
+	var rival := (load("res://scenes/Vehicle.tscn") as PackedScene).instantiate() as Vehicle
+	root.add_child(rival)
+	rival.global_position = vehicle.global_position + Vector2(40.0, 0.0)
+	rival.add_to_group("combatants")
+	vehicle._on_body_entered(rival)
+	check(vehicle.config.max_health - vehicle.health > wall_damage, "car-to-car ram retains stronger damage than scenery")
+	rival.free()
+
 	vehicle.free()
 	print("COLLISION DAMAGE: ", "PASS" if failures == 0 else "FAIL")
 	quit(0 if failures == 0 else 1)

@@ -18,11 +18,11 @@ func run() -> void:
 	root.add_child(second)
 	await process_frame
 
-	check(first.get_run_variation_id() != second.get_run_variation_id(), "consecutive runs choose different ambience layouts")
+	check(first.get_run_variation_id() == second.get_run_variation_id(), "structured arena keeps a stable composition identity")
 	check(first.get_obstacles().size() == second.get_obstacles().size(), "variation preserves gameplay obstacle count")
 	var first_props := _prop_positions(first)
 	var second_props := _prop_positions(second)
-	check(not first_props.is_empty() and first_props != second_props, "small arena props move between runs")
+	check(not first_props.is_empty() and first_props == second_props, "structured arena preserves authored clusters between runs")
 
 	first.free()
 	second.free()

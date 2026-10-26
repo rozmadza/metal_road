@@ -10,6 +10,8 @@ const VISUAL_SCALE := 1.72
 ## Slightly inside the artwork: clean sprites have a narrow transparent rim.
 ## Physics, steering and visible chassis must share the same footprint.
 const COLLISION_SCALE := Vector2(1.63, 1.58)
+## Scenery should punish a crash without competing with weapon or car-ram damage.
+const STATIC_IMPACT_DAMAGE_SCALE := 0.25
 
 @export var config: VehicleConfig
 
@@ -67,6 +69,9 @@ var _wheels_repair_cooldown: float = 0.0
 var _wheel_pull_direction: float = 0.0
 var _handbrake_strength: float = 0.0
 var _delivered_throttle: float = 0.0
+var _reverse_hold := 0.0
+var _player_reverse := false
+var _steering_input := 0.0
 
 
 func _ready() -> void:
@@ -133,11 +138,27 @@ func apply_control(new_throttle: float, new_brake: float, new_steer: float, new_
 	if not alive:
 		return
 	throttle = clampf(new_throttle, -1.0, 1.0)
+	# Thrust is applied inside _integrate_forces, which sleeping bodies skip.
+	if absf(throttle) > 0.001 and sleeping:
+		sleeping = false
 	brake = clampf(new_brake, 0.0, 1.0)
 	steer = clampf(new_steer, -1.0, 1.0)
 	fire = new_fire
 	if gun != null:
 		gun.set_firing(fire)
+
+func apply_player_control(gas: float, brake_input: float, steering: float, firing: bool, delta: float) -> void:
+	if brake_input <= 0.0 or gas > 0.0:
+		_reverse_hold = 0.0
+		_player_reverse = false
+	elif not _player_reverse:
+		_reverse_hold = _reverse_hold + delta if get_speed() <= 2.0 else 0.0
+		_player_reverse = _reverse_hold >= 0.35
+	if _player_reverse:
+		apply_control(-0.6 * brake_input, 0.0, steering, firing)
+	else:
+		apply_control(gas, brake_input, steering, firing)
+
 
 func set_surface_modifier(traction_multiplier: float, steering_multiplier: float, source: Node = null) -> void:
 	var key: Variant = source if source != null else &"default"
@@ -319,7 +340,10 @@ func _on_body_entered(body: Node) -> void:
 		closing_speed, incoming_mass, incoming_power, material_factor, impact_direction
 	)
 	if impact.damage > 0.0:
-		_take_collision_damage(impact.damage, impact.module, other if other != null else body)
+		var damage_amount: float = impact.damage
+		if other == null:
+			damage_amount *= STATIC_IMPACT_DAMAGE_SCALE
+		_take_collision_damage(damage_amount, impact.module, other if other != null else body)
 
 
 func _same_combat_squad(other: Vehicle) -> bool:
@@ -392,6 +416,9 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	# the velocity from the previous step is integrated again.
 	if _pending_reset:
 		_pending_reset = false
+		_reverse_hold = 0.0
+		_player_reverse = false
+		_steering_input = 0.0
 		state.transform = Transform2D(_reset_angle, _reset_position)
 		state.linear_velocity = Vector2.ZERO
 		state.angular_velocity = 0.0
@@ -424,7 +451,7 @@ func _apply_physics(state: PhysicsDirectBodyState2D, dt: float) -> void:
 	_delivered_throttle = move_toward(
 		_delivered_throttle, throttle, dt / maxf(config.throttle_response, 0.05)
 	)
-	if brake > 0.0 and throttle <= 0.0 and _delivered_throttle > 0.0:
+	if brake > 0.0 and throttle == 0.0:
 		_delivered_throttle = 0.0
 	# A full brake press at road speed acts as an arcade handbrake. The speed
 	# gate keeps ordinary low-speed braking and reverse unchanged, while the
@@ -450,9 +477,13 @@ func _apply_physics(state: PhysicsDirectBodyState2D, dt: float) -> void:
 	# --- Braking ------------------------------------------------------------
 	# Oppose the actual direction of travel, otherwise "braking" while moving
 	# backwards would accelerate the car further in reverse.
-	if brake > 0.0 and absf(forward_speed) > 1.0:
+	if brake > 0.0 and absf(forward_speed) > 0.0:
 		var braking_efficiency := lerpf(1.0, config.handbrake_brake_multiplier, _handbrake_strength)
-		var brake_force := brake * config.brake_force * braking_efficiency * mass * signf(forward_speed)
+		var deceleration := minf(brake * config.brake_force * braking_efficiency, config.brake_deceleration_limit)
+		# Braking and rolling drag together must not push velocity through zero.
+		var rolling_loss := absf(forward_speed) * (1.0 - config.drag) * lerpf(1.0, 0.25, brake) / dt
+		deceleration = minf(deceleration, maxf(0.0, absf(forward_speed) / dt - rolling_loss))
+		var brake_force := deceleration * mass * signf(forward_speed)
 		state.apply_central_force(-forward * brake_force)
 
 	# --- Lateral friction (traction) ----------------------------------------
@@ -467,19 +498,18 @@ func _apply_physics(state: PhysicsDirectBodyState2D, dt: float) -> void:
 
 	# --- Rolling resistance (drag) ------------------------------------------
 	if absf(forward_speed) > 0.1:
-		var drag_force := forward_speed * (1.0 - config.drag) * mass / dt
+		var drag_force := forward_speed * (1.0 - config.drag) * lerpf(1.0, 0.25, brake) * mass / dt
 		state.apply_central_force(-forward * drag_force)
 
 	# --- Steering -----------------------------------------------------------
-	var speed_factor := absf(forward_speed) / maxf(config.steer_speed_factor, 1.0)
-	if speed_factor > 1.0:
-		speed_factor = maxf(0.5, 2.0 - speed_factor)
+	_steering_input = move_toward(_steering_input, steer, config.steering_input_rate * dt)
+	var speed_factor := get_steering_speed_factor(forward_speed)
 
 	# Steering requires rolling speed: pressing A/D while stationary must turn
 	# the wheels visually, not spin the whole car in place. A fixed wheel angle
 	# turns the body in the opposite direction while reversing.
-	var steering_direction := -1.0 if forward_speed < -1.0 or (absf(forward_speed) <= 1.0 and throttle < 0.0) else 1.0
-	var target_angular_velocity := steer * steering_direction * config.steer_rate * damage.steering_factor() * _surface_steering_factor * speed_factor * emp_factor
+	var steering_direction := signf(forward_speed)
+	var target_angular_velocity := _steering_input * steering_direction * config.steer_rate * damage.steering_factor() * _surface_steering_factor * speed_factor * emp_factor
 	# With the rear axle loose, steering initiates the slide more readily. No
 	# steering means no artificial spin: braking in a straight line stays stable.
 	target_angular_velocity *= 1.0 + config.handbrake_steer_boost * _handbrake_strength * absf(steer)
@@ -487,7 +517,7 @@ func _apply_physics(state: PhysicsDirectBodyState2D, dt: float) -> void:
 		var pull_strength := (0.55 - damage.ratio(&"wheels")) / 0.55
 		target_angular_velocity += _wheel_pull_direction * pull_strength * 0.16 * steering_direction
 	var angular_error := target_angular_velocity - state.angular_velocity
-	var torque := angular_error * inertia * 10.0
+	var torque := angular_error * inertia * config.steering_yaw_response
 	var max_torque := inertia * config.steer_rate * 5.0
 	torque = clampf(torque, -max_torque, max_torque)
 	state.apply_torque(torque)
@@ -496,14 +526,22 @@ func _apply_physics(state: PhysicsDirectBodyState2D, dt: float) -> void:
 	var rotation_retention := lerpf(
 		config.angular_damping,
 		config.handbrake_angular_damping,
-		_handbrake_strength * absf(steer)
+		_handbrake_strength
 	)
-	state.angular_velocity *= rotation_retention
+	state.angular_velocity *= pow(rotation_retention, dt * 60.0)
 
 	# --- Hard max-speed safety clamp ----------------------------------------
 	var speed := state.linear_velocity.length()
 	if speed > effective_speed:
 		state.linear_velocity *= effective_speed / speed
+
+
+func get_steering_speed_factor(longitudinal_speed: float) -> float:
+	var speed := absf(longitudinal_speed)
+	var rolling := smoothstep(config.steering_stop_speed, maxf(config.steering_stop_speed + 1.0, config.steering_full_speed), speed)
+	var high_start := maxf(config.steering_full_speed, config.steering_high_speed_start)
+	var high_end := maxf(high_start + 1.0, get_current_max_speed())
+	return rolling * lerpf(1.0, config.steering_high_speed_factor, smoothstep(high_start, high_end, speed))
 
 
 func _physics_process(delta: float) -> void:
@@ -521,9 +559,11 @@ func _physics_process(delta: float) -> void:
 		_wheels_repair_cooldown = maxf(0.0, _wheels_repair_cooldown - delta)
 	elif alive and damage.wheels < config.wheels_health:
 		damage.repair_wheels(config.wheels_repair_rate * delta)
-	# Keep the debug velocity vector up to date.
-	if config.debug_vectors or is_boost_active() or is_ram_boost_active() or is_emp_disabled() or is_apex_boost_active():
-		queue_redraw()
+
+
+func _process(_delta: float) -> void:
+	# Steering, animated bonuses and their final frame must all stay current.
+	queue_redraw()
 
 
 # ---------------------------------------------------------------------------

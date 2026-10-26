@@ -1,6 +1,7 @@
 extends Control
 class_name VehicleReadout
 var player: Vehicle
+var survival_layout := false
 @onready var modules: ModuleStatus = $LeftDock/Health/Modules
 @onready var speed = $LeftDock/Speed/Gauge
 @onready var weapon: Label = $Weapon/Content/Value
@@ -22,6 +23,22 @@ func _apply_adaptive_layout() -> void:
 	$Weapon.offset_top = -74.0 if compact else -80.0
 	$Weapon.offset_right = -10.0 if compact else -14.0
 	$Weapon.offset_bottom = -10.0 if compact else -14.0
+	if survival_layout:
+		$LeftDock/Speed.custom_minimum_size = Vector2(72, 64)
+		$LeftDock/Health.custom_minimum_size = Vector2(184, 64)
+		$LeftDock.offset_top = -82.0
+		$Weapon.offset_left = -226.0
+		$Weapon.offset_top = -82.0
+		weapon.add_theme_font_size_override("font_size", 11)
+		weapon.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		for panel in [$LeftDock/Speed, $LeftDock/Health, $Weapon]:
+			var style := panel.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
+			style.bg_color = Color(0.025, 0.035, 0.04, 0.72)
+			style.border_width_left = 1
+			style.border_width_bottom = 0
+			panel.add_theme_stylebox_override("panel", style)
+		speed.numeric_mode = true
+		modules.compact_mode = true
 
 func update_vehicle(vehicle: Vehicle) -> void:
 	player = vehicle

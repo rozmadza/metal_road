@@ -32,6 +32,9 @@ func run() -> void:
 func _check_survival_retry() -> void:
 	await _open(ARENA)
 	var survival := current_scene as Survival
+	if survival == null:
+		check(false, "Survival ready for Retry")
+		return
 	survival._end_round(false)
 	var results := survival.results
 	check(results.visible, "survival results are visible after defeat")
@@ -83,6 +86,9 @@ func _check_race_results_routes() -> void:
 func _check_pause_routes() -> void:
 	await _open(ARENA)
 	var survival := current_scene as Survival
+	if survival == null:
+		check(false, "Survival ready for pause")
+		return
 	var pause := survival.hud.pause_overlay
 	pause.toggle()
 	check(paused and pause.visible, "pause menu stops gameplay")
@@ -102,14 +108,15 @@ func _open(path: String) -> void:
 	var error := change_scene_to_file(path)
 	check(error == OK, "scene request accepted: %s" % path)
 	await scene_changed
-	await process_frame
+	check(await _wait_for_scene(path), "requested scene is ready: %s" % path)
 
 
 func _wait_for_scene(path: String, max_frames: int = 600) -> bool:
 	for _frame in max_frames:
-		if current_scene != null and current_scene.scene_file_path == path:
+		if current_scene != null and current_scene.scene_file_path == path and not SceneTransition.is_busy():
 			await process_frame
-			return true
+			if current_scene != null and current_scene.scene_file_path == path and not SceneTransition.is_busy():
+				return true
 		await process_frame
 	return false
 

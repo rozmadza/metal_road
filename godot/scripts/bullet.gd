@@ -42,6 +42,9 @@ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_no
 	if weapon_type == WeaponConfig.WeaponType.FLAME and owner_node is Vehicle:
 		velocity += (owner_node as Vehicle).linear_velocity
 	if weapon_type == WeaponConfig.WeaponType.MINE:
+		# Bullets and cars share the world parent. Equal z=0 made the later
+		# spawned mine draw over the car; the installed hazard belongs on ground.
+		z_index = -1
 		add_to_group("weapon_hazards")
 		velocity = (owner_node as Vehicle).linear_velocity * 0.12 if owner_node is Vehicle else Vector2.ZERO
 	rotation = direction.angle()
@@ -62,6 +65,7 @@ func _physics_process(delta: float) -> void:
 		elif lifetime <= 0.0:
 			queue_free()
 		return
+	var previous_position := global_position
 	global_position += velocity * delta
 	lifetime -= delta
 	if lifetime <= 0.0:
@@ -73,6 +77,8 @@ func _physics_process(delta: float) -> void:
 		return
 	if _hits_obstacle():
 		_impact()
+		return
+	if _check_crew_hit(previous_position):
 		return
 	_check_vehicle_hit()
 
@@ -130,6 +136,29 @@ func _check_vehicle_hit() -> bool:
 	return false
 
 
+func _check_crew_hit(previous_position: Vector2) -> bool:
+	if damage <= 0.0:
+		return false
+	for node in get_tree().get_nodes_in_group("escaping_crew"):
+		var crew := node as EscapingCrew
+		if crew == null or not crew._active:
+			continue
+		var contact := Geometry2D.get_closest_point_to_segment(crew.global_position, previous_position, global_position)
+		if contact.distance_to(crew.global_position) > radius + 7.0:
+			continue
+		if splash_radius > 0.0:
+			global_position = contact
+			_detonate()
+		else:
+			crew.take_weapon_damage(damage, shooter if is_instance_valid(shooter) else null)
+			var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
+			if vfx != null:
+				vfx.spawn_impact(contact, color)
+			queue_free()
+		return true
+	return false
+
+
 func _apply_hit(vehicle: Vehicle, amount: float) -> void:
 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 	if vfx != null:
@@ -175,6 +204,13 @@ func _detonate() -> void:
 			var distance := global_position.distance_to(node.global_position)
 			if distance <= splash_radius:
 				node.take_damage(damage * lerpf(1.0, 0.3, distance / maxf(splash_radius, 1.0)), &"body", shooter)
+	for node in get_tree().get_nodes_in_group("escaping_crew"):
+		var crew := node as EscapingCrew
+		if crew == null or not crew._active:
+			continue
+		var distance := global_position.distance_to(crew.global_position)
+		if distance <= splash_radius:
+			crew.take_weapon_damage(damage * lerpf(1.0, 0.25, distance / maxf(splash_radius, 1.0)), shooter if is_instance_valid(shooter) else null)
 	queue_redraw()
 	set_physics_process(false)
 	var tween := create_tween()
@@ -186,13 +222,21 @@ func _detonate() -> void:
 func _mine_has_target() -> bool:
 	for node in get_tree().get_nodes_in_group("combatants"):
 		var vehicle := node as Vehicle
-		if vehicle != null and vehicle != shooter and vehicle.alive and not _same_squad(vehicle) and global_position.distance_to(vehicle.global_position) <= splash_radius:
+		if vehicle == null or vehicle == shooter or not vehicle.alive or vehicle.config == null or _same_squad(vehicle):
+			continue
+		# Arming is triggered by contact with the chassis. The blast radius is
+		# used only after detonation to damage nearby targets.
+		var local_hit := vehicle.to_local(global_position)
+		var half_length := vehicle.config.length * Vehicle.COLLISION_SCALE.x * 0.5
+		var half_width := vehicle.config.width * Vehicle.COLLISION_SCALE.y * 0.5
+		var nearest := Vector2(clampf(local_hit.x, -half_length, half_length), clampf(local_hit.y, -half_width, half_width))
+		if local_hit.distance_to(nearest) <= radius:
 			return true
 	return false
 
 
 func _guide_rocket(delta: float) -> void:
-	var best: Vehicle = null
+	var best: Node2D = null
 	var best_distance := INF
 	for node in get_tree().get_nodes_in_group("combatants"):
 		var vehicle := node as Vehicle
@@ -202,9 +246,22 @@ func _guide_rocket(delta: float) -> void:
 		if distance < best_distance:
 			best_distance = distance
 			best = vehicle
+	for node in get_tree().get_nodes_in_group("escaping_crew"):
+		var crew := node as EscapingCrew
+		if crew == null or not crew._active:
+			continue
+		var distance := global_position.distance_squared_to(crew.global_position)
+		if distance < best_distance:
+			best_distance = distance
+			best = crew
 	if best == null:
 		return
-	var desired := global_position.direction_to(best.global_position).angle()
+	var aim_point := best.global_position
+	if best is EscapingCrew:
+		var target_crew := best as EscapingCrew
+		var travel_time := minf(sqrt(best_distance) / maxf(velocity.length(), 1.0), 0.3)
+		aim_point += target_crew.escape_direction * target_crew.run_speed * travel_time
+	var desired := global_position.direction_to(aim_point).angle()
 	var current := velocity.angle()
 	var next := rotate_toward(current, desired, homing_strength * delta)
 	velocity = Vector2.RIGHT.rotated(next) * velocity.length()

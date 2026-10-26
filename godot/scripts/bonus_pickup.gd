@@ -56,15 +56,19 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 
-func collect(vehicle: Vehicle) -> bool:
-	if not armed or collected_once or vehicle == null or not vehicle.alive:
+func collect(vehicle: Vehicle, confirm_weapon_swap: bool = false) -> bool:
+	if not armed or collected_once or is_queued_for_deletion() or vehicle == null or not vehicle.alive:
+		return false
+	var survival_player := bool(vehicle.get_meta("survival_pickups", false))
+	if survival_player and kind == Kind.WEAPON and vehicle.has_temporary_weapon() and not confirm_weapon_swap:
 		return false
 	collected_once = true
 	match kind:
 		Kind.WEAPON:
 			vehicle.activate_temporary_weapon(weapon_config, weapon_duration)
 		Kind.REPAIR:
-			vehicle.repair()
+			# Preserve the existing engine/wheels repair and feedback contract.
+			vehicle.repair(vehicle.config.max_health if survival_player else 28.0)
 		Kind.SPEED_BOOST:
 			vehicle.activate_boost(speed_boost_duration)
 		Kind.RAM_BOOST:
@@ -76,6 +80,21 @@ func collect(vehicle: Vehicle) -> bool:
 
 func _on_body_entered(body: Node) -> void:
 	collect(body as Vehicle)
+
+
+static func weapon_offer_for(vehicle: Vehicle) -> BonusPickup:
+	var nearest: BonusPickup
+	var distance := INF
+	for node in vehicle.get_tree().get_nodes_in_group("bonus_pickups"):
+		var pickup := node as BonusPickup
+		if pickup == null or pickup.is_queued_for_deletion() or not pickup.armed or pickup.collected_once or pickup.kind != Kind.WEAPON:
+			continue
+		if not pickup.overlaps_body(vehicle): continue
+		var d := vehicle.global_position.distance_squared_to(pickup.global_position)
+		if d < distance:
+			distance = d
+			nearest = pickup
+	return nearest
 
 
 static func kind_label(value: Kind) -> String:

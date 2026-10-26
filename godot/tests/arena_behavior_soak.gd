@@ -28,7 +28,8 @@ func run() -> void:
 		game._clear_enemies()
 		await process_frame
 		game._referee_spawned = false
-		game._round = 5
+		game.start_round(5)
+		game._clear_enemies()
 		game._spawn_referee()
 		game._spawn_biker_squad()
 		await sample(game, String(entry.id), "bikes", 1800)

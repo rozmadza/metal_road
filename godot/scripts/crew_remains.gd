@@ -13,7 +13,8 @@ func setup(value_role: EscapingCrew.Role) -> void:
 
 func _ready() -> void:
 	add_to_group("crew_remains")
-	z_index = 1
+	# Stay above the arena floor, but below cars from the first rendered frame.
+	z_index = -1
 	var body := Sprite2D.new()
 	body.name = "FallenCrew"
 	body.texture = FALLEN_TEXTURE

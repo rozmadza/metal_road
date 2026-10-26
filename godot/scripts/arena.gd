@@ -45,6 +45,11 @@ func _ready() -> void:
 	_prepare_obstacle_polygons()
 	_bounds = Rect2(Vector2.ZERO, config.size)
 	_create_ground()
+	if config.structured_scrapyard:
+		var dressing := preload("res://scripts/arena_dressing.gd").new()
+		dressing.name = "ArenaDressing"
+		dressing.config = config
+		add_child(dressing)
 	_create_collision()
 	_create_tire_tracks()
 	_create_interactives()
@@ -64,7 +69,7 @@ func _create_ground() -> void:
 	_ground.region_rect = _bounds
 	_ground.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	_ground.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS
-	_ground.material = WorldArtGuide.surface_material(WorldArtGuide.arena_surface_tint(config.biome_id, config.floor_color), 0.32)
+	_ground.material = WorldArtGuide.surface_material(WorldArtGuide.arena_surface_tint(config.biome_id, config.floor_color), 0.16 if config.structured_scrapyard else 0.32)
 	_ground.z_index = -20
 	add_child(_ground)
 
@@ -182,6 +187,11 @@ func _prepare_run_variation() -> void:
 	_last_variation_by_biome[config.biome_id] = signature
 	_run_variation_id = signature
 	_obstacle_texture_slots.clear()
+	if config.structured_scrapyard:
+		_obstacle_texture_slots.assign([3, 4, 4, 0, 1])
+		_run_variation_id = 0
+		set_meta("run_variation", 0)
+		return
 	for index in art_count:
 		var source := (index + shift) % art_count
 		if reverse_order:
@@ -191,6 +201,8 @@ func _prepare_run_variation() -> void:
 
 
 func _varied_prop_position(origin: Vector2, radius: float) -> Vector2:
+	if config.structured_scrapyard:
+		return origin
 	var safe_bounds := Rect2(Vector2(42.0, 42.0), config.size - Vector2(84.0, 84.0))
 	for attempt in 7:
 		var angle := _run_rng.randf_range(0.0, TAU)
@@ -312,6 +324,19 @@ func get_bounds() -> Rect2:
 
 func get_obstacles() -> Array[Rect2]:
 	return _obstacles
+
+
+## Navigation envelopes of collision hulls, not the larger artwork slots.
+func get_navigation_obstacles() -> Array[Rect2]:
+	var rects: Array[Rect2] = _obstacles.duplicate()
+	if _obstacle_polygons.size() == rects.size():
+		for index in rects.size():
+			var polygon := _obstacle_polygons[index]
+			if polygon.is_empty(): continue
+			var box := Rect2(polygon[0], Vector2.ZERO)
+			for point in polygon: box = box.expand(point)
+			rects[index] = box
+	return rects
 
 
 func navigation() -> RefCounted:

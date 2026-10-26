@@ -33,6 +33,7 @@ func get_commands() -> Dictionary:
 		"steer": steer,
 		"fire": Input.is_action_pressed(ACTION_FIRE),
 		"restart": Input.is_action_just_pressed(ACTION_RESTART),
+		"interact": Input.is_action_just_pressed(&"interact"),
 	}
 
 

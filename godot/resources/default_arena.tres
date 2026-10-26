@@ -10,17 +10,22 @@
 
 [resource]
 script = ExtResource("1")
-size = Vector2(1000, 800)
+size = Vector2(1400, 1000)
 wall_thickness = 20.0
 spawn_margin = 80.0
-obstacles = Array[Rect2]([Rect2(440, 330, 120, 120), Rect2(210, 170, 190, 40), Rect2(590, 570, 200, 40), Rect2(200, 560, 120, 40), Rect2(630, 160, 120, 40)])
-oil_spots = Array[Vector2]([Vector2(135, 500)])
-explosive_barrels = Array[Vector2]([Vector2(850, 250)])
-crates = Array[Vector2]([Vector2(150, 280)])
-tire_walls = Array[Vector2]([Vector2(850, 480)])
+structured_scrapyard = true
+supply_hotspots = Array[Vector2]([Vector2(700, 150), Vector2(150, 460), Vector2(1260, 460), Vector2(700, 850)])
+obstacles = Array[Rect2]([Rect2(630, 360, 140, 120), Rect2(270, 265, 145, 44), Rect2(270, 505, 145, 44), Rect2(1040, 280, 85, 70), Rect2(1025, 570, 160, 44)])
+oil_spots = Array[Vector2]([Vector2(1155, 470)])
+explosive_barrels = Array[Vector2]([Vector2(1160, 300), Vector2(1185, 350), Vector2(1160, 400)])
+crates = Array[Vector2]([Vector2(290, 225), Vector2(345, 225)])
+tire_walls = Array[Vector2]([Vector2(810, 440)])
 wrecks = Array[Vector2]([])
-concrete_blocks = Array[Vector2]([Vector2(710, 400)])
-metal_fences = Array[Vector2]([Vector2(290, 420)])
+concrete_blocks = Array[Vector2]([Vector2(355, 665), Vector2(1100, 700)])
+metal_fences = Array[Vector2]([])
+spike_strip_positions = Array[Vector2]([Vector2(240, 720)])
+maneuver_lane_y = 780.0
+biome_description = "Промышленная свалка с широкими проездами и свободной нижней полосой."
 floor_color = Color(0.11, 0.12, 0.15, 1)
 grid_color = Color(0.17, 0.18, 0.22, 1)
 wall_color = Color(0.34, 0.36, 0.42, 1)

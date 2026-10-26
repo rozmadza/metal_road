@@ -12,13 +12,16 @@ func setup(value: Node2D) -> void:
 	_refresh()
 
 func clearance(vehicle: Vehicle) -> float:
-	return ceilf((vehicle.config.width * Vehicle.COLLISION_SCALE.y * 0.5 + vehicle.config.length * Vehicle.COLLISION_SCALE.x * 0.23 + 6.0) / 8.0) * 8.0
+	var footprint := Vector2(vehicle.config.length, vehicle.config.width) * Vehicle.COLLISION_SCALE
+	var driving_margin := footprint.y * 0.5 + footprint.x * 0.23 + 6.0
+	# A long body must fit through a heading change, not just a straight lane.
+	return ceilf(maxf(driving_margin, footprint.length() * 0.5) / 8.0) * 8.0
 
 func _refresh() -> void:
 	var frame := Engine.get_physics_frames()
 	if frame - _refresh_frame < 45: return
 	_refresh_frame = frame
-	var rects: Array[Rect2] = arena.get_obstacles().duplicate()
+	var rects: Array[Rect2] = arena.get_navigation_obstacles() if arena is Arena else arena.get_obstacles().duplicate()
 	for node in arena.get_tree().get_nodes_in_group("arena_obstacles"):
 		if not is_instance_valid(node) or bool(node.get("destroyed")): continue
 		var half: Vector2 = node.size * Vector2(0.48, 0.46)
@@ -80,12 +83,51 @@ func _nearest_open(grid: AStarGrid2D, point: Vector2) -> Vector2i:
 	return best
 
 func route(start: Vector2, goal: Vector2, radius: float) -> PackedVector2Array:
+	return route_result(start, goal, radius).path
+
+
+## A short-lived planning snapshot for one driver's confirmed traffic jam.
+## Never mutate shared cached grids or add physical obstacles to the arena.
+func with_traffic(rectangles: Array[Rect2]) -> RefCounted:
+	_refresh()
+	var snapshot: RefCounted = get_script().new()
+	snapshot.arena = arena
+	snapshot._rects = _rects.duplicate()
+	snapshot._rects.append_array(rectangles)
+	snapshot._refresh_frame = Engine.get_physics_frames() + 1000000
+	return snapshot
+
+
+## Compatibility callers may keep route(); drivers need the explicit outcome.
+## NEAREST is a reachable stopping point, never permission to drive at goal.
+func route_result(start: Vector2, goal: Vector2, radius: float) -> Dictionary:
+	var missing := {"status": &"NONE", "path": PackedVector2Array(), "requested": goal, "resolved": start}
+	if not arena.get_bounds().has_point(start): return missing
 	var grid := _grid(radius)
 	var from := _nearest_open(grid, start)
 	var to := _nearest_open(grid, goal)
-	if from.x < 0 or to.x < 0: return PackedVector2Array()
+	if from.x < 0 or to.x < 0: return missing
+	if not segment_clear(start, grid.get_point_position(from), radius + 2.0):
+		var distance := INF
+		from = Vector2i(-1,-1)
+		for y in grid.region.size.y:
+			for x in grid.region.size.x:
+				var cell := Vector2i(x,y)
+				if grid.is_point_solid(cell): continue
+				var point := grid.get_point_position(cell)
+				var d := start.distance_squared_to(point)
+				if d < distance and segment_clear(start, point, radius + 2.0):
+					from = cell
+					distance = d
+		if from.x < 0: return missing
 	var raw := grid.get_point_path(from, to)
-	if raw.is_empty(): return raw
+	if raw.is_empty():
+		# Find the closest point in the START component, not on an island
+		# selected only by geometric distance to the requested goal.
+		to = _reachable_nearest(grid, from, goal)
+		raw = grid.get_point_path(from, to)
+	if raw.is_empty(): return missing
+	if not segment_clear(start, raw[0], radius + 2.0): return missing
 	var result := PackedVector2Array()
 	var anchor := start
 	var index := 0
@@ -99,9 +141,33 @@ func route(start: Vector2, goal: Vector2, radius: float) -> PackedVector2Array:
 		anchor = raw[furthest]
 		index = furthest + 1
 	if segment_clear(anchor, goal, radius + 2.0):
-		if anchor.distance_to(goal) > 4.0:
+		if not anchor.is_equal_approx(goal):
 			result.append(goal)
-	return result
+	var resolved := result[result.size() - 1]
+	return {"status": &"EXACT" if resolved.is_equal_approx(goal) else &"NEAREST", "path": result, "requested": goal, "resolved": resolved}
+
+
+func _reachable_nearest(grid: AStarGrid2D, start: Vector2i, goal: Vector2) -> Vector2i:
+	var queue: Array[Vector2i] = [start]
+	var visited := {start: true}
+	var best := start
+	var distance := grid.get_point_position(start).distance_squared_to(goal)
+	var index := 0
+	while index < queue.size():
+		var current := queue[index]
+		index += 1
+		var d := grid.get_point_position(current).distance_squared_to(goal)
+		if d < distance:
+			best = current
+			distance = d
+		# Cardinal flood fill is sufficient: diagonal grid moves cannot
+		# connect components separated under ONLY_IF_NO_OBSTACLES.
+		for step in [Vector2i.LEFT, Vector2i.RIGHT, Vector2i.UP, Vector2i.DOWN]:
+			var next: Vector2i = current + step
+			if grid.region.has_point(next) and not visited.has(next) and not grid.is_point_solid(next):
+				visited[next] = true
+				queue.append(next)
+	return best
 
 func segment_clear(start: Vector2, end: Vector2, radius: float) -> bool:
 	var bounds: Rect2 = arena.get_bounds()

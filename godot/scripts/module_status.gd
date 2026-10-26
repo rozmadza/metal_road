@@ -4,6 +4,7 @@ class_name ModuleStatus
 var bars: Array[ProgressBar] = []
 var labels: Array[Label] = []
 var damage_label: Label
+var compact_mode := false
 const MODULES := ["body_health", "engine_health", "wheels_health"]
 const TITLES := ["КУЗОВ", "ДВИГАТЕЛЬ", "КОЛЁСА"]
 
@@ -45,9 +46,11 @@ func update_state(state: Dictionary) -> void:
 	var critical_names := {&"body": "КУЗОВ", &"engine": "ДВИГАТЕЛЬ", &"wheels": "ХОДОВАЯ"}
 	if critical_names.has(critical):
 		damage_label.text = "%s: КРИТИЧЕСКОЕ" % critical_names[critical]
+		if compact_mode: damage_label.text = "! %s: КРИТИЧНО" % critical_names[critical]
 		damage_label.add_theme_color_override("font_color", Color(1, 0.28, 0.18))
 	else:
 		damage_label.add_theme_color_override("font_color", stage_colors[safe_stage])
+		if compact_mode: damage_label.text = stage_names[safe_stage]
 	for i in MODULES.size():
 		var value: float = state[MODULES[i]]
 		bars[i].value = value * 100

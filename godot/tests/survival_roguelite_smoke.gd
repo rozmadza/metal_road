@@ -58,7 +58,7 @@ func _check_content_catalog() -> void:
 
 
 func _check_wave_one_and_repair() -> void:
-	_check(_game._alive_enemies() == 5, "first wave starts with five enemies")
+	_check(_game._alive_enemies() == 2 and _game._pending_enemies.size() == 1, "first wave starts with two enemies and a reinforcement")
 	for enemy in _game._enemies:
 		var hunter := enemy.get_node("ArenaBot") as ArenaBot
 		_check(hunter.focus_player, "ordinary opponent prioritizes the player")
@@ -84,19 +84,26 @@ func _check_elite_wave() -> void:
 			_check(StringName(enemy.get_meta("squad_id", &"")) == &"cerberus", "elite belongs to the Cerberus squad")
 			_check(String(enemy.config.vehicle_id).begins_with("elite_cerberus_"), "elite uses an exclusive chassis")
 			_check(enemy.config.vehicle_id not in LoadoutProfile.vehicle_ids(), "elite chassis is absent from the store catalog")
-	_check(elites >= 2, "elite-team wave spawns a coordinated squad")
-	_check(ArenaBot.TeamRole.VANGUARD in roles and ArenaBot.TeamRole.FLANKER in roles, "elite squad receives distinct roles")
+	_check(elites == 1, "first elite-team wave starts with one elite")
+	_check(ArenaBot.TeamRole.VANGUARD in roles, "first elite has the Vanguard role")
+	_game.start_round(8)
+	var later_roles: Array[int] = []
+	for enemy in _game._enemies:
+		if bool(enemy.get_meta("elite", false)): later_roles.append(enemy.get_node("ArenaBot").team_role)
+	_check(ArenaBot.TeamRole.VANGUARD in later_roles and ArenaBot.TeamRole.FLANKER in later_roles, "later elite squad retains distinct roles")
 
 
 func _check_boss_wave() -> void:
+	_game.referee_every_wave = true
 	_game.start_round(1)
 	_check(_game._boss == null, "Arbiter is absent while regular opponents remain")
 	_game._spawn_referee()
 	var first_wave_speed := _game._boss.config.max_speed
+	_game.referee_every_wave = false
 	_game.start_round(5)
 	_check(_game._boss == null, "fifth wave begins with the elite squad, not the boss")
 	_game._spawn_referee()
-	_check(is_instance_valid(_game._boss), "boss vehicle spawns in the finale of every wave")
+	_check(is_instance_valid(_game._boss), "boss vehicle spawns in the fifth-wave finale")
 	if is_instance_valid(_game._boss):
 		_check(is_equal_approx(first_wave_speed, 48.0), "first-wave Arbiter uses the slow teaching speed")
 		_check(is_equal_approx(_game._boss.config.max_speed, 92.0), "Arbiter reaches its target speed on wave five")

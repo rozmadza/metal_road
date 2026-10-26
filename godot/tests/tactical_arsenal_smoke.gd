@@ -94,6 +94,32 @@ func run() -> void:
 	flame_projectile.setup(Vector2.ZERO, Vector2.RIGHT, flame, shooter)
 	var relative_flame_velocity := flame_projectile.velocity - shooter.linear_velocity
 	check(is_equal_approx(relative_flame_velocity.length(), flame.bullet_speed), "flamethrower range stays constant while its carrier moves")
+	var crew := (load("res://scenes/EscapingCrew.tscn") as PackedScene).instantiate() as EscapingCrew
+	crew.setup(EscapingCrew.Role.PILOT, null, Vector2.RIGHT)
+	world.add_child(crew)
+	crew.global_position = Vector2(500, 500)
+	var crew_projectile := (load("res://scenes/Bullet.tscn") as PackedScene).instantiate() as Bullet
+	bullets.add_child(crew_projectile)
+	crew_projectile.setup(crew.global_position - Vector2(10, 0), Vector2.RIGHT, load("res://resources/weapons/machine_gun.tres") as WeaponConfig, shooter)
+	crew_projectile._physics_process(0.03)
+	check(not crew._active and crew.health == 0.0, "one fast projectile kills crew while crossing it between frames")
+	crew.free()
+	var aim_crew := (load("res://scenes/EscapingCrew.tscn") as PackedScene).instantiate() as EscapingCrew
+	aim_crew.setup(EscapingCrew.Role.PILOT, null, Vector2.RIGHT)
+	world.add_child(aim_crew)
+	aim_crew.global_position = Vector2(600, 630)
+	shooter.global_position = Vector2(300, 600)
+	gun.equip(load("res://resources/weapons/machine_gun.tres") as WeaponConfig)
+	gun._shoot()
+	var assisted_shot := bullets.get_child(bullets.get_child_count() - 1) as Bullet
+	check(assisted_shot.velocity.y > 0.0, "gunfire nudges toward crew near the firing line")
+	shooter.global_position = Vector2.ZERO
+	var guided_rocket := (load("res://scenes/Bullet.tscn") as PackedScene).instantiate() as Bullet
+	bullets.add_child(guided_rocket)
+	guided_rocket.setup(Vector2(500, 630), Vector2.UP, rocket, shooter)
+	guided_rocket._guide_rocket(0.1)
+	check(guided_rocket.velocity.x > 0.0, "guided rocket can steer toward fleeing crew")
+	aim_crew.free()
 
 	var mine := load("res://resources/weapons/mine_layer.tres") as WeaponConfig
 	shooter.activate_temporary_weapon(mine, 20.0)
@@ -107,6 +133,16 @@ func run() -> void:
 	shooter.add_child(bot)
 	bot.vehicle = shooter
 	check(bot._should_fire(), "racing bot drops a mine only when pursued from behind")
+	deployed.global_position = Vector2(300, 300)
+	pursuer.global_position = deployed.global_position + Vector2(70, 0)
+	deployed.age = mine.effect_duration
+	check(not deployed._mine_has_target(), "armed mine ignores a vehicle inside blast radius without contact")
+	deployed._physics_process(0.02)
+	check(not deployed.detonated, "passing nearby does not detonate the mine")
+	pursuer.global_position = deployed.global_position
+	check(deployed._mine_has_target(), "mine detects a vehicle over its casing")
+	deployed._physics_process(0.02)
+	check(deployed.detonated, "driving over an armed mine detonates it")
 
 	var hud_state := shooter.get_hud_state()
 	check(hud_state.weapon_texture == mine.texture, "HUD exposes current weapon icon")

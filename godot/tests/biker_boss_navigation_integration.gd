@@ -11,6 +11,7 @@ func run() -> void:
 	var game := (load("res://scenes/ArenaBattle.tscn") as PackedScene).instantiate() as Survival
 	root.add_child(game)
 	await process_frame
+	game.start_round(5)
 	game._clear_enemies()
 	await process_frame
 

@@ -46,8 +46,8 @@ func show_result(result: Dictionary) -> void:
 		int(float(result.get("time", 0.0))) / 60, fmod(float(result.get("time", 0.0)), 60.0),
 		int(result.get("credits", 0))
 	]
-	if int(result.get("crew_crushed", 0)) > 0 or int(result.get("crew_escaped", 0)) > 0:
-		summary += "\nЭКИПАЖ СБИТ  %d · УШЛО %d" % [int(result.get("crew_crushed", 0)), int(result.get("crew_escaped", 0))]
+	if int(result.get("crew_crushed", 0)) > 0 or int(result.get("crew_weapon_killed", 0)) > 0 or int(result.get("crew_escaped", 0)) > 0:
+		summary += "\nЭКИПАЖ СБИТ  %d · ПОДСТРЕЛЕН %d · УШЛО %d" % [int(result.get("crew_crushed", 0)), int(result.get("crew_weapon_killed", 0)), int(result.get("crew_escaped", 0))]
 	summary = "АРЕНА  %s\nСЧЁТ  %d · РЕКОРД %d\nЛУЧШЕЕ КОМБО  x%d · БОССОВ %d\n%s" % [
 		String(result.get("arena", "АРЕНА")), int(result.get("score", 0)), int(result.get("best_score", result.get("score", 0))),
 		int(result.get("best_combo", 0)), int(result.get("boss_kills", 0)), summary,

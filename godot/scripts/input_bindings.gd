@@ -1,15 +1,22 @@
 extends RefCounted
 class_name InputBindings
 
-const ACTIONS := [&"accelerate", &"brake", &"steer_left", &"steer_right", &"fire", &"restart"]
+const ACTIONS := [&"accelerate", &"brake", &"steer_left", &"steer_right", &"fire", &"restart", &"interact"]
 const LABELS := {
 	&"accelerate": "ГАЗ / ACCELERATE", &"brake": "ТОРМОЗ / BRAKE",
 	&"steer_left": "ВЛЕВО / LEFT", &"steer_right": "ВПРАВО / RIGHT",
 	&"fire": "ОГОНЬ / FIRE", &"restart": "РЕСТАРТ / RESTART",
+	&"interact": "ЗАМЕНИТЬ ОРУЖИЕ / INTERACT",
 }
 const SETTINGS_PATH := "user://settings.cfg"
 
 static func ensure_controller_defaults() -> void:
+	if not InputMap.has_action(&"interact"):
+		InputMap.add_action(&"interact")
+		var key := InputEventKey.new()
+		key.physical_keycode = KEY_E
+		InputMap.action_add_event(&"interact", key)
+	_add_button(&"interact", JOY_BUTTON_X)
 	InputMap.action_set_deadzone(&"accelerate", 0.12)
 	InputMap.action_set_deadzone(&"brake", 0.12)
 	InputMap.action_set_deadzone(&"steer_left", 0.18)
@@ -46,6 +53,18 @@ static func display_for(action: StringName) -> String:
 		elif event is InputEventJoypadMotion:
 			labels.append("PAD %s" % _axis_name(event.axis, event.axis_value))
 	return " / ".join(labels)
+
+
+static func interaction_key_label(joypad: bool, device: int = 0, controller_name: String = "") -> String:
+	var name := controller_name if not controller_name.is_empty() else Input.get_joy_name(device)
+	for event in InputMap.action_get_events(&"interact"):
+		if joypad and event is InputEventJoypadButton:
+			if name.is_empty() and event.button_index == JOY_BUTTON_X: return "X / □"
+			var playstation := "playstation" in name.to_lower() or "dualshock" in name.to_lower() or "dualsense" in name.to_lower() or "ps4" in name.to_lower() or "ps5" in name.to_lower() or "sony" in name.to_lower() or name.to_lower() == "wireless controller"
+			return "□" if playstation and event.button_index == JOY_BUTTON_X else _button_name(event.button_index)
+		if not joypad and event is InputEventKey:
+			return event.as_text_physical_keycode()
+	return "X / □" if joypad else "E"
 
 static func rebind_keyboard(action: StringName, event: InputEventKey) -> void:
 	for old in InputMap.action_get_events(action):

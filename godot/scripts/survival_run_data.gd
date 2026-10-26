@@ -2,7 +2,7 @@ extends RefCounted
 class_name SurvivalRunData
 
 const ARENAS := [
-	{"id": &"scrapyard", "name": "SCRAPYARD ARENA", "path": "res://resources/default_arena.tres", "mechanic": "КОМПАКТНЫЙ БОЙ · МНОГО УКРЫТИЙ"},
+	{"id": &"scrapyard", "name": "SCRAPYARD ARENA", "path": "res://resources/default_arena.tres", "mechanic": "ПРОСТОРНЫЕ ПРОЕЗДЫ · ТАКТИЧЕСКИЕ УКРЫТИЯ"},
 	{"id": &"oil_cauldron", "name": "НЕФТЯНОЙ КОТЁЛ", "path": "res://resources/oil_cauldron_arena.tres", "mechanic": "ПЫЛЕВЫЕ БУРИ · ВЗРЫВНЫЕ БОЧКИ"},
 	{"id": &"steel_foundry", "name": "СТАЛЬНОЙ ПРЕСС", "path": "res://resources/steel_foundry_arena.tres", "mechanic": "ДВИЖУЩИЕСЯ ПРЕССЫ · УЗКИЕ КОРИДОРЫ"},
 	{"id": &"flooded_depot", "name": "ЗАТОПЛЕННОЕ ДЕПО", "path": "res://resources/flooded_depot_arena.tres", "mechanic": "ВОЛНЫ ВОДЫ · ПАДЕНИЕ СЦЕПЛЕНИЯ"},
@@ -52,11 +52,11 @@ static func wave_plan(round_number: int) -> Dictionary:
 	var cycle := posmod(round_number - 1, 5) + 1
 	var tier := int((round_number - 1) / 5)
 	match cycle:
-		1: return {"id": &"skirmish", "name": "СХВАТКА", "enemies": mini(5 + tier, 7), "elites": mini(tier, 2), "boss": false, "supply_rate": 1.0}
-		2: return {"id": &"supply_rush", "name": "БИТВА ЗА ПОСТАВКИ", "enemies": mini(6 + tier, 7), "elites": 0, "boss": false, "supply_rate": 1.8}
-		3: return {"id": &"elite_team", "name": "ЭЛИТНЫЙ ОТРЯД", "enemies": mini(4 + tier, 6), "elites": mini(2 + tier, 4), "boss": false, "supply_rate": 1.15}
-		4: return {"id": &"onslaught", "name": "НАТИСК", "enemies": mini(6 + tier, 8), "elites": mini(1 + tier, 3), "boss": false, "supply_rate": 1.35}
-	return {"id": &"boss", "name": "СУД АРБИТРА", "enemies": 4, "elites": 4, "boss": true, "supply_rate": 1.25}
+		1: return {"id": &"skirmish", "name": "СХВАТКА", "enemies": mini(3 + tier, 7), "elites": mini(tier, 2), "boss": false, "supply_rate": 1.0}
+		2: return {"id": &"supply_rush", "name": "БИТВА ЗА ПОСТАВКИ", "enemies": mini(4 + tier, 7), "elites": 0, "boss": false, "supply_rate": 1.8}
+		3: return {"id": &"elite_team", "name": "ЭЛИТНЫЙ ОТРЯД", "enemies": mini(4 + tier, 6), "elites": mini(1 + tier, 4), "boss": false, "supply_rate": 1.15}
+		4: return {"id": &"onslaught", "name": "НАТИСК", "enemies": mini(5 + tier, 8), "elites": mini(1 + tier, 3), "boss": false, "supply_rate": 1.35}
+	return {"id": &"boss", "name": "СУД АРБИТРА", "enemies": mini(3 + tier, 4), "elites": mini(1 + tier, 4), "boss": true, "supply_rate": 1.25}
 
 
 static func perk_choices(round_number: int, owned_ids: Array) -> Array[Dictionary]:

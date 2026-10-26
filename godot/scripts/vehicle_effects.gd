@@ -98,7 +98,6 @@ func emitter(count: int, lifetime: float, color: Color, min_scale: float, max_sc
 func _process(delta: float) -> void:
 	var enabled := vehicle.config.effects_enabled
 	var stage := vehicle.damage.visual_stage()
-	var had_flash := impact_flash_time > 0.0 or repair_flash_time > 0.0
 	impact_flash_time = maxf(0.0, impact_flash_time - delta)
 	repair_flash_time = maxf(0.0, repair_flash_time - delta)
 	if not enabled:
@@ -109,8 +108,7 @@ func _process(delta: float) -> void:
 	dust.emitting = enabled and vehicle.alive and speed_ratio > 0.22
 	dust.amount_ratio = lerpf(0.22, 1.0, smoothstep(0.22, 0.9, speed_ratio))
 	dust.speed_scale = lerpf(0.72, 1.35, speed_ratio)
-	if had_flash:
-		queue_redraw()
+	queue_redraw()
 
 func impact(intensity: float, local_point: Vector2 = Vector2.ZERO) -> void:
 	if vehicle.config.effects_enabled:

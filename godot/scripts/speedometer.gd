@@ -6,6 +6,7 @@ const END_ANGLE := 7.07
 const TICK_COUNT := 10
 
 var current_speed := 0.0
+var numeric_mode := false
 var maximum_speed := 300.0
 var text := "СКОРОСТЬ\n000"
 
@@ -20,6 +21,12 @@ func set_speed(value: float, maximum: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
+	if numeric_mode:
+		var font := get_theme_default_font()
+		draw_string(font, Vector2(0, 11), "СКОРОСТЬ", HORIZONTAL_ALIGNMENT_CENTER, size.x, 9, Color("#aeb9bd"))
+		draw_string(font, Vector2(0, 38), "%03d" % roundi(current_speed), HORIZONTAL_ALIGNMENT_CENTER, size.x, 26, Color("#f1f4f4"))
+		draw_string(font, Vector2(0, 51), "КМ/Ч", HORIZONTAL_ALIGNMENT_CENTER, size.x, 9, Color("#65d8e6"))
+		return
 	var gauge_size := minf(size.x, size.y * 1.48)
 	var radius := clampf(gauge_size * 0.34, 24.0, 42.0)
 	var center := Vector2(size.x * 0.5, size.y * 0.59)

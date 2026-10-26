@@ -18,6 +18,13 @@ class_name ArenaConfig
 @export var wrecks: Array[Vector2] = []
 @export var concrete_blocks: Array[Vector2] = []
 @export var metal_fences: Array[Vector2] = []
+## Preserve the historical Survival strip on other arenas unless overridden.
+@export var spike_strip_positions: Array[Vector2] = [Vector2(150, 650)]
+## Ground paint only; never a physical lane restriction.
+@export var maneuver_lane_y := 590.0
+@export var structured_scrapyard := false
+@export var supply_hotspots: Array[Vector2] = []
+@export_range(0.0, 1.0, 0.05) var dressing_opacity := 0.65
 ## Spawn anchors are inset from the walls by this distance.
 @export_range(0.0, 300.0, 5.0) var spawn_margin: float = 80.0
 

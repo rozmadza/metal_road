@@ -23,6 +23,7 @@ const BIKERS_PER_SQUAD := 6
 const BIKER_FIRST_DEPLOY_DELAY := 10.0
 const BIKER_DEPLOY_INTERVAL := 36.0
 const CREW_CRUSH_SCORE := 350
+const CREW_WEAPON_SCORE := 350
 
 ## Vehicle scene used to spawn the AI opponents.
 @export var bot_scene: PackedScene
@@ -39,6 +40,8 @@ const CREW_CRUSH_SCORE := 350
 @export_range(1, 20, 1) var starting_enemies: int = 5
 @export_range(1, 20, 1) var max_enemies: int = 6
 @export_range(0.5, 10.0, 0.1) var round_end_delay: float = 1.2
+## Internal A/B switch; normal sessions use SurvivalRunData.wave_plan.boss.
+@export var referee_every_wave := false
 
 const BOT_COLORS := [
 	Color(1.0, 0.55, 0.55),
@@ -88,10 +91,20 @@ var _biker_squads_deployed := 0
 var _referee_spawned := false
 var _referee_spawn_pending := false
 var _round_start_pending := -1
+const FIRST_WAVE_REINFORCEMENT_DELAY := 5.0
+var _pending_enemies: Array[Dictionary] = []
+var _reinforcement_timer := 0.0
+var _reinforcement_requested := false
+var _using_joypad := false
+var _input_device := 0
 var _round_generation := 0
 var _base_player_config: VehicleConfig
 var _crew_crushed := 0
+var _crew_weapon_killed := 0
 var _crew_escaped := 0
+var _session_finished := false
+var _initial_arena_config: ArenaConfig
+var _arena_generation := 0
 
 
 func _enter_tree() -> void:
@@ -108,19 +121,20 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	player.set_meta("player_vehicle", true)
+	player.set_meta("survival_pickups", true)
 	career_event = CareerSession.active_event()
 	if not career_event.is_empty() and career_event.type != &"arena":
 		career_event = {}
 	if DisplayServer.get_name() != "headless":
 		_apply_loadout()
 	_base_player_config = player.config.duplicate() as VehicleConfig
+	_initial_arena_config = arena.config.duplicate(true) as ArenaConfig
 	bonus_spawner = BonusSpawner.new()
 	bonus_spawner.name = "BonusSpawner"
 	add_child(bonus_spawner)
 	bonus_spawner.setup_for_arena(arena)
 	bonus_spawner.bonus_announced.connect(_on_bonus_announced)
 	bonus_spawner.bonus_collected.connect(_on_bonus_collected)
-	_setup_spike_strips()
 	player.impacted.connect(audio.play_collision)
 	player.impacted.connect(_on_player_impact)
 	if player.gun != null:
@@ -133,25 +147,95 @@ func _ready() -> void:
 	hud.pause_overlay.restart_requested.connect(_on_retry_requested)
 	hud.pause_overlay.menu_requested.connect(func(): SceneTransition.go(CareerSession.CAREER_SCENE if not career_event.is_empty() else MENU_SCENE, "ВЫХОД С АРЕНЫ"))
 	camera.target = player
+	# A structured arena has authored perimeter walls. Include the wall, not
+	# the old extra 20 units of empty exterior; retain zoom/car screen scale.
+	if arena.config.structured_scrapyard:
+		camera.margin = arena.config.wall_thickness
+		hud.avoid_tutorial_overlap = true
 	camera.set_bounds(arena.get_bounds())
 	audio.set_biome_profile(arena.config.biome_id)
 	audio.enable_survival_metal()
 	audio.set_engine_profile(player.config)
+	_setup_arena_systems()
+	start_round(1)
+
+
+func _setup_arena_systems() -> void:
+	_setup_spike_strips()
 	arena_hazards = ArenaHazardDirector.new()
 	arena_hazards.name = "ArenaHazardDirector"
 	arena_hazards.setup(arena.config, SurvivalRunData.daily_seed() if SurvivalRunData.daily_mode else 0)
 	arena.add_child(arena_hazards)
-	arena_hazards.hazard_announced.connect(func(text): hud.show_message(text, 2.2))
-	arena_hazards.hazard_triggered.connect(func(_text): audio.play_event_cue(&"critical"))
+	var generation := _round_generation
+	arena_hazards.hazard_announced.connect(func(text):
+		if _events_allowed() and generation == _arena_generation: hud.show_message(text, 2.2))
+	arena_hazards.hazard_triggered.connect(func(_text):
+		if _events_allowed() and generation == _arena_generation: audio.play_event_cue(&"critical"))
 	if arena.weather != null:
 		arena.weather.storm_changed.connect(_on_storm_changed)
-	start_round(1)
 	for barrel in arena.get_tree().get_nodes_in_group("destructibles"):
-		if barrel is ExplosiveBarrel:
-			barrel.exploded.connect(_on_barrel_exploded)
+		if barrel is ExplosiveBarrel and arena.is_ancestor_of(barrel):
+			barrel.exploded.connect(_on_barrel_exploded.bind(generation))
+
+
+func _events_allowed() -> bool:
+	return not _session_finished and not _round_over and _round_start_pending < 0
+
+
+func _restore_arena() -> void:
+	_clear_enemies()
+	_clear_crew()
+	bonus_spawner.reset()
+	arena.free()
+	arena = preload("res://scenes/Arena.tscn").instantiate() as Arena
+	arena.name = "Arena"
+	arena.config = _initial_arena_config.duplicate(true) as ArenaConfig
+	add_child(arena)
+	move_child(arena, 0)
+	bonus_spawner.setup_for_arena(arena)
+	_arena_generation = _round_generation
+	_setup_arena_systems()
+	player.process_mode = Node.PROCESS_MODE_INHERIT
+	player._surface_modifiers.clear()
+	player.clear_surface_modifier()
+	player._surface_traction_factor = 1.0
+	player._surface_steering_factor = 1.0
+	player._collision_cooldowns.clear()
+	bonus_spawner.process_mode = Node.PROCESS_MODE_INHERIT
+	bullets.process_mode = Node.PROCESS_MODE_INHERIT
+	var vfx := $CombatVFX as CombatVFX
+	vfx.events.clear()
+	vfx.set_process(false)
+	vfx.queue_redraw()
+	camera.set_bounds(arena.get_bounds())
+	hud.pause_overlay.resume()
+
+
+func _finish_session() -> void:
+	_session_finished = true
+	_round_generation += 1
+	_referee_spawn_pending = false
+	_round_start_pending = -1
+	_stop_session_world.call_deferred(_round_generation)
+
+
+func _stop_session_world(generation: int) -> void:
+	if generation != _round_generation or not _session_finished: return
+	for group_name in [&"escaping_crew", &"crew_remains"]:
+		for node in get_tree().get_nodes_in_group(group_name):
+			if is_ancestor_of(node): node.process_mode = Node.PROCESS_MODE_DISABLED
+	for node in [arena, bonus_spawner, bullets, player] + _enemies:
+		if not is_instance_valid(node): continue
+		node.process_mode = Node.PROCESS_MODE_DISABLED
+		if node is Vehicle:
+			node.gun.set_firing(false)
+			node.freeze = true
+	for node in bonus_spawner.get_children():
+		if node is BonusPickup: node.set_armed(false)
 
 
 func _on_storm_changed(active: bool) -> void:
+	if not _events_allowed(): return
 	hud.show_message("ПЫЛЕВАЯ БУРЯ · СЦЕПЛЕНИЕ СНИЖЕНО" if active else "БУРЯ СТИХАЕТ", 1.8)
 	audio.play_event_cue(&"emp" if active else &"pickup")
 
@@ -166,7 +250,7 @@ func _apply_loadout() -> void:
 
 func _setup_spike_strips() -> void:
 	var scene := preload("res://scenes/SpikeStrip.tscn")
-	for point in [Vector2(150, 650)]:
+	for point in arena.config.spike_strip_positions:
 		var spike := scene.instantiate() as SpikeStrip
 		arena.add_child(spike)
 		spike.position = point
@@ -178,32 +262,36 @@ func _physics_process(_delta: float) -> void:
 		_request_round_start(1)
 		return
 	if player.alive and not _round_over:
+		if _events_allowed():
+			_update_reinforcements(_delta)
+			var offer := BonusPickup.weapon_offer_for(player)
+			if offer != null and (commands["interact"] or not player.has_temporary_weapon()):
+				offer.collect(player, bool(commands["interact"]))
 		arena.apply_surface_to(player)
 		if arena_hazards != null: arena_hazards.apply_surface_to(player)
 		for enemy in _enemies:
 			if is_instance_valid(enemy) and enemy.alive:
 				arena.apply_surface_to(enemy)
 				if arena_hazards != null: arena_hazards.apply_surface_to(enemy)
-		var throttle: float = commands["throttle"]
-		var brake: float = commands["brake"]
-		if brake > 0.0 and player.get_forward_speed() < 20.0:
-			throttle = -0.6
-			brake = 0.0
-		player.apply_control(throttle, brake, commands["steer"], commands["fire"])
+		player.apply_player_control(commands["throttle"], commands["brake"], commands["steer"], commands["fire"], _delta)
 	else:
 		player.apply_control(0.0, 0.0, 0.0, false)
 
 
 func _process(delta: float) -> void:
+	if _session_finished: return
 	var enemies_alive := _alive_enemies()
+	var offer := BonusPickup.weapon_offer_for(player) if _events_allowed() and player.alive and player.has_temporary_weapon() else null
+	hud.show_interaction("%s — заменить оружие · %s" % [InputBindings.interaction_key_label(_using_joypad, _input_device), BonusPickup.weapon_badge(offer.weapon_config)] if offer != null else "")
 	_combo_timer = maxf(0.0, _combo_timer - delta)
 	if _combo_timer <= 0.0: _combo = 0
 	var run_info := {
 		"score": _score, "combo": _combo,
 		"scenario": String(_wave_plan.get("name", "")), "time": _round_elapsed,
 		"boss": _boss, "crew_active": _active_crew_count(), "crew_crushed": _crew_crushed,
+		"crew_weapon_killed": _crew_weapon_killed,
 	}
-	hud.update_status(player, enemies_alive, _round, _destroyed_enemies(enemies_alive), run_info)
+	hud.update_status(player, enemies_alive + _pending_enemies.size(), _round, _destroyed_enemies(enemies_alive), run_info)
 	audio.set_engine_intensity(_engine_intensity())
 	var health_ratio := player.health / maxf(player.config.max_health, 1.0) if player.config != null else 1.0
 	var pressure := clampf(float(enemies_alive) / maxf(float(_round_enemy_total), 1.0), 0.0, 1.0)
@@ -219,10 +307,7 @@ func _process(delta: float) -> void:
 		# Signals remain the fast path, but the round must also recover if several
 		# cars explode in one physics step or an opponent leaves the tree directly.
 		if _round_enemy_total > 0 and enemies_alive == 0:
-			if _referee_spawned:
-				_end_round(true)
-			else:
-				_request_referee_spawn()
+			_complete_combat_phase()
 	if _round_over and _round_timer > 0.0 and not _choosing_perk:
 		_round_timer -= delta
 		if _player_won:
@@ -232,6 +317,14 @@ func _process(delta: float) -> void:
 			)
 		if _round_timer <= 0.0 and _player_won:
 			_offer_upgrade()
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventJoypadButton or (event is InputEventJoypadMotion and absf(event.axis_value) > 0.25):
+		_using_joypad = true
+		_input_device = event.device
+	elif event is InputEventKey or event is InputEventMouseButton:
+		_using_joypad = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -248,6 +341,13 @@ func start_round(round_number: int) -> void:
 	_round_generation += 1
 	_round_start_pending = -1
 	_referee_spawn_pending = false
+	_pending_enemies.clear()
+	_reinforcement_timer = 0.0
+	_reinforcement_requested = false
+	hud.show_interaction("")
+	if round_number == 1 and _round > 0:
+		_restore_arena()
+	_session_finished = false
 	if round_number == 1:
 		_kills = 0
 		_weapon_kills = 0
@@ -257,9 +357,11 @@ func start_round(round_number: int) -> void:
 		_elapsed = 0.0
 		_score = 0
 		_combo = 0
+		_combo_timer = 0.0
 		_best_combo = 0
 		_boss_kills = 0
 		_crew_crushed = 0
+		_crew_weapon_killed = 0
 		_crew_escaped = 0
 		_run_perks.clear()
 		_perk_ids.clear()
@@ -281,12 +383,14 @@ func start_round(round_number: int) -> void:
 	_second_wind_used = false
 	_boss = null
 	_boss_phase = 0
-	_boss_ability_timer = 5.0
-	_biker_deploy_timer = BIKER_FIRST_DEPLOY_DELAY
 	_biker_squads_deployed = 0
 	_referee_spawned = false
 	_choosing_perk = false
 	_wave_plan = SurvivalRunData.wave_plan(round_number)
+	if referee_every_wave or bool(career_event.get("requires_arbiter", false)):
+		_wave_plan.boss = true
+	_boss_ability_timer = 5.0 if _wave_plan.boss else 0.0
+	_biker_deploy_timer = BIKER_FIRST_DEPLOY_DELAY if _wave_plan.boss else 0.0
 	_clear_bullets()
 	_clear_enemies()
 	_clear_crew()
@@ -317,14 +421,53 @@ func start_round(round_number: int) -> void:
 		var repair_fraction := 0.3 + (0.15 if &"wave_repair" in _perk_effects else 0.0)
 		player.reset_for_next_wave(spawns[0], 0.0, repair_fraction)
 	player.add_to_group("combatants")
+	_round_enemy_total = enemy_count
 	for i in enemy_count:
-		_spawn_bot(spawns[i + 1], i)
-	_round_enemy_total = _enemies.size()
+		if round_number == 1 and i >= 2:
+			_pending_enemies.append({"index":i,"position":spawns[i+1]})
+		else:
+			_spawn_bot(spawns[i + 1], i)
+	_reinforcement_timer = FIRST_WAVE_REINFORCEMENT_DELAY if not _pending_enemies.is_empty() else 0.0
 	camera.snap_to_target()
 	hud.reset_cinematic()
 	var enemies_alive := _alive_enemies()
-	hud.update_status(player, enemies_alive, _round, _destroyed_enemies(enemies_alive))
+	hud.update_status(player, enemies_alive + _pending_enemies.size(), _round, _destroyed_enemies(enemies_alive))
 	hud.show_message("ВОЛНА %d · %s" % [_round, _wave_plan.name], 1.8)
+
+
+func _update_reinforcements(delta: float) -> void:
+	if _pending_enemies.is_empty() or _reinforcement_requested: return
+	_reinforcement_timer -= delta
+	if _reinforcement_timer <= 0:
+		_reinforcement_requested = true
+		_spawn_reinforcement_deferred.call_deferred(_round_generation)
+
+
+func _spawn_reinforcement_deferred(generation: int) -> void:
+	if generation != _round_generation or not _events_allowed() or not player.alive: return
+	_reinforcement_requested = false
+	if _pending_enemies.is_empty(): return
+	var entry: Dictionary = _pending_enemies[0]
+	# Reuse authored valid spawn anchors, but do not spawn on a moving car.
+	var spawn: Vector2 = entry.position
+	var found := false
+	var candidates := arena.get_spawn_points(_enemy_count()+1)
+	candidates.push_front(spawn)
+	for candidate in candidates:
+		var clear := true
+		for node in get_tree().get_nodes_in_group("combatants"):
+			if node is Vehicle and node.alive and node.global_position.distance_to(candidate) < 100:
+				clear = false
+				break
+		if clear:
+			spawn = candidate
+			found = true
+			break
+	if not found:
+		_reinforcement_timer = 0.5
+		return
+	_pending_enemies.pop_front()
+	_spawn_bot(spawn, int(entry.index))
 
 
 func _enemy_count() -> int:
@@ -415,7 +558,7 @@ func _spawn_bot(spawn: Vector2, index: int, force_boss: bool = false) -> Vehicle
 
 
 func _spawn_referee() -> void:
-	if _referee_spawned or _round_over or not player.alive:
+	if not bool(_wave_plan.get("boss", false)) or _referee_spawned or _round_over or not player.alive:
 		return
 	_referee_spawn_pending = false
 	_referee_spawned = true
@@ -439,7 +582,7 @@ func _spawn_referee() -> void:
 ## Death signals can arrive while Godot is flushing physics contacts. Runtime
 ## boss creation is therefore deferred and tied to the current wave generation.
 func _request_referee_spawn() -> void:
-	if _referee_spawned or _referee_spawn_pending or _round_over or not player.alive:
+	if not bool(_wave_plan.get("boss", false)) or _referee_spawned or _referee_spawn_pending or _round_over or not player.alive:
 		return
 	_referee_spawn_pending = true
 	var generation := _round_generation
@@ -450,7 +593,7 @@ func _spawn_referee_deferred(generation: int) -> void:
 	if generation != _round_generation:
 		return
 	_referee_spawn_pending = false
-	if _alive_enemies() == 0:
+	if _alive_enemies() == 0 and _pending_enemies.is_empty():
 		_spawn_referee()
 
 
@@ -460,10 +603,12 @@ func _request_round_start(round_number: int) -> void:
 	if _round_start_pending >= 0:
 		return
 	_round_start_pending = maxi(1, round_number)
-	_execute_round_start.call_deferred()
+	_round_generation += 1
+	_execute_round_start.call_deferred(_round_generation)
 
 
-func _execute_round_start() -> void:
+func _execute_round_start(generation: int) -> void:
+	if generation != _round_generation: return
 	var round_number := _round_start_pending
 	_round_start_pending = -1
 	if round_number >= 1:
@@ -639,7 +784,7 @@ func _spawn_crew_from_vehicle(vehicle: Vehicle) -> int:
 	if bool(vehicle.get_meta("crew_released", false)):
 		return 0
 	vehicle.set_meta("crew_released", true)
-	return _spawn_crew_at(vehicle.global_position)
+	return _spawn_crew_at(vehicle.global_position, vehicle.global_rotation, Vector2(vehicle.config.length, vehicle.config.width))
 
 
 func _queue_crew_from_vehicle(vehicle: Vehicle) -> void:
@@ -650,10 +795,16 @@ func _queue_crew_from_vehicle(vehicle: Vehicle) -> void:
 	# Vehicle deaths may be delivered while PhysicsServer is flushing contacts.
 	# Capture the wreck position and add the Area2D runners on the deferred frame.
 	vehicle.set_meta("crew_released", true)
-	_spawn_crew_at.call_deferred(vehicle.global_position)
+	_spawn_crew_deferred.call_deferred(vehicle.global_position, vehicle.global_rotation, Vector2(vehicle.config.length, vehicle.config.width), _round_generation)
 
 
-func _spawn_crew_at(wreck_position: Vector2) -> int:
+func _spawn_crew_deferred(wreck_position: Vector2, wreck_rotation: float, wreck_size: Vector2, generation: int) -> void:
+	if generation == _round_generation and _events_allowed():
+		_spawn_crew_at(wreck_position, wreck_rotation, wreck_size)
+
+
+func _spawn_crew_at(wreck_position: Vector2, wreck_rotation: float, wreck_size: Vector2) -> int:
+	if _session_finished: return 0
 	var outward := arena.get_bounds().get_center().direction_to(wreck_position)
 	if outward.is_zero_approx():
 		outward = Vector2.RIGHT
@@ -664,28 +815,58 @@ func _spawn_crew_at(wreck_position: Vector2) -> int:
 		var crew := ESCAPING_CREW_SCENE.instantiate() as EscapingCrew
 		crew.setup(role, arena, direction)
 		add_child(crew)
-		crew.global_position = wreck_position + direction * 22.0
-		crew.crushed.connect(_on_crew_crushed)
-		crew.escaped.connect(_on_crew_escaped)
+		var local_direction := direction.rotated(-wreck_rotation)
+		var half_length := wreck_size.x * Vehicle.COLLISION_SCALE.x * 0.5
+		var half_width := wreck_size.y * Vehicle.COLLISION_SCALE.y * 0.5
+		var exit_distance := minf(
+			half_length / maxf(absf(local_direction.x), 0.001),
+			half_width / maxf(absf(local_direction.y), 0.001)
+		)
+		crew.global_position = wreck_position + direction * (exit_distance + 13.0)
+		var generation := _round_generation
+		crew.crushed.connect(func(runner, vehicle):
+			if generation == _round_generation: _on_crew_crushed(runner, vehicle))
+		crew.weapon_killed.connect(func(runner, attacker):
+			if generation == _round_generation: _on_crew_weapon_killed(runner, attacker))
+		crew.escaped.connect(func(runner):
+			if generation == _round_generation: _on_crew_escaped(runner))
 		spawned += 1
 	return spawned
 
 
 func _on_crew_crushed(crew: EscapingCrew, crushing_vehicle: Vehicle) -> void:
-	if crew == null:
+	if crew == null or not _events_allowed():
 		return
+	_leave_crew_remains(crew)
+	if crushing_vehicle != player or _round_over:
+		return
+	_crew_crushed += 1
+	_award_crew_score(crew, CREW_CRUSH_SCORE)
+
+
+func _on_crew_weapon_killed(crew: EscapingCrew, attacker: Node) -> void:
+	if crew == null or not _events_allowed():
+		return
+	_leave_crew_remains(crew)
+	if attacker != player or _round_over:
+		return
+	_crew_weapon_killed += 1
+	_award_crew_score(crew, CREW_WEAPON_SCORE)
+
+
+func _leave_crew_remains(crew: EscapingCrew) -> void:
 	var remains := CREW_REMAINS_SCENE.instantiate() as CrewRemains
 	remains.setup(crew.role)
 	add_child(remains)
 	remains.global_position = crew.global_position
 	remains.rotation = crew.rotation + randf_range(-0.35, 0.35)
-	if crushing_vehicle != player or _round_over:
-		return
-	_crew_crushed += 1
+
+
+func _award_crew_score(crew: EscapingCrew, base_score: int) -> void:
 	_combo += 1
 	_best_combo = maxi(_best_combo, _combo)
 	_combo_timer = maxf(_combo_timer, 5.0)
-	var reward := CREW_CRUSH_SCORE + (_combo - 1) * 55
+	var reward := base_score + (_combo - 1) * 55
 	_score += reward
 	hud.show_message("ЭКИПАЖ НЕ УШЁЛ · +%d · КОМБО x%d" % [reward, _combo], 1.25)
 	audio.play_event_cue(&"impact")
@@ -693,6 +874,7 @@ func _on_crew_crushed(crew: EscapingCrew, crushing_vehicle: Vehicle) -> void:
 
 
 func _on_crew_escaped(_crew: EscapingCrew) -> void:
+	if not _events_allowed(): return
 	_crew_escaped += 1
 
 
@@ -707,6 +889,8 @@ func _active_crew_count() -> int:
 
 
 func _on_vehicle_died(vehicle: Vehicle) -> void:
+	if not _events_allowed(): return
+	if vehicle != player and not _enemies.has(vehicle): return
 	audio.play_explosion()
 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 	if vfx != null: vfx.spawn_explosion(vehicle.global_position, Color(1.0, 0.36, 0.06), 90.0)
@@ -752,13 +936,19 @@ func _on_vehicle_died(vehicle: Vehicle) -> void:
 		_award_credits(PlayerProfile.economy().survival_kill_reward)
 	# Keep wrecks owned until the next round, so they can be cleaned up.
 	if _alive_enemies() == 0:
-		if _referee_spawned:
-			_end_round(true)
-		else:
-			_request_referee_spawn()
+		_complete_combat_phase()
 	else:
 		var enemies_alive := _alive_enemies()
-		hud.update_status(player, enemies_alive, _round, _destroyed_enemies(enemies_alive))
+		hud.update_status(player, enemies_alive + _pending_enemies.size(), _round, _destroyed_enemies(enemies_alive))
+
+
+func _complete_combat_phase() -> void:
+	if not _events_allowed() or not player.alive or _alive_enemies() != 0 or not _pending_enemies.is_empty():
+		return
+	if bool(_wave_plan.get("boss", false)) and not _referee_spawned:
+		_request_referee_spawn()
+	else:
+		_end_round(true)
 
 
 func _end_round(won: bool) -> void:
@@ -767,6 +957,10 @@ func _end_round(won: bool) -> void:
 	if _round_over:
 		return
 	_round_over = true
+	_round_enemy_total -= _pending_enemies.size()
+	_pending_enemies.clear()
+	_reinforcement_requested = false
+	hud.show_interaction("")
 	_referee_spawn_pending = false
 	_player_won = won
 	if won:
@@ -780,6 +974,7 @@ func _end_round(won: bool) -> void:
 		hud.show_message("ВОЛНА %d ПРОЙДЕНА · СЧЁТ %d\n+%d CREDITS   ВСЕГО %d" % [_round, _score, reward, total_credits], round_end_delay)
 	else:
 		_round_timer = 0.0
+		_finish_session()
 		hud.show_message("ПОРАЖЕНИЕ — РАУНД %d (R — заново)" % _round, 999.0)
 		var run_result := _run_result(&"DEFEAT")
 		PlayerProfile.record_vehicle_result(LoadoutProfile.read_ids().vehicle, &"survival", run_result)
@@ -794,6 +989,7 @@ func _end_round(won: bool) -> void:
 
 func _finish_career_contract(_round_reward: int) -> void:
 	_round_timer = 0.0
+	_finish_session()
 	hud.show_message("КОНТРАКТ ВЫПОЛНЕН", 999.0)
 	var run_result := _run_result(&"VICTORY")
 	PlayerProfile.record_vehicle_result(LoadoutProfile.read_ids().vehicle, &"survival", run_result)
@@ -810,7 +1006,7 @@ func _run_result(status: StringName) -> Dictionary:
 		"status": status, "round": _round, "kills": _kills, "weapon_kills": _weapon_kills,
 		"damage": _damage_dealt, "time": _elapsed, "credits": _credits_earned,
 		"score": _score, "best_combo": _best_combo, "boss_kills": _boss_kills,
-		"crew_crushed": _crew_crushed, "crew_escaped": _crew_escaped,
+		"crew_crushed": _crew_crushed, "crew_weapon_killed": _crew_weapon_killed, "crew_escaped": _crew_escaped,
 		"build": _run_perks.map(func(perk): return perk.name),
 		"arena": arena.config.biome_name,
 		"daily_key": SurvivalRunData.daily_key() if SurvivalRunData.daily_mode else "",
@@ -828,7 +1024,7 @@ func _alive_enemies() -> int:
 func _destroyed_enemies(enemies_alive: int = -1) -> int:
 	if enemies_alive < 0:
 		enemies_alive = _alive_enemies()
-	return maxi(0, _round_enemy_total - enemies_alive)
+	return maxi(0, _round_enemy_total - enemies_alive - _pending_enemies.size())
 
 func _award_credits(amount: int) -> void:
 	amount = roundi(amount * AccessibilitySettings.reward_multiplier())
@@ -838,6 +1034,8 @@ func _award_credits(amount: int) -> void:
 	PlayerProfile.save(profile)
 
 func _on_vehicle_damaged(target: Vehicle, amount: float, source: Node) -> void:
+	if not _events_allowed(): return
+	if target != player and not _enemies.has(target): return
 	_combat_idle = 0.0
 	_hunt_announced = false
 	if target != player and source == player:
@@ -859,6 +1057,7 @@ func _on_vehicle_damaged(target: Vehicle, amount: float, source: Node) -> void:
 
 
 func _on_player_damage_stage_changed(_vehicle: Vehicle, stage: int) -> void:
+	if not _events_allowed(): return
 	match stage:
 		1: hud.show_message("КУЗОВ ПОЦАРАПАН", 0.8)
 		2: hud.show_message("СЕРЬЁЗНЫЕ ПОВРЕЖДЕНИЯ", 1.0)
@@ -866,7 +1065,7 @@ func _on_player_damage_stage_changed(_vehicle: Vehicle, stage: int) -> void:
 		4: hud.show_message("МАШИНА УНИЧТОЖЕНА", 1.2)
 
 func _on_retry_requested() -> void:
-	start_round(1)
+	_request_round_start(1)
 
 
 func _offer_upgrade() -> void:
@@ -882,12 +1081,18 @@ func _offer_upgrade() -> void:
 			if choice.id != &"second_wind":
 				automated_choice = choice
 				break
-		_on_perk_selected.call_deferred(automated_choice)
+		_select_perk_deferred.call_deferred(automated_choice, _round_generation)
+
+
+func _select_perk_deferred(perk: Dictionary, generation: int) -> void:
+	if generation == _round_generation and not _session_finished:
+		_on_perk_selected(perk)
 
 
 func _on_perk_selected(perk: Dictionary) -> void:
-	if not _choosing_perk: return
+	if not _choosing_perk or _session_finished: return
 	_choosing_perk = false
+	upgrade_draft.hide()
 	get_viewport().gui_release_focus()
 	_run_perks.append(perk)
 	_perk_ids.append(perk.id)
@@ -975,12 +1180,14 @@ func _on_referee_flame_warning() -> void:
 
 
 func _on_bonus_announced(kind: BonusPickup.Kind, _world_position: Vector2, duration: float) -> void:
+	if not _events_allowed(): return
 	var delivery := "ПАРТИЯ ×%d · ОРУЖИЕ И ПОДДЕРЖКА" % bonus_spawner.batch_size if bonus_spawner != null and bonus_spawner.batch_size > 1 else BonusPickup.kind_label(kind)
 	hud.show_message("ДОСТАВКА: %s\nАКТИВАЦИЯ ЧЕРЕЗ %.0f С" % [delivery, duration], duration)
 	audio.play_event_cue(&"countdown")
 
 
 func _on_bonus_collected(vehicle: Vehicle, kind: BonusPickup.Kind) -> void:
+	if not _events_allowed(): return
 	var message := "ВЫ ЗАБРАЛИ" if vehicle == player else "СОПЕРНИК ЗАБРАЛ"
 	hud.show_message("%s: %s" % [message, BonusPickup.kind_label(kind)], 1.4)
 	if vehicle == player:
@@ -994,6 +1201,7 @@ func _on_bonus_collected(vehicle: Vehicle, kind: BonusPickup.Kind) -> void:
 				BonusPickup.Kind.RAM_BOOST: player.ram_boost_time_remaining *= 1.45
 		audio.play_event_cue(&"repair" if kind == BonusPickup.Kind.REPAIR else &"pickup")
 		hud.pickup_flash(Color(0.3, 1.0, 0.55) if kind == BonusPickup.Kind.REPAIR else Color(0.25, 0.82, 1.0))
+		hud.readout.update_vehicle(player)
 		camera.focus_pulse(-0.025)
 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 	if vfx != null: vfx.spawn_pickup(vehicle.global_position, Color(0.3, 1.0, 0.55) if kind == BonusPickup.Kind.REPAIR else Color(0.25, 0.82, 1.0))
@@ -1002,6 +1210,8 @@ func _on_bonus_collected(vehicle: Vehicle, kind: BonusPickup.Kind) -> void:
 func _clear_enemies() -> void:
 	for enemy in _enemies:
 		if is_instance_valid(enemy):
+			enemy.process_mode = Node.PROCESS_MODE_DISABLED
+			enemy.hide()
 			enemy.remove_from_group("combatants")
 			enemy.queue_free()
 	_enemies.clear()
@@ -1011,6 +1221,8 @@ func _clear_crew() -> void:
 	for group_name in [&"escaping_crew", &"crew_remains"]:
 		for node in get_tree().get_nodes_in_group(group_name):
 			if is_instance_valid(node) and is_ancestor_of(node):
+				node.process_mode = Node.PROCESS_MODE_DISABLED
+				node.hide()
 				node.queue_free()
 
 
@@ -1020,14 +1232,17 @@ func _clear_bullets() -> void:
 
 
 func _on_weapon_fired() -> void:
+	if not _events_allowed(): return
 	audio.play_weapon_fire(player.gun.config)
 	var recoil := 9.0 if player.gun.config.weapon_type in [WeaponConfig.WeaponType.ROCKET, WeaponConfig.WeaponType.SHOTGUN] else 3.5
 	camera.kick(-Vector2.RIGHT.rotated(player.global_rotation), recoil)
 
 func _on_player_impact(intensity: float) -> void:
+	if not _events_allowed(): return
 	camera.shake(3.0 + intensity * 7.0, 0.12)
 
-func _on_barrel_exploded(_position: Vector2, _radius: float) -> void:
+func _on_barrel_exploded(_position: Vector2, _radius: float, generation: int = -1) -> void:
+	if not _events_allowed() or (generation >= 0 and generation != _arena_generation): return
 	audio.play_explosion()
 	camera.shake(13.0, 0.28)
 	hud.explosion_flash()

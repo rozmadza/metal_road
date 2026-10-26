@@ -173,14 +173,7 @@ func _physics_process(delta: float) -> void:
 	if event_type != &"bonus_hunt" and not _last_lap_announced and progress.laps(vehicle) == track.config.laps - 1:
 		_last_lap_announced = true
 		hud.show_banner("ПОСЛЕДНИЙ КРУГ", 1.6)
-	var throttle: float = commands["throttle"]
-	var brake: float = commands["brake"]
-	# Arcade reverse: holding the brake key at a standstill backs the car up.
-	# Without this the player can get permanently wedged into a corner.
-	if brake > 0.0 and vehicle.get_forward_speed() < 20.0:
-		throttle = -0.6
-		brake = 0.0
-	vehicle.apply_control(throttle, brake, commands["steer"], commands["fire"])
+	vehicle.apply_player_control(commands["throttle"], commands["brake"], commands["steer"], commands["fire"], delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:

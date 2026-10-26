@@ -27,6 +27,7 @@ const WEAPON_PATHS := {
 	&"shotgun": "res://resources/weapons/shotgun.tres",
 }
 static var path_override := ""
+static var _vehicle_catalog: VehicleCatalog
 
 
 static func _path() -> String:
@@ -124,10 +125,15 @@ static func _save_config_safely(cfg: ConfigFile) -> bool:
 	return true
 
 static func vehicle_config(vehicle_id: StringName) -> VehicleConfig:
-	return vehicle_catalog().get_vehicle(vehicle_id)
+	var base := vehicle_catalog().get_vehicle(vehicle_id)
+	# Callers may tune stats for a race, career event or Survival wave.
+	# Keep the catalog's source configs unchanged for the next vehicle/session.
+	return base.duplicate() as VehicleConfig if base != null else null
 
 static func vehicle_catalog() -> VehicleCatalog:
-	return load(VEHICLE_CATALOG_PATH) as VehicleCatalog
+	if _vehicle_catalog == null:
+		_vehicle_catalog = load(VEHICLE_CATALOG_PATH) as VehicleCatalog
+	return _vehicle_catalog
 
 static func vehicle_ids() -> Array[StringName]:
 	return vehicle_catalog().ids()
