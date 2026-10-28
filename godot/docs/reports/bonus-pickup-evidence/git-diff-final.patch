@@ -1,0 +1,239 @@
+diff --git a/godot/docs/reports/METAL_ROAD_QA_REPORT.md b/godot/docs/reports/METAL_ROAD_QA_REPORT.md
+index c3b5fe2..9aa1d5b 100644
+--- a/godot/docs/reports/METAL_ROAD_QA_REPORT.md
++++ b/godot/docs/reports/METAL_ROAD_QA_REPORT.md
+@@ -1,5 +1,23 @@
+ # Metal Road — QA-отчёт
+ 
++## Финальная приёмка VehicleCatalog и профиль BonusPickup — 2026-10-28
++
++[Подробный отчёт с таблицами и ограничениями](METAL_ROAD_BONUS_PICKUP_PROFILE.md), [логи и графические JSON](bonus-pickup-evidence/). Полный последовательный tests/run_vehicle_catalog_regressions.sh на окончательном содержимом runner и исправленных тестов: **19/19 PASS, exit 0, 212 с**. Нет SCRIPT ERROR/Parse Error/тестовых FAIL; в 11 из 19 headless-логов остались shutdown ObjectDB/resources warnings. Предыдущий результат 18/19 и отдельный повтор исправленного теста ниже — история первичной приёмки; новый полный запуск выполнен.
++
++Несколько независимых графических процессов RX580/radeonsi, 1280×720/VSync: у двух baseline окон первых партий mean кадра16.680/16.694 мс, p95 16.918/16.915, p99 17.158/17.125, max48.708/56.186. У instrumented seed4217 первого входа mean16.691, p95 16.912, p99 17.196, max56.905 мс. Синхронный cache miss WeaponConfig в 17 измеренных вызовах: mean20.364/max25.041 мс; cache hit в 22 вызовах: mean0.005/max0.007 мс. Поиск позиции mean1.482/max1.751, instantiate mean0.021/max0.034, add_child вместе с ready mean0.201/max0.293 мс. Отдельный resource probe: холодный rocket_launcher.tres25.354 мс; предварительная загрузка его roof PNG25.133 мс и последующий .tres0.218 мс. Это подтверждает транзитивную загрузку текстуры как источник данного класса пиков при поставках; точный источник прежнего одиночного stock-кадра35.457 мс остаётся не доказанным напрямую.
++
++Графический lifecycle probe без накопления кадров: 10 Restart — nodes206→206, resources182→182, RENDER_VIDEO_MEM_USED321.55→321.55 МиБ; 5 повторных входов после первого — nodes206→206, resources199→199, video340.45→340.45 МиБ. Удержание всех семи оружейных ресурсов в отдельном probe стоило +56.00 МиБ по Godot video monitor и155.631 мс синхронной подготовки. Это оценка движка, не hardware VRAM occupancy. Диагностические скрипты и инструментация находятся отдельно от production-кода. Оптимизация бонусов и игровой баланс в этой задаче не менялись; программное управление и принудительный ремонт в профиле не являются ручным playtest.
++
++## Кэш VehicleCatalog и задержки создания AI — измерения 2026-10-26, сверка 2026-10-28
++
++[Полный отчёт](METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md), [методика, графические raw и логи](vehicle-catalog-cache-evidence/README.md). Проверка `weakref`/`ResourceLoader.has_cached` подтвердила, что каталог после краткого вызова без сильной ссылки освобождался; повторный probe дал192.690/190.788/184.120/185.957мс на четыре последовательные загрузки. Добавлена одна ленивая статическая ссылка в `LoadoutProfile`, а `vehicle_config()` возвращает копию отдельного VehicleConfig. Исходные ресурсы/характеристики и логика Vehicle/AI/оружия/волн не менялись.
++
++Графический OpenGL/RX580 тест через штатное меню: новый процесс→Survival6.278→0.750с; третий AI `_spawn_bot`275.142→0.659мс, кадр появления273.428→2.565мс; переход волны2 после принудительных убийств и выбора перка885.770→2.874мс. Restart после победного состояния волны1, достигнутого принудительными убийствами,498.929→20.918мс до `frame_post_draw`; после60с боя480.538→25.541мс. Один фактический `ResourceLoader.load` каталога191.651мс остаётся во время первичной подготовки PreRace, дальнейшие обращения — cache hit. Максимум всего окна первой волны после изменения35.457мс произошёл до подкрепления; в отдельном detailed повторе похожий кадр содержал `bonus.create`26.352мс. Точное происхождение stock-кадра не доказано. Кадр подкрепления укладывается в целевые33.33мс. Боевой FPS в одной парной серии вариативен и не является точным доказательством улучшения или регрессии по AI/VFX.
++
++Оценка Godot `RENDER_VIDEO_MEM_USED` после входа выросла на55.35MB (удерживаются artwork каталога); это не аппаратный VRAM occupancy. RSS в двух коротких межпроцессных графических прогонах после входа288984→278024КБ, что не доказывает экономию RAM. Повторный headless100 Restart 2026-10-28:197 nodes/177 resources, RSS395788КБ с10-го по100-й снимок, без обнаруженного накопления. Headless memory не подменяет графическую VRAM. Shutdown ObjectDB/resources warnings продолжают встречаться; они не подтверждают runtime leak.
++
++Предварительный uncapped `controls_smoke` упал на порогах торможения и на текущем коде, и на копии со старым `LoadoutProfile`; тест считает render frames при физике60Hz. При `--max-fps 60` обе версии прошли. Исходный `survival_reward_feedback_smoke` не учитывал отложенного третьего врага и падал на обеих версиях; затем тест считывал HUD после кадра, когда сообщение уже обновлялось. Тестовый сценарий скорректирован без изменений игровой логики и отдельно повторён: PASS. В последовательном наборе18/19 PASS до последней правки теста; после неё последние результаты всех19 тестов PASS, полный повтор после неё 2026-10-28 — 19/19 PASS за 212 с. Расширенный `survival_boss_schedule_smoke` прошёл волны1–15, включая Арбитра на5/10/15; `survival_restart_smoke` PASS100; `release_candidate_smoke` PASS. Editor import без ошибок GDScript. Программная проверка joypad event прошла, физический геймпад и новое ручное прохождение не тестировались. Логи и ограничения — в evidence.
++
+ ## Графический аудит производительности и темпа — 2026-10-26
+ 
+ [Полный отчёт и рекомендации](METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md), [raw54 окон/методика](survival-performance-evidence/README.md). RX580/radeonsi, i7-10700K,1280×720, debug Godot4.7.2; реальные render intervals и штатные viewport CPU/GPU queries. Без VSync:8 AI259.7FPS/p99 5.68ms, Arbiter+6 riders248.6FPS/p99 6.07ms, AI+48 VFX214.7FPS/p99 6.86ms в первом stock прогоне. VSync-контроль около60FPS. Это численные результаты конкретной среды, не универсальная сертификация производительности.
+diff --git a/godot/docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md b/godot/docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
+index 9978b3b..39888ca 100644
+--- a/godot/docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
++++ b/godot/docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
+@@ -4,6 +4,16 @@
+ 
+ ## Порядок реализации
+ 
++### Завершена приёмка каталога и диагностика BonusPickup (2026-10-28)
++
++Финальный последовательный VehicleCatalog runner — **19/19 PASS за 212 с** на актуальных исходниках и исправленных тестах. После отдельных графических запусков подтверждено: при поставке бонуса холодный load оружейного .tres транзитивно загружает roof PNG и занимает в проверенной выборке mean20.364/max25.041 мс; подготовленный ресурс — mean0.005/max0.007 мс. Поиск места mean1.482/max1.751 мс, создание сцены/метки/сенсора — менее 0.3 мс на этап. Независимый probe: холодный rocket_launcher.tres25.354 мс, предзагрузка PNG25.133 мс и последующий .tres0.218 мс. Подробности, кадровые mean/p95/p99/max и ограничения — [отчёт](METAL_ROAD_BONUS_PICKUP_PROFILE.md), [данные](bonus-pickup-evidence/). Прежний одиночный кадр35.457 мс остаётся без прямой покадровой атрибуции. Оптимизация бонусов не внедрялась.
++
++### Выполнено: удержание VehicleCatalog и защита конфигураций (2026-10-26)
++
++После графического аудита устранена повторная загрузка VehicleCatalog при создании AI, при переходах по меню и Restart. У `LoadoutProfile` одна ленивая сильная ссылка на каталог; вызывающим системам возвращается копия одного VehicleConfig, поэтому настройки Race/Career/Survival не меняют общий исходник. Эксперимент `weakref` подтвердил прежнюю потерю последней сильной ссылки и исчезновение ресурса из Godot cache. Подробности: [отчёт о кэше и замерах](METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md), [raw/evidence](vehicle-catalog-cache-evidence/README.md).
++
++Реальное появление третьего AI: кадр273.428→2.565мс, `_spawn_bot`275.142→0.659мс в сопоставимых графических профилях. Restart после завершённой волны1:498.929→20.918мс до `frame_post_draw`; после60с боя480.538→25.541мс. Первый запрос каталога остаётся синхронным в PreRace (191.651мс в detailed run). Удержание artwork увеличило монитор выделенной видеопамяти Godot примерно на55.35MB;100 headless Restart показали стабильные197 nodes/177 resources и RSS после начального прогрева. Остаточный пик35мс до подкрепления воспроизведён; в отдельном detailed прогоне похожий кадр содержал `bonus.create`26.352мс, но точная причина stock-кадра не доказана. Боевой FPS одной парной серии вариативен; ручная оценка и аппаратный gamepad не выполнялись. Параметры физики/AI/оружия/волн/бонусов не менялись.
++
+ ### Выполнено: локальные заторы и циклический recovery (2026-10-26)
+ 
+ Общий traffic blocker, ориентированные hull, local detour со своим временным grid, preflight reverse и первых положений корпуса, память отмен/просроченных yield, корректный inactive-peer контракт и стабильный локальный арбитраж. Только ArenaBot/ArenaNavigation; Vehicle, арены, оружие, волны, бонусы и Race не менялись. [Подробности и все результаты](METAL_ROAD_AI_TRAFFIC_RECOVERY_FIX.md).
+@@ -96,6 +106,20 @@ QA:24 headless smoke PASS, включая новый survival_playability_smoke
+ 
+ **Проверки:** survival_smoke, survival_round_guard_smoke, survival_transition_stability_smoke, results_navigation_smoke в изоляции; 100 быстрых restart с orphan count и ресурсами; ручная проверка GUI overlay.
+ 
++## P1-04. Синхронная загрузка текстур оружейных бонусов в боевом кадре
++
++**Статус:** причина подтверждена графическими замерами 2026-10-28; исправление **не внедрено** в рамках диагностики.
++
++**Проблема и источники:** BonusSpawner._create_pickup вызывает load случайного WeaponConfig при создании каждой поставки. Его .tres ссылается на крупный roof PNG. После первого cache miss ресурс может освободиться при Restart/повторном входе; повторная загрузка rocket_launcher в 10 графических Restart занимала примерно 22 мс каждый раз. Две холодные текстуры в одной партии дали кадры56.905–66.770 мс. Подтверждение: scripts/bonus_spawner.gd, scripts/bonus_pickup.gd, resources/weapons/*.tres, [профиль](METAL_ROAD_BONUS_PICKUP_PROFILE.md).
++
++**Предлагаемое минимальное решение:** ограниченно подготовить существующие семь WeaponConfig во время штатного перехода в игру и удерживать ровно семь сильных ссылок на время процесса. Оставить те же weapon_paths, RNG-порядок, виды/количество/интервалы/TTL/расположение бонусов, E/X/□, авто-ремонт и характеристики оружия. Обычное lazy-кэширование после первого использования устраняет повторный stall, но оставляет холодный первый. Если около156 мс дополнительной синхронной подготовки при входе неприемлемы, отдельно оценить фоновый ResourceLoader.load_threaded_request и стоимость завершения на главном потоке. Не кэшировать неограниченное число сцен и не переносить задержку на первый видимый кадр без измерения.
++
++**Влияние:** убрать десятки миллисекунд загрузки из physics tick поставки; новая цена входа и памяти должна быть явной. Изолированное удержание всех семи ресурсов заняло155.631 мс и добавило **56.00 МиБ** к Godot RENDER_VIDEO_MEM_USED в Compatibility/RX580. RSS и MEMORY_STATIC не отражают эту video-величину и требуют отдельного контроля.
++
++**Риски:** рост базовой VRAM, задержка входа, случайный cold fallback при медленном фоне, расширение области жизни ресурсов Race/Survival, нарушение частоты или вида бонусов при предварительном выборе. После 10 Restart/5 menu reentry без кэша число узлов/ресурсов/video monitor стабилизировалось; эта проверка не гарантирует поведение будущего кэша.
++
++**Критерии и проверки:** в свежем процессе и после серии Restart/menu reentry ни одна штатная партия не выполняет холодный load на physics tick; первые две и последующие партии сохраняют прежние вероятности/числа/позиции/TTL и pickup-контракт; графические mean/p95/p99/max, время входа и RSS/MEMORY_STATIC/RENDER_VIDEO_MEM_USED измерены до/после на сопоставимых сценариях; Race, Survival, release candidate и полный VehicleCatalog runner PASS; 10 Restart/5 menu reentry без роста nodes/resources/video после прогрева. Не считать headless FPS графическим измерением.
++
+ ## P2-01. Воспроизводимые тесты и daily
+ 
+ **Проблема:** seed() не управляет Arena Time/instance seed, BonusSpawner.randomize, perk randomize, AI instance_id. Структурированный layout сохраняет случайный поворот MapProp. Источники Arena._prepare_run_variation/_create_props; SurvivalRunData.perk_choices; ArenaBot._ready; BonusSpawner._ready.
+diff --git a/godot/docs/reports/METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md b/godot/docs/reports/METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md
+index 4a3d171..7ff1b3c 100644
+--- a/godot/docs/reports/METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md
++++ b/godot/docs/reports/METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md
+@@ -2,6 +2,8 @@
+ 
+ Дата:2026-10-26. Текущая рабочая версия Godot4.7.2, scrapyard1400×1000. Пользователь вручную подтвердил прохождение первой волны, комфорт размера, нормальное восприятие AI и улучшение динамики. Эти наблюдения приняты как контекст. Нового ручного прохождения в этом аудите не было.
+ 
++**Актуализация 2026-10-28:** подтверждённая проблема повторной загрузки VehicleCatalog исправлена отдельным изменением. Ниже сохранены исходные замеры *до* исправления; графическое сравнение, цена памяти и регрессии — в [отчёте о кэше](METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md). Сильная ссылка/исчезновение ресурса из кэша подтверждены экспериментом с `weakref`/`ResourceLoader.has_cached`, а не только предположены по исходникам.
++
+ ## Вывод по измерениям
+ 
+ В обычных и контролируемых графических окнах без VSync средний FPS составил215–540, p99 основного полного прогона2.78–6.86ms. Это не означает отсутствия заиканий: максимум достиг275.72ms, после перезапуска повторяется примерно такой же пик. Через обычные Main Menu→выбор машины→Survival получен кадр270.99ms, поэтому пик воспроизводится и при штатном входе.
+@@ -220,11 +222,11 @@ Call chain: Survival._spawn_bot → LoadoutProfile.vehicle_ids и vehicle_config
+ - Shutdown ObjectDB/resources warnings сохранены; runtime leak или рост памяти ими не объявлены. FPS/GPU здесь взяты из графики, не из этих предупреждений/старых headless soak.
+ - Ручного прохождения, реального gamepad и победного1–5 в рамках аудита нет.
+ 
+-## Рекомендации после этого аудита — не реализованы
++## Рекомендации исходного аудита и актуальный статус
+ 
+ | Приоритет | Предложение | Обоснование | Риски / проверка |
+ |---|---|---|---|
+-| P1 | Проверить удержание/предзагрузку неизменяемого VehicleCatalog и исключение повторных синхронных загрузок в spawn | Два load занимают274.32 из275.14ms | RAM/VRAM, lifetime ресурсов; не менять параметры конфигов. Повторить real-menu spawn5s, boss/riders, Restart; предложенный ориентир после прогрева max spawn-frame≤33.3ms, согласовать бюджет |
++| P1 — выполнено 2026-10-26 | Удержание VehicleCatalog и исключение повторных синхронных загрузок в spawn | Два прежних load занимали274.32 из275.14ms; после исправления spawn0.659ms | [Проверены](METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md) real-menu, волны, Restart, RSS/оценка VRAM. Кадр появления третьего AI2.565ms; отдельный bonus.create даёт около35ms до подкрепления |
+ | P1 | Уточнить внутренний профиль создания pickup: load/instantiate/badge | create max25.72ms противposition≤1.98ms | Сохранить placement/reachability, TTL/вероятности/дистанции; сначала измерить подэтапы, затем отдельное изменение |
+ | P2 | Повторить графический профиль release export/целевых разрешений и память при удержании каталога | Debug и один viewport не определяют все устройства | Сохранять сценарии, VSync/headroom отдельно, фиксировать mean/p95/p99/max и slow frames |
+ | P2 | Получить человеческий проход с mode=natural pilot=0 или аналогичным телеметрическим hook | Автопилот теряет матч рано, ручная обратная связь положительная | Никаких forced kills/репаиров в tempo data; first contact/weapon, HP-бонусы, kills/perks, длительность волн1–5 |
+diff --git a/godot/docs/reports/METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md b/godot/docs/reports/METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md
+index 4a7f79c..0994764 100644
+--- a/godot/docs/reports/METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md
++++ b/godot/docs/reports/METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md
+@@ -6,7 +6,7 @@
+ 
+ `Survival._spawn_bot()` вызывал `LoadoutProfile.vehicle_ids()` и затем `vehicle_config()`. Оба метода вызывали `vehicle_catalog()`, который каждый раз выполнял `load("res://resources/vehicle_catalog.tres")`. Каталог содержит 12 VehicleConfig и ссылки на изображения. Аналогичные обращения делают Garage, PreRace, Race и Career.
+ 
+-Изолированный Godot 4.7.2 probe на исходной версии: первый `ResourceLoader.load` занял 193.333 мс, следующие три после освобождения ссылки — 184.645/184.107/184.390 мс. После присвоения локальной переменной `null` и одного кадра `weakref` стал пустым, `ResourceLoader.has_cached(path)` стал `false`. Это подтверждает потерю последней сильной ссылки в данном сценарии; встроенный кэш Godot не удерживал ресурс после освобождения. В прежнем графическом профиле штатный вход через меню дал 37 вызовов `catalog.load` общей длительностью 5.743 с (inclusive timers). Появление подкрепления: 275.142 мс на `_spawn_bot`, 274.320 мс на два вложенных вызова каталога.
++Изолированный Godot 4.7.2 probe на исходной версии: первый `ResourceLoader.load` занял 193.333 мс, следующие три после освобождения ссылки — 184.645/184.107/184.390 мс. Повтор 2026-10-28 в сохранённом [логе](vehicle-catalog-cache-evidence/regression/catalog_lifetime_baseline.log): 192.690/190.788/184.120/185.957 мс. После присвоения локальной переменной `null` и одного кадра `weakref` стал пустым, `ResourceLoader.has_cached(path)` стал `false`. Это подтверждает потерю последней сильной ссылки в данном сценарии; встроенный кэш Godot не удерживал ресурс после освобождения. В прежнем графическом профиле штатный вход через меню дал 37 вызовов `catalog.load` общей длительностью 5.743 с (inclusive timers). Появление подкрепления: 275.142 мс на `_spawn_bot`, 274.320 мс на два вложенных вызова каталога.
+ 
+ В `LoadoutProfile` добавлена одна лениво инициализируемая статическая сильная ссылка. Первый запрос загружает каталог, дальнейшие запросы возвращают тот же экземпляр. `vehicle_config()` теперь возвращает отдельную поверхностную копию **одного** VehicleConfig, чтобы Race/Career/Survival/гараж могли менять характеристики экземпляра, не изменяя общий исходник. Ссылки на artwork в копии сохраняются. Каталог целиком для каждого автомобиля не копируется. Текущие `PlayerProfile.apply_vehicle_upgrades`, `Survival._scaled_bot_config`, `CareerDifficulty.apply_bot_vehicle` и `DriverRoster.apply_passive` уже делали собственные копии; вызовов, меняющих исходный конфиг через `vehicle_catalog().get_vehicle()`, в production-коде не найдено.
+ 
+@@ -16,17 +16,32 @@
+ 
+ RX 580/radeonsi, i7-10700K, Godot4.7.2, 1280×720, OpenGL Compatibility, VSync off, без `--fixed-fps`. Отдельные процессы и копии проекта; seed4217. FPS=1000/mean wall-frame-ms, p95/p99=nearest rank без удаления пиков. Меню проходилось штатными сигналами MainMenu → PreRaceSetup → Survival; волна2 достигалась через игровую систему наград, но враги волны1 уничтожались скриптом и перк выбирался тестом. Для продолжительного боя игроку выдавался бесплатный полный ремонт каждые0.25с. Волна5 создавалась прямым `start_round(5)` и принудительными убийствами трёх обычных врагов; Arbiter и байкеры появлялись штатно. Это автоматические графические сценарии, не ручное прохождение. Частная случайность Arena, OS/GPU caches и игровая траектория не обеспечивают точное покадровое A/B.
+ 
++Таймер первого входа включён после инициализации процесса Godot и подготовки тестового профиля, непосредственно перед открытием MainMenu. Он не включает запуск executable, импорт ассетов или очистку OS file cache. Поэтому здесь сравнивается переход от нового игрового процесса через меню, а не полный cold boot приложения.
++
+ | Событие / окно | До | После | Интерпретация |
+ |---|---:|---:|---|
+ | Новый процесс → меню → Survival | 6.278 с | 0.750 с | Включает меню, PreRace, SceneTransition и создание сцены; не cold-disk boot |
+ | Третий AI: `_spawn_bot` | 275.142 мс | 0.659 мс | До — прежний detailed run, после — новый detailed run |
+-| Кадр появления третьего AI после принудительного завершения первой волны | 273.428 мс | 2.565 мс | seed4217, третий появился штатно примерно через5с до forced kills |
++| Кадр появления третьего AI перед принудительным завершением первой волны | 273.428 мс | 2.565 мс | seed4217, третий появился штатно примерно через5с до forced kills |
+ | Переход к волне2 после выбора перка | 885.770 мс | 2.874 мс | Scripted kills, штатный `_on_perk_selected`/`start_round` |
+ | Первый Restart после победного состояния волны1, до `frame_post_draw` | 498.929 мс | 20.918 мс | Три убийства выполнены скриптом, результаты победы подтверждены |
+ | Restart после60с активного боя, до `frame_post_draw` | 480.538 мс | 25.541 мс | Арена восстанавливается,2 AI,0 bullets/VFX,197 nodes |
+ | Повторный вход через меню в том же процессе | 5.767 с | 0.107 с | Warm entry; меню/PreRace/Survival заново |
+ 
+-`frame_post_draw` измеряет завершение отрисовки, а не физическое время появления пикселя на дисплее. Исходный подробный профиль был отдельным прогоном, поэтому 275.142 и0.659 мс — сопоставимая атрибуция, не парные вызовы в одном кадре. В новом detailed run за весь графический сценарий зарегистрирована **одна** фактическая `ResourceLoader.load` каталога (191.651 мс во время первого входа), затем все обращения — cache hit. При подкреплении два обращения заняли ≤2 мкс каждое; пять spawn байкеров — mean0.550/max0.706 мс. Быстрый smoke: один первый запрос191.299 мс, 50 тёплых обращений суммарно13 мкс, один и тот же instance ID.
++`frame_post_draw` измеряет завершение отрисовки, а не физическое время появления пикселя на дисплее. Исходный подробный профиль был отдельным прогоном, поэтому 275.142 и0.659 мс — сопоставимая атрибуция, не парные вызовы в одном кадре. В новом detailed run за весь графический сценарий зарегистрирована **одна** фактическая `ResourceLoader.load` каталога (191.651 мс во время первого входа), затем все обращения — cache hit. При подкреплении два обращения заняли ≤2 мкс каждое; пять spawn байкеров — mean0.550/max0.706 мс. Повторный быстрый smoke: один первый запрос194.271 мс, 50 тёплых обращений суммарно18 мкс, один и тот же instance ID ([лог](vehicle-catalog-cache-evidence/regression/vehicle_catalog_cache_smoke.log)).
++
++| Точка | Обращения к `vehicle_catalog()` до | Фактические `ResourceLoader.load` после |
++|---|---:|---:|
++| Первый вход Main Menu → PreRace → Survival | 37 в прежнем инструментированном прогоне | 1, во время подготовки машины |
++| Третий AI волны1 | 2 на `_spawn_bot` | 0 |
++| Четыре AI волны2 | 8 по неизменённой цепочке `_spawn_bot` | 0 |
++| Появление Арбитра | 2 на `_spawn_bot` | 0 |
++| Поддержка байкерами | 0 через `LoadoutProfile` | 0 |
++| Restart волны1 (2 стартовых AI) | 4 на два `_spawn_bot` | 0 |
++| Restart после60с | 4 на два `_spawn_bot` | 0 |
++| Повторный вход через меню | повторные обращения из PreRace/Survival | 0 |
++
++Числа «до» для четырех/двух ботов, Арбитра и Restart следуют из прежнего кода (два вызова на `_spawn_bot`) и прежнего detailed-профиля, а не являются отдельным измерением каждого пункта в новой парной серии. После — инструментированный подсчёт реальных cache miss во всём процессе.
+ 
+ | Окно, seed4217 | FPS до→после | Mean кадра, мс | p95 | p99 | Max | >16.67 / >33.33 / >100 мс |
+ |---|---:|---:|---:|---:|---:|---|
+@@ -37,7 +52,7 @@ RX 580/radeonsi, i7-10700K, Godot4.7.2, 1280×720, OpenGL Compatibility, VSync o
+ | Волна4,60с | 368.6→359.1 | 2.713→2.784 | 3.514→3.579 | 3.943→4.067 | 45.863→48.160 | 3/1/0→6/2/0 |
+ | Повторный вход,6с | 532.6→594.2 | 1.877→1.683 | 2.446→2.178 | 2.677→2.357 | 273.327→29.796 | 2/1/1→1/0/0 |
+ 
+-Целевой бюджет появления обычного подкрепления ≤33.33 мс выполнен в проверенном seed4217: кадр с переходом2→3 AI был2.565 мс. **Максимум всего окна** после изменения35.457 мс превышает целевой порог: он произошёл на1.8с, до подкрепления. Detailed прогон того же этапа связывает соответствующий35.219-мс кадр с `bonus.create`26.352 мс; поиск позиции бонуса максимум1.521 мс. Создание BonusPickup оставлено без изменений согласно ограничению задачи. Второй короткий seed104729 после изменения не дошёл до третьего AI за5.5с (активное игровое время3.48с), поэтому его максимум35.515 мс не выдан за результат подкрепления; до изменения третий AI появился и дал272.615-мс кадр. Причина расхождения игрового и wall time в этом одном запуске не доказана; он сохранён в raw, а для приёмки использован повтор seed4217 с явной проверкой поколения матча.
++Целевой бюджет появления обычного подкрепления ≤33.33 мс выполнен в проверенном seed4217: кадр с переходом2→3 AI был2.565 мс. **Максимум всего окна** после изменения35.457 мс превышает целевой порог: он произошёл на1.8с, до подкрепления. В отдельном detailed повторе на том же этапе похожий35.219-мс кадр содержал `bonus.create`26.352 мс; поиск позиции бонуса максимум1.521 мс. Точный источник stock-кадра35.457 мс не установлен покадровой инструментацией. Создание BonusPickup оставлено без изменений согласно ограничению задачи. Второй короткий seed104729 после изменения не дошёл до третьего AI за5.5с (активное игровое время3.48с), поэтому его максимум35.515 мс не выдан за результат подкрепления; до изменения третий AI появился и дал272.615-мс кадр. Причина расхождения игрового и wall time в этом одном запуске не доказана; он сохранён в raw, а для приёмки использован повтор seed4217 с явной проверкой поколения матча.
+ 
+ Показатели длительного боя и байкеров изменились в разные стороны. Один автоматический seed и случайная геометрия/траектории не доказывают ни улучшения, ни регрессии боевого FPS. Важный подтверждённый эффект — исчезновение повторного синхронного catalog load в spawn и редкого~0.27с кадрового пика. Другие пики и `bonus.create` остаются отдельной задачей.
+ 
+@@ -47,10 +62,14 @@ RX 580/radeonsi, i7-10700K, Godot4.7.2, 1280×720, OpenGL Compatibility, VSync o
+ 
+ `RENDER_VIDEO_MEM_USED` в Godot Compatibility после первого входа281736273→337087521 байт (+55.35 MB, около52.8 MiB); после60с/Restart313452283→368902971 байт (+55.45 MB). Это оценка движка выделенной видеопамяти, не аппаратный счётчик загрузки/физического расхода VRAM. Дополнительные текстуры удерживаются вместе с каталогом. Уменьшать графическое качество или выгружать artwork в этой задаче не стали.
+ 
+-100 последовательных headless Restart:197 узлов и177 ресурсов на каждом десятом снимке; RSS396180→396256 КБ к10-му и затем396256 КБ на всех снимках до100-го. `MEMORY_STATIC` после раннего освобождения временных объектов изменился с273009526 на273016950 байт между10-м и100-м (+7.4 КБ). Накопления объектов/роста RSS в этом сценарии не обнаружено. Headless `RENDER_VIDEO_MEM_USED=0` не используется для вывода о VRAM.
++100 последовательных headless Restart (повторная проверка 2026-10-28):197 узлов и177 ресурсов на каждом десятом снимке; RSS395608→395788 КБ к10-му и затем395788 КБ на всех снимках до100-го. `MEMORY_STATIC` после раннего освобождения временных объектов изменился с273023743 на273031167 байт между10-м и100-м (+7.4 КБ). Накопления объектов/роста RSS в этом сценарии не обнаружено. Headless `RENDER_VIDEO_MEM_USED=0` не используется для вывода о VRAM.
+ 
+ ## Проверки и ограничения
+ 
+-Автоматизированный тест проверяет12 IDs, сохранность характеристик/текстур, legacy fallback, одну постоянную сильную ссылку и независимость копий конфигураций. Результаты регрессионного набора и оговорки по управлению см. раздел QA ниже и [сырые данные](vehicle-catalog-cache-evidence/README.md).
++Автоматизированный тест проверяет12 IDs, равенство всех сохраняемых свойств в исходном и копированном VehicleConfig, неизменность исходных характеристик после записи в копию, legacy fallback и постоянную сильную ссылку. Результаты регрессионного набора и оговорки по управлению см. в [QA-отчёте](METAL_ROAD_QA_REPORT.md) и [сырых данных](vehicle-catalog-cache-evidence/README.md).
++
++Финальный набор:18/19 PASS в одном последовательном запуске, единственный FAIL — устаревшее время чтения HUD в `survival_reward_feedback_smoke`. После локальной коррекции только этого теста он отдельно прошёл; остальные18 не затрагивались, их успешные логи сохранены. Таким образом последние результаты для всех19 проверок — PASS, а 2026-10-28 полный последовательный набор после последнего тестового изменения повторён: 19/19 PASS за 212 с (детали в METAL_ROAD_BONUS_PICKUP_PROFILE.md). `controls_smoke` на обеих версиях PASS при `--max-fps 60` и FAIL без ограничения из-за render-frame таймера. `survival_boss_schedule_smoke` PASS для волн1–15; `survival_restart_smoke` PASS100, `survival_playability_smoke` PASS с программным joypad event, `release_candidate_smoke` PASS. Финальный Godot editor import завершился без ошибок GDScript. Исходные headless shutdown warnings сохраняются и не являются доказательством runtime-утечки.
++
++Изменённые файлы: production `scripts/loadout_profile.gd`; тесты `tests/vehicle_catalog_lifetime_probe.gd`, `tests/vehicle_catalog_cache_smoke.gd`, `tests/vehicle_catalog_restart_memory_smoke.gd`, `tests/survival_catalog_comparison.gd`, `tests/run_vehicle_catalog_regressions.sh` и актуализация устаревшего `tests/survival_reward_feedback_smoke.gd`; отчёты `METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md`, `METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md`, `METAL_ROAD_QA_REPORT.md`, `METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md`, данные в `vehicle-catalog-cache-evidence/`. В основной игровой код вне `LoadoutProfile` изменений нет.
+ 
+ Оставшийся риск: статическая ссылка сохраняет каталог и artwork до выхода из процесса, что подтверждено дополнительной оценкой видеопамяти. Runtime hot-reload `.tres` после внешней правки не предусмотрен; это игровой, не editor-tool, путь. Доступ через публичный `vehicle_catalog()` всё ещё возвращает общий ресурс, поэтому новый production-код должен читать его как неизменяемый; изменяемые VehicleConfig следует брать через `vehicle_config()`. Изменение характеристик между машинами покрыто тестом, но не аппаратным ручным проездом всех12 автомобилей. Инструментированный код находился только во временной копии; рабочий production script содержит лишь кэш и защиту конфигурации.
+diff --git a/godot/tests/run_vehicle_catalog_regressions.sh b/godot/tests/run_vehicle_catalog_regressions.sh
+index b4f75a9..dbe4a3b 100644
+--- a/godot/tests/run_vehicle_catalog_regressions.sh
++++ b/godot/tests/run_vehicle_catalog_regressions.sh
+@@ -15,6 +15,7 @@ tests=(
+   race_finish_smoke
+   controls_smoke
+   survival_smoke
++  survival_playability_smoke
+   survival_boss_schedule_smoke
+   survival_biker_crew_smoke
+   survival_roguelite_smoke
+@@ -27,8 +28,12 @@ tests=(
+ )
+ 
+ for name in "${tests[@]}"; do
+-  timeout 120s flatpak run --filesystem="$project_root" org.godotengine.Godot \
+-    --headless --path "$project_root" --script "res://tests/${name}.gd" \
++  timeout_seconds=120
++  extra_args=()
++  if [[ "$name" == survival_boss_schedule_smoke ]]; then timeout_seconds=300; fi
++  if [[ "$name" == controls_smoke ]]; then extra_args+=(--max-fps 60); fi
++  timeout "${timeout_seconds}s" flatpak run --filesystem="$project_root" org.godotengine.Godot \
++    --headless "${extra_args[@]}" --path "$project_root" --script "res://tests/${name}.gd" \
+     > "$log_dir/$name.log" 2>&1
+   code=$?
+   if (( code == 0 )) && ! rg -q 'SCRIPT ERROR|Parse Error|: FAIL| FAIL:' "$log_dir/$name.log"; then
+diff --git a/godot/tests/survival_reward_feedback_smoke.gd b/godot/tests/survival_reward_feedback_smoke.gd
+index 249a77d..ea58728 100644
+--- a/godot/tests/survival_reward_feedback_smoke.gd
++++ b/godot/tests/survival_reward_feedback_smoke.gd
+@@ -9,12 +9,17 @@ func run() -> void:
+ 	var survival: Survival = load("res://scenes/ArenaBattle.tscn").instantiate()
+ 	root.add_child(survival)
+ 	await create_timer(0.15).timeout
++	# Wave one now starts with two cars and has a deferred third opponent.
++	# Complete the reinforcement before checking the round reward.
++	survival._update_reinforcements(5.1)
++	await process_frame
++	check(survival._pending_enemies.is_empty() and survival._alive_enemies() == 3, "first-wave reinforcement spawned")
+ 	for enemy in survival._enemies:
+ 		enemy._die()
+-	await process_frame
+ 	var message: Label = survival.get_node("HUD/Message")
+ 	check(message.visible, "round reward message visible")
+ 	check("CREDITS" in message.text and "+" in message.text, "round reward amount shown")
++	await process_frame
+ 	check(survival._round_over and survival._player_won, "round enters transition state")
+ 	print("SURVIVAL REWARD FEEDBACK: ", "PASS" if failures == 0 else "FAIL")
+ 	survival.free()
+diff --git a/godot/tests/vehicle_catalog_cache_smoke.gd b/godot/tests/vehicle_catalog_cache_smoke.gd
+index 0fdb9b8..3b12b3c 100644
+--- a/godot/tests/vehicle_catalog_cache_smoke.gd
++++ b/godot/tests/vehicle_catalog_cache_smoke.gd
+@@ -39,6 +39,13 @@ func run() -> void:
+ 		var config := LoadoutProfile.vehicle_config(id)
+ 		check(config != base, "independent config %s" % id)
+ 		check(config.vehicle_id == base.vehicle_id and is_equal_approx(config.max_health, base.max_health), "unchanged stats %s" % id)
++		for property in base.get_property_list():
++			var name: String = str(property.name)
++			if (int(property.usage) & PROPERTY_USAGE_STORAGE) == 0 or name in ["resource_path", "resource_scene_unique_id"]:
++				continue
++			var source_value: Variant = base.get(name)
++			var copy_value: Variant = config.get(name)
++			check(copy_value == source_value, "copied property %s.%s" % [id, name])
+ 		snapshots[id] = {"health": base.max_health, "speed": base.max_speed, "texture": base.texture}
+ 		config.max_health += 33.0
+ 		config.max_speed += 10.0

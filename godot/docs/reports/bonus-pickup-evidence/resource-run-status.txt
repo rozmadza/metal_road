@@ -1,0 +1,3 @@
+bonus-resource-cold exit=0
+bonus-resource-image_first exit=0
+bonus-resource-all_weapons exit=0

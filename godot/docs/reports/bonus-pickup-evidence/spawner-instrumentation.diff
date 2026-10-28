@@ -1,0 +1,80 @@
+--- scripts/bonus_spawner.gd	2026-10-23 13:19:54.021544832 +0300
++++ /tmp/metal-road-bonus-post-profile/scripts/bonus_spawner.gd	2026-10-28 09:56:02.446167677 +0300
+@@ -1,5 +1,6 @@
+ extends Node2D
+ class_name BonusSpawner
++const BonusProbe = preload("res://tests/bonus_pickup_probe_stats.gd")
+ 
+ signal bonus_announced(kind: BonusPickup.Kind, world_position: Vector2, duration: float)
+ signal bonus_spawned(pickup: BonusPickup)
+@@ -120,7 +121,9 @@
+ 	_current_pickup = _pending_pickups[0]
+ 	_warning = true
+ 	_time_to_event = warning_duration
++	var _post_started := Time.get_ticks_usec()
+ 	bonus_announced.emit(_current_pickup.kind, _current_pickup.global_position, warning_duration)
++	BonusProbe.record("announce_signal", Time.get_ticks_usec() - _post_started)
+ 
+ 
+ func _arm_announced_pickup() -> void:
+@@ -133,31 +136,59 @@
+ 	for pickup in _pending_pickups.duplicate():
+ 		if not is_instance_valid(pickup):
+ 			continue
++		var _post_started := Time.get_ticks_usec()
+ 		pickup.set_armed(true)
++		BonusProbe.record("arm_activation", Time.get_ticks_usec() - _post_started, int(pickup.get_meta("_bonus_probe_id", -1)))
++		_post_started = Time.get_ticks_usec()
+ 		_register_active(pickup)
++		BonusProbe.record("active_register", Time.get_ticks_usec() - _post_started, int(pickup.get_meta("_bonus_probe_id", -1)))
++		_post_started = Time.get_ticks_usec()
+ 		bonus_spawned.emit(pickup)
++		BonusProbe.record("spawn_signal", Time.get_ticks_usec() - _post_started, int(pickup.get_meta("_bonus_probe_id", -1)))
+ 	_pending_pickups.clear()
+ 	_current_pickup = null
+ 	_begin_cooldown()
+ 
+ 
+ func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
++	var id := BonusProbe.begin(chosen_kind, is_armed)
++	var all_started := Time.get_ticks_usec()
++	var started := Time.get_ticks_usec()
+ 	var location := _next_position(reserved_positions)
++	BonusProbe.record("position", Time.get_ticks_usec() - started, id, str(location.success))
+ 	if not location.success or pickup_scene == null:
++		BonusProbe.record("total_failed", Time.get_ticks_usec() - all_started, id)
+ 		return null
++	started = Time.get_ticks_usec()
+ 	var pickup := pickup_scene.instantiate() as BonusPickup
++	BonusProbe.record("instantiate", Time.get_ticks_usec() - started, id)
+ 	if pickup == null:
++		BonusProbe.record("total_failed", Time.get_ticks_usec() - all_started, id)
+ 		return null
++	pickup.set_meta("_bonus_probe_id", id)
++	started = Time.get_ticks_usec()
+ 	if chosen_kind < 0:
+ 		chosen_kind = _draw_kind()
++	BonusProbe.record("kind_select", Time.get_ticks_usec() - started, id, str(chosen_kind))
+ 	var weapon: WeaponConfig = null
+ 	if chosen_kind == BonusPickup.Kind.WEAPON:
+-		weapon = load(weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]) as WeaponConfig
++		var path: String = weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]
++		var cached := ResourceLoader.has_cached(path)
++		started = Time.get_ticks_usec()
++		weapon = load(path) as WeaponConfig
++		BonusProbe.record("weapon_load", Time.get_ticks_usec() - started, id, ("cached" if cached else "uncached") + ":" + path)
++	started = Time.get_ticks_usec()
+ 	pickup.setup(chosen_kind as BonusPickup.Kind, weapon, is_armed)
++	BonusProbe.record("setup", Time.get_ticks_usec() - started, id)
++	started = Time.get_ticks_usec()
+ 	add_child(pickup)
++	BonusProbe.record("tree_add_including_ready", Time.get_ticks_usec() - started, id)
++	started = Time.get_ticks_usec()
+ 	pickup.global_position = location.position
+ 	pickup.collected.connect(_on_collected)
+ 	_spawn_index += 1
++	BonusProbe.record("post_tree", Time.get_ticks_usec() - started, id)
++	BonusProbe.record("total", Time.get_ticks_usec() - all_started, id, str(chosen_kind))
+ 	return pickup
+ 
+ 

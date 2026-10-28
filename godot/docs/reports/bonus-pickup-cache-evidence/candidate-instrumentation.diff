@@ -1,0 +1,40 @@
+--- scripts/bonus_spawner.gd	2026-10-28 10:20:16.503397205 +0300
++++ /tmp/metal-road-bonus-profile-new/scripts/bonus_spawner.gd	2026-10-28 10:22:30.800732747 +0300
+@@ -140,6 +140,13 @@
+ 
+ 
+ func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
++	var started := Time.get_ticks_usec()
++	var value: BonusPickup = _profile_original_create_pickup(chosen_kind, is_armed, reserved_positions)
++	preload("res://tests/survival_perf_stats.gd").record("bonus.create", Time.get_ticks_usec() - started, str(value.kind) if value != null else "failed")
++	return value
++
++
++func _profile_original_create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[Vector2] = []) -> BonusPickup:
+ 	var location := _next_position(reserved_positions)
+ 	if not location.success or pickup_scene == null:
+ 		return null
+@@ -151,7 +158,9 @@
+ 	var weapon: WeaponConfig = null
+ 	if chosen_kind == BonusPickup.Kind.WEAPON:
+ 		var path: String = weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]
++		var started := Time.get_ticks_usec()
+ 		weapon = BonusCache.get_config(path)
++		preload("res://tests/survival_perf_stats.gd").record("bonus.weapon_resource", Time.get_ticks_usec() - started, path)
+ 		if weapon == null and not path in BonusCache.PATHS:
+ 			# Preserve the existing extension point for a custom path. Standard
+ 			# pickup paths must already be prepared before gameplay begins.
+@@ -192,6 +201,13 @@
+ 
+ 
+ func _next_position(reserved_positions: Array[Vector2] = []) -> Dictionary:
++	var started := Time.get_ticks_usec()
++	var value := _profile_original_next_position(reserved_positions)
++	preload("res://tests/survival_perf_stats.gd").record("bonus.position", Time.get_ticks_usec() - started)
++	return value
++
++
++func _profile_original_next_position(reserved_positions: Array[Vector2] = []) -> Dictionary:
+ 	if track != null:
+ 		var distance := _rng.randf_range(0.0, track.get_total_length())
+ 		if not track.config.bonus_hotspots.is_empty() and _spawn_index % 3 != 2:

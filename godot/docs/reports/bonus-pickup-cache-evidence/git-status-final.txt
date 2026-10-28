@@ -1,0 +1,27 @@
+ M docs/reports/METAL_ROAD_QA_REPORT.md
+ M docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
+ M docs/reports/METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md
+ M docs/reports/METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md
+ M scripts/bonus_spawner.gd
+ M scripts/scene_transition.gd
+ M tests/run_vehicle_catalog_regressions.sh
+ M tests/survival_reward_feedback_smoke.gd
+ M tests/vehicle_catalog_cache_smoke.gd
+?? docs/reports/METAL_ROAD_BONUS_PICKUP_CACHE_FIX.md
+?? docs/reports/METAL_ROAD_BONUS_PICKUP_PROFILE.md
+?? docs/reports/bonus-pickup-cache-evidence/
+?? docs/reports/bonus-pickup-evidence/
+?? docs/reports/vehicle-catalog-cache-evidence/README.md
+?? scripts/bonus_weapon_cache.gd
+?? tests/analyze_bonus_pickup_profile.py
+?? tests/bonus_cache_race_profile.gd
+?? tests/bonus_memory_soak.gd
+?? tests/bonus_pickup_probe_stats.gd
+?? tests/bonus_pickup_profile.gd
+?? tests/bonus_preload_comparison.gd
+?? tests/bonus_resource_probe.gd
+?? tests/bonus_wave4_endurance_profile.gd
+?? tests/bonus_wave5_cache_profile.gd
+?? tests/bonus_weapon_cache_smoke.gd
+?? tests/instrument_bonus_cache_comparison.py
+?? tests/instrument_bonus_pickup_profile.py

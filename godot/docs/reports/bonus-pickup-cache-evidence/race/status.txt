@@ -1,0 +1,3 @@
+race-old-4217 exit=0
+race-new-4217 exit=124
+race-new-4217 rerun exit=0

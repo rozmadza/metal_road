@@ -39,6 +39,13 @@ func run() -> void:
 		var config := LoadoutProfile.vehicle_config(id)
 		check(config != base, "independent config %s" % id)
 		check(config.vehicle_id == base.vehicle_id and is_equal_approx(config.max_health, base.max_health), "unchanged stats %s" % id)
+		for property in base.get_property_list():
+			var name: String = str(property.name)
+			if (int(property.usage) & PROPERTY_USAGE_STORAGE) == 0 or name in ["resource_path", "resource_scene_unique_id"]:
+				continue
+			var source_value: Variant = base.get(name)
+			var copy_value: Variant = config.get(name)
+			check(copy_value == source_value, "copied property %s.%s" % [id, name])
 		snapshots[id] = {"health": base.max_health, "speed": base.max_speed, "texture": base.texture}
 		config.max_health += 33.0
 		config.max_speed += 10.0

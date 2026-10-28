@@ -20,6 +20,7 @@ signal bonus_collected(vehicle: Vehicle, kind: BonusPickup.Kind)
 ## Ordinary collector used for placement reachability, never the Arbiter.
 @export var placement_vehicle_config: VehicleConfig = preload("res://resources/vehicles/raider.tres")
 const Navigation = preload("res://scripts/arena_navigation.gd")
+const BonusCache = preload("res://scripts/bonus_weapon_cache.gd")
 const POSITION_ATTEMPTS := 48
 const PICKUP_CLEARANCE := 53.0 # Collection radius50 at maximum pulse1.06.
 
@@ -35,18 +36,15 @@ var _active_lifetimes: Dictionary = {}
 var _rng := RandomNumberGenerator.new()
 var _spawn_index := 0
 var _kind_bag: Array[int] = []
-var weapon_paths := [
-	"res://resources/weapons/machine_gun.tres",
-	"res://resources/weapons/heavy_machine_gun.tres",
-	"res://resources/weapons/shotgun.tres",
-	"res://resources/weapons/rocket_launcher.tres",
-	"res://resources/weapons/mine_layer.tres",
-	"res://resources/weapons/flamethrower.tres",
-	"res://resources/weapons/emp_cannon.tres",
-]
+var weapon_paths := BonusCache.PATHS.duplicate()
 
 
 func _ready() -> void:
+	# Directly instantiated Race/Survival scenes bypass SceneTransition. Warm
+	# once during scene setup, before the first active physics tick.
+	if not BonusCache.prepare():
+		set_physics_process(false)
+		return
 	_rng.randomize()
 	_begin_first_cycle()
 
@@ -152,7 +150,15 @@ func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[
 		chosen_kind = _draw_kind()
 	var weapon: WeaponConfig = null
 	if chosen_kind == BonusPickup.Kind.WEAPON:
-		weapon = load(weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]) as WeaponConfig
+		var path: String = weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]
+		weapon = BonusCache.get_config(path)
+		if weapon == null and not path in BonusCache.PATHS:
+			# Preserve the existing extension point for a custom path. Standard
+			# pickup paths must already be prepared before gameplay begins.
+			weapon = load(path) as WeaponConfig
+		if weapon == null:
+			pickup.free()
+			return null
 	pickup.setup(chosen_kind as BonusPickup.Kind, weapon, is_armed)
 	add_child(pickup)
 	pickup.global_position = location.position

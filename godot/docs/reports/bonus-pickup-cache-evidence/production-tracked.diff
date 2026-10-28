@@ -1,0 +1,79 @@
+diff --git a/godot/scripts/bonus_spawner.gd b/godot/scripts/bonus_spawner.gd
+index 48e2c2e..1f17a16 100644
+--- a/godot/scripts/bonus_spawner.gd
++++ b/godot/scripts/bonus_spawner.gd
+@@ -20,6 +20,7 @@ signal bonus_collected(vehicle: Vehicle, kind: BonusPickup.Kind)
+ ## Ordinary collector used for placement reachability, never the Arbiter.
+ @export var placement_vehicle_config: VehicleConfig = preload("res://resources/vehicles/raider.tres")
+ const Navigation = preload("res://scripts/arena_navigation.gd")
++const BonusCache = preload("res://scripts/bonus_weapon_cache.gd")
+ const POSITION_ATTEMPTS := 48
+ const PICKUP_CLEARANCE := 53.0 # Collection radius50 at maximum pulse1.06.
+ 
+@@ -35,18 +36,15 @@ var _active_lifetimes: Dictionary = {}
+ var _rng := RandomNumberGenerator.new()
+ var _spawn_index := 0
+ var _kind_bag: Array[int] = []
+-var weapon_paths := [
+-	"res://resources/weapons/machine_gun.tres",
+-	"res://resources/weapons/heavy_machine_gun.tres",
+-	"res://resources/weapons/shotgun.tres",
+-	"res://resources/weapons/rocket_launcher.tres",
+-	"res://resources/weapons/mine_layer.tres",
+-	"res://resources/weapons/flamethrower.tres",
+-	"res://resources/weapons/emp_cannon.tres",
+-]
++var weapon_paths := BonusCache.PATHS.duplicate()
+ 
+ 
+ func _ready() -> void:
++	# Directly instantiated Race/Survival scenes bypass SceneTransition. Warm
++	# once during scene setup, before the first active physics tick.
++	if not BonusCache.prepare():
++		set_physics_process(false)
++		return
+ 	_rng.randomize()
+ 	_begin_first_cycle()
+ 
+@@ -152,7 +150,15 @@ func _create_pickup(chosen_kind: int, is_armed: bool, reserved_positions: Array[
+ 		chosen_kind = _draw_kind()
+ 	var weapon: WeaponConfig = null
+ 	if chosen_kind == BonusPickup.Kind.WEAPON:
+-		weapon = load(weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]) as WeaponConfig
++		var path: String = weapon_paths[_rng.randi_range(0, weapon_paths.size() - 1)]
++		weapon = BonusCache.get_config(path)
++		if weapon == null and not path in BonusCache.PATHS:
++			# Preserve the existing extension point for a custom path. Standard
++			# pickup paths must already be prepared before gameplay begins.
++			weapon = load(path) as WeaponConfig
++		if weapon == null:
++			pickup.free()
++			return null
+ 	pickup.setup(chosen_kind as BonusPickup.Kind, weapon, is_armed)
+ 	add_child(pickup)
+ 	pickup.global_position = location.position
+diff --git a/godot/scripts/scene_transition.gd b/godot/scripts/scene_transition.gd
+index 5282988..2dcc729 100644
+--- a/godot/scripts/scene_transition.gd
++++ b/godot/scripts/scene_transition.gd
+@@ -1,6 +1,7 @@
+ extends CanvasLayer
+ class_name SceneTransition
+ ## Non-blocking scene changes with a quiet, motion-free loading overlay.
++const BonusCache = preload("res://scripts/bonus_weapon_cache.gd")
+ 
+ var _overlay: ColorRect
+ var _label: Label
+@@ -132,6 +133,12 @@ func _update_foreground_load() -> void:
+ 
+ 
+ func _commit_scene(packed: PackedScene) -> void:
++	# Preparation runs after the overlay was drawn and before match activation.
++	# Cached scenes also pass through this method.
++	if _pending_path in ["res://scenes/Main.tscn", "res://scenes/ArenaBattle.tscn"]:
++		if not BonusCache.prepare():
++			_fail_transition()
++			return
+ 	_progress.value = 100.0
+ 	var error := get_tree().change_scene_to_packed(packed)
+ 	_pending_path = ""

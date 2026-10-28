@@ -1,0 +1,8 @@
+ godot/docs/reports/METAL_ROAD_QA_REPORT.md         | 10 +++++++
+ .../METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md        |  6 +++++
+ .../METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md       |  6 +++--
+ .../METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md        | 31 +++++++++++++++++-----
+ godot/tests/run_vehicle_catalog_regressions.sh     |  9 +++++--
+ godot/tests/survival_reward_feedback_smoke.gd      |  7 ++++-
+ godot/tests/vehicle_catalog_cache_smoke.gd         |  7 +++++
+ 7 files changed, 65 insertions(+), 11 deletions(-)

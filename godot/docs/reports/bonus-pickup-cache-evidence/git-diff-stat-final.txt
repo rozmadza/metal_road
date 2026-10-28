@@ -1,0 +1,10 @@
+ godot/docs/reports/METAL_ROAD_QA_REPORT.md         | 25 +++++++++++++++++
+ .../METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md        | 24 +++++++++++++++++
+ .../METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md       | 10 ++++---
+ .../METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md        | 31 +++++++++++++++++-----
+ godot/scripts/bonus_spawner.gd                     | 26 +++++++++++-------
+ godot/scripts/scene_transition.gd                  |  7 +++++
+ godot/tests/run_vehicle_catalog_regressions.sh     |  9 +++++--
+ godot/tests/survival_reward_feedback_smoke.gd      |  7 ++++-
+ godot/tests/vehicle_catalog_cache_smoke.gd         |  7 +++++
+ 9 files changed, 124 insertions(+), 22 deletions(-)

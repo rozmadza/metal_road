@@ -1,6 +1,7 @@
 extends CanvasLayer
 class_name SceneTransition
 ## Non-blocking scene changes with a quiet, motion-free loading overlay.
+const BonusCache = preload("res://scripts/bonus_weapon_cache.gd")
 
 var _overlay: ColorRect
 var _label: Label
@@ -132,6 +133,12 @@ func _update_foreground_load() -> void:
 
 
 func _commit_scene(packed: PackedScene) -> void:
+	# Preparation runs after the overlay was drawn and before match activation.
+	# Cached scenes also pass through this method.
+	if _pending_path in ["res://scenes/Main.tscn", "res://scenes/ArenaBattle.tscn"]:
+		if not BonusCache.prepare():
+			_fail_transition()
+			return
 	_progress.value = 100.0
 	var error := get_tree().change_scene_to_packed(packed)
 	_pending_path = ""

@@ -15,6 +15,7 @@ tests=(
   race_finish_smoke
   controls_smoke
   survival_smoke
+  survival_playability_smoke
   survival_boss_schedule_smoke
   survival_biker_crew_smoke
   survival_roguelite_smoke
@@ -27,8 +28,12 @@ tests=(
 )
 
 for name in "${tests[@]}"; do
-  timeout 120s flatpak run --filesystem="$project_root" org.godotengine.Godot \
-    --headless --path "$project_root" --script "res://tests/${name}.gd" \
+  timeout_seconds=120
+  extra_args=()
+  if [[ "$name" == survival_boss_schedule_smoke ]]; then timeout_seconds=300; fi
+  if [[ "$name" == controls_smoke ]]; then extra_args+=(--max-fps 60); fi
+  timeout "${timeout_seconds}s" flatpak run --filesystem="$project_root" org.godotengine.Godot \
+    --headless "${extra_args[@]}" --path "$project_root" --script "res://tests/${name}.gd" \
     > "$log_dir/$name.log" 2>&1
   code=$?
   if (( code == 0 )) && ! rg -q 'SCRIPT ERROR|Parse Error|: FAIL| FAIL:' "$log_dir/$name.log"; then

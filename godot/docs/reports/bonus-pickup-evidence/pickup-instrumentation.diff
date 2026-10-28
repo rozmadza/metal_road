@@ -1,0 +1,75 @@
+--- scripts/bonus_pickup.gd	2026-10-26 08:18:14.895269182 +0300
++++ /tmp/metal-road-bonus-instrumented/scripts/bonus_pickup.gd	2026-10-28 09:50:56.834573263 +0300
+@@ -1,5 +1,6 @@
+ extends Area2D
+ class_name BonusPickup
++const BonusProbe = preload("res://tests/bonus_pickup_probe_stats.gd")
+ 
+ const SUPPLY_CRATE := preload("res://assets/bonuses/supply_crate.png")
+ 
+@@ -20,14 +21,27 @@
+ 
+ 
+ func _ready() -> void:
++	var id := int(get_meta("_bonus_probe_id", -1))
++	var all_started := Time.get_ticks_usec()
++	var started := Time.get_ticks_usec()
+ 	add_to_group("bonus_pickups")
++	BonusProbe.record("ready.group", Time.get_ticks_usec() - started, id)
++	started = Time.get_ticks_usec()
+ 	collision_layer = 0
+ 	collision_mask = 1
+ 	body_entered.connect(_on_body_entered)
++	BonusProbe.record("ready.sensor_config", Time.get_ticks_usec() - started, id)
++	started = Time.get_ticks_usec()
+ 	monitoring = armed
++	BonusProbe.record("ready.monitor", Time.get_ticks_usec() - started, id)
++	started = Time.get_ticks_usec()
+ 	_build_badge()
++	BonusProbe.record("ready.badge_build", Time.get_ticks_usec() - started, id)
++	started = Time.get_ticks_usec()
+ 	_update_badge()
++	BonusProbe.record("ready.badge_update", Time.get_ticks_usec() - started, id)
+ 	queue_redraw()
++	BonusProbe.record("ready.total", Time.get_ticks_usec() - all_started, id)
+ 
+ 
+ func setup(new_kind: Kind, new_weapon: WeaponConfig = null, is_armed: bool = true) -> void:
+@@ -166,7 +180,9 @@
+ 
+ 
+ func _build_badge() -> void:
++	var _started := Time.get_ticks_usec()
+ 	_badge = Label.new()
++	BonusProbe.record("badge.label_new", Time.get_ticks_usec() - _started, int(get_meta("_bonus_probe_id", -1)))
+ 	_badge.name = "TypeBadge"
+ 	_badge.position = Vector2(-38.0, 20.0)
+ 	_badge.size = Vector2(76.0, 18.0)
+@@ -176,7 +192,10 @@
+ 	_badge.add_theme_constant_override("outline_size", 4)
+ 	_badge.add_theme_color_override("font_outline_color", Color(0.015, 0.018, 0.02, 0.98))
+ 	_badge.mouse_filter = Control.MOUSE_FILTER_IGNORE
++	BonusProbe.record("badge.properties_including_label", Time.get_ticks_usec() - _started, int(get_meta("_bonus_probe_id", -1)))
++	_started = Time.get_ticks_usec()
+ 	add_child(_badge)
++	BonusProbe.record("badge.tree_add", Time.get_ticks_usec() - _started, int(get_meta("_bonus_probe_id", -1)))
+ 
+ 
+ func _update_badge() -> void:
+@@ -188,6 +207,16 @@
+ 
+ 
+ func _draw() -> void:
++	if not has_meta("_bonus_probe_drawn"):
++		set_meta("_bonus_probe_drawn", true)
++		var started := Time.get_ticks_usec()
++		_draw_original()
++		BonusProbe.record("draw.first", Time.get_ticks_usec() - started, int(get_meta("_bonus_probe_id", -1)))
++	else:
++		_draw_original()
++
++
++func _draw_original() -> void:
+ 	var edge := _kind_color()
+ 	var alpha := 0.22 if armed else 0.09
+ 	# The luminous field communicates the intentionally generous collection

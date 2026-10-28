@@ -1,0 +1,912 @@
+{
+  "windows": [
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "wave4_endurance",
+      "instrumented": true,
+      "vsync": 0,
+      "collector": 2,
+      "wall_s": 60.000112,
+      "frames": 18980,
+      "fps": 316.3328851950793,
+      "frame_ms": {
+        "n": 18980,
+        "mean": 3.161226817702845,
+        "p95": 4.041,
+        "p99": 4.686,
+        "max": 10.822
+      },
+      "gpu_ms": {
+        "n": 18980,
+        "mean": 0.8137838777425543,
+        "p95": 1.25199997425079,
+        "p99": 2.52300000190735,
+        "max": 3.5699999332428
+      },
+      "render_cpu_ms": {
+        "n": 18980,
+        "mean": 1.8163124873621823,
+        "p95": 2.19300007820129,
+        "p99": 2.42799997329712,
+        "max": 7.45900011062622
+      },
+      "physics_1s_peak_ms_after_2s": 9.015,
+      "process_1s_peak_ms_after_2s": 9.922,
+      "ai_min": 5,
+      "ai_mean": 5,
+      "ai_max": 5,
+      "projectiles_max": 12,
+      "vfx_max": 10,
+      "nodes_max": 247,
+      "draw_calls_max": 520.0,
+      "collision_pairs_max": 8.0,
+      "impact_signals": 16,
+      "max_frame_near_impact_ms": 5.22,
+      "over_16_67ms": 0,
+      "over_33_33ms": 0,
+      "over_100ms": 0,
+      "probe_us": {
+        "n": 18980,
+        "mean": 22.96559536354057,
+        "p95": 34,
+        "p99": 45,
+        "max": 96
+      },
+      "metrics": {
+        "active_game_s": 60.1375374848416,
+        "alive_ai_end": 5,
+        "damage_dealt": 456.526912149438,
+        "damage_received": 741.56508460933,
+        "elapsed_wall_s": 60.000112,
+        "end_reason": "window_limit",
+        "ended": false,
+        "first_contact_s": 2.044306,
+        "first_hostile_damage_s": 2.875348,
+        "first_weapon_s": 5.152845,
+        "game_time_start": 0.0,
+        "idle_max_s": 14.1960926296306,
+        "idle_now": 0.0,
+        "idle_over5_s": 9.198742,
+        "impact_signals": 16,
+        "natural_deaths": 0,
+        "nodes_end": 240.0,
+        "pending": 0,
+        "perks": 0,
+        "pickups": 5,
+        "player_activity_us": 62140644,
+        "player_idle_max_s": 3.063021,
+        "player_idle_over5_s": 0.0,
+        "player_kills": 0,
+        "repair_pickups": 1,
+        "round": 4,
+        "scripted_kills": 0,
+        "scripted_repairs": 239,
+        "shots": 51
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "after_long_restart",
+      "instrumented": true,
+      "vsync": 0,
+      "collector": 2,
+      "wall_s": 6.001337,
+      "frames": 3315,
+      "fps": 552.3811459900878,
+      "frame_ms": {
+        "n": 3315,
+        "mean": 1.81034419306184,
+        "p95": 2.752,
+        "p99": 3.171,
+        "max": 6.837
+      },
+      "gpu_ms": {
+        "n": 3315,
+        "mean": 0.5493749622665739,
+        "p95": 1.08899998664856,
+        "p99": 1.83700001239777,
+        "max": 2.33299994468689
+      },
+      "render_cpu_ms": {
+        "n": 3315,
+        "mean": 1.0377517348860543,
+        "p95": 1.51699995994568,
+        "p99": 1.83000004291534,
+        "max": 2.31100010871887
+      },
+      "physics_1s_peak_ms_after_2s": 5.324,
+      "process_1s_peak_ms_after_2s": 3.815,
+      "ai_min": 2,
+      "ai_mean": 2.110105580693816,
+      "ai_max": 3,
+      "projectiles_max": 1,
+      "vfx_max": 2,
+      "nodes_max": 215,
+      "draw_calls_max": 404.0,
+      "collision_pairs_max": 2.0,
+      "impact_signals": 3,
+      "max_frame_near_impact_ms": 3.202,
+      "over_16_67ms": 0,
+      "over_33_33ms": 0,
+      "over_100ms": 0,
+      "probe_us": {
+        "n": 3315,
+        "mean": 20.28808446455505,
+        "p95": 30,
+        "p99": 42,
+        "max": 64
+      },
+      "metrics": {
+        "active_game_s": 6.00707633333339,
+        "alive_ai_end": 3,
+        "damage_dealt": 0.0,
+        "damage_received": 47.804104196043,
+        "elapsed_wall_s": 6.001337,
+        "end_reason": "window_limit",
+        "ended": false,
+        "first_contact_s": -1.0,
+        "first_hostile_damage_s": -1.0,
+        "first_weapon_s": 4.227116,
+        "game_time_start": 0.00809718181818182,
+        "idle_max_s": 2.64795933333334,
+        "idle_now": 0.0,
+        "idle_over5_s": 0.0,
+        "impact_signals": 3,
+        "natural_deaths": 0,
+        "nodes_end": 213.0,
+        "pending": 0,
+        "perks": 0,
+        "pickups": 1,
+        "player_activity_us": 68147416,
+        "player_idle_max_s": 4.242342,
+        "player_idle_over5_s": 0.0,
+        "player_kills": 0,
+        "repair_pickups": 0,
+        "round": 1,
+        "scripted_kills": 0,
+        "scripted_repairs": 24,
+        "shots": 2
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "repeat_entry_wave1",
+      "instrumented": true,
+      "vsync": 0,
+      "collector": 2,
+      "wall_s": 6.00096,
+      "frames": 3296,
+      "fps": 549.2475591728426,
+      "frame_ms": {
+        "n": 3296,
+        "mean": 1.8206726334951455,
+        "p95": 2.369,
+        "p99": 2.582,
+        "max": 7.478
+      },
+      "gpu_ms": {
+        "n": 3296,
+        "mean": 0.4899996970260281,
+        "p95": 0.774999976158142,
+        "p99": 1.63699996471405,
+        "max": 2.10199999809265
+      },
+      "render_cpu_ms": {
+        "n": 3296,
+        "mean": 1.0535967847947212,
+        "p95": 1.35599994659424,
+        "p99": 1.46099996566772,
+        "max": 2.15300011634827
+      },
+      "physics_1s_peak_ms_after_2s": 5.72,
+      "process_1s_peak_ms_after_2s": 3.29,
+      "ai_min": 2,
+      "ai_mean": 2.130764563106796,
+      "ai_max": 3,
+      "projectiles_max": 1,
+      "vfx_max": 2,
+      "nodes_max": 213,
+      "draw_calls_max": 404.0,
+      "collision_pairs_max": 2.0,
+      "impact_signals": 3,
+      "max_frame_near_impact_ms": 2.821,
+      "over_16_67ms": 0,
+      "over_33_33ms": 0,
+      "over_100ms": 0,
+      "probe_us": {
+        "n": 3296,
+        "mean": 19.962682038834952,
+        "p95": 27,
+        "p99": 34,
+        "max": 59
+      },
+      "metrics": {
+        "active_game_s": 6.02710799999989,
+        "alive_ai_end": 3,
+        "damage_dealt": 0.0,
+        "damage_received": 47.5129592828607,
+        "elapsed_wall_s": 6.00096,
+        "end_reason": "window_limit",
+        "ended": false,
+        "first_contact_s": -1.0,
+        "first_hostile_damage_s": -1.0,
+        "first_weapon_s": 4.223077,
+        "game_time_start": 0.0,
+        "idle_max_s": 2.63129133333333,
+        "idle_now": 0.0,
+        "idle_over5_s": 0.0,
+        "impact_signals": 3,
+        "natural_deaths": 0,
+        "nodes_end": 213.0,
+        "pending": 0,
+        "perks": 0,
+        "pickups": 1,
+        "player_activity_us": 74282348,
+        "player_idle_max_s": 4.238418,
+        "player_idle_over5_s": 0.0,
+        "player_kills": 0,
+        "repair_pickups": 0,
+        "round": 1,
+        "scripted_kills": 0,
+        "scripted_repairs": 24,
+        "shots": 2
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "wave4_endurance",
+      "instrumented": true,
+      "vsync": 0,
+      "collector": 2,
+      "wall_s": 60.001331,
+      "frames": 19707,
+      "fps": 328.4428946853783,
+      "frame_ms": {
+        "n": 19707,
+        "mean": 3.044669305322982,
+        "p95": 3.999,
+        "p99": 4.659,
+        "max": 35.891
+      },
+      "gpu_ms": {
+        "n": 19707,
+        "mean": 0.80233318141233,
+        "p95": 1.97599995136261,
+        "p99": 2.43899989128113,
+        "max": 3.41499996185303
+      },
+      "render_cpu_ms": {
+        "n": 19707,
+        "mean": 1.7265959811224545,
+        "p95": 2.1489999294281,
+        "p99": 2.42400002479553,
+        "max": 4.77500009536743
+      },
+      "physics_1s_peak_ms_after_2s": 34.155,
+      "process_1s_peak_ms_after_2s": 7.692,
+      "ai_min": 5,
+      "ai_mean": 5,
+      "ai_max": 5,
+      "projectiles_max": 6,
+      "vfx_max": 7,
+      "nodes_max": 247,
+      "draw_calls_max": 468.0,
+      "collision_pairs_max": 8.0,
+      "impact_signals": 15,
+      "max_frame_near_impact_ms": 8.37,
+      "over_16_67ms": 5,
+      "over_33_33ms": 1,
+      "over_100ms": 0,
+      "probe_us": {
+        "n": 19707,
+        "mean": 24.636017658699956,
+        "p95": 37,
+        "p99": 47,
+        "max": 116
+      },
+      "metrics": {
+        "active_game_s": 60.0433219697012,
+        "alive_ai_end": 5,
+        "damage_dealt": 252.188408161795,
+        "damage_received": 673.646132390291,
+        "elapsed_wall_s": 60.001331,
+        "end_reason": "window_limit",
+        "ended": false,
+        "first_contact_s": 2.042173,
+        "first_hostile_damage_s": 2.878604,
+        "first_weapon_s": 5.168293,
+        "game_time_start": 0.0,
+        "idle_max_s": 17.7133040000016,
+        "idle_now": 0.0,
+        "idle_over5_s": 15.635363,
+        "impact_signals": 15,
+        "natural_deaths": 0,
+        "nodes_end": 238.0,
+        "pending": 0,
+        "perks": 0,
+        "pickups": 3,
+        "player_activity_us": 60680679,
+        "player_idle_max_s": 16.025076,
+        "player_idle_over5_s": 11.026967,
+        "player_kills": 0,
+        "repair_pickups": 1,
+        "round": 4,
+        "scripted_kills": 0,
+        "scripted_repairs": 239,
+        "shots": 27
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "after_long_restart",
+      "instrumented": true,
+      "vsync": 0,
+      "collector": 2,
+      "wall_s": 6.002123,
+      "frames": 3334,
+      "fps": 555.4722513786842,
+      "frame_ms": {
+        "n": 3334,
+        "mean": 1.8002699460107978,
+        "p95": 2.384,
+        "p99": 2.569,
+        "max": 40.089
+      },
+      "gpu_ms": {
+        "n": 3334,
+        "mean": 0.4861055789822651,
+        "p95": 0.791000008583069,
+        "p99": 1.67299997806549,
+        "max": 2.06900000572205
+      },
+      "render_cpu_ms": {
+        "n": 3334,
+        "mean": 1.0451793652061365,
+        "p95": 1.37600004673004,
+        "p99": 1.48800003528595,
+        "max": 2.01500010490417
+      },
+      "physics_1s_peak_ms_after_2s": 38.563,
+      "process_1s_peak_ms_after_2s": 3.183,
+      "ai_min": 2,
+      "ai_mean": 2.1247750449910017,
+      "ai_max": 3,
+      "projectiles_max": 2,
+      "vfx_max": 2,
+      "nodes_max": 217,
+      "draw_calls_max": 398.0,
+      "collision_pairs_max": 1.0,
+      "impact_signals": 4,
+      "max_frame_near_impact_ms": 2.793,
+      "over_16_67ms": 1,
+      "over_33_33ms": 1,
+      "over_100ms": 0,
+      "probe_us": {
+        "n": 3334,
+        "mean": 19.09628074385123,
+        "p95": 25,
+        "p99": 30,
+        "max": 48
+      },
+      "metrics": {
+        "active_game_s": 6.01218619047614,
+        "alive_ai_end": 3,
+        "damage_dealt": 93.3551058194577,
+        "damage_received": 62.090296278015,
+        "elapsed_wall_s": 6.002123,
+        "end_reason": "window_limit",
+        "ended": false,
+        "first_contact_s": 4.420191,
+        "first_hostile_damage_s": 5.086658,
+        "first_weapon_s": 4.635573,
+        "game_time_start": 0.0111843636363636,
+        "idle_max_s": 5.10615169696965,
+        "idle_now": 0.0,
+        "idle_over5_s": 0.106633,
+        "impact_signals": 4,
+        "natural_deaths": 0,
+        "nodes_end": 215.0,
+        "pending": 0,
+        "perks": 0,
+        "pickups": 1,
+        "player_activity_us": 67946761,
+        "player_idle_max_s": 4.649407,
+        "player_idle_over5_s": 0.0,
+        "player_kills": 0,
+        "repair_pickups": 0,
+        "round": 1,
+        "scripted_kills": 0,
+        "scripted_repairs": 24,
+        "shots": 4
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "repeat_entry_wave1",
+      "instrumented": true,
+      "vsync": 0,
+      "collector": 2,
+      "wall_s": 6.002057,
+      "frames": 3356,
+      "fps": 559.1434109547457,
+      "frame_ms": {
+        "n": 3356,
+        "mean": 1.7884499404052443,
+        "p95": 2.417,
+        "p99": 2.607,
+        "max": 29.66
+      },
+      "gpu_ms": {
+        "n": 3356,
+        "mean": 0.5002705603787668,
+        "p95": 0.779999971389771,
+        "p99": 1.63199996948242,
+        "max": 1.93900001049042
+      },
+      "render_cpu_ms": {
+        "n": 3356,
+        "mean": 1.036170144095857,
+        "p95": 1.35699999332428,
+        "p99": 1.4559999704361,
+        "max": 1.99600005149841
+      },
+      "physics_1s_peak_ms_after_2s": 28.2,
+      "process_1s_peak_ms_after_2s": 3.788,
+      "ai_min": 2,
+      "ai_mean": 2.09088200238379,
+      "ai_max": 3,
+      "projectiles_max": 1,
+      "vfx_max": 3,
+      "nodes_max": 221,
+      "draw_calls_max": 406.0,
+      "collision_pairs_max": 2.0,
+      "impact_signals": 4,
+      "max_frame_near_impact_ms": 4.439,
+      "over_16_67ms": 1,
+      "over_33_33ms": 0,
+      "over_100ms": 0,
+      "probe_us": {
+        "n": 3356,
+        "mean": 18.698748510131107,
+        "p95": 25,
+        "p99": 31,
+        "max": 42
+      },
+      "metrics": {
+        "active_game_s": 6.03190390476187,
+        "alive_ai_end": 2,
+        "damage_dealt": 96.0,
+        "damage_received": 62.2286804194165,
+        "elapsed_wall_s": 6.002057,
+        "end_reason": "window_limit",
+        "ended": false,
+        "first_contact_s": 4.267279,
+        "first_hostile_damage_s": 4.918179,
+        "first_weapon_s": 4.669056,
+        "game_time_start": 0.0,
+        "idle_max_s": 4.94602899999995,
+        "idle_now": 0.0,
+        "idle_over5_s": 0.0,
+        "impact_signals": 4,
+        "natural_deaths": 1,
+        "nodes_end": 221.0,
+        "pending": 0,
+        "perks": 0,
+        "pickups": 1,
+        "player_activity_us": 73996509,
+        "player_idle_max_s": 4.682445,
+        "player_idle_over5_s": 0.0,
+        "player_kills": 1,
+        "repair_pickups": 0,
+        "round": 1,
+        "scripted_kills": 0,
+        "scripted_repairs": 24,
+        "shots": 1
+      }
+    }
+  ],
+  "functions": [
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "after_long_restart",
+      "function": "bonus.create",
+      "total_ms": 4.756,
+      "us": {
+        "n": 3,
+        "mean": 1585.3333333333333,
+        "p95": 1688,
+        "p99": 1688,
+        "max": 1688
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "after_long_restart",
+      "function": "bonus.position",
+      "total_ms": 4.191,
+      "us": {
+        "n": 3,
+        "mean": 1397,
+        "p95": 1520,
+        "p99": 1520,
+        "max": 1520
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "after_long_restart",
+      "function": "bonus.weapon_resource",
+      "total_ms": 0.003,
+      "us": {
+        "n": 2,
+        "mean": 1.5,
+        "p95": 2,
+        "p99": 2,
+        "max": 2
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "menu_entry",
+      "function": "bonus.cache_prepare",
+      "total_ms": 97.002,
+      "us": {
+        "n": 4,
+        "mean": 24250.5,
+        "p95": 96995,
+        "p99": 96995,
+        "max": 96995
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "repeat_entry_wave1",
+      "function": "bonus.create",
+      "total_ms": 4.753,
+      "us": {
+        "n": 3,
+        "mean": 1584.3333333333333,
+        "p95": 1676,
+        "p99": 1676,
+        "max": 1676
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "repeat_entry_wave1",
+      "function": "bonus.position",
+      "total_ms": 4.188,
+      "us": {
+        "n": 3,
+        "mean": 1396,
+        "p95": 1511,
+        "p99": 1511,
+        "max": 1511
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "repeat_entry_wave1",
+      "function": "bonus.weapon_resource",
+      "total_ms": 0.005,
+      "us": {
+        "n": 2,
+        "mean": 2.5,
+        "p95": 3,
+        "p99": 3,
+        "max": 3
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "wave4_endurance",
+      "function": "bonus.create",
+      "total_ms": 41.791,
+      "us": {
+        "n": 30,
+        "mean": 1393.0333333333333,
+        "p95": 1724,
+        "p99": 1799,
+        "max": 1799
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "wave4_endurance",
+      "function": "bonus.position",
+      "total_ms": 35.95,
+      "us": {
+        "n": 30,
+        "mean": 1198.3333333333333,
+        "p95": 1536,
+        "p99": 1576,
+        "max": 1576
+      }
+    },
+    {
+      "run": "bonus-endurance-new-4217",
+      "phase": "wave4_endurance",
+      "function": "bonus.weapon_resource",
+      "total_ms": 0.058,
+      "us": {
+        "n": 24,
+        "mean": 2.4166666666666665,
+        "p95": 3,
+        "p99": 4,
+        "max": 4
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "after_long_restart",
+      "function": "bonus.create",
+      "total_ms": 37.942,
+      "us": {
+        "n": 3,
+        "mean": 12647.333333333334,
+        "p95": 23145,
+        "p99": 23145,
+        "max": 23145
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "after_long_restart",
+      "function": "bonus.position",
+      "total_ms": 4.315,
+      "us": {
+        "n": 3,
+        "mean": 1438.3333333333333,
+        "p95": 1600,
+        "p99": 1600,
+        "max": 1600
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "after_long_restart",
+      "function": "bonus.weapon_resource",
+      "total_ms": 32.901,
+      "us": {
+        "n": 2,
+        "mean": 16450.5,
+        "p95": 21540,
+        "p99": 21540,
+        "max": 21540
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "repeat_entry_wave1",
+      "function": "bonus.create",
+      "total_ms": 27.254,
+      "us": {
+        "n": 3,
+        "mean": 9084.666666666666,
+        "p95": 24072,
+        "p99": 24072,
+        "max": 24072
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "repeat_entry_wave1",
+      "function": "bonus.position",
+      "total_ms": 4.238,
+      "us": {
+        "n": 3,
+        "mean": 1412.6666666666667,
+        "p95": 1516,
+        "p99": 1516,
+        "max": 1516
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "repeat_entry_wave1",
+      "function": "bonus.weapon_resource",
+      "total_ms": 22.406,
+      "us": {
+        "n": 2,
+        "mean": 11203,
+        "p95": 22400,
+        "p99": 22400,
+        "max": 22400
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "wave4_endurance",
+      "function": "bonus.create",
+      "total_ms": 139.611,
+      "us": {
+        "n": 29,
+        "mean": 4814.172413793103,
+        "p95": 25015,
+        "p99": 26634,
+        "max": 26634
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "wave4_endurance",
+      "function": "bonus.position",
+      "total_ms": 34.742,
+      "us": {
+        "n": 29,
+        "mean": 1198,
+        "p95": 1537,
+        "p99": 1619,
+        "max": 1619
+      }
+    },
+    {
+      "run": "bonus-endurance-old-4217",
+      "phase": "wave4_endurance",
+      "function": "bonus.weapon_resource",
+      "total_ms": 99.067,
+      "us": {
+        "n": 24,
+        "mean": 4127.791666666667,
+        "p95": 23535,
+        "p99": 24931,
+        "max": 24931
+      }
+    }
+  ],
+  "slow_events": [
+    {
+      "at_us": 2266082,
+      "detail": "true",
+      "label": "bonus.cache_prepare",
+      "phase": "menu_entry",
+      "physics_frame": 26,
+      "us": 96995,
+      "run": "bonus-endurance-new-4217"
+    },
+    {
+      "at_us": 3282146,
+      "detail": "res://resources/weapons/rocket_launcher.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "wave4_endurance",
+      "physics_frame": 94,
+      "us": 24931,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 3282406,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "wave4_endurance",
+      "physics_frame": 94,
+      "us": 26634,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 22135702,
+      "detail": "res://resources/weapons/flamethrower.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "wave4_endurance",
+      "physics_frame": 1226,
+      "us": 21716,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 22135950,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "wave4_endurance",
+      "physics_frame": 1226,
+      "us": 23359,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 26844186,
+      "detail": "res://resources/weapons/machine_gun.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "wave4_endurance",
+      "physics_frame": 1509,
+      "us": 11464,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 26844444,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "wave4_endurance",
+      "physics_frame": 1509,
+      "us": 13105,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 31571738,
+      "detail": "res://resources/weapons/mine_layer.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "wave4_endurance",
+      "physics_frame": 1792,
+      "us": 23535,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 31571989,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "wave4_endurance",
+      "physics_frame": 1792,
+      "us": 25015,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 45717636,
+      "detail": "res://resources/weapons/shotgun.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "wave4_endurance",
+      "physics_frame": 2641,
+      "us": 17287,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 45717877,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "wave4_endurance",
+      "physics_frame": 2641,
+      "us": 18496,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 63997884,
+      "detail": "res://resources/weapons/machine_gun.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "after_long_restart",
+      "physics_frame": 3738,
+      "us": 11361,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 63998107,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "after_long_restart",
+      "physics_frame": 3738,
+      "us": 13016,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 64021008,
+      "detail": "res://resources/weapons/flamethrower.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "after_long_restart",
+      "physics_frame": 3738,
+      "us": 21540,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 64021264,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "after_long_restart",
+      "physics_frame": 3738,
+      "us": 23145,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 70113118,
+      "detail": "res://resources/weapons/rocket_launcher.tres",
+      "label": "bonus.weapon_resource",
+      "phase": "repeat_entry_wave1",
+      "physics_frame": 4105,
+      "us": 22400,
+      "run": "bonus-endurance-old-4217"
+    },
+    {
+      "at_us": 70113356,
+      "detail": "0",
+      "label": "bonus.create",
+      "phase": "repeat_entry_wave1",
+      "physics_frame": 4105,
+      "us": 24072,
+      "run": "bonus-endurance-old-4217"
+    }
+  ]
+}

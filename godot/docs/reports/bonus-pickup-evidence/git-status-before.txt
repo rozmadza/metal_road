@@ -1,0 +1,9 @@
+ M docs/reports/METAL_ROAD_QA_REPORT.md
+ M docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
+ M docs/reports/METAL_ROAD_SURVIVAL_PERFORMANCE_AUDIT.md
+ M docs/reports/METAL_ROAD_VEHICLE_CATALOG_CACHE_FIX.md
+ M tests/run_vehicle_catalog_regressions.sh
+ M tests/survival_reward_feedback_smoke.gd
+ M tests/vehicle_catalog_cache_smoke.gd
+?? docs/reports/bonus-pickup-evidence/
+?? docs/reports/vehicle-catalog-cache-evidence/README.md

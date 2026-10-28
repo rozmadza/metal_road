@@ -1,0 +1,6 @@
+bonus-old-quick-1 exit=0
+bonus-new-quick-1 exit=0
+bonus-old-quick-2 exit=0
+bonus-new-quick-2 exit=0
+entry-new-1 exit=0
+entry-new-2 exit=0

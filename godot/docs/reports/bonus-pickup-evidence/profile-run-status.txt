@@ -1,0 +1,6 @@
+bonus-i4217-b exit=0 wall_seconds=16
+bonus-i104729-a exit=0 wall_seconds=15
+bonus-i4217-menu exit=0 wall_seconds=29
+bonus-i4217-restart exit=0 wall_seconds=28
+bonus-b4217-b exit=0 wall_seconds=15
+bonus-i4217-combat exit=0 wall_seconds=15

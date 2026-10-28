@@ -1,0 +1,4 @@
+bonus_weapon_cache_smoke exit=0
+bonus_pickup_smoke exit=0
+arena_bonus_batch_smoke exit=0
+bonus_placement_smoke exit=0

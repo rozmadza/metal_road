@@ -1,0 +1,3440 @@
+{
+  "bonus-b4217-a": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.68002053915274,
+          "p95": 16.918,
+          "p99": 17.158,
+          "max": 48.708
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.520992297951768,
+          "p95": 0.955999970436096,
+          "p99": 1.74500000476837,
+          "max": 1.88900005817413
+        },
+        "active_ai_max": 3,
+        "create_frames": [],
+        "duration_s": 13.003475
+      }
+    },
+    "stages_ms": {},
+    "forced_stages_ms": {
+      "position": null,
+      "instantiate": null,
+      "weapon_load": null,
+      "ready.total": null,
+      "tree_add_including_ready": null,
+      "total": null
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 241028,
+        "godot_static_bytes": 44605141.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 257752,
+        "godot_static_bytes": 51354571.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 268488,
+        "godot_static_bytes": 53680145.0,
+        "godot_video_bytes": 337214263.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      },
+      "after_all": {
+        "rss_kb": 268488,
+        "godot_static_bytes": 53607885.0,
+        "godot_video_bytes": 337201975.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1663
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1656
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1619
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1623
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1621
+      }
+    ]
+  },
+  "bonus-b4217-b": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.693898587933248,
+          "p95": 16.915,
+          "p99": 17.125,
+          "max": 56.186
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.5229833121859828,
+          "p95": 0.966000020503998,
+          "p99": 1.77499997615814,
+          "max": 1.96899998188019
+        },
+        "active_ai_max": 3,
+        "create_frames": [],
+        "duration_s": 13.014328
+      }
+    },
+    "stages_ms": {},
+    "forced_stages_ms": {
+      "position": null,
+      "instantiate": null,
+      "weapon_load": null,
+      "ready.total": null,
+      "tree_add_including_ready": null,
+      "total": null
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240196,
+        "godot_static_bytes": 44605141.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 256472,
+        "godot_static_bytes": 51354571.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 267480,
+        "godot_static_bytes": 53702361.0,
+        "godot_video_bytes": 354008443.0,
+        "godot_texture_bytes": 342848203.0,
+        "resources": 190.0
+      },
+      "after_all": {
+        "rss_kb": 267480,
+        "godot_static_bytes": 53626901.0,
+        "godot_video_bytes": 345588831.0,
+        "godot_texture_bytes": 334459599.0,
+        "resources": 188.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1656
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1638
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1639
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1633
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1665
+      }
+    ]
+  },
+  "bonus-i104729-a": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.689632862644405,
+          "p95": 16.953,
+          "p99": 17.197,
+          "max": 66.77
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.5502002568238813,
+          "p95": 1.55400002002716,
+          "p99": 1.80599999427795,
+          "max": 2.03099989891052
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 25.015,
+            "frame_ms": 66.77,
+            "ai": 2,
+            "time_s": 1.592756
+          },
+          {
+            "id": 2,
+            "create_ms": 1.599,
+            "frame_ms": 66.77,
+            "ai": 2,
+            "time_s": 1.594364
+          },
+          {
+            "id": 3,
+            "create_ms": 18.885,
+            "frame_ms": 66.77,
+            "ai": 2,
+            "time_s": 1.613255
+          },
+          {
+            "id": 4,
+            "create_ms": 25.262,
+            "frame_ms": 46.046,
+            "ai": 3,
+            "time_s": 7.609722
+          },
+          {
+            "id": 5,
+            "create_ms": 1.601,
+            "frame_ms": 46.046,
+            "ai": 3,
+            "time_s": 7.611333
+          },
+          {
+            "id": 6,
+            "create_ms": 1.745,
+            "frame_ms": 46.046,
+            "ai": 3,
+            "time_s": 7.613085
+          }
+        ],
+        "duration_s": 13.011013
+      }
+    },
+    "stages_ms": {
+      "badge.label_new": {
+        "n": 6,
+        "mean": 0.025000000000000005,
+        "p95": 0.035,
+        "p99": 0.035,
+        "max": 0.035
+      },
+      "badge.properties_including_label": {
+        "n": 6,
+        "mean": 0.06766666666666667,
+        "p95": 0.095,
+        "p99": 0.095,
+        "max": 0.095
+      },
+      "badge.tree_add": {
+        "n": 6,
+        "mean": 0.04683333333333333,
+        "p95": 0.06,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "draw.first": {
+        "n": 6,
+        "mean": 0.049833333333333334,
+        "p95": 0.062,
+        "p99": 0.062,
+        "max": 0.062
+      },
+      "instantiate": {
+        "n": 6,
+        "mean": 0.021,
+        "p95": 0.027,
+        "p99": 0.027,
+        "max": 0.027
+      },
+      "kind_select": {
+        "n": 6,
+        "mean": 0.0005,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "position": {
+        "n": 6,
+        "mean": 1.4603333333333335,
+        "p95": 1.547,
+        "p99": 1.547,
+        "max": 1.547
+      },
+      "post_tree": {
+        "n": 6,
+        "mean": 0.004833333333333333,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 6,
+        "mean": 0.12016666666666669,
+        "p95": 0.157,
+        "p99": 0.157,
+        "max": 0.157
+      },
+      "ready.badge_update": {
+        "n": 6,
+        "mean": 0.043000000000000003,
+        "p95": 0.066,
+        "p99": 0.066,
+        "max": 0.066
+      },
+      "ready.group": {
+        "n": 6,
+        "mean": 0.0013333333333333333,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "ready.monitor": {
+        "n": 6,
+        "mean": 0.0033333333333333335,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "ready.sensor_config": {
+        "n": 6,
+        "mean": 0.004166666666666667,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 6,
+        "mean": 0.17983333333333332,
+        "p95": 0.215,
+        "p99": 0.215,
+        "max": 0.215
+      },
+      "setup": {
+        "n": 6,
+        "mean": 0.0026666666666666666,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "total": {
+        "n": 6,
+        "mean": 12.351166666666666,
+        "p95": 25.262,
+        "p99": 25.262,
+        "max": 25.262
+      },
+      "tree_add_including_ready": {
+        "n": 6,
+        "mean": 0.20750000000000002,
+        "p95": 0.253,
+        "p99": 0.253,
+        "max": 0.253
+      },
+      "weapon_load_cached": {
+        "n": 2,
+        "mean": 0.0045000000000000005,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "weapon_load_uncached": {
+        "n": 3,
+        "mean": 21.25766666666667,
+        "p95": 23.454,
+        "p99": 23.454,
+        "max": 23.454
+      }
+    },
+    "forced_stages_ms": {
+      "position": {
+        "n": 5,
+        "mean": 1.4074,
+        "p95": 1.457,
+        "p99": 1.457,
+        "max": 1.457
+      },
+      "instantiate": {
+        "n": 5,
+        "mean": 0.0252,
+        "p95": 0.029,
+        "p99": 0.029,
+        "max": 0.029
+      },
+      "weapon_load": {
+        "n": 2,
+        "mean": 0.006,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 5,
+        "mean": 0.17800000000000002,
+        "p95": 0.187,
+        "p99": 0.187,
+        "max": 0.187
+      },
+      "tree_add_including_ready": {
+        "n": 5,
+        "mean": 0.19999999999999998,
+        "p95": 0.21,
+        "p99": 0.21,
+        "max": 0.21
+      },
+      "total": {
+        "n": 5,
+        "mean": 1.6608,
+        "p95": 1.717,
+        "p99": 1.717,
+        "max": 1.717
+      }
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240508,
+        "godot_static_bytes": 44627484.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 256920,
+        "godot_static_bytes": 51376914.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 268300,
+        "godot_static_bytes": 53836604.0,
+        "godot_video_bytes": 353989579.0,
+        "godot_texture_bytes": 342848203.0,
+        "resources": 190.0
+      },
+      "after_all": {
+        "rss_kb": 268360,
+        "godot_static_bytes": 53838892.0,
+        "godot_video_bytes": 345588687.0,
+        "godot_texture_bytes": 334459599.0,
+        "resources": 188.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1683
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1662
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1732
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1664
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1637
+      }
+    ]
+  },
+  "bonus-i4217-a": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.691390243902468,
+          "p95": 16.912,
+          "p99": 17.196,
+          "max": 56.905
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.535150192324096,
+          "p95": 1.03699994087219,
+          "p99": 1.88499999046326,
+          "max": 1.97699999809265
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 24.751,
+            "frame_ms": 48.975,
+            "ai": 2,
+            "time_s": 1.593595
+          },
+          {
+            "id": 2,
+            "create_ms": 1.556,
+            "frame_ms": 48.975,
+            "ai": 2,
+            "time_s": 1.59516
+          },
+          {
+            "id": 3,
+            "create_ms": 1.714,
+            "frame_ms": 48.975,
+            "ai": 2,
+            "time_s": 1.59688
+          },
+          {
+            "id": 4,
+            "create_ms": 1.778,
+            "frame_ms": 56.905,
+            "ai": 3,
+            "time_s": 7.604139
+          },
+          {
+            "id": 5,
+            "create_ms": 23.243,
+            "frame_ms": 56.905,
+            "ai": 3,
+            "time_s": 7.627389
+          },
+          {
+            "id": 6,
+            "create_ms": 13.25,
+            "frame_ms": 56.905,
+            "ai": 3,
+            "time_s": 7.640649
+          }
+        ],
+        "duration_s": 13.012822
+      }
+    },
+    "stages_ms": {
+      "badge.label_new": {
+        "n": 6,
+        "mean": 0.027,
+        "p95": 0.037,
+        "p99": 0.037,
+        "max": 0.037
+      },
+      "badge.properties_including_label": {
+        "n": 6,
+        "mean": 0.0725,
+        "p95": 0.095,
+        "p99": 0.095,
+        "max": 0.095
+      },
+      "badge.tree_add": {
+        "n": 6,
+        "mean": 0.04699999999999999,
+        "p95": 0.059,
+        "p99": 0.059,
+        "max": 0.059
+      },
+      "draw.first": {
+        "n": 6,
+        "mean": 0.046000000000000006,
+        "p95": 0.058,
+        "p99": 0.058,
+        "max": 0.058
+      },
+      "instantiate": {
+        "n": 6,
+        "mean": 0.021500000000000002,
+        "p95": 0.027,
+        "p99": 0.027,
+        "max": 0.027
+      },
+      "kind_select": {
+        "n": 6,
+        "mean": 0.0008333333333333334,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "position": {
+        "n": 6,
+        "mean": 1.4626666666666666,
+        "p95": 1.602,
+        "p99": 1.602,
+        "max": 1.602
+      },
+      "post_tree": {
+        "n": 6,
+        "mean": 0.004666666666666667,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 6,
+        "mean": 0.125,
+        "p95": 0.157,
+        "p99": 0.157,
+        "max": 0.157
+      },
+      "ready.badge_update": {
+        "n": 6,
+        "mean": 0.0415,
+        "p95": 0.065,
+        "p99": 0.065,
+        "max": 0.065
+      },
+      "ready.group": {
+        "n": 6,
+        "mean": 0.0013333333333333333,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "ready.monitor": {
+        "n": 6,
+        "mean": 0.0031666666666666666,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "ready.sensor_config": {
+        "n": 6,
+        "mean": 0.004333333333333334,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 6,
+        "mean": 0.18383333333333332,
+        "p95": 0.213,
+        "p99": 0.213,
+        "max": 0.213
+      },
+      "setup": {
+        "n": 6,
+        "mean": 0.0023333333333333335,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "total": {
+        "n": 6,
+        "mean": 11.048666666666668,
+        "p95": 24.751,
+        "p99": 24.751,
+        "max": 24.751
+      },
+      "tree_add_including_ready": {
+        "n": 6,
+        "mean": 0.21116666666666664,
+        "p95": 0.249,
+        "p99": 0.249,
+        "max": 0.249
+      },
+      "weapon_load_cached": {
+        "n": 2,
+        "mean": 0.0045000000000000005,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "weapon_load_uncached": {
+        "n": 3,
+        "mean": 18.640666666666664,
+        "p95": 22.959,
+        "p99": 22.959,
+        "max": 22.959
+      }
+    },
+    "forced_stages_ms": {
+      "position": {
+        "n": 5,
+        "mean": 1.4911999999999999,
+        "p95": 1.799,
+        "p99": 1.799,
+        "max": 1.799
+      },
+      "instantiate": {
+        "n": 5,
+        "mean": 0.0256,
+        "p95": 0.027,
+        "p99": 0.027,
+        "max": 0.027
+      },
+      "weapon_load": {
+        "n": 2,
+        "mean": 0.0055,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 5,
+        "mean": 0.1876,
+        "p95": 0.196,
+        "p99": 0.196,
+        "max": 0.196
+      },
+      "tree_add_including_ready": {
+        "n": 5,
+        "mean": 0.2112,
+        "p95": 0.22,
+        "p99": 0.22,
+        "max": 0.22
+      },
+      "total": {
+        "n": 5,
+        "mean": 1.7568000000000001,
+        "p95": 2.068,
+        "p99": 2.068,
+        "max": 2.068
+      }
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240528,
+        "godot_static_bytes": 44627452.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 256808,
+        "godot_static_bytes": 51376882.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 267848,
+        "godot_static_bytes": 53834296.0,
+        "godot_video_bytes": 353989723.0,
+        "godot_texture_bytes": 342848203.0,
+        "resources": 190.0
+      },
+      "after_all": {
+        "rss_kb": 267908,
+        "godot_static_bytes": 53835228.0,
+        "godot_video_bytes": 345588831.0,
+        "godot_texture_bytes": 334459599.0,
+        "resources": 188.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 2086
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1663
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1686
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1754
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1668
+      }
+    ]
+  },
+  "bonus-i4217-b": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.682243902438987,
+          "p95": 16.923,
+          "p99": 17.245,
+          "max": 49.214
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.5229871631510298,
+          "p95": 0.987999975681305,
+          "p99": 1.69799995422363,
+          "max": 1.94200003147125
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 24.797,
+            "frame_ms": 49.214,
+            "ai": 2,
+            "time_s": 1.58683
+          },
+          {
+            "id": 2,
+            "create_ms": 1.574,
+            "frame_ms": 49.214,
+            "ai": 2,
+            "time_s": 1.588414
+          },
+          {
+            "id": 3,
+            "create_ms": 1.739,
+            "frame_ms": 49.214,
+            "ai": 2,
+            "time_s": 1.590158
+          },
+          {
+            "id": 4,
+            "create_ms": 1.828,
+            "frame_ms": 22.193,
+            "ai": 3,
+            "time_s": 7.580625
+          },
+          {
+            "id": 5,
+            "create_ms": 1.619,
+            "frame_ms": 22.193,
+            "ai": 3,
+            "time_s": 7.582252
+          },
+          {
+            "id": 6,
+            "create_ms": 1.765,
+            "frame_ms": 22.193,
+            "ai": 3,
+            "time_s": 7.584024
+          }
+        ],
+        "duration_s": 13.005262
+      }
+    },
+    "stages_ms": {
+      "badge.label_new": {
+        "n": 6,
+        "mean": 0.02266666666666667,
+        "p95": 0.035,
+        "p99": 0.035,
+        "max": 0.035
+      },
+      "badge.properties_including_label": {
+        "n": 6,
+        "mean": 0.061,
+        "p95": 0.097,
+        "p99": 0.097,
+        "max": 0.097
+      },
+      "badge.tree_add": {
+        "n": 6,
+        "mean": 0.04566666666666667,
+        "p95": 0.063,
+        "p99": 0.063,
+        "max": 0.063
+      },
+      "draw.first": {
+        "n": 6,
+        "mean": 0.04516666666666667,
+        "p95": 0.061,
+        "p99": 0.061,
+        "max": 0.061
+      },
+      "instantiate": {
+        "n": 6,
+        "mean": 0.021666666666666667,
+        "p95": 0.033,
+        "p99": 0.033,
+        "max": 0.033
+      },
+      "kind_select": {
+        "n": 6,
+        "mean": 0.0006666666666666666,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "position": {
+        "n": 6,
+        "mean": 1.4671666666666665,
+        "p95": 1.568,
+        "p99": 1.568,
+        "max": 1.568
+      },
+      "post_tree": {
+        "n": 6,
+        "mean": 0.004166666666666667,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 6,
+        "mean": 0.11216666666666668,
+        "p95": 0.167,
+        "p99": 0.167,
+        "max": 0.167
+      },
+      "ready.badge_update": {
+        "n": 6,
+        "mean": 0.041833333333333333,
+        "p95": 0.063,
+        "p99": 0.063,
+        "max": 0.063
+      },
+      "ready.group": {
+        "n": 6,
+        "mean": 0.0011666666666666668,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "ready.monitor": {
+        "n": 6,
+        "mean": 0.0026666666666666666,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "ready.sensor_config": {
+        "n": 6,
+        "mean": 0.003833333333333334,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "ready.total": {
+        "n": 6,
+        "mean": 0.16966666666666666,
+        "p95": 0.225,
+        "p99": 0.225,
+        "max": 0.225
+      },
+      "setup": {
+        "n": 6,
+        "mean": 0.0018333333333333333,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "total": {
+        "n": 6,
+        "mean": 5.553666666666667,
+        "p95": 24.797,
+        "p99": 24.797,
+        "max": 24.797
+      },
+      "tree_add_including_ready": {
+        "n": 6,
+        "mean": 0.19216666666666668,
+        "p95": 0.265,
+        "p99": 0.265,
+        "max": 0.265
+      },
+      "weapon_load_cached": {
+        "n": 4,
+        "mean": 0.005,
+        "p95": 0.007,
+        "p99": 0.007,
+        "max": 0.007
+      },
+      "weapon_load_uncached": {
+        "n": 1,
+        "mean": 23.044,
+        "p95": 23.044,
+        "p99": 23.044,
+        "max": 23.044
+      }
+    },
+    "forced_stages_ms": {
+      "position": {
+        "n": 5,
+        "mean": 1.4536,
+        "p95": 1.494,
+        "p99": 1.494,
+        "max": 1.494
+      },
+      "instantiate": {
+        "n": 5,
+        "mean": 0.0274,
+        "p95": 0.034,
+        "p99": 0.034,
+        "max": 0.034
+      },
+      "weapon_load": {
+        "n": 2,
+        "mean": 0.0055,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 5,
+        "mean": 0.20099999999999998,
+        "p95": 0.26,
+        "p99": 0.26,
+        "max": 0.26
+      },
+      "tree_add_including_ready": {
+        "n": 5,
+        "mean": 0.22679999999999997,
+        "p95": 0.29,
+        "p99": 0.29,
+        "max": 0.29
+      },
+      "total": {
+        "n": 5,
+        "mean": 1.7396,
+        "p95": 1.808,
+        "p99": 1.808,
+        "max": 1.808
+      }
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240544,
+        "godot_static_bytes": 44627452.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 256756,
+        "godot_static_bytes": 51376882.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 267548,
+        "godot_static_bytes": 53805200.0,
+        "godot_video_bytes": 337214263.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      },
+      "after_all": {
+        "rss_kb": 267548,
+        "godot_static_bytes": 53812304.0,
+        "godot_video_bytes": 337201975.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1744
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1727
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1778
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1704
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1824
+      }
+    ]
+  },
+  "bonus-i4217-combat": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.680500641848514,
+          "p95": 16.954,
+          "p99": 17.224,
+          "max": 48.835
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.6047483937807658,
+          "p95": 0.90200001001358,
+          "p99": 2.0699999332428,
+          "max": 5.9060001373291
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 24.73,
+            "frame_ms": 48.835,
+            "ai": 2,
+            "time_s": 1.585311
+          },
+          {
+            "id": 2,
+            "create_ms": 1.669,
+            "frame_ms": 48.835,
+            "ai": 2,
+            "time_s": 1.586988
+          },
+          {
+            "id": 3,
+            "create_ms": 1.724,
+            "frame_ms": 48.835,
+            "ai": 2,
+            "time_s": 1.588719
+          },
+          {
+            "id": 4,
+            "create_ms": 1.883,
+            "frame_ms": 22.189,
+            "ai": 3,
+            "time_s": 7.595718
+          },
+          {
+            "id": 5,
+            "create_ms": 1.571,
+            "frame_ms": 22.189,
+            "ai": 3,
+            "time_s": 7.597297
+          },
+          {
+            "id": 6,
+            "create_ms": 1.771,
+            "frame_ms": 22.189,
+            "ai": 3,
+            "time_s": 7.599075
+          }
+        ],
+        "duration_s": 13.008702
+      }
+    },
+    "stages_ms": {
+      "badge.label_new": {
+        "n": 6,
+        "mean": 0.021166666666666667,
+        "p95": 0.034,
+        "p99": 0.034,
+        "max": 0.034
+      },
+      "badge.properties_including_label": {
+        "n": 6,
+        "mean": 0.057166666666666664,
+        "p95": 0.097,
+        "p99": 0.097,
+        "max": 0.097
+      },
+      "badge.tree_add": {
+        "n": 6,
+        "mean": 0.04583333333333333,
+        "p95": 0.059,
+        "p99": 0.059,
+        "max": 0.059
+      },
+      "draw.first": {
+        "n": 6,
+        "mean": 0.042666666666666665,
+        "p95": 0.054,
+        "p99": 0.054,
+        "max": 0.054
+      },
+      "instantiate": {
+        "n": 6,
+        "mean": 0.021333333333333333,
+        "p95": 0.034,
+        "p99": 0.034,
+        "max": 0.034
+      },
+      "kind_select": {
+        "n": 6,
+        "mean": 0.0008333333333333334,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "position": {
+        "n": 6,
+        "mean": 1.4856666666666667,
+        "p95": 1.602,
+        "p99": 1.602,
+        "max": 1.602
+      },
+      "post_tree": {
+        "n": 6,
+        "mean": 0.0045000000000000005,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 6,
+        "mean": 0.108,
+        "p95": 0.162,
+        "p99": 0.162,
+        "max": 0.162
+      },
+      "ready.badge_update": {
+        "n": 6,
+        "mean": 0.0405,
+        "p95": 0.06,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "ready.group": {
+        "n": 6,
+        "mean": 0.001,
+        "p95": 0.001,
+        "p99": 0.001,
+        "max": 0.001
+      },
+      "ready.monitor": {
+        "n": 6,
+        "mean": 0.0026666666666666666,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "ready.sensor_config": {
+        "n": 6,
+        "mean": 0.0034999999999999996,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 6,
+        "mean": 0.16416666666666666,
+        "p95": 0.219,
+        "p99": 0.219,
+        "max": 0.219
+      },
+      "setup": {
+        "n": 6,
+        "mean": 0.0018333333333333333,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "total": {
+        "n": 6,
+        "mean": 5.558,
+        "p95": 24.73,
+        "p99": 24.73,
+        "max": 24.73
+      },
+      "tree_add_including_ready": {
+        "n": 6,
+        "mean": 0.18566666666666665,
+        "p95": 0.255,
+        "p99": 0.255,
+        "max": 0.255
+      },
+      "weapon_load_cached": {
+        "n": 4,
+        "mean": 0.0045000000000000005,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "weapon_load_uncached": {
+        "n": 1,
+        "mean": 23.004,
+        "p95": 23.004,
+        "p99": 23.004,
+        "max": 23.004
+      }
+    },
+    "forced_stages_ms": {
+      "position": {
+        "n": 5,
+        "mean": 1.4314,
+        "p95": 1.475,
+        "p99": 1.475,
+        "max": 1.475
+      },
+      "instantiate": {
+        "n": 5,
+        "mean": 0.0262,
+        "p95": 0.027,
+        "p99": 0.027,
+        "max": 0.027
+      },
+      "weapon_load": {
+        "n": 2,
+        "mean": 0.006500000000000001,
+        "p95": 0.007,
+        "p99": 0.007,
+        "max": 0.007
+      },
+      "ready.total": {
+        "n": 5,
+        "mean": 0.19519999999999998,
+        "p95": 0.21,
+        "p99": 0.21,
+        "max": 0.21
+      },
+      "tree_add_including_ready": {
+        "n": 5,
+        "mean": 0.22080000000000002,
+        "p95": 0.236,
+        "p99": 0.236,
+        "max": 0.236
+      },
+      "total": {
+        "n": 5,
+        "mean": 1.7064,
+        "p95": 1.765,
+        "p99": 1.765,
+        "max": 1.765
+      }
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240716,
+        "godot_static_bytes": 44627492.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 257304,
+        "godot_static_bytes": 51377878.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 268316,
+        "godot_static_bytes": 54137034.0,
+        "godot_video_bytes": 337195495.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      },
+      "after_all": {
+        "rss_kb": 268320,
+        "godot_static_bytes": 54183870.0,
+        "godot_video_bytes": 337189351.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1781
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1718
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1743
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1669
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1694
+      }
+    ]
+  },
+  "bonus-i4217-memory": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 780,
+          "mean": 16.67170256410255,
+          "p95": 16.97,
+          "p99": 17.193,
+          "max": 49.183
+        },
+        "gpu_ms": {
+          "n": 780,
+          "mean": 0.5341089744598437,
+          "p95": 1.40799999237061,
+          "p99": 1.76999998092651,
+          "max": 1.93299996852875
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 24.899,
+            "frame_ms": 49.183,
+            "ai": 2,
+            "time_s": 1.57871
+          },
+          {
+            "id": 2,
+            "create_ms": 1.551,
+            "frame_ms": 49.183,
+            "ai": 2,
+            "time_s": 1.580271
+          },
+          {
+            "id": 3,
+            "create_ms": 1.739,
+            "frame_ms": 49.183,
+            "ai": 2,
+            "time_s": 1.582016
+          },
+          {
+            "id": 4,
+            "create_ms": 1.85,
+            "frame_ms": 22.437,
+            "ai": 3,
+            "time_s": 7.588965
+          },
+          {
+            "id": 5,
+            "create_ms": 1.536,
+            "frame_ms": 22.437,
+            "ai": 3,
+            "time_s": 7.590508
+          },
+          {
+            "id": 6,
+            "create_ms": 1.73,
+            "frame_ms": 22.437,
+            "ai": 3,
+            "time_s": 7.592244
+          }
+        ],
+        "duration_s": 13.013744
+      },
+      "restart_00_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.666895833333328,
+          "p95": 16.911,
+          "p99": 17.109,
+          "max": 44.553
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.3996875021192763,
+          "p95": 0.742999970912933,
+          "p99": 1.15900003910065,
+          "max": 1.50300002098083
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 7,
+            "create_ms": 23.951,
+            "frame_ms": 44.553,
+            "ai": 2,
+            "time_s": 1.807458
+          },
+          {
+            "id": 8,
+            "create_ms": 1.535,
+            "frame_ms": 44.553,
+            "ai": 2,
+            "time_s": 1.809003
+          },
+          {
+            "id": 9,
+            "create_ms": 1.829,
+            "frame_ms": 44.553,
+            "ai": 2,
+            "time_s": 1.810839
+          }
+        ],
+        "duration_s": 2.412045
+      },
+      "restart_01_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.6665138888889,
+          "p95": 16.927,
+          "p99": 17.001,
+          "max": 44.32
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.4064097226493889,
+          "p95": 0.967999994754791,
+          "p99": 1.17900002002716,
+          "max": 1.19099998474121
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 10,
+            "create_ms": 23.98,
+            "frame_ms": 44.32,
+            "ai": 2,
+            "time_s": 1.807461
+          },
+          {
+            "id": 11,
+            "create_ms": 1.553,
+            "frame_ms": 44.32,
+            "ai": 2,
+            "time_s": 1.809024
+          },
+          {
+            "id": 12,
+            "create_ms": 1.753,
+            "frame_ms": 44.32,
+            "ai": 2,
+            "time_s": 1.810784
+          }
+        ],
+        "duration_s": 2.412745
+      },
+      "restart_02_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.66688888888889,
+          "p95": 16.925,
+          "p99": 16.974,
+          "max": 44.488
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.3832777777893676,
+          "p95": 0.705999970436096,
+          "p99": 0.99099999666214,
+          "max": 1.02799999713898
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 13,
+            "create_ms": 23.887,
+            "frame_ms": 44.488,
+            "ai": 2,
+            "time_s": 1.807294
+          },
+          {
+            "id": 14,
+            "create_ms": 1.534,
+            "frame_ms": 44.488,
+            "ai": 2,
+            "time_s": 1.808838
+          },
+          {
+            "id": 15,
+            "create_ms": 1.744,
+            "frame_ms": 44.488,
+            "ai": 2,
+            "time_s": 1.810588
+          }
+        ],
+        "duration_s": 2.412736
+      },
+      "restart_03_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.665986111111113,
+          "p95": 16.92,
+          "p99": 17.113,
+          "max": 44.84
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.3928124987416798,
+          "p95": 0.726999998092651,
+          "p99": 1.09599995613098,
+          "max": 1.11099994182587
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 16,
+            "create_ms": 24.287,
+            "frame_ms": 44.84,
+            "ai": 2,
+            "time_s": 1.807534
+          },
+          {
+            "id": 17,
+            "create_ms": 1.594,
+            "frame_ms": 44.84,
+            "ai": 2,
+            "time_s": 1.809139
+          },
+          {
+            "id": 18,
+            "create_ms": 1.756,
+            "frame_ms": 44.84,
+            "ai": 2,
+            "time_s": 1.810903
+          }
+        ],
+        "duration_s": 2.412337
+      },
+      "restart_04_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.667423611111115,
+          "p95": 16.873,
+          "p99": 17.031,
+          "max": 44.723
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.3921597221245368,
+          "p95": 0.755999982357025,
+          "p99": 0.986999988555908,
+          "max": 1.03600001335144
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 19,
+            "create_ms": 24.198,
+            "frame_ms": 44.723,
+            "ai": 2,
+            "time_s": 1.80759
+          },
+          {
+            "id": 20,
+            "create_ms": 1.595,
+            "frame_ms": 44.723,
+            "ai": 2,
+            "time_s": 1.809196
+          },
+          {
+            "id": 21,
+            "create_ms": 1.746,
+            "frame_ms": 44.723,
+            "ai": 2,
+            "time_s": 1.810949
+          }
+        ],
+        "duration_s": 2.412347
+      },
+      "restart_05_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.66640277777778,
+          "p95": 16.923,
+          "p99": 17.104,
+          "max": 44.552
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.4040347213546436,
+          "p95": 0.927999973297119,
+          "p99": 1.06099998950958,
+          "max": 1.18900001049042
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 22,
+            "create_ms": 23.955,
+            "frame_ms": 44.552,
+            "ai": 2,
+            "time_s": 1.807312
+          },
+          {
+            "id": 23,
+            "create_ms": 1.539,
+            "frame_ms": 44.552,
+            "ai": 2,
+            "time_s": 1.808862
+          },
+          {
+            "id": 24,
+            "create_ms": 1.746,
+            "frame_ms": 44.552,
+            "ai": 2,
+            "time_s": 1.810615
+          }
+        ],
+        "duration_s": 2.411707
+      },
+      "restart_06_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.6659375,
+          "p95": 16.937,
+          "p99": 17.047,
+          "max": 44.487
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.4006180556284057,
+          "p95": 0.939000010490417,
+          "p99": 1.317999958992,
+          "max": 1.34300005435944
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 25,
+            "create_ms": 24.1,
+            "frame_ms": 44.487,
+            "ai": 2,
+            "time_s": 1.807234
+          },
+          {
+            "id": 26,
+            "create_ms": 1.543,
+            "frame_ms": 44.487,
+            "ai": 2,
+            "time_s": 1.808788
+          },
+          {
+            "id": 27,
+            "create_ms": 1.736,
+            "frame_ms": 44.487,
+            "ai": 2,
+            "time_s": 1.810531
+          }
+        ],
+        "duration_s": 2.411736
+      },
+      "restart_07_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.667340277777782,
+          "p95": 16.899,
+          "p99": 17.02,
+          "max": 44.586
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.39531250070366597,
+          "p95": 0.73199999332428,
+          "p99": 1.00600004196167,
+          "max": 1.12800002098083
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 28,
+            "create_ms": 24.153,
+            "frame_ms": 44.586,
+            "ai": 2,
+            "time_s": 1.807507
+          },
+          {
+            "id": 29,
+            "create_ms": 1.556,
+            "frame_ms": 44.586,
+            "ai": 2,
+            "time_s": 1.809074
+          },
+          {
+            "id": 30,
+            "create_ms": 1.743,
+            "frame_ms": 44.586,
+            "ai": 2,
+            "time_s": 1.810824
+          }
+        ],
+        "duration_s": 2.4124
+      },
+      "restart_08_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.66749305555555,
+          "p95": 16.89,
+          "p99": 17.094,
+          "max": 44.59
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.3991666682478454,
+          "p95": 0.740000009536743,
+          "p99": 1.13300001621246,
+          "max": 1.13499999046326
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 31,
+            "create_ms": 24.0,
+            "frame_ms": 44.59,
+            "ai": 2,
+            "time_s": 1.807277
+          },
+          {
+            "id": 32,
+            "create_ms": 1.547,
+            "frame_ms": 44.59,
+            "ai": 2,
+            "time_s": 1.808839
+          },
+          {
+            "id": 33,
+            "create_ms": 1.85,
+            "frame_ms": 44.59,
+            "ai": 2,
+            "time_s": 1.810696
+          }
+        ],
+        "duration_s": 2.412351
+      },
+      "restart_09_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.664465277777783,
+          "p95": 16.847,
+          "p99": 16.959,
+          "max": 44.716
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.3905069451365206,
+          "p95": 0.782000005245209,
+          "p99": 1.07200002670288,
+          "max": 1.0789999961853
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 34,
+            "create_ms": 23.958,
+            "frame_ms": 44.716,
+            "ai": 2,
+            "time_s": 1.807303
+          },
+          {
+            "id": 35,
+            "create_ms": 1.56,
+            "frame_ms": 44.716,
+            "ai": 2,
+            "time_s": 1.808873
+          },
+          {
+            "id": 36,
+            "create_ms": 1.765,
+            "frame_ms": 44.716,
+            "ai": 2,
+            "time_s": 1.810645
+          }
+        ],
+        "duration_s": 2.411422
+      },
+      "menu_reentry_00_supply": {
+        "frame": {
+          "n": 145,
+          "mean": 16.636579310344832,
+          "p95": 16.891,
+          "p99": 16.93,
+          "max": 46.943
+        },
+        "gpu_ms": {
+          "n": 145,
+          "mean": 0.5842758620607442,
+          "p95": 1.01400005817413,
+          "p99": 1.51800000667572,
+          "max": 1.53600001335144
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 37,
+            "create_ms": 26.329,
+            "frame_ms": 46.943,
+            "ai": 2,
+            "time_s": 1.78845
+          },
+          {
+            "id": 38,
+            "create_ms": 1.543,
+            "frame_ms": 46.943,
+            "ai": 2,
+            "time_s": 1.790001
+          },
+          {
+            "id": 39,
+            "create_ms": 1.734,
+            "frame_ms": 46.943,
+            "ai": 2,
+            "time_s": 1.791742
+          }
+        ],
+        "duration_s": 2.413984
+      },
+      "menu_reentry_01_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.661513888888887,
+          "p95": 16.881,
+          "p99": 17.037,
+          "max": 44.74
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.577340279188421,
+          "p95": 0.949999988079071,
+          "p99": 1.37899994850159,
+          "max": 1.55099999904633
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 40,
+            "create_ms": 24.028,
+            "frame_ms": 44.74,
+            "ai": 2,
+            "time_s": 1.806299
+          },
+          {
+            "id": 41,
+            "create_ms": 1.561,
+            "frame_ms": 44.74,
+            "ai": 2,
+            "time_s": 1.80787
+          },
+          {
+            "id": 42,
+            "create_ms": 1.777,
+            "frame_ms": 44.74,
+            "ai": 2,
+            "time_s": 1.809652
+          }
+        ],
+        "duration_s": 2.400794
+      },
+      "menu_reentry_02_supply": {
+        "frame": {
+          "n": 145,
+          "mean": 16.646931034482755,
+          "p95": 16.919,
+          "p99": 17.086,
+          "max": 44.807
+        },
+        "gpu_ms": {
+          "n": 145,
+          "mean": 0.5991724135546849,
+          "p95": 1.25699996948242,
+          "p99": 1.64900004863739,
+          "max": 1.67799997329712
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 43,
+            "create_ms": 23.966,
+            "frame_ms": 44.807,
+            "ai": 2,
+            "time_s": 1.804428
+          },
+          {
+            "id": 44,
+            "create_ms": 1.547,
+            "frame_ms": 44.807,
+            "ai": 2,
+            "time_s": 1.805991
+          },
+          {
+            "id": 45,
+            "create_ms": 1.757,
+            "frame_ms": 44.807,
+            "ai": 2,
+            "time_s": 1.807753
+          }
+        ],
+        "duration_s": 2.415683
+      },
+      "menu_reentry_03_supply": {
+        "frame": {
+          "n": 145,
+          "mean": 16.650144827586207,
+          "p95": 16.911,
+          "p99": 17.036,
+          "max": 44.883
+        },
+        "gpu_ms": {
+          "n": 145,
+          "mean": 0.5793724136105899,
+          "p95": 0.898999989032745,
+          "p99": 1.34399998188019,
+          "max": 1.36699998378754
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 46,
+            "create_ms": 23.961,
+            "frame_ms": 44.883,
+            "ai": 2,
+            "time_s": 1.804962
+          },
+          {
+            "id": 47,
+            "create_ms": 1.531,
+            "frame_ms": 44.883,
+            "ai": 2,
+            "time_s": 1.806503
+          },
+          {
+            "id": 48,
+            "create_ms": 1.855,
+            "frame_ms": 44.883,
+            "ai": 2,
+            "time_s": 1.808364
+          }
+        ],
+        "duration_s": 2.415914
+      },
+      "menu_reentry_04_supply": {
+        "frame": {
+          "n": 144,
+          "mean": 16.65795138888889,
+          "p95": 16.916,
+          "p99": 17.037,
+          "max": 44.655
+        },
+        "gpu_ms": {
+          "n": 144,
+          "mean": 0.5777708337538772,
+          "p95": 0.890999972820282,
+          "p99": 1.30599999427795,
+          "max": 1.35800004005432
+        },
+        "active_ai_max": 2,
+        "create_frames": [
+          {
+            "id": 49,
+            "create_ms": 23.953,
+            "frame_ms": 44.655,
+            "ai": 2,
+            "time_s": 1.789326
+          },
+          {
+            "id": 50,
+            "create_ms": 1.533,
+            "frame_ms": 44.655,
+            "ai": 2,
+            "time_s": 1.790868
+          },
+          {
+            "id": 51,
+            "create_ms": 1.725,
+            "frame_ms": 44.655,
+            "ai": 2,
+            "time_s": 1.792599
+          }
+        ],
+        "duration_s": 2.400213
+      }
+    },
+    "stages_ms": {
+      "active_register": {
+        "n": 6,
+        "mean": 0.0023333333333333335,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "announce_signal": {
+        "n": 17,
+        "mean": 0.2061764705882353,
+        "p95": 0.47,
+        "p99": 0.47,
+        "max": 0.47
+      },
+      "arm_activation": {
+        "n": 6,
+        "mean": 0.031166666666666665,
+        "p95": 0.054,
+        "p99": 0.054,
+        "max": 0.054
+      },
+      "badge.label_new": {
+        "n": 51,
+        "mean": 0.023921568627450988,
+        "p95": 0.037,
+        "p99": 0.04,
+        "max": 0.04
+      },
+      "badge.properties_including_label": {
+        "n": 51,
+        "mean": 0.06268627450980394,
+        "p95": 0.1,
+        "p99": 0.105,
+        "max": 0.105
+      },
+      "badge.tree_add": {
+        "n": 51,
+        "mean": 0.04380392156862745,
+        "p95": 0.051,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "draw.first": {
+        "n": 51,
+        "mean": 0.04243137254901961,
+        "p95": 0.058,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "instantiate": {
+        "n": 51,
+        "mean": 0.020039215686274522,
+        "p95": 0.027,
+        "p99": 0.029,
+        "max": 0.029
+      },
+      "kind_select": {
+        "n": 51,
+        "mean": 0.0009607843137254904,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "position": {
+        "n": 51,
+        "mean": 1.4550196078431368,
+        "p95": 1.641,
+        "p99": 1.654,
+        "max": 1.654
+      },
+      "post_tree": {
+        "n": 51,
+        "mean": 0.004450980392156866,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 51,
+        "mean": 0.11249019607843136,
+        "p95": 0.159,
+        "p99": 0.164,
+        "max": 0.164
+      },
+      "ready.badge_update": {
+        "n": 51,
+        "mean": 0.035333333333333335,
+        "p95": 0.047,
+        "p99": 0.083,
+        "max": 0.083
+      },
+      "ready.group": {
+        "n": 51,
+        "mean": 0.0010588235294117655,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "ready.monitor": {
+        "n": 51,
+        "mean": 0.0030000000000000022,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "ready.sensor_config": {
+        "n": 51,
+        "mean": 0.004000000000000003,
+        "p95": 0.006,
+        "p99": 0.007,
+        "max": 0.007
+      },
+      "ready.total": {
+        "n": 51,
+        "mean": 0.16511764705882356,
+        "p95": 0.217,
+        "p99": 0.226,
+        "max": 0.226
+      },
+      "setup": {
+        "n": 51,
+        "mean": 0.002156862745098041,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "spawn_signal": {
+        "n": 6,
+        "mean": 0.0008333333333333334,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "total": {
+        "n": 51,
+        "mean": 8.741137254901961,
+        "p95": 24.287,
+        "p99": 26.329,
+        "max": 26.329
+      },
+      "tree_add_including_ready": {
+        "n": 51,
+        "mean": 0.1889607843137255,
+        "p95": 0.255,
+        "p99": 0.266,
+        "max": 0.266
+      },
+      "weapon_load_cached": {
+        "n": 24,
+        "mean": 0.004208333333333336,
+        "p95": 0.005,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "weapon_load_uncached": {
+        "n": 16,
+        "mean": 22.454625000000004,
+        "p95": 24.562,
+        "p99": 24.562,
+        "max": 24.562
+      }
+    },
+    "forced_stages_ms": {
+      "position": null,
+      "instantiate": null,
+      "weapon_load": null,
+      "ready.total": null,
+      "tree_add_including_ready": null,
+      "total": null
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240876,
+        "godot_static_bytes": 44635356.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 257540,
+        "godot_static_bytes": 51384786.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 268340,
+        "godot_static_bytes": 53848360.0,
+        "godot_video_bytes": 337214263.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      },
+      "restart_00_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 53361388.0,
+        "godot_video_bytes": 337140875.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_01_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 53512252.0,
+        "godot_video_bytes": 337141691.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_02_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 53656096.0,
+        "godot_video_bytes": 337141691.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_03_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 53796780.0,
+        "godot_video_bytes": 337140875.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_04_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 53939572.0,
+        "godot_video_bytes": 337140875.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_05_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 54093592.0,
+        "godot_video_bytes": 337141691.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_06_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 54231364.0,
+        "godot_video_bytes": 337140875.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_07_supply_end": {
+        "rss_kb": 268616,
+        "godot_static_bytes": 54373556.0,
+        "godot_video_bytes": 337140875.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_08_supply_end": {
+        "rss_kb": 268628,
+        "godot_static_bytes": 54515980.0,
+        "godot_video_bytes": 337140875.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "restart_09_supply_end": {
+        "rss_kb": 268652,
+        "godot_static_bytes": 54664584.0,
+        "godot_video_bytes": 337141691.0,
+        "godot_texture_bytes": 326055847.0,
+        "resources": 186.0
+      },
+      "menu_reentry_00_supply_end": {
+        "rss_kb": 292716,
+        "godot_static_bytes": 57263882.0,
+        "godot_video_bytes": 356951207.0,
+        "godot_texture_bytes": 343728043.0,
+        "resources": 203.0
+      },
+      "menu_reentry_01_supply_end": {
+        "rss_kb": 293472,
+        "godot_static_bytes": 57407134.0,
+        "godot_video_bytes": 356951207.0,
+        "godot_texture_bytes": 343728043.0,
+        "resources": 203.0
+      },
+      "menu_reentry_02_supply_end": {
+        "rss_kb": 293668,
+        "godot_static_bytes": 57550642.0,
+        "godot_video_bytes": 356951207.0,
+        "godot_texture_bytes": 343728043.0,
+        "resources": 203.0
+      },
+      "menu_reentry_03_supply_end": {
+        "rss_kb": 293860,
+        "godot_static_bytes": 57700338.0,
+        "godot_video_bytes": 356952023.0,
+        "godot_texture_bytes": 343728043.0,
+        "resources": 203.0
+      },
+      "menu_reentry_04_supply_end": {
+        "rss_kb": 294044,
+        "godot_static_bytes": 57837970.0,
+        "godot_video_bytes": 356951207.0,
+        "godot_texture_bytes": 343728043.0,
+        "resources": 203.0
+      },
+      "after_all": {
+        "rss_kb": 294052,
+        "godot_static_bytes": 57838242.0,
+        "godot_video_bytes": 356951207.0,
+        "godot_texture_bytes": 343728043.0,
+        "resources": 203.0
+      }
+    },
+    "forced_spawns": []
+  },
+  "bonus-i4217-menu": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 778,
+          "mean": 16.707868894601525,
+          "p95": 16.917,
+          "p99": 17.139,
+          "max": 57.326
+        },
+        "gpu_ms": {
+          "n": 778,
+          "mean": 0.6880616968195972,
+          "p95": 0.984000027179718,
+          "p99": 2.0220000743866,
+          "max": 2.46199989318848
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 26.82,
+            "frame_ms": 50.477,
+            "ai": 2,
+            "time_s": 1.791994
+          },
+          {
+            "id": 2,
+            "create_ms": 1.575,
+            "frame_ms": 50.477,
+            "ai": 2,
+            "time_s": 1.793579
+          },
+          {
+            "id": 3,
+            "create_ms": 1.688,
+            "frame_ms": 50.477,
+            "ai": 2,
+            "time_s": 1.795273
+          },
+          {
+            "id": 4,
+            "create_ms": 1.905,
+            "frame_ms": 57.326,
+            "ai": 3,
+            "time_s": 7.78384
+          },
+          {
+            "id": 5,
+            "create_ms": 23.888,
+            "frame_ms": 57.326,
+            "ai": 3,
+            "time_s": 7.807735
+          },
+          {
+            "id": 6,
+            "create_ms": 13.494,
+            "frame_ms": 57.326,
+            "ai": 3,
+            "time_s": 7.821238
+          }
+        ],
+        "duration_s": 13.000825
+      },
+      "after_menu_reentry_batches": {
+        "frame": {
+          "n": 780,
+          "mean": 16.685420512820514,
+          "p95": 16.956,
+          "p99": 17.151,
+          "max": 55.223
+        },
+        "gpu_ms": {
+          "n": 780,
+          "mean": 0.7110807686279982,
+          "p95": 1.5,
+          "p99": 1.90900003910065,
+          "max": 2.04699993133545
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 7,
+            "create_ms": 23.839,
+            "frame_ms": 44.509,
+            "ai": 2,
+            "time_s": 1.788248
+          },
+          {
+            "id": 8,
+            "create_ms": 1.529,
+            "frame_ms": 44.509,
+            "ai": 2,
+            "time_s": 1.789786
+          },
+          {
+            "id": 9,
+            "create_ms": 1.734,
+            "frame_ms": 44.509,
+            "ai": 2,
+            "time_s": 1.791527
+          },
+          {
+            "id": 10,
+            "create_ms": 1.766,
+            "frame_ms": 55.223,
+            "ai": 3,
+            "time_s": 7.782766
+          },
+          {
+            "id": 11,
+            "create_ms": 23.294,
+            "frame_ms": 55.223,
+            "ai": 3,
+            "time_s": 7.80607
+          },
+          {
+            "id": 12,
+            "create_ms": 13.196,
+            "frame_ms": 55.223,
+            "ai": 3,
+            "time_s": 7.819275
+          }
+        ],
+        "duration_s": 13.01626
+      }
+    },
+    "stages_ms": {
+      "badge.label_new": {
+        "n": 12,
+        "mean": 0.026250000000000006,
+        "p95": 0.034,
+        "p99": 0.034,
+        "max": 0.034
+      },
+      "badge.properties_including_label": {
+        "n": 12,
+        "mean": 0.07708333333333332,
+        "p95": 0.147,
+        "p99": 0.147,
+        "max": 0.147
+      },
+      "badge.tree_add": {
+        "n": 12,
+        "mean": 0.04683333333333334,
+        "p95": 0.058,
+        "p99": 0.058,
+        "max": 0.058
+      },
+      "draw.first": {
+        "n": 12,
+        "mean": 0.04424999999999999,
+        "p95": 0.064,
+        "p99": 0.064,
+        "max": 0.064
+      },
+      "instantiate": {
+        "n": 12,
+        "mean": 0.021166666666666667,
+        "p95": 0.032,
+        "p99": 0.032,
+        "max": 0.032
+      },
+      "kind_select": {
+        "n": 12,
+        "mean": 0.0006666666666666666,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "position": {
+        "n": 12,
+        "mean": 1.5047499999999998,
+        "p95": 1.751,
+        "p99": 1.751,
+        "max": 1.751
+      },
+      "post_tree": {
+        "n": 12,
+        "mean": 0.004833333333333333,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 12,
+        "mean": 0.12966666666666665,
+        "p95": 0.204,
+        "p99": 0.204,
+        "max": 0.204
+      },
+      "ready.badge_update": {
+        "n": 12,
+        "mean": 0.03741666666666666,
+        "p95": 0.05,
+        "p99": 0.05,
+        "max": 0.05
+      },
+      "ready.group": {
+        "n": 12,
+        "mean": 0.0014166666666666668,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "ready.monitor": {
+        "n": 12,
+        "mean": 0.0031666666666666666,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "ready.sensor_config": {
+        "n": 12,
+        "mean": 0.0045,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 12,
+        "mean": 0.18499999999999997,
+        "p95": 0.263,
+        "p99": 0.263,
+        "max": 0.263
+      },
+      "setup": {
+        "n": 12,
+        "mean": 0.0026666666666666666,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "total": {
+        "n": 12,
+        "mean": 11.227333333333334,
+        "p95": 26.82,
+        "p99": 26.82,
+        "max": 26.82
+      },
+      "tree_add_including_ready": {
+        "n": 12,
+        "mean": 0.2141666666666667,
+        "p95": 0.293,
+        "p99": 0.293,
+        "max": 0.293
+      },
+      "weapon_load_cached": {
+        "n": 4,
+        "mean": 0.0055000000000000005,
+        "p95": 0.007,
+        "p99": 0.007,
+        "max": 0.007
+      },
+      "weapon_load_uncached": {
+        "n": 6,
+        "mean": 18.9075,
+        "p95": 25.041,
+        "p99": 25.041,
+        "max": 25.041
+      }
+    },
+    "forced_stages_ms": {
+      "position": {
+        "n": 5,
+        "mean": 1.4069999999999998,
+        "p95": 1.425,
+        "p99": 1.425,
+        "max": 1.425
+      },
+      "instantiate": {
+        "n": 5,
+        "mean": 0.0256,
+        "p95": 0.027,
+        "p99": 0.027,
+        "max": 0.027
+      },
+      "weapon_load": {
+        "n": 2,
+        "mean": 0.006,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 5,
+        "mean": 0.18319999999999997,
+        "p95": 0.192,
+        "p99": 0.192,
+        "max": 0.192
+      },
+      "tree_add_including_ready": {
+        "n": 5,
+        "mean": 0.2072,
+        "p95": 0.218,
+        "p99": 0.218,
+        "max": 0.218
+      },
+      "total": {
+        "n": 5,
+        "mean": 1.669,
+        "p95": 1.708,
+        "p99": 1.708,
+        "max": 1.708
+      }
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240820,
+        "godot_static_bytes": 44627460.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 279172,
+        "godot_static_bytes": 54221052.0,
+        "godot_video_bytes": 346299429.0,
+        "godot_texture_bytes": 335252057.0,
+        "resources": 201.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 294900,
+        "godot_static_bytes": 56367566.0,
+        "godot_video_bytes": 371697463.0,
+        "godot_texture_bytes": 360520399.0,
+        "resources": 207.0
+      },
+      "after_menu_reentry": {
+        "rss_kb": 295548,
+        "godot_static_bytes": 55068804.0,
+        "godot_video_bytes": 346343121.0,
+        "godot_texture_bytes": 335295749.0,
+        "resources": 201.0
+      },
+      "after_menu_reentry_batches_end": {
+        "rss_kb": 295888,
+        "godot_static_bytes": 56853186.0,
+        "godot_video_bytes": 373789149.0,
+        "godot_texture_bytes": 360476709.0,
+        "resources": 207.0
+      },
+      "after_all": {
+        "rss_kb": 295892,
+        "godot_static_bytes": 56822870.0,
+        "godot_video_bytes": 365361617.0,
+        "godot_texture_bytes": 352088105.0,
+        "resources": 205.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1724
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1674
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1683
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1688
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1651
+      }
+    ]
+  },
+  "bonus-i4217-post": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.68377150192554,
+          "p95": 16.956,
+          "p99": 17.144,
+          "max": 49.241
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.5292182286223337,
+          "p95": 0.998000025749207,
+          "p99": 1.80099999904633,
+          "max": 2.17499995231628
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 24.852,
+            "frame_ms": 49.241,
+            "ai": 2,
+            "time_s": 1.587775
+          },
+          {
+            "id": 2,
+            "create_ms": 1.559,
+            "frame_ms": 49.241,
+            "ai": 2,
+            "time_s": 1.589344
+          },
+          {
+            "id": 3,
+            "create_ms": 1.702,
+            "frame_ms": 49.241,
+            "ai": 2,
+            "time_s": 1.591051
+          },
+          {
+            "id": 4,
+            "create_ms": 1.767,
+            "frame_ms": 21.885,
+            "ai": 3,
+            "time_s": 7.581251
+          },
+          {
+            "id": 5,
+            "create_ms": 1.571,
+            "frame_ms": 21.885,
+            "ai": 3,
+            "time_s": 7.582831
+          },
+          {
+            "id": 6,
+            "create_ms": 1.718,
+            "frame_ms": 21.885,
+            "ai": 3,
+            "time_s": 7.584555
+          }
+        ],
+        "duration_s": 13.006272
+      }
+    },
+    "stages_ms": {
+      "active_register": {
+        "n": 6,
+        "mean": 0.0018333333333333333,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "announce_signal": {
+        "n": 2,
+        "mean": 0.24650000000000002,
+        "p95": 0.466,
+        "p99": 0.466,
+        "max": 0.466
+      },
+      "arm_activation": {
+        "n": 6,
+        "mean": 0.026000000000000006,
+        "p95": 0.044,
+        "p99": 0.044,
+        "max": 0.044
+      },
+      "badge.label_new": {
+        "n": 6,
+        "mean": 0.021500000000000002,
+        "p95": 0.034,
+        "p99": 0.034,
+        "max": 0.034
+      },
+      "badge.properties_including_label": {
+        "n": 6,
+        "mean": 0.057999999999999996,
+        "p95": 0.098,
+        "p99": 0.098,
+        "max": 0.098
+      },
+      "badge.tree_add": {
+        "n": 6,
+        "mean": 0.04533333333333334,
+        "p95": 0.06,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "draw.first": {
+        "n": 6,
+        "mean": 0.043000000000000003,
+        "p95": 0.057,
+        "p99": 0.057,
+        "max": 0.057
+      },
+      "instantiate": {
+        "n": 6,
+        "mean": 0.01983333333333333,
+        "p95": 0.027,
+        "p99": 0.027,
+        "max": 0.027
+      },
+      "kind_select": {
+        "n": 6,
+        "mean": 0.0006666666666666666,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "position": {
+        "n": 6,
+        "mean": 1.4353333333333333,
+        "p95": 1.52,
+        "p99": 1.52,
+        "max": 1.52
+      },
+      "post_tree": {
+        "n": 6,
+        "mean": 0.004,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "ready.badge_build": {
+        "n": 6,
+        "mean": 0.10866666666666668,
+        "p95": 0.165,
+        "p99": 0.165,
+        "max": 0.165
+      },
+      "ready.badge_update": {
+        "n": 6,
+        "mean": 0.04066666666666666,
+        "p95": 0.06,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "ready.group": {
+        "n": 6,
+        "mean": 0.0006666666666666666,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "ready.monitor": {
+        "n": 6,
+        "mean": 0.0036666666666666666,
+        "p95": 0.007,
+        "p99": 0.007,
+        "max": 0.007
+      },
+      "ready.sensor_config": {
+        "n": 6,
+        "mean": 0.003833333333333333,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 6,
+        "mean": 0.16633333333333333,
+        "p95": 0.222,
+        "p99": 0.222,
+        "max": 0.222
+      },
+      "setup": {
+        "n": 6,
+        "mean": 0.0018333333333333333,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "spawn_signal": {
+        "n": 6,
+        "mean": 0.0005,
+        "p95": 0.001,
+        "p99": 0.001,
+        "max": 0.001
+      },
+      "total": {
+        "n": 6,
+        "mean": 5.5281666666666665,
+        "p95": 24.852,
+        "p99": 24.852,
+        "max": 24.852
+      },
+      "tree_add_including_ready": {
+        "n": 6,
+        "mean": 0.18799999999999997,
+        "p95": 0.259,
+        "p99": 0.259,
+        "max": 0.259
+      },
+      "weapon_load_cached": {
+        "n": 4,
+        "mean": 0.00425,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "weapon_load_uncached": {
+        "n": 1,
+        "mean": 23.128,
+        "p95": 23.128,
+        "p99": 23.128,
+        "max": 23.128
+      }
+    },
+    "forced_stages_ms": {
+      "position": null,
+      "instantiate": null,
+      "weapon_load": null,
+      "ready.total": null,
+      "tree_add_including_ready": null,
+      "total": null
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240372,
+        "godot_static_bytes": 44632540.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 256396,
+        "godot_static_bytes": 51381970.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 267144,
+        "godot_static_bytes": 53827600.0,
+        "godot_video_bytes": 337214263.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      },
+      "after_all": {
+        "rss_kb": 267144,
+        "godot_static_bytes": 53827920.0,
+        "godot_video_bytes": 337214263.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      }
+    },
+    "forced_spawns": []
+  },
+  "bonus-i4217-restart": {
+    "windows": {
+      "first_two_batches": {
+        "frame": {
+          "n": 779,
+          "mean": 16.685747111681643,
+          "p95": 16.93,
+          "p99": 17.156,
+          "max": 48.885
+        },
+        "gpu_ms": {
+          "n": 779,
+          "mean": 0.5362426190229375,
+          "p95": 1.44500005245209,
+          "p99": 1.79100000858307,
+          "max": 1.99399995803833
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 1,
+            "create_ms": 24.713,
+            "frame_ms": 48.885,
+            "ai": 2,
+            "time_s": 1.589179
+          },
+          {
+            "id": 2,
+            "create_ms": 1.556,
+            "frame_ms": 48.885,
+            "ai": 2,
+            "time_s": 1.590744
+          },
+          {
+            "id": 3,
+            "create_ms": 1.768,
+            "frame_ms": 48.885,
+            "ai": 2,
+            "time_s": 1.592518
+          },
+          {
+            "id": 4,
+            "create_ms": 1.852,
+            "frame_ms": 22.22,
+            "ai": 3,
+            "time_s": 7.599656
+          },
+          {
+            "id": 5,
+            "create_ms": 1.561,
+            "frame_ms": 22.22,
+            "ai": 3,
+            "time_s": 7.601225
+          },
+          {
+            "id": 6,
+            "create_ms": 1.896,
+            "frame_ms": 22.22,
+            "ai": 3,
+            "time_s": 7.603128
+          }
+        ],
+        "duration_s": 13.007971
+      },
+      "after_restart_batches": {
+        "frame": {
+          "n": 780,
+          "mean": 16.666753846153842,
+          "p95": 16.949,
+          "p99": 17.112,
+          "max": 44.454
+        },
+        "gpu_ms": {
+          "n": 780,
+          "mean": 0.5364038469317632,
+          "p95": 1.02400004863739,
+          "p99": 1.82500004768372,
+          "max": 1.96899998188019
+        },
+        "active_ai_max": 3,
+        "create_frames": [
+          {
+            "id": 7,
+            "create_ms": 24.046,
+            "frame_ms": 44.454,
+            "ai": 2,
+            "time_s": 1.807306
+          },
+          {
+            "id": 8,
+            "create_ms": 1.579,
+            "frame_ms": 44.454,
+            "ai": 2,
+            "time_s": 1.808895
+          },
+          {
+            "id": 9,
+            "create_ms": 1.725,
+            "frame_ms": 44.454,
+            "ai": 2,
+            "time_s": 1.810626
+          },
+          {
+            "id": 10,
+            "create_ms": 1.825,
+            "frame_ms": 44.323,
+            "ai": 3,
+            "time_s": 7.801732
+          },
+          {
+            "id": 11,
+            "create_ms": 23.412,
+            "frame_ms": 44.323,
+            "ai": 3,
+            "time_s": 7.82515
+          },
+          {
+            "id": 12,
+            "create_ms": 1.8,
+            "frame_ms": 44.323,
+            "ai": 3,
+            "time_s": 7.82696
+          }
+        ],
+        "duration_s": 13.009843
+      }
+    },
+    "stages_ms": {
+      "badge.label_new": {
+        "n": 12,
+        "mean": 0.02316666666666667,
+        "p95": 0.036,
+        "p99": 0.036,
+        "max": 0.036
+      },
+      "badge.properties_including_label": {
+        "n": 12,
+        "mean": 0.06391666666666666,
+        "p95": 0.096,
+        "p99": 0.096,
+        "max": 0.096
+      },
+      "badge.tree_add": {
+        "n": 12,
+        "mean": 0.04558333333333333,
+        "p95": 0.059,
+        "p99": 0.059,
+        "max": 0.059
+      },
+      "draw.first": {
+        "n": 12,
+        "mean": 0.043666666666666666,
+        "p95": 0.06,
+        "p99": 0.06,
+        "max": 0.06
+      },
+      "instantiate": {
+        "n": 12,
+        "mean": 0.02008333333333333,
+        "p95": 0.029,
+        "p99": 0.029,
+        "max": 0.029
+      },
+      "kind_select": {
+        "n": 12,
+        "mean": 0.0007500000000000001,
+        "p95": 0.003,
+        "p99": 0.003,
+        "max": 0.003
+      },
+      "position": {
+        "n": 12,
+        "mean": 1.484416666666667,
+        "p95": 1.693,
+        "p99": 1.693,
+        "max": 1.693
+      },
+      "post_tree": {
+        "n": 12,
+        "mean": 0.004333333333333333,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.badge_build": {
+        "n": 12,
+        "mean": 0.11508333333333333,
+        "p95": 0.161,
+        "p99": 0.161,
+        "max": 0.161
+      },
+      "ready.badge_update": {
+        "n": 12,
+        "mean": 0.03808333333333333,
+        "p95": 0.061,
+        "p99": 0.061,
+        "max": 0.061
+      },
+      "ready.group": {
+        "n": 12,
+        "mean": 0.0008333333333333334,
+        "p95": 0.002,
+        "p99": 0.002,
+        "max": 0.002
+      },
+      "ready.monitor": {
+        "n": 12,
+        "mean": 0.0029166666666666664,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "ready.sensor_config": {
+        "n": 12,
+        "mean": 0.004,
+        "p95": 0.006,
+        "p99": 0.006,
+        "max": 0.006
+      },
+      "ready.total": {
+        "n": 12,
+        "mean": 0.1695,
+        "p95": 0.22,
+        "p99": 0.22,
+        "max": 0.22
+      },
+      "setup": {
+        "n": 12,
+        "mean": 0.0018333333333333333,
+        "p95": 0.004,
+        "p99": 0.004,
+        "max": 0.004
+      },
+      "total": {
+        "n": 12,
+        "mean": 7.311083333333333,
+        "p95": 24.713,
+        "p99": 24.713,
+        "max": 24.713
+      },
+      "tree_add_including_ready": {
+        "n": 12,
+        "mean": 0.19341666666666665,
+        "p95": 0.259,
+        "p99": 0.259,
+        "max": 0.259
+      },
+      "weapon_load_cached": {
+        "n": 6,
+        "mean": 0.004166666666666667,
+        "p95": 0.005,
+        "p99": 0.005,
+        "max": 0.005
+      },
+      "weapon_load_uncached": {
+        "n": 3,
+        "mean": 22.33066666666667,
+        "p95": 22.962,
+        "p99": 22.962,
+        "max": 22.962
+      }
+    },
+    "forced_stages_ms": {
+      "position": {
+        "n": 5,
+        "mean": 1.5088,
+        "p95": 1.844,
+        "p99": 1.844,
+        "max": 1.844
+      },
+      "instantiate": {
+        "n": 5,
+        "mean": 0.028200000000000003,
+        "p95": 0.033,
+        "p99": 0.033,
+        "max": 0.033
+      },
+      "weapon_load": {
+        "n": 2,
+        "mean": 0.007,
+        "p95": 0.008,
+        "p99": 0.008,
+        "max": 0.008
+      },
+      "ready.total": {
+        "n": 5,
+        "mean": 0.19840000000000002,
+        "p95": 0.233,
+        "p99": 0.233,
+        "max": 0.233
+      },
+      "tree_add_including_ready": {
+        "n": 5,
+        "mean": 0.22519999999999998,
+        "p95": 0.264,
+        "p99": 0.264,
+        "max": 0.264
+      },
+      "total": {
+        "n": 5,
+        "mean": 1.7948,
+        "p95": 2.19,
+        "p99": 2.19,
+        "max": 2.19
+      }
+    },
+    "memory": {
+      "before_entry": {
+        "rss_kb": 240500,
+        "godot_static_bytes": 44627508.0,
+        "godot_video_bytes": 248408059.0,
+        "godot_texture_bytes": 241997427.0,
+        "resources": 139.0
+      },
+      "after_entry": {
+        "rss_kb": 256608,
+        "godot_static_bytes": 51376938.0,
+        "godot_video_bytes": 324280041.0,
+        "godot_texture_bytes": 317579861.0,
+        "resources": 184.0
+      },
+      "first_two_batches_end": {
+        "rss_kb": 267444,
+        "godot_static_bytes": 53809872.0,
+        "godot_video_bytes": 337223623.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      },
+      "after_restart": {
+        "rss_kb": 267484,
+        "godot_static_bytes": 52608788.0,
+        "godot_video_bytes": 328712959.0,
+        "godot_texture_bytes": 317667243.0,
+        "resources": 184.0
+      },
+      "after_restart_batches_end": {
+        "rss_kb": 267812,
+        "godot_static_bytes": 54411992.0,
+        "godot_video_bytes": 345614963.0,
+        "godot_texture_bytes": 334461491.0,
+        "resources": 188.0
+      },
+      "after_all": {
+        "rss_kb": 267812,
+        "godot_static_bytes": 54410600.0,
+        "godot_video_bytes": 337202119.0,
+        "godot_texture_bytes": 326072887.0,
+        "resources": 186.0
+      }
+    },
+    "forced_spawns": [
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 1760
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 0,
+        "success": true,
+        "us": 2207
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 1,
+        "success": true,
+        "us": 1702
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 2,
+        "success": true,
+        "us": 1706
+      },
+      {
+        "event": "forced_spawn",
+        "kind": 3,
+        "success": true,
+        "us": 1679
+      }
+    ]
+  }
+}
