@@ -18,6 +18,7 @@ const REFEREE_BIKER := preload("res://resources/vehicles/elite/referee_biker.tre
 const BIKER_PISTOL := preload("res://resources/weapons/biker_pistol.tres")
 const ESCAPING_CREW_SCENE := preload("res://scenes/EscapingCrew.tscn")
 const CREW_REMAINS_SCENE := preload("res://scenes/CrewRemains.tscn")
+const WAVE_TACTICS := preload("res://scripts/survival_wave_tactics.gd")
 
 const BIKERS_PER_SQUAD := 6
 const BIKER_FIRST_DEPLOY_DELAY := 10.0
@@ -154,7 +155,6 @@ func _ready() -> void:
 		hud.avoid_tutorial_overlap = true
 	camera.set_bounds(arena.get_bounds())
 	audio.set_biome_profile(arena.config.biome_id)
-	audio.enable_survival_metal()
 	audio.set_engine_profile(player.config)
 	_setup_arena_systems()
 	start_round(1)
@@ -296,7 +296,6 @@ func _process(delta: float) -> void:
 	var health_ratio := player.health / maxf(player.config.max_health, 1.0) if player.config != null else 1.0
 	var pressure := clampf(float(enemies_alive) / maxf(float(_round_enemy_total), 1.0), 0.0, 1.0)
 	audio.set_game_intensity(_engine_intensity(), maxf(pressure * 0.72, 1.0 - health_ratio), health_ratio <= 0.28)
-	audio.set_survival_music_state(is_instance_valid(_boss) and _boss.alive, _boss_phase)
 	audio.set_skid_intensity(clampf(absf(player.get_lateral_speed()) / 240.0, 0.0, 1.0) * _engine_intensity())
 	if player.alive and not _round_over:
 		_elapsed += delta
@@ -338,6 +337,8 @@ func _unhandled_input(event: InputEvent) -> void:
 # ---------------------------------------------------------------------------
 
 func start_round(round_number: int) -> void:
+	if round_number == 1:
+		audio.enable_survival_metal()
 	_round_generation += 1
 	_round_start_pending = -1
 	_referee_spawn_pending = false
@@ -514,6 +515,8 @@ func _spawn_bot(spawn: Vector2, index: int, force_boss: bool = false) -> Vehicle
 	controller.arena = arena
 	controller.strategy = index % ArenaBot.Strategy.size()
 	controller.team_role = ArenaBot.TeamRole.VANGUARD if is_boss else (index % 3) + 1
+	if career_event.is_empty() and not is_boss:
+		WAVE_TACTICS.apply_to(controller, _wave_plan.id, index)
 	# Every opponent treats the player as the primary objective. Ordinary cars
 	# keep separate squad ids, so collisions and friendly fire still hurt them.
 	controller.focus_player = true
@@ -571,6 +574,7 @@ func _spawn_referee() -> void:
 			farthest_distance = distance
 			spawn = candidate
 	var boss := _spawn_bot(spawn, _enemies.size(), true)
+	audio.set_survival_music_state(true)
 	_round_enemy_total += 1
 	_boss_ability_timer = 3.0
 	_biker_deploy_timer = BIKER_FIRST_DEPLOY_DELAY
@@ -964,6 +968,7 @@ func _end_round(won: bool) -> void:
 	_referee_spawn_pending = false
 	_player_won = won
 	if won:
+		audio.set_survival_music_state(false)
 		var reward := PlayerProfile.economy().survival_round_reward
 		_award_credits(reward)
 		var total_credits := int(PlayerProfile.read().credits)

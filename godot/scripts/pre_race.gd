@@ -21,6 +21,7 @@ static func request_mode(value: StringName) -> void:
 
 
 func _ready() -> void:
+	get_node("/root/Music").show_menu()
 	mode = _requested_mode
 	comparison_vehicle_id = _valid_mode_vehicle()
 	selected_vehicle_id = comparison_vehicle_id

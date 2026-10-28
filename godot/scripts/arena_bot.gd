@@ -17,6 +17,13 @@ enum TeamRole { NONE, VANGUARD, FLANKER, SUPPORT }
 ## Used by special units whose weapon cadence is controlled by a boss module.
 @export var external_weapon_control := false
 
+@export_group("Tactical objectives")
+## Defaults retain the existing driver for Career, skirmish and boss waves.
+@export_range(0.0, 680.0, 10.0) var supply_search_radius: float = 680.0
+@export var exclusive_supply_targets := false
+@export_range(0.0, 300.0, 5.0) var flank_width: float = 135.0
+@export_range(0.0, 300.0, 5.0) var flank_approach_offset: float = 0.0
+
 @export_group("Driving")
 @export_range(0.0, 1.0, 0.05) var cruise_throttle: float = 0.9
 @export_range(0.1, 10.0, 0.1) var steer_gain: float = 2.5
@@ -367,8 +374,14 @@ func _update_intent(delta: float) -> void:
 		# Flanking is relative to the opponent's heading, never to our own
 		# moving position; the old rotating target caused endless orbiting.
 		var target_heading := _victim.linear_velocity.normalized() if _victim.get_speed() > 25.0 else Vector2.RIGHT.rotated(_victim.rotation)
-		var width := 95.0 if _is_biker() else 135.0 * smoothstep(140.0, 430.0, distance)
+		var width := 95.0 if _is_biker() else flank_width * smoothstep(140.0, 430.0, distance)
 		goal += target_heading.orthogonal() * _passing_side * width
+		if team_role == TeamRole.FLANKER and flank_approach_offset > 0.0 and not _is_biker():
+			# Enter the side lane before reaching the opponent. The anchor is
+			# independent of our moving heading, so it cannot rotate around us.
+			var approach := (_victim.global_position - _spawn_position).normalized()
+			var staged := _safe_goal(goal - approach * flank_approach_offset * smoothstep(320.0, 500.0, distance))
+			if _nav == null or _nav.point_clear(staged, _clearance): goal = staged
 	_set_intent(&"attack" if distance < 320.0 else &"pursue", goal)
 
 
@@ -728,8 +741,9 @@ func _best_pickup() -> BonusPickup:
 		if float(_pickup_ignore_until[id]) <= _drive_time:
 			_pickup_ignore_until.erase(id)
 	if is_instance_valid(_locked_pickup):
-		if _locked_pickup.armed and not _locked_pickup.collected_once and vehicle.global_position.distance_to(_locked_pickup.global_position) < 720.0 and _pickup_utility(_locked_pickup) > 0.18:
-			return _locked_pickup
+		if _locked_pickup.armed and not _locked_pickup.collected_once and vehicle.global_position.distance_to(_locked_pickup.global_position) < supply_search_radius + 40.0 and _pickup_utility(_locked_pickup) > 0.18:
+			if not exclusive_supply_targets or (float(_pickup_ignore_until.get(_locked_pickup.get_instance_id(), 0.0)) <= _drive_time and not _pickup_claimed(_locked_pickup)):
+				return _locked_pickup
 	_locked_pickup = null
 	var best: BonusPickup = null
 	var best_score := 0.28
@@ -739,8 +753,9 @@ func _best_pickup() -> BonusPickup:
 			continue
 		if float(_pickup_ignore_until.get(pickup.get_instance_id(), 0.0)) > _drive_time: continue
 		var distance := vehicle.global_position.distance_to(pickup.global_position)
-		if distance > 680.0:
+		if distance > supply_search_radius:
 			continue
+		if exclusive_supply_targets and _pickup_claimed(pickup): continue
 		var utility := _pickup_utility(pickup)
 		if vehicle.config != null:
 			match vehicle.config.vehicle_class:
@@ -758,6 +773,17 @@ func _best_pickup() -> BonusPickup:
 			best = pickup
 	_locked_pickup = best
 	return best
+
+
+func _pickup_claimed(pickup: BonusPickup) -> bool:
+	# A local read of live intentions, not a persistent reservation registry.
+	# Death, a new intent, collection and restart release the claim naturally.
+	for node in get_tree().get_nodes_in_group("arena_bots"):
+		var other := node as ArenaBot
+		if other == null or other == self or other.arena != arena or not other.exclusive_supply_targets: continue
+		if other.vehicle == null or not other.vehicle.alive or other.is_queued_for_deletion(): continue
+		if other._intent == &"supply" and other._locked_pickup == pickup: return true
+	return false
 
 
 func _pickup_utility(pickup: BonusPickup) -> float:

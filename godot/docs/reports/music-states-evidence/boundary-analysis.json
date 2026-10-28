@@ -1,0 +1,30 @@
+{
+  "metal_road_apocalyptic_combat_loop_heavier-boundary.wav": {
+    "duration_seconds": 2.507755102040816,
+    "peak_dbfs": -18.76146086085407,
+    "minimum_interior_10ms_rms_dbfs": -39.68657636315624,
+    "zero_interior_10ms_windows": 0,
+    "clipped_samples": 0
+  },
+  "metal_road_arbiter_arena_de_combote_loop-boundary.wav": {
+    "duration_seconds": 2.4961451247165534,
+    "peak_dbfs": -21.49396468961065,
+    "minimum_interior_10ms_rms_dbfs": -40.62700359404093,
+    "zero_interior_10ms_windows": 0,
+    "clipped_samples": 0
+  },
+  "metal_road_garage_warm_desert_groove_loop-boundary.wav": {
+    "duration_seconds": 2.380045351473923,
+    "peak_dbfs": -22.980539554674905,
+    "minimum_interior_10ms_rms_dbfs": -47.527637593938465,
+    "zero_interior_10ms_windows": 0,
+    "clipped_samples": 0
+  },
+  "metal-road-music-full-loop.wav": {
+    "duration_seconds": 151.16190476190476,
+    "peak_dbfs": -19.738377486486126,
+    "minimum_interior_10ms_rms_dbfs": -55.947260403717145,
+    "zero_interior_10ms_windows": 0,
+    "clipped_samples": 0
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "path": "project.godot",
+    "snapshot_sha256": "a402953b2d17324cc247e5b9cbc27da3d14410c2e76f82ce046ce28a20677679",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scripts/arena_bot.gd",
+    "snapshot_sha256": "6efc283fe959de61854bcde63ecd6eaba34feecd28fb8f8ccf682dfd9842b0de",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scripts/survival.gd",
+    "snapshot_sha256": "c9bf10d7536b2bce4691a72793ecd86e0228516688f7cd8f3dab919191b9c39d",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scripts/survival_wave_tactics.gd",
+    "snapshot_sha256": "2c3a23a78c3f96787ed84cd8cdffa59adc1690bdf70034dfa6fccfa0f13f9b01",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scripts/audio_manager.gd",
+    "snapshot_sha256": "f245a4d5b9f4067ae2d5577925939eb2903d6383499852c1ed740c02b22c9cec",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scripts/music_service.gd",
+    "snapshot_sha256": "43948ae9a088cb682042684039b999efb3e465155274b99d5a02d9cfb78f84ef",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scenes/Main.tscn",
+    "snapshot_sha256": "b974b06cea5fe2546c77148a2082c6d371caf49b3b11c821c34e0f4f0fa915c5",
+    "same_as_workspace": true
+  },
+  {
+    "path": "scenes/ArenaBattle.tscn",
+    "snapshot_sha256": "eb519eb6d95d9d3a6ae4c2a7e358b7c665b9e7275f58d7926124a08740cb6a2b",
+    "same_as_workspace": true
+  }
+]

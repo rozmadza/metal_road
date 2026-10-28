@@ -26,6 +26,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Music="*res://scripts/music_service.gd"
+
 Accessibility="*res://scripts/accessibility_settings.gd"
 Transition="*res://scripts/scene_transition.gd"
 

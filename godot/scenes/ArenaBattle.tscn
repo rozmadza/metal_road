@@ -27,8 +27,6 @@ script = ExtResource("4")
 script = ExtResource("5")
 config = ExtResource("6")
 
-[node name="Music" type="AudioStreamPlayer" parent="AudioManager"]
-
 [node name="Engine" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="SFX" type="AudioStreamPlayer" parent="AudioManager"]

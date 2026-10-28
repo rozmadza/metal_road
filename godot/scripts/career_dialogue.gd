@@ -16,6 +16,7 @@ var _rival_frame: PanelContainer
 
 
 func _ready() -> void:
+	get_node("/root/Music").show_menu()
 	if CareerStory.pending.is_empty():
 		SceneTransition.go(CareerSession.CAREER_SCENE, "КАРЬЕРА")
 		return

@@ -1,18 +1,11 @@
 extends Node
 class_name AudioManager
-## Plays music and sound effects from an [AudioConfig] resource.
-##
-## The three AudioStreamPlayer children (Music, Engine, SFX) are defined in the
-## Main scene and can be edited there (bus, volume, effects) like any other
-## node. Swapping the actual sounds is done in the AudioConfig resource.
-
-const SURVIVAL_METAL_BASE: AudioStream = preload("res://assets/music/foundry_verdict_base.ogg")
-const SURVIVAL_METAL_COMBAT: AudioStream = preload("res://assets/music/foundry_verdict_combat.ogg")
-const SURVIVAL_METAL_BOSS: AudioStream = preload("res://assets/music/foundry_verdict_boss.ogg")
+## Scene-local effects and race mix inputs from an AudioConfig resource.
+## Persistent compositions are delegated to /root/Music; Engine and SFX
+## remain editable children of each gameplay scene.
 
 @export var config: AudioConfig
 
-@onready var _music: AudioStreamPlayer = $Music
 @onready var _engine: AudioStreamPlayer = $Engine
 @onready var _sfx: AudioStreamPlayer = $SFX
 var _impact: AudioStreamPlayer
@@ -26,11 +19,8 @@ var _danger := 0.0
 var _critical_latched := false
 var _cue_cache: Dictionary = {}
 var _biome_layer: AudioStreamPlayer
-var _combat_music: AudioStreamPlayer
-var _boss_music: AudioStreamPlayer
 var _survival_music_enabled := false
-var _boss_music_target := 0.0
-var _boss_music_intensity := 0.0
+var _music_session := -1
 var _engine_pitch_base := 0.8
 var _engine_pitch_range := 0.7
 var _engine_volume_offset_db := 0.0
@@ -38,7 +28,6 @@ var _engine_volume_offset_db := 0.0
 
 func _ready() -> void:
 	add_to_group("combat_audio")
-	_music.bus = "Music"
 	_engine.bus = "Engine"
 	_sfx.bus = "Weapons"
 	_impact = AudioStreamPlayer.new()
@@ -60,44 +49,26 @@ func _ready() -> void:
 	_biome_layer.name = "BiomeLayer"
 	_biome_layer.bus = "Music"
 	add_child(_biome_layer)
-	_combat_music = AudioStreamPlayer.new()
-	_combat_music.name = "CombatMusicLayer"
-	_combat_music.bus = "Music"
-	add_child(_combat_music)
-	_boss_music = AudioStreamPlayer.new()
-	_boss_music.name = "BossMusicLayer"
-	_boss_music.bus = "Music"
-	add_child(_boss_music)
 	_play_generated_loop(_ambience, _noise_stream(1.4, 0.13, 73), -42.0)
 	_play_generated_loop(_skid, _noise_stream(0.8, 0.3, 19), -55.0)
 	if config == null:
 		return
-	_play_loop(_music, config.music, config.music_volume_db)
+	# Survival claims its composition in enable_survival_metal after ready.
+	if not get_parent() is Survival:
+		_music_session = get_node("/root/Music").begin(self, false, config.music, config.music_volume_db)
 	_play_loop(_engine, config.engine, config.engine_volume_db)
 
 
-## Starts three sample-aligned original metal stems. They continue running in
-## sync while only their mix changes, so waves and the Arbiter never restart or
-## interrupt the riff.
+## Renew the session on restart so delayed requests from previous runs expire.
 func enable_survival_metal() -> void:
-	if config == null:
-		return
 	_survival_music_enabled = true
-	_boss_music_target = 0.0
-	_boss_music_intensity = 0.0
-	_music.stop()
-	_play_loop(_music, SURVIVAL_METAL_BASE, config.music_volume_db - 1.0)
-	_play_loop(_combat_music, SURVIVAL_METAL_COMBAT, -38.0)
-	_play_loop(_boss_music, SURVIVAL_METAL_BOSS, -60.0)
-	_music.pitch_scale = 1.0
-	_combat_music.pitch_scale = 1.0
-	_boss_music.pitch_scale = 1.0
+	_biome_layer.stop()
+	_music_session = get_node("/root/Music").begin(self, true)
 
 
-func set_survival_music_state(boss_active: bool, boss_phase: int = 0) -> void:
-	if not _survival_music_enabled:
-		return
-	_boss_music_target = clampf(0.52 + 0.16 * boss_phase, 0.0, 1.0) if boss_active else 0.0
+func set_survival_music_state(boss_active: bool, _boss_phase: int = 0) -> void:
+	if _survival_music_enabled:
+		get_node("/root/Music").set_boss(_music_session, boss_active)
 
 
 func set_biome_profile(biome_id: StringName) -> void:
@@ -109,7 +80,7 @@ func set_biome_profile(biome_id: StringName) -> void:
 	# remaining compatible with the adaptive main theme.
 	var stream := _frontier_pulse_stream()
 	_play_generated_loop(_biome_layer, stream, -25.0)
-	_music.pitch_scale = 0.91
+	get_node("/root/Music").set_race_mix(_music_session, 0.91, config.music_volume_db)
 
 
 func set_engine_profile(vehicle: VehicleConfig) -> void:
@@ -232,17 +203,8 @@ func _process(delta: float) -> void:
 	_impact_cooldown = maxf(0.0, _impact_cooldown - delta)
 	_intensity = lerpf(_intensity, _intensity_target, 1.0 - exp(-2.8 * delta))
 	if config != null:
-		if _survival_music_enabled:
-			_boss_music_intensity = move_toward(_boss_music_intensity, _boss_music_target, delta * (0.75 if _boss_music_target > _boss_music_intensity else 0.5))
-			# Preserve the authored tuning. Intensity is expressed by additional
-			# stems rather than by pitching the whole composition up and down.
-			_music.pitch_scale = 1.0
-			_music.volume_db = config.music_volume_db - 1.0 - _boss_music_intensity * 2.0
-			_combat_music.volume_db = lerpf(-38.0, -12.0, _intensity) - _boss_music_intensity * 3.0
-			_boss_music.volume_db = lerpf(-60.0, -8.5, _boss_music_intensity)
-		else:
-			_music.pitch_scale = 0.96 + _intensity * 0.09
-			_music.volume_db = config.music_volume_db + _intensity * 2.5 - _danger * 1.5
+		if not _survival_music_enabled:
+			get_node("/root/Music").set_race_mix(_music_session, 0.96 + _intensity * 0.09, config.music_volume_db + _intensity * 2.5 - _danger * 1.5)
 	_ambience.volume_db = lerpf(-42.0, -18.0, _intensity)
 	_ambience.pitch_scale = 0.78 + _intensity * 0.65
 

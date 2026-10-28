@@ -31,6 +31,7 @@ var _loading_settings := false
 
 
 func _ready() -> void:
+	get_node("/root/Music").show_menu()
 	%GarageButton.pressed.connect(_on_garage_pressed)
 	%ProgressButton.pressed.connect(func(): SceneTransition.go(PROGRESS_SCENE, "ЗАГРУЗКА ПРОФИЛЯ"))
 	%CreditsButton.pressed.connect(func(): SceneTransition.go(CREDITS_SCENE, "ЗАГРУЗКА ТИТРОВ"))

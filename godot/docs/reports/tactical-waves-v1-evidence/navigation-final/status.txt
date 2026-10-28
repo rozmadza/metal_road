@@ -1,0 +1,6 @@
+group8-4217 exit=0
+group8-104729 exit=0
+group8-8675309 exit=0
+traffic_yield_policy_smoke exit=0
+traffic_recovery_smoke exit=0
+arena_navigation_routes_smoke exit=0

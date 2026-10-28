@@ -1,0 +1,6893 @@
+[
+  {
+    "run": "after-final-104729",
+    "display": "headless",
+    "label": "supply_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 5.2,
+    "combat_fraction": 0.5635416666666668,
+    "ai_pickups": 2,
+    "shots": 7,
+    "hits_on_player": 3,
+    "damage_to_player": 18.75,
+    "max_stop_s": 4.19999999999999,
+    "max_armed_no_attack_s": 8.28333333333332,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1374.75376567617,
+        "elite": false,
+        "first_contact_s": 6.81666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.19999999999999,
+          "pursue": 6.58333333333332,
+          "reposition": 2.2,
+          "supply": 1.83333333333333,
+          "yield": 1.18333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 0.816666666666668,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87879059560,
+            "s": 2.2
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 994.368379879976,
+        "elite": false,
+        "first_contact_s": 6.88333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.94999999999998,
+          "pursue": 5.31666666666665,
+          "reposition": 4.46666666666666,
+          "yield": 4.26666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "NEEDLE",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 8.28333333333332,
+        "damage_to_player": 18.75,
+        "detours": 0,
+        "distance_travelled": 902.621955004055,
+        "elite": false,
+        "first_contact_s": 5.38333333333333,
+        "first_damage_s": 6.86666666666667,
+        "hits_on_player": 3,
+        "index": 2,
+        "intent_s": {
+          "attack": 2.66666666666666,
+          "pursue": 2.31666666666666,
+          "reposition": 11.6833333333335,
+          "supply": 1.66666666666667,
+          "yield": 1.66666666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7166666666667,
+        "longest_armed_no_attack_s": 8.28333333333332,
+        "longest_stop_s": 2.3,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 7,
+        "stop_s": 1.03333333333333,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87879059560,
+            "s": 0.333333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 972.337689914973,
+        "elite": false,
+        "first_contact_s": 6.1,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 10.9500000000001,
+          "pursue": 3.09999999999999,
+          "supply": 1.7,
+          "yield": 4.24999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 4.19999999999999,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 87778396431,
+            "s": 0.283333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 5.38333333333333,
+    "first_damage_s": 6.86666666666667,
+    "initial_supply_slots": [
+      2,
+      3
+    ],
+    "max_continuous_chase_s": 1.7000000000000004,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 50,
+      "mean": 72.04228629401182,
+      "p95": 73.71172331896409,
+      "p99": 74.34400442837597,
+      "max": 74.34400442837597
+    }
+  },
+  {
+    "run": "after-final-104729",
+    "display": "headless",
+    "label": "flank_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.565624999999999,
+    "ai_pickups": 0,
+    "shots": 64,
+    "hits_on_player": 29,
+    "damage_to_player": 145.6999999999971,
+    "max_stop_s": 1.73333333333333,
+    "max_armed_no_attack_s": 9.23333333333337,
+    "recovery_requests": 8,
+    "recovery_started": 8,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 5.69999999999709,
+        "detours": 0,
+        "distance_travelled": 1125.18875237321,
+        "elite": true,
+        "first_contact_s": 6.3,
+        "first_damage_s": 6.3,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.18333333333331,
+          "pursue": 6.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6833333333333,
+        "longest_armed_no_attack_s": 3.84999999999999,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 2.81666666666666,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1217.05768741993,
+        "elite": false,
+        "first_contact_s": 7.03333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.94999999999999,
+          "pursue": 5.63333333333332,
+          "reposition": 7.03333333333331,
+          "yield": 4.38333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 16.1833333333333,
+        "longest_armed_no_attack_s": 9.23333333333337,
+        "longest_stop_s": 1.45,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 8,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 60.0,
+        "detours": 0,
+        "distance_travelled": 1214.38344702251,
+        "elite": false,
+        "first_contact_s": 5.03333333333333,
+        "first_damage_s": 14.7833333333333,
+        "hits_on_player": 12,
+        "index": 2,
+        "intent_s": {
+          "attack": 8.66666666666668,
+          "pursue": 3.96666666666666,
+          "reposition": 7.36666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 19.45,
+        "longest_armed_no_attack_s": 9.00000000000003,
+        "longest_stop_s": 1.48333333333333,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 7.86666666666664,
+        "damage_to_player": 80.0,
+        "detours": 0,
+        "distance_travelled": 1055.20402098561,
+        "elite": false,
+        "first_contact_s": 5.2,
+        "first_damage_s": 5.2,
+        "hits_on_player": 16,
+        "index": 3,
+        "intent_s": {
+          "attack": 5.78333333333332,
+          "pursue": 4.49999999999999,
+          "reposition": 9.0666666666667,
+          "yield": 0.65
+        },
+        "last_pickup": 0,
+        "last_shot": 11.1333333333333,
+        "longest_armed_no_attack_s": 7.86666666666664,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 20,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 5.03333333333333,
+    "first_damage_s": 5.2,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 55,
+      "mean": 71.81098208451803,
+      "p95": 73.99689555886691,
+      "p99": 75.21369467007635,
+      "max": 75.21369467007635
+    }
+  },
+  {
+    "run": "after-final-104729",
+    "display": "headless",
+    "label": "flank_open",
+    "seconds": 25.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.49983333333333546,
+    "ai_pickups": 0,
+    "shots": 70,
+    "hits_on_player": 35,
+    "damage_to_player": 179.8999999999796,
+    "max_stop_s": 10.1833333333334,
+    "max_armed_no_attack_s": 18.1000000000003,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.3,
+        "damage_to_player": 39.8999999999796,
+        "detours": 0,
+        "distance_travelled": 1302.93871956598,
+        "elite": true,
+        "first_contact_s": 5.95,
+        "first_damage_s": 5.95,
+        "hits_on_player": 7,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.35000000000004,
+          "pursue": 6.59999999999998,
+          "yield": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 22.7,
+        "longest_armed_no_attack_s": 4.16666666666666,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 18.1000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1199.13606828917,
+        "elite": false,
+        "first_contact_s": 7.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.99999999999999,
+          "pursue": 5.33333333333332,
+          "reposition": 10.7000000000001,
+          "yield": 5.96666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 5.9,
+        "longest_armed_no_attack_s": 18.1000000000003,
+        "longest_stop_s": 7.49999999999998,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 7.49999999999998,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.950000000000001,
+        "damage_to_player": 65.0,
+        "detours": 1,
+        "distance_travelled": 1237.4708867087,
+        "elite": false,
+        "first_contact_s": 4.98333333333333,
+        "first_damage_s": 15.5,
+        "hits_on_player": 13,
+        "index": 2,
+        "intent_s": {
+          "attack": 13.8166666666669,
+          "pursue": 3.66666666666666,
+          "reposition": 6.51666666666665,
+          "yield": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 23.05,
+        "longest_armed_no_attack_s": 9.43333333333338,
+        "longest_stop_s": 2.1,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 21,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 12.9166666666669,
+        "damage_to_player": 75.0,
+        "detours": 0,
+        "distance_travelled": 788.688422112318,
+        "elite": false,
+        "first_contact_s": 5.45,
+        "first_damage_s": 5.45,
+        "hits_on_player": 15,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.68333333333333,
+          "pursue": 4.53333333333332,
+          "reposition": 16.7833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 11.0833333333333,
+        "longest_armed_no_attack_s": 12.9166666666669,
+        "longest_stop_s": 10.1833333333334,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 20,
+        "stop_s": 10.1833333333334,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 4.98333333333333,
+    "first_damage_s": 5.45,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 54,
+      "mean": 71.85783103660305,
+      "p95": 74.00433349609398,
+      "p99": 74.990234375,
+      "max": 74.990234375
+    }
+  },
+  {
+    "run": "after-final-104729",
+    "display": "headless",
+    "label": "native_wave2",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 14.849999999999962,
+    "combat_fraction": 0.6458333333333379,
+    "ai_pickups": 7,
+    "shots": 13,
+    "hits_on_player": 20,
+    "damage_to_player": 230.21025584594452,
+    "max_stop_s": 1.45,
+    "max_armed_no_attack_s": 9.46666666666672,
+    "recovery_requests": 10,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 45.0,
+        "detours": 0,
+        "distance_travelled": 1858.07829051209,
+        "elite": false,
+        "first_contact_s": 16.1,
+        "first_damage_s": 24.65,
+        "hits_on_player": 10,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.18333333333332,
+          "pursue": 7.29999999999998,
+          "reposition": 5.86666666666665,
+          "supply": 7.31666666666665,
+          "yield": 1.33333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 29.5333333333333,
+        "longest_armed_no_attack_s": 5.81666666666665,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 5,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 306268080261,
+            "s": 1.81666666666667
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 9.46666666666672,
+        "damage_to_player": 43.3961896742985,
+        "detours": 0,
+        "distance_travelled": 2174.1036369605,
+        "elite": false,
+        "first_contact_s": 7.45,
+        "first_damage_s": 7.45,
+        "hits_on_player": 7,
+        "index": 1,
+        "intent_s": {
+          "attack": 9.66666666666673,
+          "pursue": 7.96666666666664,
+          "reposition": 10.8333333333335,
+          "supply": 0.333333333333333,
+          "yield": 1.2
+        },
+        "last_pickup": 0,
+        "last_shot": 19.5333333333333,
+        "longest_armed_no_attack_s": 9.46666666666672,
+        "longest_stop_s": 1.45,
+        "pickups": 3,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 311670343842,
+            "s": 5.31666666666667
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 3.13333333333333,
+        "damage_to_player": 141.814066171646,
+        "detours": 0,
+        "distance_travelled": 2127.94051889051,
+        "elite": false,
+        "first_contact_s": 3.11666666666667,
+        "first_damage_s": 3.51666666666667,
+        "hits_on_player": 3,
+        "index": 2,
+        "intent_s": {
+          "attack": 7.99999999999998,
+          "pursue": 12.9500000000002,
+          "reposition": 4.66666666666666,
+          "supply": 1.33333333333333,
+          "yield": 3.04999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 25.8666666666667,
+        "longest_armed_no_attack_s": 6.43333333333332,
+        "longest_stop_s": 1.38333333333333,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 3,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 306100308154,
+            "s": 1.65
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 2.18333333333333,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1802.68802537117,
+        "elite": false,
+        "first_contact_s": 18.0166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 16.1000000000004,
+          "pursue": 7.33333333333331,
+          "supply": 5.86666666666665,
+          "yield": 0.700000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 26.8166666666667,
+        "longest_armed_no_attack_s": 7.66666666666664,
+        "longest_stop_s": 1.31666666666667,
+        "pickups": 1,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 1,
+        "stop_s": 1.03333333333333,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 305932535930,
+            "s": 1.68333333333333
+          },
+          {
+            "pickup": 311301245230,
+            "s": 13.7833333333333
+          },
+          {
+            "pickup": 311502571624,
+            "s": 17.1833333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 3.11666666666667,
+    "first_damage_s": 3.51666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 7.29999999999999,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 60,
+      "mean": 610.6833180108844,
+      "p95": 956.236409936917,
+      "p99": 1017.3396617168703,
+      "max": 1017.3396617168703
+    }
+  },
+  {
+    "run": "after-final-104729",
+    "display": "headless",
+    "label": "native_wave3",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 31.35000000000042,
+    "combat_fraction": 0.5704166666666755,
+    "ai_pickups": 10,
+    "shots": 1,
+    "hits_on_player": 3,
+    "damage_to_player": 15.929999999993,
+    "max_stop_s": 2.38333333333333,
+    "max_armed_no_attack_s": 13.2333333333336,
+    "recovery_requests": 7,
+    "recovery_started": 7,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 13.2333333333336,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2043.01781627256,
+        "elite": true,
+        "first_contact_s": 21.1333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 5.49999999999999,
+          "pursue": 15.7333333333337,
+          "reposition": 6.19999999999998,
+          "supply": 2.56666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 13.2333333333336,
+        "longest_stop_s": 2.08333333333333,
+        "pickups": 2,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 2.08333333333333,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 384886114415,
+            "s": 5.85
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 3.03333333333333,
+        "damage_to_player": 15.929999999993,
+        "detours": 1,
+        "distance_travelled": 1822.64044943196,
+        "elite": false,
+        "first_contact_s": 14.3,
+        "first_damage_s": 26.25,
+        "hits_on_player": 3,
+        "index": 1,
+        "intent_s": {
+          "attack": 3.66666666666666,
+          "pursue": 10.7000000000001,
+          "reposition": 3.91666666666666,
+          "supply": 11.7166666666668
+        },
+        "last_pickup": 0,
+        "last_shot": 25.9666666666667,
+        "longest_armed_no_attack_s": 9.56666666666672,
+        "longest_stop_s": 2.38333333333333,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 1,
+        "stop_s": 0.0833333333333333,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 385221658984,
+            "s": 2.65
+          },
+          {
+            "pickup": 391177570379,
+            "s": 7.98333333333333
+          },
+          {
+            "pickup": 396915378221,
+            "s": 13.1666666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1557.16121894098,
+        "elite": false,
+        "first_contact_s": 3.08333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.0,
+          "pursue": 17.2833333333336,
+          "reposition": 2.33333333333333,
+          "supply": 3.36666666666666,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 4,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 385053886356,
+            "s": 2.65
+          },
+          {
+            "pickup": 391009798177,
+            "s": 12.3166666666667
+          }
+        ],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1437.47389555722,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "pursue": 14.566666666667,
+          "supply": 13.7000000000003,
+          "yield": 1.73333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.41666666666667,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 384886114415,
+            "s": 2.53333333333333
+          },
+          {
+            "pickup": 391009798177,
+            "s": 7.83333333333333
+          },
+          {
+            "pickup": 391009798177,
+            "s": 15.5333333333333
+          },
+          {
+            "pickup": 416242731349,
+            "s": 23.8166666666667
+          },
+          {
+            "pickup": 416410503240,
+            "s": 26.85
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 2
+      }
+    ],
+    "first_contact_s": 3.08333333333333,
+    "first_damage_s": 26.25,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 5.099999999999998,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 17,
+      "mean": 923.2758999853229,
+      "p95": 1031.4547043466464,
+      "p99": 1031.4547043466464,
+      "max": 1031.4547043466464
+    }
+  },
+  {
+    "run": "after-final-104729",
+    "display": "headless",
+    "label": "native_wave4",
+    "seconds": 30.0,
+    "ai": 5,
+    "max_same_supply": 1,
+    "supply_actor_s": 30.74999999999993,
+    "combat_fraction": 0.5367777777777797,
+    "ai_pickups": 10,
+    "shots": 8,
+    "hits_on_player": 9,
+    "damage_to_player": 166.08162965339602,
+    "max_stop_s": 2.88333333333333,
+    "max_armed_no_attack_s": 17.5833333333336,
+    "recovery_requests": 14,
+    "recovery_started": 12,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1508.49576837034,
+        "elite": true,
+        "first_contact_s": 16.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 5.13333333333332,
+          "pursue": 6.29999999999998,
+          "reposition": 9.46666666666672,
+          "supply": 8.06666666666665,
+          "yield": 1.03333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 29.7166666666667,
+        "longest_armed_no_attack_s": 17.5833333333336,
+        "longest_stop_s": 2.88333333333333,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 1,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 450719909627,
+            "s": 2.18333333333333
+          },
+          {
+            "pickup": 456071841999,
+            "s": 10.25
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 10.4666666666668,
+        "damage_to_player": 133.225334830706,
+        "detours": 0,
+        "distance_travelled": 1821.00493343663,
+        "elite": false,
+        "first_contact_s": 8.2,
+        "first_damage_s": 8.91666666666667,
+        "hits_on_player": 8,
+        "index": 1,
+        "intent_s": {
+          "attack": 6.94999999999998,
+          "pursue": 6.96666666666665,
+          "reposition": 7.99999999999998,
+          "supply": 2.0,
+          "yield": 6.08333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 18.5333333333333,
+        "longest_armed_no_attack_s": 10.4666666666668,
+        "longest_stop_s": 0.900000000000001,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 6,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 455736297247,
+            "s": 6.98333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1101.08196019696,
+        "elite": false,
+        "first_contact_s": 3.61666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.33333333333333,
+          "pursue": 18.6000000000002,
+          "reposition": 2.33333333333333,
+          "supply": 7.73333333333331
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.85,
+        "pickups": 1,
+        "recovery_requested": 5,
+        "recovery_started": 4,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.800000000000001,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 450552137503,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 455904069328,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 455904069328,
+            "s": 17.2
+          },
+          {
+            "pickup": 455904069328,
+            "s": 27.2666666666667
+          }
+        ],
+        "vehicle": "BEHEMOTH",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 13.7333333333336,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1720.84606901277,
+        "elite": false,
+        "first_contact_s": 22.7,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 6.74999999999998,
+          "pursue": 10.4500000000001,
+          "reposition": 2.26666666666666,
+          "supply": 7.56666666666665,
+          "yield": 2.96666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 13.7333333333336,
+        "longest_stop_s": 1.56666666666667,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 450384365804,
+            "s": 2.25
+          },
+          {
+            "pickup": 455904069328,
+            "s": 10.1
+          },
+          {
+            "pickup": 461490882520,
+            "s": 11.5166666666667
+          }
+        ],
+        "vehicle": "BASTION",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 7.76666666666664,
+        "damage_to_player": 32.85629482269,
+        "detours": 0,
+        "distance_travelled": 2185.92494613677,
+        "elite": false,
+        "first_contact_s": 17.15,
+        "first_damage_s": 21.4,
+        "hits_on_player": 1,
+        "index": 4,
+        "intent_s": {
+          "attack": 7.58333333333331,
+          "pursue": 10.4500000000001,
+          "reposition": 0.333333333333333,
+          "supply": 5.38333333333332,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 21.2333333333333,
+        "longest_armed_no_attack_s": 7.76666666666664,
+        "longest_stop_s": 0.716666666666667,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 1,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 450384365804,
+            "s": 5.36666666666667
+          }
+        ],
+        "vehicle": "RAIDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 3.61666666666667,
+    "first_damage_s": 8.91666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 6.299999999999994,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 60,
+      "mean": 713.5532877775547,
+      "p95": 994.9724526272632,
+      "p99": 1043.2835362883923,
+      "max": 1043.2835362883923
+    }
+  },
+  {
+    "run": "after-final-4217",
+    "display": "headless",
+    "label": "supply_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 5.2,
+    "combat_fraction": 0.5635416666666668,
+    "ai_pickups": 2,
+    "shots": 7,
+    "hits_on_player": 3,
+    "damage_to_player": 18.75,
+    "max_stop_s": 4.19999999999999,
+    "max_armed_no_attack_s": 8.28333333333332,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1374.71768154949,
+        "elite": false,
+        "first_contact_s": 6.81666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.19999999999999,
+          "pursue": 6.58333333333332,
+          "reposition": 2.2,
+          "supply": 1.83333333333333,
+          "yield": 1.18333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 0.816666666666668,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87879059560,
+            "s": 2.2
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 994.368379879976,
+        "elite": false,
+        "first_contact_s": 6.88333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.94999999999998,
+          "pursue": 5.31666666666665,
+          "reposition": 4.46666666666666,
+          "yield": 4.26666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "NEEDLE",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 8.28333333333332,
+        "damage_to_player": 18.75,
+        "detours": 0,
+        "distance_travelled": 902.621955004055,
+        "elite": false,
+        "first_contact_s": 5.38333333333333,
+        "first_damage_s": 6.86666666666667,
+        "hits_on_player": 3,
+        "index": 2,
+        "intent_s": {
+          "attack": 2.66666666666666,
+          "pursue": 2.31666666666666,
+          "reposition": 11.6833333333335,
+          "supply": 1.66666666666667,
+          "yield": 1.66666666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7166666666667,
+        "longest_armed_no_attack_s": 8.28333333333332,
+        "longest_stop_s": 2.3,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 7,
+        "stop_s": 1.03333333333333,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87879059560,
+            "s": 0.333333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 972.337689914973,
+        "elite": false,
+        "first_contact_s": 6.1,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 10.9500000000001,
+          "pursue": 3.09999999999999,
+          "supply": 1.7,
+          "yield": 4.24999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 4.19999999999999,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 87778396431,
+            "s": 0.283333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 5.38333333333333,
+    "first_damage_s": 6.86666666666667,
+    "initial_supply_slots": [
+      2,
+      3
+    ],
+    "max_continuous_chase_s": 1.7000000000000004,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 50,
+      "mean": 72.04228629401182,
+      "p95": 73.71172331896409,
+      "p99": 74.34400442837597,
+      "max": 74.34400442837597
+    }
+  },
+  {
+    "run": "after-final-4217",
+    "display": "headless",
+    "label": "flank_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.6247916666666671,
+    "ai_pickups": 0,
+    "shots": 52,
+    "hits_on_player": 16,
+    "damage_to_player": 80.69999999999709,
+    "max_stop_s": 3.71666666666666,
+    "max_armed_no_attack_s": 14.7500000000003,
+    "recovery_requests": 6,
+    "recovery_started": 5,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 5.69999999999709,
+        "detours": 0,
+        "distance_travelled": 1125.19601904927,
+        "elite": true,
+        "first_contact_s": 6.0,
+        "first_damage_s": 6.0,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.18333333333331,
+          "pursue": 6.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6833333333333,
+        "longest_armed_no_attack_s": 3.84999999999999,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 13.0500000000002,
+        "damage_to_player": 0.0,
+        "detours": 2,
+        "distance_travelled": 1281.57474732143,
+        "elite": false,
+        "first_contact_s": 7.03333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 4.33333333333332,
+          "pursue": 5.63333333333332,
+          "reposition": 10.0333333333334
+        },
+        "last_pickup": 0,
+        "last_shot": 5.95,
+        "longest_armed_no_attack_s": 13.0500000000002,
+        "longest_stop_s": 1.41666666666667,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 14.7500000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1183.10847255914,
+        "elite": false,
+        "first_contact_s": 5.03333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 11.3666666666668,
+          "pursue": 3.96666666666666,
+          "reposition": 4.66666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 4.25,
+        "longest_armed_no_attack_s": 14.7500000000003,
+        "longest_stop_s": 3.71666666666666,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 0,
+        "role": 3,
+        "shots": 6,
+        "stop_s": 0.116666666666667,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 75.0,
+        "detours": 0,
+        "distance_travelled": 1131.18061475336,
+        "elite": false,
+        "first_contact_s": 5.5,
+        "first_damage_s": 5.5,
+        "hits_on_player": 15,
+        "index": 3,
+        "intent_s": {
+          "attack": 6.43333333333332,
+          "pursue": 4.49999999999999,
+          "reposition": 9.0666666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 19.9,
+        "longest_armed_no_attack_s": 7.41666666666665,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 5.03333333333333,
+    "first_damage_s": 5.5,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 55,
+      "mean": 71.84100582322957,
+      "p95": 74.13520122179867,
+      "p99": 75.31293783322153,
+      "max": 75.31293783322153
+    }
+  },
+  {
+    "run": "after-final-4217",
+    "display": "headless",
+    "label": "flank_open",
+    "seconds": 25.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.5003333333333354,
+    "ai_pickups": 0,
+    "shots": 69,
+    "hits_on_player": 32,
+    "damage_to_player": 163.4999999999854,
+    "max_stop_s": 10.2000000000001,
+    "max_armed_no_attack_s": 18.1000000000003,
+    "recovery_requests": 11,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.3,
+        "damage_to_player": 28.4999999999854,
+        "detours": 0,
+        "distance_travelled": 1306.73515402339,
+        "elite": true,
+        "first_contact_s": 20.5,
+        "first_damage_s": 20.5,
+        "hits_on_player": 5,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.35000000000004,
+          "pursue": 6.59999999999998,
+          "yield": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 22.7,
+        "longest_armed_no_attack_s": 4.18333333333332,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 18.1000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1199.22218565247,
+        "elite": false,
+        "first_contact_s": 7.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.99999999999999,
+          "pursue": 5.33333333333332,
+          "reposition": 10.6500000000001,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 5.9,
+        "longest_armed_no_attack_s": 18.1000000000003,
+        "longest_stop_s": 7.44999999999998,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 7.44999999999998,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.18333333333333,
+        "damage_to_player": 60.0,
+        "detours": 1,
+        "distance_travelled": 1237.56155316392,
+        "elite": false,
+        "first_contact_s": 4.98333333333333,
+        "first_damage_s": 15.5166666666667,
+        "hits_on_player": 12,
+        "index": 2,
+        "intent_s": {
+          "attack": 13.8666666666669,
+          "pursue": 3.66666666666666,
+          "reposition": 6.49999999999998,
+          "yield": 0.966666666666668
+        },
+        "last_pickup": 0,
+        "last_shot": 22.8166666666667,
+        "longest_armed_no_attack_s": 9.45000000000005,
+        "longest_stop_s": 2.11666666666666,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 20,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 12.9166666666669,
+        "damage_to_player": 75.0,
+        "detours": 0,
+        "distance_travelled": 788.131174095208,
+        "elite": false,
+        "first_contact_s": 5.45,
+        "first_damage_s": 5.45,
+        "hits_on_player": 15,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.68333333333333,
+          "pursue": 4.53333333333332,
+          "reposition": 16.7833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 11.0833333333333,
+        "longest_armed_no_attack_s": 12.9166666666669,
+        "longest_stop_s": 10.2000000000001,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 20,
+        "stop_s": 10.2000000000001,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 4.98333333333333,
+    "first_damage_s": 5.45,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 54,
+      "mean": 71.81791630497682,
+      "p95": 73.96112060546898,
+      "p99": 74.83642578125,
+      "max": 74.83642578125
+    }
+  },
+  {
+    "run": "after-final-4217",
+    "display": "headless",
+    "label": "native_wave2",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 22.05000000000016,
+    "combat_fraction": 0.6837500000000062,
+    "ai_pickups": 5,
+    "shots": 7,
+    "hits_on_player": 2,
+    "damage_to_player": 102.2742441792943,
+    "max_stop_s": 3.09999999999999,
+    "max_armed_no_attack_s": 15.8000000000004,
+    "recovery_requests": 7,
+    "recovery_started": 6,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 15.8000000000004,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2145.54269827483,
+        "elite": false,
+        "first_contact_s": 16.7833333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.15000000000003,
+          "pursue": 5.83333333333332,
+          "reposition": 4.39999999999999,
+          "supply": 10.6166666666668
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 15.8000000000004,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 3,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 303650834561,
+            "s": 1.81666666666667
+          },
+          {
+            "pickup": 308717553965,
+            "s": 9.13333333333333
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 8.65000000000001,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2275.50261999154,
+        "elite": false,
+        "first_contact_s": 7.26666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 4.18333333333332,
+          "pursue": 17.9833333333336,
+          "reposition": 2.0,
+          "supply": 1.0,
+          "yield": 4.83333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 8.65000000000001,
+        "longest_stop_s": 1.45,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 318951655034,
+            "s": 19.0
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 4.91666666666665,
+        "damage_to_player": 78.0,
+        "detours": 0,
+        "distance_travelled": 2033.59565306618,
+        "elite": false,
+        "first_contact_s": 3.11666666666667,
+        "first_damage_s": 3.51666666666667,
+        "hits_on_player": 1,
+        "index": 2,
+        "intent_s": {
+          "attack": 11.3666666666668,
+          "pursue": 12.6333333333335,
+          "reposition": 4.66666666666666,
+          "supply": 1.33333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 24.0833333333333,
+        "longest_armed_no_attack_s": 4.91666666666665,
+        "longest_stop_s": 1.55,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 7,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 303483062407,
+            "s": 1.65
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 24.2742441792943,
+        "detours": 0,
+        "distance_travelled": 1963.49475913681,
+        "elite": false,
+        "first_contact_s": 24.7333333333333,
+        "first_damage_s": 26.5,
+        "hits_on_player": 1,
+        "index": 3,
+        "intent_s": {
+          "attack": 12.4333333333335,
+          "pursue": 8.46666666666667,
+          "supply": 9.10000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 3.09999999999999,
+        "pickups": 0,
+        "recovery_requested": 0,
+        "recovery_started": 0,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 3.09999999999999,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 303315290235,
+            "s": 1.68333333333333
+          },
+          {
+            "pickup": 318951655034,
+            "s": 12.9333333333333
+          },
+          {
+            "pickup": 324555245948,
+            "s": 16.8166666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.11666666666667,
+    "first_damage_s": 3.51666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 7.29999999999999,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 60,
+      "mean": 617.9332198748447,
+      "p95": 956.0732662597857,
+      "p99": 1016.785558214731,
+      "max": 1016.785558214731
+    }
+  },
+  {
+    "run": "after-final-4217",
+    "display": "headless",
+    "label": "native_wave3",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 28.40000000000018,
+    "combat_fraction": 0.596388888888897,
+    "ai_pickups": 7,
+    "shots": 3,
+    "hits_on_player": 0,
+    "damage_to_player": 0.0,
+    "max_stop_s": 1.98333333333333,
+    "max_armed_no_attack_s": 15.7000000000004,
+    "recovery_requests": 6,
+    "recovery_started": 6,
+    "detours": 3,
+    "actors": [
+      {
+        "armed_no_attack_s": 13.4500000000002,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2250.70926497318,
+        "elite": true,
+        "first_contact_s": 20.0666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 4.39999999999999,
+          "pursue": 15.366666666667,
+          "reposition": 7.66666666666664,
+          "supply": 2.56666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 13.4500000000002,
+        "longest_stop_s": 1.4,
+        "pickups": 2,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 364921227380,
+            "s": 5.85
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2305.31712210272,
+        "elite": false,
+        "first_contact_s": 7.63333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 13.0333333333336,
+          "pursue": 9.30000000000004,
+          "reposition": 3.99999999999999,
+          "supply": 3.66666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 29.6666666666667,
+        "longest_armed_no_attack_s": 15.7000000000004,
+        "longest_stop_s": 1.98333333333333,
+        "pickups": 2,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 3,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 370877138609,
+            "s": 7.98333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1548.32970567746,
+        "elite": false,
+        "first_contact_s": 3.08333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.0,
+          "pursue": 18.1833333333336,
+          "reposition": 2.33333333333333,
+          "supply": 3.36666666666666,
+          "yield": 5.11666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.9,
+        "pickups": 3,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 365088999089,
+            "s": 2.65
+          },
+          {
+            "pickup": 371044911063,
+            "s": 12.3166666666667
+          }
+        ],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 2,
+        "distance_travelled": 1396.4164985203,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "pursue": 10.2833333333334,
+          "supply": 18.8000000000002,
+          "yield": 0.916666666666668
+        },
+        "last_pickup": 377890015297,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.7,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 364921227380,
+            "s": 2.53333333333333
+          },
+          {
+            "pickup": 371044911063,
+            "s": 7.83333333333333
+          },
+          {
+            "pickup": 378057787574,
+            "s": 13.2666666666667
+          },
+          {
+            "pickup": 371044911063,
+            "s": 15.5333333333333
+          },
+          {
+            "pickup": 389432739917,
+            "s": 19.9
+          },
+          {
+            "pickup": 398660208701,
+            "s": 24.0666666666667
+          },
+          {
+            "pickup": 377890015297,
+            "s": 27.1
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 3.08333333333333,
+    "first_damage_s": null,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 4.200000000000001,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 62,
+      "mean": 643.8572888150941,
+      "p95": 977.2520629636263,
+      "p99": 1031.4547043466464,
+      "max": 1031.4547043466464
+    }
+  },
+  {
+    "run": "after-final-4217",
+    "display": "headless",
+    "label": "native_wave4",
+    "seconds": 30.0,
+    "ai": 5,
+    "max_same_supply": 1,
+    "supply_actor_s": 37.60000000000038,
+    "combat_fraction": 0.5114444444444507,
+    "ai_pickups": 8,
+    "shots": 9,
+    "hits_on_player": 9,
+    "damage_to_player": 220.1013648365696,
+    "max_stop_s": 9.8333333333334,
+    "max_armed_no_attack_s": 15.7500000000004,
+    "recovery_requests": 13,
+    "recovery_started": 10,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.11666666666667,
+        "damage_to_player": 70.4147542190476,
+        "detours": 0,
+        "distance_travelled": 1874.2033770876,
+        "elite": true,
+        "first_contact_s": 16.3666666666667,
+        "first_damage_s": 16.3666666666667,
+        "hits_on_player": 3,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.46666666666665,
+          "pursue": 15.0000000000003,
+          "supply": 1.46666666666667,
+          "yield": 6.06666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 27.8833333333333,
+        "longest_armed_no_attack_s": 5.79999999999998,
+        "longest_stop_s": 2.61666666666666,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 3,
+        "stop_s": 0.833333333333334,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 431241562413,
+            "s": 5.48333333333333
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 15.7500000000004,
+        "damage_to_player": 149.686610617522,
+        "detours": 0,
+        "distance_travelled": 1416.02674073097,
+        "elite": false,
+        "first_contact_s": 8.2,
+        "first_damage_s": 8.91666666666667,
+        "hits_on_player": 6,
+        "index": 1,
+        "intent_s": {
+          "pursue": 6.96666666666665,
+          "reposition": 21.0333333333334,
+          "supply": 2.0
+        },
+        "last_pickup": 0,
+        "last_shot": 13.25,
+        "longest_armed_no_attack_s": 15.7500000000004,
+        "longest_stop_s": 9.8333333333334,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 0,
+        "role": 2,
+        "shots": 2,
+        "stop_s": 9.8333333333334,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 436593494401,
+            "s": 6.98333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1365.84575987735,
+        "elite": false,
+        "first_contact_s": 3.61666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.33333333333333,
+          "pursue": 16.6833333333337,
+          "reposition": 2.33333333333333,
+          "supply": 9.65000000000006
+        },
+        "last_pickup": 473788582088,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 5,
+        "recovery_started": 5,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 431409334701,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 436761266352,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 436761266352,
+            "s": 17.1166666666667
+          },
+          {
+            "pickup": 473788582088,
+            "s": 27.1
+          }
+        ],
+        "vehicle": "BEHEMOTH",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 3.99999999999999,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1691.91062282515,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 6.58333333333332,
+          "pursue": 9.60000000000006,
+          "supply": 7.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 25.0,
+        "longest_armed_no_attack_s": 4.68333333333332,
+        "longest_stop_s": 1.81666666666667,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 431241562413,
+            "s": 2.25
+          },
+          {
+            "pickup": 436761266352,
+            "s": 10.1
+          },
+          {
+            "pickup": 442180307111,
+            "s": 11.5166666666667
+          }
+        ],
+        "vehicle": "BASTION",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.933333333333335,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2034.22369594872,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 4,
+        "intent_s": {
+          "pursue": 13.0833333333336,
+          "supply": 16.916666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.933333333333335,
+        "longest_stop_s": 1.4,
+        "pickups": 3,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 431577106666,
+            "s": 2.25
+          },
+          {
+            "pickup": 436962592968,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 431577106666,
+            "s": 12.2833333333333
+          },
+          {
+            "pickup": 436962592968,
+            "s": 17.75
+          },
+          {
+            "pickup": 442348079317,
+            "s": 20.8666666666667
+          }
+        ],
+        "vehicle": "RAIDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.61666666666667,
+    "first_damage_s": 8.91666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 5.4999999999999964,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 60,
+      "mean": 713.9003278313978,
+      "p95": 995.3993058413496,
+      "p99": 1043.50212033072,
+      "max": 1043.50212033072
+    }
+  },
+  {
+    "run": "after-final-8675309",
+    "display": "headless",
+    "label": "supply_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 5.2,
+    "combat_fraction": 0.5635416666666668,
+    "ai_pickups": 2,
+    "shots": 7,
+    "hits_on_player": 3,
+    "damage_to_player": 18.75,
+    "max_stop_s": 4.19999999999999,
+    "max_armed_no_attack_s": 8.28333333333332,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1374.4269576259,
+        "elite": false,
+        "first_contact_s": 6.81666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.19999999999999,
+          "pursue": 6.58333333333332,
+          "reposition": 2.2,
+          "supply": 1.83333333333333,
+          "yield": 1.18333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 0.816666666666668,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87879059560,
+            "s": 2.2
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 994.334017130546,
+        "elite": false,
+        "first_contact_s": 6.88333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.94999999999998,
+          "pursue": 5.31666666666665,
+          "reposition": 4.46666666666666,
+          "yield": 4.26666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "NEEDLE",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 8.28333333333332,
+        "damage_to_player": 18.75,
+        "detours": 0,
+        "distance_travelled": 902.620868823025,
+        "elite": false,
+        "first_contact_s": 5.38333333333333,
+        "first_damage_s": 6.86666666666667,
+        "hits_on_player": 3,
+        "index": 2,
+        "intent_s": {
+          "attack": 2.66666666666666,
+          "pursue": 2.31666666666666,
+          "reposition": 11.6833333333335,
+          "supply": 1.66666666666667,
+          "yield": 1.66666666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7166666666667,
+        "longest_armed_no_attack_s": 8.28333333333332,
+        "longest_stop_s": 2.3,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 7,
+        "stop_s": 1.03333333333333,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87879059560,
+            "s": 0.333333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 972.334046073491,
+        "elite": false,
+        "first_contact_s": 6.1,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 10.9500000000001,
+          "pursue": 3.09999999999999,
+          "supply": 1.7,
+          "yield": 4.24999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 4.19999999999999,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 87778396431,
+            "s": 0.283333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 5.38333333333333,
+    "first_damage_s": 6.86666666666667,
+    "initial_supply_slots": [
+      2,
+      3
+    ],
+    "max_continuous_chase_s": 1.7000000000000004,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 50,
+      "mean": 72.07299794280837,
+      "p95": 73.72667618067283,
+      "p99": 74.46216844840517,
+      "max": 74.46216844840517
+    }
+  },
+  {
+    "run": "after-final-8675309",
+    "display": "headless",
+    "label": "flank_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.5658333333333323,
+    "ai_pickups": 0,
+    "shots": 64,
+    "hits_on_player": 29,
+    "damage_to_player": 145.6999999999971,
+    "max_stop_s": 1.73333333333333,
+    "max_armed_no_attack_s": 9.23333333333337,
+    "recovery_requests": 8,
+    "recovery_started": 8,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 5.69999999999709,
+        "detours": 0,
+        "distance_travelled": 1125.19058407238,
+        "elite": true,
+        "first_contact_s": 6.3,
+        "first_damage_s": 6.3,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.18333333333331,
+          "pursue": 6.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6833333333333,
+        "longest_armed_no_attack_s": 3.84999999999999,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 2.81666666666666,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1216.62563414034,
+        "elite": false,
+        "first_contact_s": 7.03333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.94999999999999,
+          "pursue": 5.63333333333332,
+          "reposition": 7.03333333333331,
+          "yield": 4.38333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 16.1833333333333,
+        "longest_armed_no_attack_s": 9.23333333333337,
+        "longest_stop_s": 1.45,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 8,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 60.0,
+        "detours": 0,
+        "distance_travelled": 1214.38046866503,
+        "elite": false,
+        "first_contact_s": 5.03333333333333,
+        "first_damage_s": 14.7833333333333,
+        "hits_on_player": 12,
+        "index": 2,
+        "intent_s": {
+          "attack": 8.66666666666668,
+          "pursue": 3.96666666666666,
+          "reposition": 7.36666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 19.45,
+        "longest_armed_no_attack_s": 9.00000000000003,
+        "longest_stop_s": 1.48333333333333,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 7.86666666666664,
+        "damage_to_player": 80.0,
+        "detours": 0,
+        "distance_travelled": 1054.94979021346,
+        "elite": false,
+        "first_contact_s": 5.2,
+        "first_damage_s": 5.2,
+        "hits_on_player": 16,
+        "index": 3,
+        "intent_s": {
+          "attack": 5.79999999999998,
+          "pursue": 4.49999999999999,
+          "reposition": 9.0666666666667,
+          "yield": 0.633333333333334
+        },
+        "last_pickup": 0,
+        "last_shot": 11.1333333333333,
+        "longest_armed_no_attack_s": 7.86666666666664,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 20,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 5.03333333333333,
+    "first_damage_s": 5.2,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 55,
+      "mean": 71.59590973474414,
+      "p95": 73.75365365766902,
+      "p99": 74.55646811346713,
+      "max": 74.55646811346713
+    }
+  },
+  {
+    "run": "after-final-8675309",
+    "display": "headless",
+    "label": "flank_open",
+    "seconds": 25.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.4995000000000029,
+    "ai_pickups": 0,
+    "shots": 70,
+    "hits_on_player": 34,
+    "damage_to_player": 173.4999999999854,
+    "max_stop_s": 10.1833333333334,
+    "max_armed_no_attack_s": 18.1000000000003,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.3,
+        "damage_to_player": 28.4999999999854,
+        "detours": 0,
+        "distance_travelled": 1306.61454879912,
+        "elite": true,
+        "first_contact_s": 5.95,
+        "first_damage_s": 5.95,
+        "hits_on_player": 5,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.33333333333338,
+          "pursue": 6.59999999999998,
+          "yield": 9.0666666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 22.7,
+        "longest_armed_no_attack_s": 4.16666666666666,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 18.1000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1199.16806424037,
+        "elite": false,
+        "first_contact_s": 7.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.99999999999999,
+          "pursue": 5.33333333333332,
+          "reposition": 10.7166666666668,
+          "yield": 5.94999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 5.9,
+        "longest_armed_no_attack_s": 18.1000000000003,
+        "longest_stop_s": 7.51666666666665,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 7.51666666666665,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.966666666666668,
+        "damage_to_player": 65.0,
+        "detours": 1,
+        "distance_travelled": 1238.50556333992,
+        "elite": false,
+        "first_contact_s": 4.98333333333333,
+        "first_damage_s": 15.4833333333333,
+        "hits_on_player": 13,
+        "index": 2,
+        "intent_s": {
+          "attack": 13.8000000000003,
+          "pursue": 3.66666666666666,
+          "reposition": 6.53333333333332,
+          "yield": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 23.0333333333333,
+        "longest_armed_no_attack_s": 9.43333333333338,
+        "longest_stop_s": 2.08333333333333,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 21,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 12.9166666666669,
+        "damage_to_player": 80.0,
+        "detours": 0,
+        "distance_travelled": 788.731380437923,
+        "elite": false,
+        "first_contact_s": 5.15,
+        "first_damage_s": 5.15,
+        "hits_on_player": 16,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.68333333333333,
+          "pursue": 4.53333333333332,
+          "reposition": 16.7833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 11.0833333333333,
+        "longest_armed_no_attack_s": 12.9166666666669,
+        "longest_stop_s": 10.1833333333334,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 20,
+        "stop_s": 10.1833333333334,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 4.98333333333333,
+    "first_damage_s": 5.15,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 54,
+      "mean": 71.81791630497682,
+      "p95": 73.96112060546898,
+      "p99": 74.83642578125,
+      "max": 74.83642578125
+    }
+  },
+  {
+    "run": "after-final-8675309",
+    "display": "headless",
+    "label": "native_wave2",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 16.166666666666618,
+    "combat_fraction": 0.6191666666666705,
+    "ai_pickups": 10,
+    "shots": 24,
+    "hits_on_player": 15,
+    "damage_to_player": 162.7917077608363,
+    "max_stop_s": 3.06666666666666,
+    "max_armed_no_attack_s": 10.8666666666668,
+    "recovery_requests": 11,
+    "recovery_started": 10,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1898.68701428524,
+        "elite": false,
+        "first_contact_s": 16.0833333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 11.1500000000001,
+          "pursue": 6.93333333333331,
+          "reposition": 4.03333333333332,
+          "supply": 7.68333333333331,
+          "yield": 0.2
+        },
+        "last_pickup": 0,
+        "last_shot": 29.95,
+        "longest_armed_no_attack_s": 10.8666666666668,
+        "longest_stop_s": 2.96666666666666,
+        "pickups": 3,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 16,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 306754619525,
+            "s": 1.81666666666667
+          },
+          {
+            "pickup": 312156883106,
+            "s": 9.13333333333333
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 7.76666666666664,
+        "damage_to_player": 84.7917077608363,
+        "detours": 2,
+        "distance_travelled": 2198.06807902502,
+        "elite": false,
+        "first_contact_s": 7.26666666666667,
+        "first_damage_s": 10.0333333333333,
+        "hits_on_player": 14,
+        "index": 1,
+        "intent_s": {
+          "attack": 9.66666666666673,
+          "pursue": 6.63333333333332,
+          "reposition": 12.7000000000002,
+          "supply": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 21.2333333333333,
+        "longest_armed_no_attack_s": 7.76666666666664,
+        "longest_stop_s": 1.4,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 4,
+        "stop_s": 0.900000000000001,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 311989111055,
+            "s": 6.65
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 2.06666666666666,
+        "damage_to_player": 78.0,
+        "detours": 0,
+        "distance_travelled": 1994.41133777192,
+        "elite": false,
+        "first_contact_s": 3.11666666666667,
+        "first_damage_s": 3.51666666666667,
+        "hits_on_player": 1,
+        "index": 2,
+        "intent_s": {
+          "attack": 7.24999999999998,
+          "pursue": 12.9666666666669,
+          "reposition": 8.45,
+          "supply": 1.33333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 26.9333333333333,
+        "longest_armed_no_attack_s": 7.18333333333331,
+        "longest_stop_s": 3.06666666666666,
+        "pickups": 4,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 3,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 306586847223,
+            "s": 1.65
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 10.6833333333334,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1950.37882542145,
+        "elite": false,
+        "first_contact_s": 22.0166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 9.81666666666673,
+          "pursue": 9.8833333333334,
+          "reposition": 1.55,
+          "supply": 6.14999999999998,
+          "yield": 2.6
+        },
+        "last_pickup": 0,
+        "last_shot": 18.3166666666667,
+        "longest_armed_no_attack_s": 10.6833333333334,
+        "longest_stop_s": 1.2,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 1,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 306419075194,
+            "s": 1.68333333333333
+          },
+          {
+            "pickup": 328967652963,
+            "s": 12.9333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 3.11666666666667,
+    "first_damage_s": 3.51666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 7.29999999999999,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 57,
+      "mean": 641.5823600115344,
+      "p95": 973.4193703209421,
+      "p99": 1017.3396617168703,
+      "max": 1017.3396617168703
+    }
+  },
+  {
+    "run": "after-final-8675309",
+    "display": "headless",
+    "label": "native_wave3",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 1,
+    "supply_actor_s": 25.3500000000002,
+    "combat_fraction": 0.5870833333333408,
+    "ai_pickups": 8,
+    "shots": 0,
+    "hits_on_player": 0,
+    "damage_to_player": 0.0,
+    "max_stop_s": 1.9,
+    "max_armed_no_attack_s": 16.266666666667,
+    "recovery_requests": 8,
+    "recovery_started": 7,
+    "detours": 3,
+    "actors": [
+      {
+        "armed_no_attack_s": 13.2333333333336,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1999.65579218138,
+        "elite": true,
+        "first_contact_s": 21.2,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.29999999999999,
+          "pursue": 15.7333333333337,
+          "supply": 2.56666666666666,
+          "yield": 3.39999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 13.2333333333336,
+        "longest_stop_s": 1.78333333333333,
+        "pickups": 1,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 388375775584,
+            "s": 5.85
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 16.266666666667,
+        "damage_to_player": 0.0,
+        "detours": 2,
+        "distance_travelled": 1700.93810178386,
+        "elite": false,
+        "first_contact_s": 14.6166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.33333333333332,
+          "pursue": 7.94999999999998,
+          "reposition": 10.7166666666668,
+          "supply": 5.99999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 16.266666666667,
+        "longest_stop_s": 1.9,
+        "pickups": 3,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 388711319444,
+            "s": 2.65
+          },
+          {
+            "pickup": 400405038996,
+            "s": 13.3
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1557.16164294234,
+        "elite": false,
+        "first_contact_s": 3.08333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.0,
+          "pursue": 17.2833333333336,
+          "reposition": 2.33333333333333,
+          "supply": 3.36666666666666,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 4,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 388543547327,
+            "s": 2.65
+          },
+          {
+            "pickup": 394499459005,
+            "s": 12.3166666666667
+          }
+        ],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1285.6025883113,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "pursue": 14.8500000000003,
+          "supply": 13.4166666666669,
+          "yield": 1.73333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.41666666666667,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.533333333333333,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 388375775584,
+            "s": 2.53333333333333
+          },
+          {
+            "pickup": 394499459005,
+            "s": 7.83333333333333
+          },
+          {
+            "pickup": 394499459005,
+            "s": 15.5333333333333
+          },
+          {
+            "pickup": 419614951387,
+            "s": 23.8166666666667
+          },
+          {
+            "pickup": 400572811224,
+            "s": 26.85
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 2
+      }
+    ],
+    "first_contact_s": 3.08333333333333,
+    "first_damage_s": null,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 5.299999999999997,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 18,
+      "mean": 893.1744900337728,
+      "p95": 1031.1012720678627,
+      "p99": 1031.1012720678627,
+      "max": 1031.1012720678627
+    }
+  },
+  {
+    "run": "after-final-8675309",
+    "display": "headless",
+    "label": "native_wave4",
+    "seconds": 30.0,
+    "ai": 5,
+    "max_same_supply": 1,
+    "supply_actor_s": 36.65000000000006,
+    "combat_fraction": 0.5653333333333399,
+    "ai_pickups": 6,
+    "shots": 21,
+    "hits_on_player": 30,
+    "damage_to_player": 246.0203768645584,
+    "max_stop_s": 2.6,
+    "max_armed_no_attack_s": 14.8833333333337,
+    "recovery_requests": 15,
+    "recovery_started": 14,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1786.57446163928,
+        "elite": true,
+        "first_contact_s": 22.2166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 3.29999999999999,
+          "pursue": 16.466666666667,
+          "reposition": 1.13333333333333,
+          "supply": 9.10000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 455853737782,
+            "s": 9.88333333333333
+          },
+          {
+            "pickup": 497595451864,
+            "s": 20.9833333333333
+          },
+          {
+            "pickup": 497427679446,
+            "s": 25.85
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 14.8833333333337,
+        "damage_to_player": 189.216310774325,
+        "detours": 0,
+        "distance_travelled": 2027.96741584362,
+        "elite": false,
+        "first_contact_s": 8.2,
+        "first_damage_s": 8.91666666666667,
+        "hits_on_player": 23,
+        "index": 1,
+        "intent_s": {
+          "attack": 9.36666666666671,
+          "pursue": 6.96666666666665,
+          "reposition": 11.6666666666668,
+          "supply": 2.0
+        },
+        "last_pickup": 0,
+        "last_shot": 14.1166666666667,
+        "longest_armed_no_attack_s": 14.8833333333337,
+        "longest_stop_s": 2.6,
+        "pickups": 3,
+        "recovery_requested": 1,
+        "recovery_started": 0,
+        "role": 2,
+        "shots": 15,
+        "stop_s": 0.483333333333333,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 461172115662,
+            "s": 6.98333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 982.96767340682,
+        "elite": false,
+        "first_contact_s": 3.61666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.33333333333333,
+          "pursue": 16.916666666667,
+          "reposition": 2.33333333333333,
+          "supply": 9.41666666666671
+        },
+        "last_pickup": 461339887392,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 7,
+        "recovery_started": 7,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 456021509839,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 461339887392,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 461339887392,
+            "s": 17.1166666666667
+          },
+          {
+            "pickup": 461339887392,
+            "s": 27.3333333333333
+          }
+        ],
+        "vehicle": "BEHEMOTH",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.366666666666667,
+        "damage_to_player": 56.8040660902334,
+        "detours": 0,
+        "distance_travelled": 1765.97837049793,
+        "elite": false,
+        "first_contact_s": 20.35,
+        "first_damage_s": 26.4833333333333,
+        "hits_on_player": 7,
+        "index": 3,
+        "intent_s": {
+          "attack": 5.14999999999999,
+          "pursue": 10.4500000000001,
+          "reposition": 6.83333333333331,
+          "supply": 7.56666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 28.6333333333333,
+        "longest_armed_no_attack_s": 10.5166666666668,
+        "longest_stop_s": 1.41666666666667,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 6,
+        "stop_s": 0.683333333333334,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 455853737782,
+            "s": 2.25
+          },
+          {
+            "pickup": 461339887392,
+            "s": 10.1
+          },
+          {
+            "pickup": 467782338715,
+            "s": 11.5166666666667
+          }
+        ],
+        "vehicle": "BASTION",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 9.1666666666667,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2202.90204693889,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 4,
+        "intent_s": {
+          "attack": 2.7,
+          "pursue": 12.1500000000002,
+          "supply": 8.56666666666667,
+          "yield": 6.58333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 9.1666666666667,
+        "longest_stop_s": 0.816666666666668,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 455853737782,
+            "s": 5.36666666666667
+          },
+          {
+            "pickup": 467983665364,
+            "s": 11.75
+          }
+        ],
+        "vehicle": "RAIDER",
+        "yield_count": 2
+      }
+    ],
+    "first_contact_s": 3.61666666666667,
+    "first_damage_s": 8.91666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 4.300000000000001,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 60,
+      "mean": 714.6041236719315,
+      "p95": 995.8023656287492,
+      "p99": 1043.7083102206955,
+      "max": 1043.7083102206955
+    }
+  },
+  {
+    "run": "before-final-104729",
+    "display": "headless",
+    "label": "supply_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 4,
+    "supply_actor_s": 15.91666666666664,
+    "combat_fraction": 0.5089583333333351,
+    "ai_pickups": 2,
+    "shots": 11,
+    "hits_on_player": 9,
+    "damage_to_player": 56.25,
+    "max_stop_s": 1.88333333333333,
+    "max_armed_no_attack_s": 9.00000000000003,
+    "recovery_requests": 9,
+    "recovery_started": 8,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1162.03420378175,
+        "elite": false,
+        "first_contact_s": 17.8666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 6.64999999999998,
+          "pursue": 2.55,
+          "supply": 4.76666666666666,
+          "yield": 6.03333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 0.783333333333334,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.333333333333333,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.366666666666667
+          },
+          {
+            "pickup": 87426074727,
+            "s": 2.2
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 987.094429586083,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 7.23333333333331,
+          "pursue": 1.98333333333333,
+          "supply": 4.66666666666666,
+          "yield": 6.11666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.68333333333333,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.333333333333333
+          },
+          {
+            "pickup": 87426074727,
+            "s": 2.0
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 9.00000000000003,
+        "damage_to_player": 56.25,
+        "detours": 0,
+        "distance_travelled": 944.41925718612,
+        "elite": false,
+        "first_contact_s": 6.35,
+        "first_damage_s": 7.31666666666667,
+        "hits_on_player": 9,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.09999999999999,
+          "pursue": 3.31666666666666,
+          "reposition": 8.88333333333335,
+          "supply": 1.66666666666667,
+          "yield": 1.03333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 10.0,
+        "longest_armed_no_attack_s": 9.00000000000003,
+        "longest_stop_s": 1.88333333333333,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 11,
+        "stop_s": 0.616666666666667,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.333333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 887.982670033525,
+        "elite": false,
+        "first_contact_s": 7.36666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 13.0500000000002,
+          "pursue": 0.833333333333334,
+          "reposition": 1.3,
+          "supply": 4.81666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.5,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.283333333333333
+          },
+          {
+            "pickup": 87426074727,
+            "s": 1.98333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 6.35,
+    "first_damage_s": 7.31666666666667,
+    "initial_supply_slots": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "max_continuous_chase_s": 2.9000000000000012,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 29,
+      "mean": 50.30006815539668,
+      "p95": 55.18056139380126,
+      "p99": 55.50502359688875,
+      "max": 55.50502359688875
+    }
+  },
+  {
+    "run": "before-final-104729",
+    "display": "headless",
+    "label": "flank_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.5685416666666653,
+    "ai_pickups": 0,
+    "shots": 64,
+    "hits_on_player": 28,
+    "damage_to_player": 142.5,
+    "max_stop_s": 1.73333333333333,
+    "max_armed_no_attack_s": 11.6833333333335,
+    "recovery_requests": 6,
+    "recovery_started": 6,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 5.69999999999709,
+        "detours": 0,
+        "distance_travelled": 1125.54573955853,
+        "elite": true,
+        "first_contact_s": 6.3,
+        "first_damage_s": 6.3,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.18333333333331,
+          "pursue": 6.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6666666666667,
+        "longest_armed_no_attack_s": 3.84999999999999,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 11.8000000000029,
+        "detours": 0,
+        "distance_travelled": 1366.86613392457,
+        "elite": false,
+        "first_contact_s": 7.06666666666667,
+        "first_damage_s": 19.1666666666667,
+        "hits_on_player": 2,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.84999999999998,
+          "pursue": 5.63333333333332,
+          "reposition": 7.61666666666664,
+          "yield": 0.900000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6833333333333,
+        "longest_armed_no_attack_s": 11.6833333333335,
+        "longest_stop_s": 0.750000000000001,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 11,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 2.65,
+        "damage_to_player": 50.0,
+        "detours": 0,
+        "distance_travelled": 1325.57122674398,
+        "elite": false,
+        "first_contact_s": 5.03333333333333,
+        "first_damage_s": 13.35,
+        "hits_on_player": 10,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.33333333333332,
+          "pursue": 3.96666666666666,
+          "reposition": 10.7000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 16.35,
+        "longest_armed_no_attack_s": 7.59999999999998,
+        "longest_stop_s": 1.23333333333333,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 8.21666666666665,
+        "damage_to_player": 75.0,
+        "detours": 0,
+        "distance_travelled": 1076.19264264285,
+        "elite": false,
+        "first_contact_s": 5.2,
+        "first_damage_s": 5.2,
+        "hits_on_player": 15,
+        "index": 3,
+        "intent_s": {
+          "attack": 6.44999999999998,
+          "pursue": 4.49999999999999,
+          "reposition": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7833333333333,
+        "longest_armed_no_attack_s": 8.21666666666665,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 5.03333333333333,
+    "first_damage_s": 5.2,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 55,
+      "mean": 71.81098208451803,
+      "p95": 73.99689555886691,
+      "p99": 75.21369467007635,
+      "max": 75.21369467007635
+    }
+  },
+  {
+    "run": "before-final-104729",
+    "display": "headless",
+    "label": "flank_open",
+    "seconds": 25.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.49066666666666847,
+    "ai_pickups": 0,
+    "shots": 67,
+    "hits_on_player": 33,
+    "damage_to_player": 170.59999999997672,
+    "max_stop_s": 10.1666666666668,
+    "max_armed_no_attack_s": 18.1000000000003,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.3,
+        "damage_to_player": 45.5999999999767,
+        "detours": 0,
+        "distance_travelled": 1303.41404539673,
+        "elite": true,
+        "first_contact_s": 5.95,
+        "first_damage_s": 5.95,
+        "hits_on_player": 8,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.35000000000004,
+          "pursue": 6.59999999999998,
+          "yield": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 22.7,
+        "longest_armed_no_attack_s": 4.16666666666666,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 18.1000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1196.2121750894,
+        "elite": false,
+        "first_contact_s": 7.01666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.99999999999999,
+          "pursue": 5.33333333333332,
+          "reposition": 11.2666666666668,
+          "yield": 5.39999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 5.9,
+        "longest_armed_no_attack_s": 18.1000000000003,
+        "longest_stop_s": 8.08333333333331,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 8.08333333333331,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.55,
+        "damage_to_player": 55.0,
+        "detours": 1,
+        "distance_travelled": 1306.56589175714,
+        "elite": false,
+        "first_contact_s": 4.98333333333333,
+        "first_damage_s": 15.5,
+        "hits_on_player": 11,
+        "index": 2,
+        "intent_s": {
+          "attack": 12.9000000000002,
+          "pursue": 3.66666666666666,
+          "reposition": 7.43333333333331,
+          "yield": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 22.45,
+        "longest_armed_no_attack_s": 9.43333333333338,
+        "longest_stop_s": 1.46666666666667,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 13.2666666666669,
+        "damage_to_player": 70.0,
+        "detours": 0,
+        "distance_travelled": 788.05153437861,
+        "elite": false,
+        "first_contact_s": 5.45,
+        "first_damage_s": 5.45,
+        "hits_on_player": 14,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.68333333333333,
+          "pursue": 4.53333333333332,
+          "reposition": 16.7833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7333333333333,
+        "longest_armed_no_attack_s": 13.2666666666669,
+        "longest_stop_s": 10.1666666666668,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 19,
+        "stop_s": 10.1666666666668,
+        "strategy": 3,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 4.98333333333333,
+    "first_damage_s": 5.45,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 54,
+      "mean": 71.81791630497682,
+      "p95": 73.96112060546898,
+      "p99": 74.83642578125,
+      "max": 74.83642578125
+    }
+  },
+  {
+    "run": "before-final-104729",
+    "display": "headless",
+    "label": "native_wave2",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 2,
+    "supply_actor_s": 22.799999999999944,
+    "combat_fraction": 0.551666666666668,
+    "ai_pickups": 8,
+    "shots": 12,
+    "hits_on_player": 37,
+    "damage_to_player": 303.5249610114846,
+    "max_stop_s": 4.36666666666666,
+    "max_armed_no_attack_s": 12.9000000000002,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 11.4000000000001,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1992.0958328906,
+        "elite": false,
+        "first_contact_s": 16.0833333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.68333333333334,
+          "pursue": 7.29999999999998,
+          "reposition": 4.03333333333332,
+          "supply": 7.31666666666665,
+          "yield": 2.66666666666666
+        },
+        "last_pickup": 0,
+        "last_shot": 17.6,
+        "longest_armed_no_attack_s": 11.4000000000001,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 4,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 2,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 293047634049,
+            "s": 1.81666666666667
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.68333333333333,
+        "damage_to_player": 9.17435296376061,
+        "detours": 0,
+        "distance_travelled": 1875.57905573095,
+        "elite": false,
+        "first_contact_s": 9.58333333333333,
+        "first_damage_s": 17.55,
+        "hits_on_player": 2,
+        "index": 1,
+        "intent_s": {
+          "attack": 7.98333333333331,
+          "pursue": 10.6333333333334,
+          "reposition": 6.63333333333332,
+          "supply": 3.94999999999999,
+          "yield": 0.800000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 27.3166666666667,
+        "longest_armed_no_attack_s": 9.46666666666672,
+        "longest_stop_s": 1.41666666666667,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 2,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 293047634049,
+            "s": 1.65
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 12.9000000000002,
+        "damage_to_player": 78.0,
+        "detours": 0,
+        "distance_travelled": 1852.27848407766,
+        "elite": false,
+        "first_contact_s": 3.11666666666667,
+        "first_damage_s": 3.51666666666667,
+        "hits_on_player": 1,
+        "index": 2,
+        "intent_s": {
+          "attack": 9.28333333333337,
+          "pursue": 11.3000000000001,
+          "reposition": 4.59999999999999,
+          "supply": 4.81666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 16.1,
+        "longest_armed_no_attack_s": 12.9000000000002,
+        "longest_stop_s": 2.63333333333333,
+        "pickups": 2,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 1,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 292879862058,
+            "s": 1.65
+          },
+          {
+            "pickup": 292712089831,
+            "s": 3.98333333333333
+          },
+          {
+            "pickup": 293215406211,
+            "s": 7.65
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 6.79999999999998,
+        "damage_to_player": 216.350608047724,
+        "detours": 0,
+        "distance_travelled": 1774.1913848184,
+        "elite": false,
+        "first_contact_s": 10.8333333333333,
+        "first_damage_s": 10.8333333333333,
+        "hits_on_player": 34,
+        "index": 3,
+        "intent_s": {
+          "attack": 8.5,
+          "pursue": 2.51666666666666,
+          "reposition": 12.2666666666669,
+          "supply": 6.71666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 22.2,
+        "longest_armed_no_attack_s": 6.79999999999998,
+        "longest_stop_s": 4.36666666666666,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 7,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 292712089831,
+            "s": 1.68333333333333
+          },
+          {
+            "pickup": 298567338359,
+            "s": 5.56666666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.11666666666667,
+    "first_damage_s": 3.51666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 7.29999999999999,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 32,
+      "mean": 451.8291651857096,
+      "p95": 993.608612409825,
+      "p99": 1017.3396617168703,
+      "max": 1017.3396617168703
+    }
+  },
+  {
+    "run": "before-final-104729",
+    "display": "headless",
+    "label": "native_wave3",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 3,
+    "supply_actor_s": 56.866666666667186,
+    "combat_fraction": 0.38375000000000165,
+    "ai_pickups": 6,
+    "shots": 6,
+    "hits_on_player": 0,
+    "damage_to_player": 0.0,
+    "max_stop_s": 3.49999999999999,
+    "max_armed_no_attack_s": 9.10000000000003,
+    "recovery_requests": 8,
+    "recovery_started": 8,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 3.16666666666666,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2251.9185653904,
+        "elite": true,
+        "first_contact_s": 17.25,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 5.66666666666665,
+          "pursue": 11.3333333333335,
+          "reposition": 9.70000000000006,
+          "supply": 3.29999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 25.8333333333333,
+        "longest_armed_no_attack_s": 4.11666666666666,
+        "longest_stop_s": 1.43333333333333,
+        "pickups": 3,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 6,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 369652402549,
+            "s": 2.55
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 9.10000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1599.98227619193,
+        "elite": false,
+        "first_contact_s": 14.3166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 4.86666666666665,
+          "pursue": 4.63333333333332,
+          "reposition": 6.93333333333331,
+          "supply": 13.5666666666669
+        },
+        "last_pickup": 398861535610,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 9.10000000000003,
+        "longest_stop_s": 1.8,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 369987946564,
+            "s": 2.65
+          },
+          {
+            "pickup": 375608314086,
+            "s": 7.98333333333333
+          },
+          {
+            "pickup": 385003555200,
+            "s": 13.1833333333333
+          },
+          {
+            "pickup": 398861535610,
+            "s": 18.8166666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1551.95125741139,
+        "elite": false,
+        "first_contact_s": 3.08333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 0.666666666666667,
+          "pursue": 4.96666666666665,
+          "supply": 23.9166666666666,
+          "yield": 0.45
+        },
+        "last_pickup": 375608314086,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 3.49999999999999,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 369820174227,
+            "s": 2.65
+          },
+          {
+            "pickup": 369652402549,
+            "s": 3.65
+          },
+          {
+            "pickup": 375943858515,
+            "s": 7.98333333333333
+          },
+          {
+            "pickup": 375608314086,
+            "s": 11.0166666666667
+          },
+          {
+            "pickup": 385171327028,
+            "s": 14.05
+          },
+          {
+            "pickup": 375943858515,
+            "s": 20.9166666666667
+          },
+          {
+            "pickup": 406478391348,
+            "s": 23.8666666666667
+          },
+          {
+            "pickup": 375608314086,
+            "s": 26.9
+          }
+        ],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 5.51666666666665,
+        "damage_to_player": 0.0,
+        "detours": 2,
+        "distance_travelled": 1805.37831185432,
+        "elite": false,
+        "first_contact_s": 28.2333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.46666666666666,
+          "pursue": 10.4500000000001,
+          "supply": 16.0833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 5.51666666666665,
+        "longest_stop_s": 1.43333333333333,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 369652402549,
+            "s": 2.53333333333333
+          },
+          {
+            "pickup": 375943858515,
+            "s": 7.83333333333333
+          },
+          {
+            "pickup": 375608314086,
+            "s": 11.9
+          },
+          {
+            "pickup": 385171327028,
+            "s": 14.9333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.08333333333333,
+    "first_damage_s": null,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 5.899999999999995,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 17,
+      "mean": 922.5933397167812,
+      "p95": 1031.1012720678627,
+      "p99": 1031.1012720678627,
+      "max": 1031.1012720678627
+    }
+  },
+  {
+    "run": "before-final-104729",
+    "display": "headless",
+    "label": "native_wave4",
+    "seconds": 30.0,
+    "ai": 5,
+    "max_same_supply": 2,
+    "supply_actor_s": 44.00000000000041,
+    "combat_fraction": 0.45200000000000257,
+    "ai_pickups": 9,
+    "shots": 11,
+    "hits_on_player": 8,
+    "damage_to_player": 278.7646788776697,
+    "max_stop_s": 2.55,
+    "max_armed_no_attack_s": 10.4666666666668,
+    "recovery_requests": 13,
+    "recovery_started": 11,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 10.4666666666668,
+        "damage_to_player": 51.0853189595728,
+        "detours": 0,
+        "distance_travelled": 1989.74289677921,
+        "elite": true,
+        "first_contact_s": 15.5833333333333,
+        "first_damage_s": 16.6,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 4.93333333333332,
+          "pursue": 13.1666666666669,
+          "reposition": 2.2,
+          "supply": 3.66666666666666,
+          "yield": 6.03333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 18.5333333333333,
+        "longest_armed_no_attack_s": 10.4666666666668,
+        "longest_stop_s": 2.31666666666666,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 3,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 433976248614,
+            "s": 2.18333333333333
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 4.36666666666666,
+        "damage_to_player": 202.820240999165,
+        "detours": 1,
+        "distance_travelled": 1147.97744203825,
+        "elite": false,
+        "first_contact_s": 11.5833333333333,
+        "first_damage_s": 11.75,
+        "hits_on_player": 6,
+        "index": 1,
+        "intent_s": {
+          "attack": 6.31666666666665,
+          "pursue": 2.96666666666666,
+          "reposition": 6.99999999999998,
+          "supply": 7.69999999999998,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 24.6333333333333,
+        "longest_armed_no_attack_s": 7.21666666666665,
+        "longest_stop_s": 1.78333333333333,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 434311792377,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 439613393190,
+            "s": 6.98333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1184.13667953806,
+        "elite": false,
+        "first_contact_s": 3.61666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.33333333333333,
+          "pursue": 11.1500000000001,
+          "reposition": 2.33333333333333,
+          "supply": 9.7333333333334,
+          "yield": 5.44999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.68333333333333,
+        "pickups": 3,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 434144020253,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 439948936910,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 445971957533,
+            "s": 11.6833333333333
+          },
+          {
+            "pickup": 453723031845,
+            "s": 16.3833333333333
+          }
+        ],
+        "vehicle": "BEHEMOTH",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1425.76680845849,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "pursue": 20.3000000000001,
+          "supply": 6.99999999999998,
+          "yield": 2.7
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.81666666666667,
+        "pickups": 1,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 433976248614,
+            "s": 2.25
+          },
+          {
+            "pickup": 439948936910,
+            "s": 6.98333333333333
+          }
+        ],
+        "vehicle": "BASTION",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.25,
+        "damage_to_player": 24.8591189189319,
+        "detours": 0,
+        "distance_travelled": 1607.60477826931,
+        "elite": false,
+        "first_contact_s": 22.1833333333333,
+        "first_damage_s": 23.7833333333333,
+        "hits_on_player": 1,
+        "index": 4,
+        "intent_s": {
+          "attack": 2.55,
+          "pursue": 5.08333333333332,
+          "reposition": 6.46666666666665,
+          "supply": 15.9000000000004
+        },
+        "last_pickup": 453890803797,
+        "last_shot": 27.75,
+        "longest_armed_no_attack_s": 1.61666666666667,
+        "longest_stop_s": 2.55,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 434311792377,
+            "s": 2.25
+          },
+          {
+            "pickup": 433976248614,
+            "s": 5.28333333333333
+          },
+          {
+            "pickup": 439613393190,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 445971957533,
+            "s": 11.7333333333333
+          },
+          {
+            "pickup": 434311792377,
+            "s": 14.7666666666667
+          },
+          {
+            "pickup": 453890803797,
+            "s": 19.8666666666667
+          }
+        ],
+        "vehicle": "RAIDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.61666666666667,
+    "first_damage_s": 11.75,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 4.999999999999998,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 14,
+      "mean": 965.0563348938521,
+      "p95": 1043.2835362883923,
+      "p99": 1043.2835362883923,
+      "max": 1043.2835362883923
+    }
+  },
+  {
+    "run": "before-final-4217",
+    "display": "headless",
+    "label": "supply_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 4,
+    "supply_actor_s": 15.91666666666664,
+    "combat_fraction": 0.5089583333333351,
+    "ai_pickups": 2,
+    "shots": 11,
+    "hits_on_player": 9,
+    "damage_to_player": 56.25,
+    "max_stop_s": 1.91666666666666,
+    "max_armed_no_attack_s": 9.00000000000003,
+    "recovery_requests": 9,
+    "recovery_started": 8,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1163.33279264881,
+        "elite": false,
+        "first_contact_s": 17.8666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 6.64999999999998,
+          "pursue": 2.55,
+          "supply": 4.76666666666666,
+          "yield": 6.03333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 0.783333333333334,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.333333333333333,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.366666666666667
+          },
+          {
+            "pickup": 87426074727,
+            "s": 2.2
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 987.993058107095,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 7.23333333333331,
+          "pursue": 1.98333333333333,
+          "supply": 4.66666666666666,
+          "yield": 6.11666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.66666666666667,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.333333333333333
+          },
+          {
+            "pickup": 87426074727,
+            "s": 2.0
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 9.00000000000003,
+        "damage_to_player": 56.25,
+        "detours": 0,
+        "distance_travelled": 941.232943806564,
+        "elite": false,
+        "first_contact_s": 6.35,
+        "first_damage_s": 7.31666666666667,
+        "hits_on_player": 9,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.09999999999999,
+          "pursue": 3.31666666666666,
+          "reposition": 8.88333333333335,
+          "supply": 1.66666666666667,
+          "yield": 1.03333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 10.0,
+        "longest_armed_no_attack_s": 9.00000000000003,
+        "longest_stop_s": 1.91666666666666,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 11,
+        "stop_s": 0.616666666666667,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.333333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 887.982670033525,
+        "elite": false,
+        "first_contact_s": 7.36666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 13.0500000000002,
+          "pursue": 0.833333333333334,
+          "reposition": 1.3,
+          "supply": 4.81666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.5,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.283333333333333
+          },
+          {
+            "pickup": 87426074727,
+            "s": 1.98333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 6.35,
+    "first_damage_s": 7.31666666666667,
+    "initial_supply_slots": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "max_continuous_chase_s": 2.9000000000000012,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 29,
+      "mean": 50.43963029293704,
+      "p95": 55.259052593890495,
+      "p99": 55.57625162375783,
+      "max": 55.57625162375783
+    }
+  },
+  {
+    "run": "before-final-4217",
+    "display": "headless",
+    "label": "flank_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.5685416666666653,
+    "ai_pickups": 0,
+    "shots": 64,
+    "hits_on_player": 28,
+    "damage_to_player": 143.40000000000148,
+    "max_stop_s": 1.73333333333333,
+    "max_armed_no_attack_s": 11.6833333333335,
+    "recovery_requests": 6,
+    "recovery_started": 6,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 5.69999999999709,
+        "detours": 0,
+        "distance_travelled": 1125.54534722585,
+        "elite": true,
+        "first_contact_s": 6.0,
+        "first_damage_s": 6.0,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.18333333333331,
+          "pursue": 6.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6666666666667,
+        "longest_armed_no_attack_s": 3.84999999999999,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 17.7000000000044,
+        "detours": 0,
+        "distance_travelled": 1366.86808538064,
+        "elite": false,
+        "first_contact_s": 7.06666666666667,
+        "first_damage_s": 19.1666666666667,
+        "hits_on_player": 3,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.84999999999998,
+          "pursue": 5.63333333333332,
+          "reposition": 7.61666666666664,
+          "yield": 0.900000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6833333333333,
+        "longest_armed_no_attack_s": 11.6833333333335,
+        "longest_stop_s": 0.750000000000001,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 11,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 2.65,
+        "damage_to_player": 50.0,
+        "detours": 0,
+        "distance_travelled": 1325.56883204356,
+        "elite": false,
+        "first_contact_s": 5.03333333333333,
+        "first_damage_s": 13.35,
+        "hits_on_player": 10,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.33333333333332,
+          "pursue": 3.96666666666666,
+          "reposition": 10.7000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 16.35,
+        "longest_armed_no_attack_s": 7.59999999999998,
+        "longest_stop_s": 1.23333333333333,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 8.21666666666665,
+        "damage_to_player": 70.0,
+        "detours": 0,
+        "distance_travelled": 1076.17745992655,
+        "elite": false,
+        "first_contact_s": 5.5,
+        "first_damage_s": 5.5,
+        "hits_on_player": 14,
+        "index": 3,
+        "intent_s": {
+          "attack": 6.44999999999998,
+          "pursue": 4.49999999999999,
+          "reposition": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7833333333333,
+        "longest_armed_no_attack_s": 8.21666666666665,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 5.03333333333333,
+    "first_damage_s": 5.5,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 55,
+      "mean": 71.81098208451803,
+      "p95": 73.99689555886691,
+      "p99": 75.21369467007635,
+      "max": 75.21369467007635
+    }
+  },
+  {
+    "run": "before-final-4217",
+    "display": "headless",
+    "label": "flank_open",
+    "seconds": 25.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.4940000000000025,
+    "ai_pickups": 0,
+    "shots": 67,
+    "hits_on_player": 30,
+    "damage_to_player": 153.4999999999854,
+    "max_stop_s": 10.1833333333334,
+    "max_armed_no_attack_s": 18.1000000000003,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.3,
+        "damage_to_player": 28.4999999999854,
+        "detours": 0,
+        "distance_travelled": 1304.27298137825,
+        "elite": true,
+        "first_contact_s": 20.5,
+        "first_damage_s": 20.5,
+        "hits_on_player": 5,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.35000000000004,
+          "pursue": 6.59999999999998,
+          "yield": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 22.7,
+        "longest_armed_no_attack_s": 4.18333333333332,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 18.1000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1196.36666925857,
+        "elite": false,
+        "first_contact_s": 7.01666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.99999999999999,
+          "pursue": 5.33333333333332,
+          "reposition": 11.2666666666668,
+          "yield": 5.39999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 5.9,
+        "longest_armed_no_attack_s": 18.1000000000003,
+        "longest_stop_s": 8.08333333333331,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 8.08333333333331,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.55,
+        "damage_to_player": 55.0,
+        "detours": 1,
+        "distance_travelled": 1281.34884362575,
+        "elite": false,
+        "first_contact_s": 4.98333333333333,
+        "first_damage_s": 15.5166666666667,
+        "hits_on_player": 11,
+        "index": 2,
+        "intent_s": {
+          "attack": 13.2333333333336,
+          "pursue": 3.66666666666666,
+          "reposition": 7.09999999999998,
+          "yield": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 22.45,
+        "longest_armed_no_attack_s": 9.45000000000005,
+        "longest_stop_s": 1.46666666666667,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 13.2666666666669,
+        "damage_to_player": 70.0,
+        "detours": 0,
+        "distance_travelled": 788.158975435188,
+        "elite": false,
+        "first_contact_s": 5.45,
+        "first_damage_s": 5.45,
+        "hits_on_player": 14,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.68333333333333,
+          "pursue": 4.53333333333332,
+          "reposition": 16.7833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7333333333333,
+        "longest_armed_no_attack_s": 13.2666666666669,
+        "longest_stop_s": 10.1833333333334,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 19,
+        "stop_s": 10.1833333333334,
+        "strategy": 3,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 4.98333333333333,
+    "first_damage_s": 5.45,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 54,
+      "mean": 71.81791630497682,
+      "p95": 73.96112060546898,
+      "p99": 74.83642578125,
+      "max": 74.83642578125
+    }
+  },
+  {
+    "run": "before-final-4217",
+    "display": "headless",
+    "label": "native_wave2",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 2,
+    "supply_actor_s": 30.083333333333417,
+    "combat_fraction": 0.46694444444444544,
+    "ai_pickups": 7,
+    "shots": 12,
+    "hits_on_player": 8,
+    "damage_to_player": 158.96868519049173,
+    "max_stop_s": 2.86666666666666,
+    "max_armed_no_attack_s": 16.6000000000003,
+    "recovery_requests": 10,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 5.89999999999998,
+        "damage_to_player": 25.0232391357422,
+        "detours": 0,
+        "distance_travelled": 2115.74071325979,
+        "elite": false,
+        "first_contact_s": 19.7833333333333,
+        "first_damage_s": 23.1833333333333,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 5.09999999999999,
+          "pursue": 7.29999999999998,
+          "supply": 11.3500000000001,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 23.1,
+        "longest_armed_no_attack_s": 5.89999999999998,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 4,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 1,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 293165074561,
+            "s": 1.81666666666667
+          },
+          {
+            "pickup": 298315680048,
+            "s": 9.13333333333333
+          },
+          {
+            "pickup": 292829530343,
+            "s": 9.5
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.3,
+        "damage_to_player": 29.4032305037326,
+        "detours": 0,
+        "distance_travelled": 1407.2130142611,
+        "elite": false,
+        "first_contact_s": 12.35,
+        "first_damage_s": 26.3166666666667,
+        "hits_on_player": 4,
+        "index": 1,
+        "intent_s": {
+          "attack": 7.78333333333331,
+          "pursue": 3.96666666666666,
+          "reposition": 3.49999999999999,
+          "supply": 8.73333333333335,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 28.7,
+        "longest_armed_no_attack_s": 5.39999999999999,
+        "longest_stop_s": 2.51666666666666,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 4,
+        "stop_s": 0.916666666666668,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 293165074561,
+            "s": 1.65
+          },
+          {
+            "pickup": 298315680048,
+            "s": 5.68333333333333
+          },
+          {
+            "pickup": 293165074561,
+            "s": 12.75
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 11.9666666666668,
+        "damage_to_player": 78.0,
+        "detours": 0,
+        "distance_travelled": 1890.57683207793,
+        "elite": false,
+        "first_contact_s": 3.11666666666667,
+        "first_damage_s": 3.51666666666667,
+        "hits_on_player": 1,
+        "index": 2,
+        "intent_s": {
+          "attack": 7.09999999999998,
+          "pursue": 13.1166666666669,
+          "reposition": 6.78333333333331,
+          "supply": 2.99999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 17.0333333333333,
+        "longest_armed_no_attack_s": 11.9666666666668,
+        "longest_stop_s": 2.08333333333333,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 3,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 292997302570,
+            "s": 1.65
+          },
+          {
+            "pickup": 292829530343,
+            "s": 3.98333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 16.6000000000003,
+        "damage_to_player": 26.5422155510169,
+        "detours": 0,
+        "distance_travelled": 1942.87882969575,
+        "elite": false,
+        "first_contact_s": 11.9333333333333,
+        "first_damage_s": 11.9333333333333,
+        "hits_on_player": 2,
+        "index": 3,
+        "intent_s": {
+          "attack": 5.66666666666665,
+          "pursue": 5.99999999999998,
+          "reposition": 11.3333333333335,
+          "supply": 6.99999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 12.4,
+        "longest_armed_no_attack_s": 16.6000000000003,
+        "longest_stop_s": 2.86666666666666,
+        "pickups": 1,
+        "recovery_requested": 1,
+        "recovery_started": 0,
+        "role": 1,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 292829530343,
+            "s": 1.68333333333333
+          },
+          {
+            "pickup": 298315680048,
+            "s": 5.56666666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.11666666666667,
+    "first_damage_s": 3.51666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 7.29999999999999,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 7,
+      "mean": 960.157986864786,
+      "p95": 1016.785558214731,
+      "p99": 1016.785558214731,
+      "max": 1016.785558214731
+    }
+  },
+  {
+    "run": "before-final-4217",
+    "display": "headless",
+    "label": "native_wave3",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 4,
+    "supply_actor_s": 52.800000000000146,
+    "combat_fraction": 0.43958333333333494,
+    "ai_pickups": 9,
+    "shots": 2,
+    "hits_on_player": 1,
+    "damage_to_player": 3.75264493306167,
+    "max_stop_s": 3.46666666666666,
+    "max_armed_no_attack_s": 16.5000000000003,
+    "recovery_requests": 8,
+    "recovery_started": 6,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 16.5000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2208.19623335963,
+        "elite": true,
+        "first_contact_s": 17.4,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 6.56666666666665,
+          "pursue": 11.7000000000002,
+          "reposition": 8.43333333333333,
+          "supply": 3.29999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 16.5000000000003,
+        "longest_stop_s": 1.43333333333333,
+        "pickups": 4,
+        "recovery_requested": 1,
+        "recovery_started": 0,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 360072611952,
+            "s": 2.55
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 5.19999999999999,
+        "damage_to_player": 3.75264493306167,
+        "detours": 0,
+        "distance_travelled": 1886.82329932111,
+        "elite": false,
+        "first_contact_s": 20.25,
+        "first_damage_s": 23.9,
+        "hits_on_player": 1,
+        "index": 1,
+        "intent_s": {
+          "attack": 7.46666666666665,
+          "pursue": 9.30000000000004,
+          "supply": 7.21666666666665,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 23.8,
+        "longest_armed_no_attack_s": 6.31666666666665,
+        "longest_stop_s": 1.38333333333333,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 2,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 360072611952,
+            "s": 3.31666666666667
+          },
+          {
+            "pickup": 366028523584,
+            "s": 7.98333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.95,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2096.72282167873,
+        "elite": false,
+        "first_contact_s": 3.08333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 0.666666666666667,
+          "pursue": 6.89999999999998,
+          "supply": 22.4333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 1.95,
+        "longest_stop_s": 3.46666666666666,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 360240383891,
+            "s": 2.65
+          },
+          {
+            "pickup": 360072611952,
+            "s": 3.65
+          },
+          {
+            "pickup": 366028523584,
+            "s": 7.98333333333333
+          },
+          {
+            "pickup": 366364067872,
+            "s": 11.5666666666667
+          },
+          {
+            "pickup": 376262625340,
+            "s": 18.4833333333333
+          },
+          {
+            "pickup": 387620800445,
+            "s": 21.4166666666667
+          },
+          {
+            "pickup": 376430397484,
+            "s": 24.4166666666667
+          }
+        ],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 3.16666666666666,
+        "damage_to_player": 0.0,
+        "detours": 2,
+        "distance_travelled": 1563.92018774571,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 1.68333333333333,
+          "pursue": 8.46666666666667,
+          "supply": 19.8500000000002
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 3.16666666666666,
+        "longest_stop_s": 1.68333333333333,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 360072611952,
+            "s": 2.53333333333333
+          },
+          {
+            "pickup": 366364067872,
+            "s": 7.83333333333333
+          },
+          {
+            "pickup": 366028523584,
+            "s": 11.9
+          },
+          {
+            "pickup": 376094853156,
+            "s": 13.3166666666667
+          },
+          {
+            "pickup": 376262625340,
+            "s": 16.35
+          },
+          {
+            "pickup": 387620800445,
+            "s": 20.1166666666667
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.08333333333333,
+    "first_damage_s": 23.9,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 6.699999999999992,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 47,
+      "mean": 677.2025903474865,
+      "p95": 992.117483154126,
+      "p99": 1031.4547043466464,
+      "max": 1031.4547043466464
+    }
+  },
+  {
+    "run": "before-final-4217",
+    "display": "headless",
+    "label": "native_wave4",
+    "seconds": 30.0,
+    "ai": 5,
+    "max_same_supply": 2,
+    "supply_actor_s": 64.58333333333465,
+    "combat_fraction": 0.4178888888888915,
+    "ai_pickups": 8,
+    "shots": 18,
+    "hits_on_player": 37,
+    "damage_to_player": 295.2935848045528,
+    "max_stop_s": 3.93333333333332,
+    "max_armed_no_attack_s": 11.0666666666668,
+    "recovery_requests": 13,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 11.0666666666668,
+        "damage_to_player": 140.559825371922,
+        "detours": 0,
+        "distance_travelled": 1980.47769162292,
+        "elite": true,
+        "first_contact_s": 15.6666666666667,
+        "first_damage_s": 15.95,
+        "hits_on_player": 32,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.01666666666664,
+          "pursue": 9.86666666666674,
+          "reposition": 2.2,
+          "supply": 3.66666666666666,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 17.9333333333333,
+        "longest_armed_no_attack_s": 11.0666666666668,
+        "longest_stop_s": 3.93333333333332,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 16,
+        "stop_s": 3.93333333333332,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 423842810143,
+            "s": 2.18333333333333
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 149.133759432625,
+        "detours": 0,
+        "distance_travelled": 904.768198445323,
+        "elite": false,
+        "first_contact_s": 11.5833333333333,
+        "first_damage_s": 11.9833333333333,
+        "hits_on_player": 3,
+        "index": 1,
+        "intent_s": {
+          "attack": 5.38333333333332,
+          "pursue": 2.96666666666666,
+          "supply": 15.6333333333337,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 471859202245,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.76666666666667,
+        "pickups": 0,
+        "recovery_requested": 4,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 424178354614,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 429463177503,
+            "s": 6.96666666666667
+          },
+          {
+            "pickup": 424178354614,
+            "s": 14.0
+          },
+          {
+            "pickup": 429463177503,
+            "s": 17.0333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1113.37119063199,
+        "elite": false,
+        "first_contact_s": 3.61666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 1.33333333333333,
+          "pursue": 10.2666666666668,
+          "reposition": 2.33333333333333,
+          "supply": 16.066666666667
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.46666666666667,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 424010582216,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 429798721891,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 436140509568,
+            "s": 11.6833333333333
+          },
+          {
+            "pickup": 436308281544,
+            "s": 14.7166666666667
+          }
+        ],
+        "vehicle": "BEHEMOTH",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1657.92468455888,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "pursue": 13.8333333333336,
+          "supply": 13.3166666666669,
+          "yield": 2.84999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 3,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 423842810143,
+            "s": 2.25
+          },
+          {
+            "pickup": 429798721891,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 429463177503,
+            "s": 10.95
+          },
+          {
+            "pickup": 436308281544,
+            "s": 13.95
+          },
+          {
+            "pickup": 443321157717,
+            "s": 16.9833333333333
+          }
+        ],
+        "vehicle": "BASTION",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 3.16666666666666,
+        "damage_to_player": 5.60000000000582,
+        "detours": 0,
+        "distance_travelled": 1818.93411449157,
+        "elite": false,
+        "first_contact_s": 25.6666666666667,
+        "first_damage_s": 26.0166666666667,
+        "hits_on_player": 2,
+        "index": 4,
+        "intent_s": {
+          "attack": 5.94999999999998,
+          "pursue": 5.06666666666665,
+          "reposition": 3.08333333333333,
+          "supply": 15.9000000000004
+        },
+        "last_pickup": 443488930003,
+        "last_shot": 25.8333333333333,
+        "longest_armed_no_attack_s": 4.78333333333332,
+        "longest_stop_s": 1.4,
+        "pickups": 2,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 2,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 424178354614,
+            "s": 2.25
+          },
+          {
+            "pickup": 423842810143,
+            "s": 5.28333333333333
+          },
+          {
+            "pickup": 429463177503,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 436140509568,
+            "s": 11.7166666666667
+          },
+          {
+            "pickup": 424178354614,
+            "s": 14.75
+          },
+          {
+            "pickup": 443488930003,
+            "s": 19.2833333333333
+          }
+        ],
+        "vehicle": "RAIDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.61666666666667,
+    "first_damage_s": 11.9833333333333,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 9.299999999999983,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 14,
+      "mean": 965.0563348938521,
+      "p95": 1043.2835362883923,
+      "p99": 1043.2835362883923,
+      "max": 1043.2835362883923
+    }
+  },
+  {
+    "run": "before-final-8675309",
+    "display": "headless",
+    "label": "supply_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 4,
+    "supply_actor_s": 15.91666666666664,
+    "combat_fraction": 0.5089583333333351,
+    "ai_pickups": 2,
+    "shots": 11,
+    "hits_on_player": 9,
+    "damage_to_player": 56.25,
+    "max_stop_s": 1.88333333333333,
+    "max_armed_no_attack_s": 9.00000000000003,
+    "recovery_requests": 9,
+    "recovery_started": 8,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1162.03420378175,
+        "elite": false,
+        "first_contact_s": 17.8666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 6.64999999999998,
+          "pursue": 2.55,
+          "supply": 4.76666666666666,
+          "yield": 6.03333333333332
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 0.783333333333334,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.333333333333333,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.366666666666667
+          },
+          {
+            "pickup": 87426074727,
+            "s": 2.2
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 987.094429586083,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 7.23333333333331,
+          "pursue": 1.98333333333333,
+          "supply": 4.66666666666666,
+          "yield": 6.11666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.68333333333333,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.333333333333333
+          },
+          {
+            "pickup": 87426074727,
+            "s": 2.0
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 9.00000000000003,
+        "damage_to_player": 56.25,
+        "detours": 0,
+        "distance_travelled": 944.41925718612,
+        "elite": false,
+        "first_contact_s": 6.35,
+        "first_damage_s": 7.3,
+        "hits_on_player": 9,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.09999999999999,
+          "pursue": 3.31666666666666,
+          "reposition": 8.88333333333335,
+          "supply": 1.66666666666667,
+          "yield": 1.03333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 10.0,
+        "longest_armed_no_attack_s": 9.00000000000003,
+        "longest_stop_s": 1.88333333333333,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 11,
+        "stop_s": 0.616666666666667,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.333333333333333
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 887.982670033525,
+        "elite": false,
+        "first_contact_s": 7.36666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 13.0500000000002,
+          "pursue": 0.833333333333334,
+          "reposition": 1.3,
+          "supply": 4.81666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.0,
+        "longest_stop_s": 1.5,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 87325411598,
+            "s": 0.283333333333333
+          },
+          {
+            "pickup": 87426074727,
+            "s": 1.98333333333333
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 6.35,
+    "first_damage_s": 7.3,
+    "initial_supply_slots": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "max_continuous_chase_s": 2.9000000000000012,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 29,
+      "mean": 50.30006815539668,
+      "p95": 55.18056139380126,
+      "p99": 55.50502359688875,
+      "max": 55.50502359688875
+    }
+  },
+  {
+    "run": "before-final-8675309",
+    "display": "headless",
+    "label": "flank_fixture",
+    "seconds": 20.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.5849999999999984,
+    "ai_pickups": 0,
+    "shots": 64,
+    "hits_on_player": 28,
+    "damage_to_player": 142.5,
+    "max_stop_s": 1.73333333333333,
+    "max_armed_no_attack_s": 11.9333333333335,
+    "recovery_requests": 6,
+    "recovery_started": 6,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 5.69999999999709,
+        "detours": 0,
+        "distance_travelled": 1125.55551624252,
+        "elite": true,
+        "first_contact_s": 6.3,
+        "first_damage_s": 6.3,
+        "hits_on_player": 1,
+        "index": 0,
+        "intent_s": {
+          "attack": 7.18333333333331,
+          "pursue": 6.56666666666665,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 19.6666666666667,
+        "longest_armed_no_attack_s": 3.84999999999999,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 11.8000000000029,
+        "detours": 0,
+        "distance_travelled": 1353.01208640495,
+        "elite": false,
+        "first_contact_s": 7.05,
+        "first_damage_s": 19.4,
+        "hits_on_player": 2,
+        "index": 1,
+        "intent_s": {
+          "attack": 6.83333333333331,
+          "pursue": 5.63333333333332,
+          "reposition": 6.78333333333331,
+          "yield": 0.750000000000001
+        },
+        "last_pickup": 0,
+        "last_shot": 19.9333333333333,
+        "longest_armed_no_attack_s": 11.9333333333335,
+        "longest_stop_s": 0.683333333333334,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 11,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 2.65,
+        "damage_to_player": 50.0,
+        "detours": 0,
+        "distance_travelled": 1321.14013645472,
+        "elite": false,
+        "first_contact_s": 5.03333333333333,
+        "first_damage_s": 13.3666666666667,
+        "hits_on_player": 10,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.66666666666665,
+          "pursue": 3.96666666666666,
+          "reposition": 10.3666666666668
+        },
+        "last_pickup": 0,
+        "last_shot": 16.35,
+        "longest_armed_no_attack_s": 7.59999999999998,
+        "longest_stop_s": 1.5,
+        "pickups": 0,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 17,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 8.21666666666665,
+        "damage_to_player": 75.0,
+        "detours": 0,
+        "distance_travelled": 1078.68522610769,
+        "elite": false,
+        "first_contact_s": 5.2,
+        "first_damage_s": 5.2,
+        "hits_on_player": 15,
+        "index": 3,
+        "intent_s": {
+          "attack": 6.44999999999998,
+          "pursue": 4.49999999999999,
+          "reposition": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7833333333333,
+        "longest_armed_no_attack_s": 8.21666666666665,
+        "longest_stop_s": 1.73333333333333,
+        "pickups": 0,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 5.03333333333333,
+    "first_damage_s": 5.2,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 55,
+      "mean": 71.8605903399154,
+      "p95": 74.21729350645312,
+      "p99": 75.38532552808536,
+      "max": 75.38532552808536
+    }
+  },
+  {
+    "run": "before-final-8675309",
+    "display": "headless",
+    "label": "flank_open",
+    "seconds": 25.0,
+    "ai": 4,
+    "max_same_supply": 0,
+    "supply_actor_s": 0,
+    "combat_fraction": 0.49066666666666847,
+    "ai_pickups": 0,
+    "shots": 67,
+    "hits_on_player": 33,
+    "damage_to_player": 169.8999999999796,
+    "max_stop_s": 10.1666666666668,
+    "max_armed_no_attack_s": 18.1000000000003,
+    "recovery_requests": 12,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 1.3,
+        "damage_to_player": 39.8999999999796,
+        "detours": 0,
+        "distance_travelled": 1303.56174999895,
+        "elite": true,
+        "first_contact_s": 5.95,
+        "first_damage_s": 5.95,
+        "hits_on_player": 7,
+        "index": 0,
+        "intent_s": {
+          "attack": 9.35000000000004,
+          "pursue": 6.59999999999998,
+          "yield": 9.05000000000003
+        },
+        "last_pickup": 0,
+        "last_shot": 22.7,
+        "longest_armed_no_attack_s": 4.16666666666666,
+        "longest_stop_s": 1.4,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 22,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 2
+      },
+      {
+        "armed_no_attack_s": 18.1000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1196.21109972568,
+        "elite": false,
+        "first_contact_s": 7.01666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 2.99999999999999,
+          "pursue": 5.33333333333332,
+          "reposition": 11.2666666666668,
+          "yield": 5.39999999999999
+        },
+        "last_pickup": 0,
+        "last_shot": 5.9,
+        "longest_armed_no_attack_s": 18.1000000000003,
+        "longest_stop_s": 8.08333333333331,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 7,
+        "stop_s": 8.08333333333331,
+        "strategy": 1,
+        "supply_choices": [],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.55,
+        "damage_to_player": 55.0,
+        "detours": 1,
+        "distance_travelled": 1306.59860593174,
+        "elite": false,
+        "first_contact_s": 4.98333333333333,
+        "first_damage_s": 15.4833333333333,
+        "hits_on_player": 11,
+        "index": 2,
+        "intent_s": {
+          "attack": 12.9000000000002,
+          "pursue": 3.66666666666666,
+          "reposition": 7.43333333333331,
+          "yield": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 22.45,
+        "longest_armed_no_attack_s": 9.43333333333338,
+        "longest_stop_s": 1.46666666666667,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 19,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 13.2666666666669,
+        "damage_to_player": 75.0,
+        "detours": 0,
+        "distance_travelled": 788.009753448612,
+        "elite": false,
+        "first_contact_s": 5.15,
+        "first_damage_s": 5.15,
+        "hits_on_player": 15,
+        "index": 3,
+        "intent_s": {
+          "attack": 3.68333333333333,
+          "pursue": 4.53333333333332,
+          "reposition": 16.7833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 10.7333333333333,
+        "longest_armed_no_attack_s": 13.2666666666669,
+        "longest_stop_s": 10.1666666666668,
+        "pickups": 0,
+        "recovery_requested": 3,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 19,
+        "stop_s": 10.1666666666668,
+        "strategy": 3,
+        "supply_choices": [],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 4.98333333333333,
+    "first_damage_s": 5.15,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 0,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 54,
+      "mean": 71.81791630497682,
+      "p95": 73.96112060546898,
+      "p99": 74.83642578125,
+      "max": 74.83642578125
+    }
+  },
+  {
+    "run": "before-final-8675309",
+    "display": "headless",
+    "label": "native_wave2",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 2,
+    "supply_actor_s": 26.0166666666666,
+    "combat_fraction": 0.5458333333333358,
+    "ai_pickups": 11,
+    "shots": 25,
+    "hits_on_player": 15,
+    "damage_to_player": 172.2033994984595,
+    "max_stop_s": 1.5,
+    "max_armed_no_attack_s": 11.4500000000001,
+    "recovery_requests": 9,
+    "recovery_started": 9,
+    "detours": 0,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.166666666666667,
+        "damage_to_player": 94.2033994984595,
+        "detours": 0,
+        "distance_travelled": 2041.5473996725,
+        "elite": false,
+        "first_contact_s": 16.0833333333333,
+        "first_damage_s": 25.3666666666667,
+        "hits_on_player": 14,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.31666666666666,
+          "pursue": 6.93333333333331,
+          "reposition": 7.06666666666665,
+          "supply": 7.68333333333331
+        },
+        "last_pickup": 0,
+        "last_shot": 28.8333333333333,
+        "longest_armed_no_attack_s": 10.8000000000001,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 3,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 1,
+        "shots": 13,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 293181851771,
+            "s": 1.81666666666667
+          },
+          {
+            "pickup": 298668001582,
+            "s": 9.13333333333333
+          }
+        ],
+        "vehicle": "PHANTOM",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 8.61666666666667,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1974.78342329338,
+        "elite": false,
+        "first_contact_s": 9.68333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 6.29999999999998,
+          "pursue": 9.96666666666674,
+          "reposition": 2.33333333333333,
+          "supply": 5.38333333333332,
+          "yield": 6.01666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 20.3833333333333,
+        "longest_armed_no_attack_s": 8.61666666666667,
+        "longest_stop_s": 1.36666666666667,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 8,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 293181851771,
+            "s": 1.65
+          },
+          {
+            "pickup": 298298902829,
+            "s": 5.7
+          }
+        ],
+        "vehicle": "NEEDLE",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 78.0,
+        "detours": 0,
+        "distance_travelled": 1945.7398287442,
+        "elite": false,
+        "first_contact_s": 3.11666666666667,
+        "first_damage_s": 3.51666666666667,
+        "hits_on_player": 1,
+        "index": 2,
+        "intent_s": {
+          "attack": 7.06666666666665,
+          "pursue": 11.3000000000001,
+          "reposition": 6.81666666666665,
+          "supply": 4.81666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 29.9166666666667,
+        "longest_armed_no_attack_s": 11.4500000000001,
+        "longest_stop_s": 1.5,
+        "pickups": 2,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 3,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 293014079614,
+            "s": 1.65
+          },
+          {
+            "pickup": 292846307707,
+            "s": 3.98333333333333
+          },
+          {
+            "pickup": 293349623937,
+            "s": 7.65
+          }
+        ],
+        "vehicle": "WASTELAND GT",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 3.51666666666666,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2188.27904742444,
+        "elite": false,
+        "first_contact_s": 29.4166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 2.31666666666666,
+          "pursue": 13.3000000000002,
+          "supply": 8.13333333333332,
+          "yield": 6.24999999999998
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 3.51666666666666,
+        "longest_stop_s": 0.766666666666667,
+        "pickups": 3,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 292846307707,
+            "s": 1.68333333333333
+          },
+          {
+            "pickup": 298500229419,
+            "s": 5.56666666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      }
+    ],
+    "first_contact_s": 3.11666666666667,
+    "first_damage_s": 3.51666666666667,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 7.29999999999999,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 17,
+      "mean": 401.09064575082976,
+      "p95": 1016.633798730584,
+      "p99": 1016.633798730584,
+      "max": 1016.633798730584
+    }
+  },
+  {
+    "run": "before-final-8675309",
+    "display": "headless",
+    "label": "native_wave3",
+    "seconds": 30.0,
+    "ai": 4,
+    "max_same_supply": 3,
+    "supply_actor_s": 43.56666666666739,
+    "combat_fraction": 0.5462500000000027,
+    "ai_pickups": 10,
+    "shots": 4,
+    "hits_on_player": 6,
+    "damage_to_player": 145.3612531938779,
+    "max_stop_s": 3.49999999999999,
+    "max_armed_no_attack_s": 14.5333333333336,
+    "recovery_requests": 8,
+    "recovery_started": 8,
+    "detours": 2,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 51.8222782967059,
+        "detours": 0,
+        "distance_travelled": 2336.58147163247,
+        "elite": true,
+        "first_contact_s": 14.55,
+        "first_damage_s": 14.55,
+        "hits_on_player": 3,
+        "index": 0,
+        "intent_s": {
+          "attack": 8.63333333333334,
+          "pursue": 11.3333333333335,
+          "reposition": 5.89999999999998,
+          "supply": 3.29999999999999,
+          "yield": 0.833333333333334
+        },
+        "last_pickup": 0,
+        "last_shot": 29.1833333333333,
+        "longest_armed_no_attack_s": 14.5333333333336,
+        "longest_stop_s": 1.35,
+        "pickups": 5,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 2,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 361918105969,
+            "s": 2.55
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 13.5000000000003,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2058.01300428202,
+        "elite": false,
+        "first_contact_s": 14.3166666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 4.73333333333332,
+          "pursue": 10.6333333333334,
+          "reposition": 2.33333333333333,
+          "supply": 11.7000000000002,
+          "yield": 0.6
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 13.5000000000003,
+        "longest_stop_s": 1.38333333333333,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 362253649811,
+            "s": 2.65
+          },
+          {
+            "pickup": 367874017238,
+            "s": 7.98333333333333
+          },
+          {
+            "pickup": 377118263187,
+            "s": 13.1666666666667
+          }
+        ],
+        "vehicle": "MARAUDER",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 93.538974897172,
+        "detours": 0,
+        "distance_travelled": 1895.47179764602,
+        "elite": false,
+        "first_contact_s": 3.08333333333333,
+        "first_damage_s": 23.9666666666667,
+        "hits_on_player": 3,
+        "index": 2,
+        "intent_s": {
+          "attack": 5.66666666666665,
+          "pursue": 10.6333333333334,
+          "reposition": 0.766666666666667,
+          "supply": 12.4833333333335,
+          "yield": 0.45
+        },
+        "last_pickup": 0,
+        "last_shot": 29.25,
+        "longest_armed_no_attack_s": 5.43333333333332,
+        "longest_stop_s": 3.49999999999999,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 3,
+        "shots": 2,
+        "stop_s": 0.466666666666667,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 362085877718,
+            "s": 2.65
+          },
+          {
+            "pickup": 361918105969,
+            "s": 3.65
+          },
+          {
+            "pickup": 368209561561,
+            "s": 7.98333333333333
+          },
+          {
+            "pickup": 367874017238,
+            "s": 11.0166666666667
+          },
+          {
+            "pickup": 377286035389,
+            "s": 14.05
+          }
+        ],
+        "vehicle": "WARHOUND",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 5.51666666666665,
+        "damage_to_player": 0.0,
+        "detours": 2,
+        "distance_travelled": 1730.42625255557,
+        "elite": false,
+        "first_contact_s": 27.6833333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "attack": 4.03333333333332,
+          "pursue": 9.8833333333334,
+          "supply": 16.0833333333337
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 5.51666666666665,
+        "longest_stop_s": 1.55,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 361918105969,
+            "s": 2.53333333333333
+          },
+          {
+            "pickup": 368209561561,
+            "s": 7.83333333333333
+          },
+          {
+            "pickup": 367874017238,
+            "s": 11.9
+          },
+          {
+            "pickup": 377286035389,
+            "s": 14.9333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.08333333333333,
+    "first_damage_s": 14.55,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 5.899999999999995,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 17,
+      "mean": 923.4894341225195,
+      "p95": 1031.4547043466464,
+      "p99": 1031.4547043466464,
+      "max": 1031.4547043466464
+    }
+  },
+  {
+    "run": "before-final-8675309",
+    "display": "headless",
+    "label": "native_wave4",
+    "seconds": 30.0,
+    "ai": 5,
+    "max_same_supply": 4,
+    "supply_actor_s": 54.18333333333361,
+    "combat_fraction": 0.56622222222223,
+    "ai_pickups": 8,
+    "shots": 5,
+    "hits_on_player": 0,
+    "damage_to_player": 0.0,
+    "max_stop_s": 1.8,
+    "max_armed_no_attack_s": 15.0333333333337,
+    "recovery_requests": 10,
+    "recovery_started": 9,
+    "detours": 1,
+    "actors": [
+      {
+        "armed_no_attack_s": 0.0,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1991.3933133434,
+        "elite": true,
+        "first_contact_s": 22.3833333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 0,
+        "intent_s": {
+          "attack": 5.13333333333332,
+          "pursue": 15.316666666667,
+          "reposition": 4.74999999999999,
+          "supply": 3.66666666666666,
+          "yield": 1.13333333333333
+        },
+        "last_pickup": 0,
+        "last_shot": 29.7,
+        "longest_armed_no_attack_s": 5.84999999999998,
+        "longest_stop_s": 1.4,
+        "pickups": 3,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 4,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 429765167268,
+            "s": 2.18333333333333
+          }
+        ],
+        "vehicle": "CERBERUS · ТАРАН",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 15.0333333333337,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1894.99889170146,
+        "elite": false,
+        "first_contact_s": 9.78333333333333,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 1,
+        "intent_s": {
+          "attack": 13.7000000000003,
+          "pursue": 8.96666666666669,
+          "reposition": 1.66666666666667,
+          "supply": 5.66666666666665
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 15.0333333333337,
+        "longest_stop_s": 1.46666666666667,
+        "pickups": 1,
+        "recovery_requested": 3,
+        "recovery_started": 3,
+        "role": 2,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 1,
+        "supply_choices": [
+          {
+            "pickup": 429765167268,
+            "s": 3.65
+          },
+          {
+            "pickup": 435117099172,
+            "s": 6.98333333333333
+          }
+        ],
+        "vehicle": "CRUSHER",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 2.08333333333333,
+        "damage_to_player": 0.0,
+        "detours": 1,
+        "distance_travelled": 1637.77066349029,
+        "elite": false,
+        "first_contact_s": 3.61666666666667,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 2,
+        "intent_s": {
+          "attack": 2.0,
+          "pursue": 13.9666666666669,
+          "reposition": 2.33333333333333,
+          "supply": 11.7000000000002
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 2.08333333333333,
+        "longest_stop_s": 1.8,
+        "pickups": 1,
+        "recovery_requested": 2,
+        "recovery_started": 1,
+        "role": 3,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 2,
+        "supply_choices": [
+          {
+            "pickup": 429932939341,
+            "s": 2.31666666666667
+          },
+          {
+            "pickup": 435452643076,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 440385144917,
+            "s": 11.6833333333333
+          },
+          {
+            "pickup": 447817451897,
+            "s": 16.3833333333333
+          },
+          {
+            "pickup": 447985223844,
+            "s": 17.7166666666667
+          },
+          {
+            "pickup": 459343399150,
+            "s": 21.0166666666667
+          }
+        ],
+        "vehicle": "BEHEMOTH",
+        "yield_count": 0
+      },
+      {
+        "armed_no_attack_s": 0.866666666666668,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 1830.63354046876,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 3,
+        "intent_s": {
+          "pursue": 17.5500000000003,
+          "supply": 11.4500000000001,
+          "yield": 1.0
+        },
+        "last_pickup": 0,
+        "last_shot": 0.0,
+        "longest_armed_no_attack_s": 0.866666666666668,
+        "longest_stop_s": 1.75,
+        "pickups": 2,
+        "recovery_requested": 2,
+        "recovery_started": 2,
+        "role": 1,
+        "shots": 0,
+        "stop_s": 0.0,
+        "strategy": 3,
+        "supply_choices": [
+          {
+            "pickup": 429765167268,
+            "s": 2.25
+          },
+          {
+            "pickup": 435452643076,
+            "s": 6.98333333333333
+          },
+          {
+            "pickup": 440385144917,
+            "s": 11.5166666666667
+          },
+          {
+            "pickup": 447817451897,
+            "s": 16.3333333333333
+          }
+        ],
+        "vehicle": "BASTION",
+        "yield_count": 1
+      },
+      {
+        "armed_no_attack_s": 1.23333333333333,
+        "damage_to_player": 0.0,
+        "detours": 0,
+        "distance_travelled": 2318.92629441526,
+        "elite": false,
+        "first_contact_s": -1.0,
+        "first_damage_s": -1.0,
+        "hits_on_player": 0,
+        "index": 4,
+        "intent_s": {
+          "attack": 1.25,
+          "pursue": 7.04999999999998,
+          "supply": 21.7
+        },
+        "last_pickup": 0,
+        "last_shot": 27.7666666666667,
+        "longest_armed_no_attack_s": 1.23333333333333,
+        "longest_stop_s": 1.4,
+        "pickups": 1,
+        "recovery_requested": 1,
+        "recovery_started": 1,
+        "role": 2,
+        "shots": 1,
+        "stop_s": 0.0,
+        "strategy": 0,
+        "supply_choices": [
+          {
+            "pickup": 429765167268,
+            "s": 2.25
+          },
+          {
+            "pickup": 435117099172,
+            "s": 6.78333333333333
+          },
+          {
+            "pickup": 435452643076,
+            "s": 10.75
+          },
+          {
+            "pickup": 440385144917,
+            "s": 11.6
+          },
+          {
+            "pickup": 447985223844,
+            "s": 21.4
+          }
+        ],
+        "vehicle": "RAIDER",
+        "yield_count": 0
+      }
+    ],
+    "first_contact_s": 3.61666666666667,
+    "first_damage_s": null,
+    "initial_supply_slots": [],
+    "max_continuous_chase_s": 9.799999999999981,
+    "flanker_physical_lateral_1_to_8s": {
+      "n": 40,
+      "mean": 782.7637412700082,
+      "p95": 1008.5195617645797,
+      "p99": 1043.7083102206955,
+      "max": 1043.7083102206955
+    }
+  }
+]

@@ -1,0 +1,412 @@
+[
+  {
+    "path": "scripts/vehicle.gd",
+    "unchanged": true,
+    "sha256": "3942d6283c2c4c5f1511f670d57a539049033c4d789aefeeedeb3fd7186c72e2"
+  },
+  {
+    "path": "scripts/vehicle_config.gd",
+    "unchanged": true,
+    "sha256": "3d5dcc55b028c01d7557bda8518b6f0a74e560f6d92486b1d78d996dce6d325e"
+  },
+  {
+    "path": "scripts/arena.gd",
+    "unchanged": true,
+    "sha256": "56d1bedb34943e512917fd3f189cd5d5fa69cc68a72d985fa505797442345ada"
+  },
+  {
+    "path": "scripts/arena_navigation.gd",
+    "unchanged": true,
+    "sha256": "f301c7219cf56dd63a6aadea23f494352f6b2e7a3a40d380ee67377e3e115d11"
+  },
+  {
+    "path": "scripts/bonus_spawner.gd",
+    "unchanged": true,
+    "sha256": "1ceeb2a9996744de750f3b74766c2675b3dfdd6a40750219ac27edf73372b188"
+  },
+  {
+    "path": "scripts/bonus_pickup.gd",
+    "unchanged": true,
+    "sha256": "3a47ef0ca26b6c5e967022f030e3e407b1263f98ed00a9e6f51b13b59260a240"
+  },
+  {
+    "path": "scripts/combat_vfx.gd",
+    "unchanged": true,
+    "sha256": "32756ccc4788b54af7a133f8f663012890e9699f57eb5b423c87d4c46404584c"
+  },
+  {
+    "path": "scripts/machine_gun.gd",
+    "unchanged": true,
+    "sha256": "18fd11fa878045faecd07ade42b1e42dee69a3155d3fd29df76313e9ab03639b"
+  },
+  {
+    "path": "scripts/survival_run_data.gd",
+    "unchanged": true,
+    "sha256": "06cb60c8197b9857d65a140ca3e8d8a1d5dfb98b664c0c61190e57f5f9147bff"
+  },
+  {
+    "path": "scripts/bot_controller.gd",
+    "unchanged": true,
+    "sha256": "3d1c8bd7045d456b13c3ca7d6a349389067f30c0a5fa20bece3869957521979d"
+  },
+  {
+    "path": "scripts/career_difficulty.gd",
+    "unchanged": true,
+    "sha256": "552360ea9b639604e58f998d8faa685a2760686901377c1a07c01e0f63f12e57"
+  },
+  {
+    "path": "scripts/arena_hud.gd",
+    "unchanged": true,
+    "sha256": "59af1c58b5d1a444a8f1288c3445820ce696cd9553b50a0a0468238c0289d60b"
+  },
+  {
+    "path": "scripts/bonus_weapon_cache.gd",
+    "unchanged": true,
+    "sha256": "74377327d1fd98f20899bf51105d8cb3692b84219402052d56df59db5a8d30b6"
+  },
+  {
+    "path": "scripts/loadout_profile.gd",
+    "unchanged": true,
+    "sha256": "956d88e363d889cad24a1ac648eac66a7510c567f9d083520a17289cddec3d0d"
+  },
+  {
+    "path": "resources/ashen_crown.tres",
+    "unchanged": true,
+    "sha256": "f1670bd8dc4c9bc8fa05018ff9089ad6c14a351750cd6ef8f4c4ac46a4afe95b"
+  },
+  {
+    "path": "resources/copper_ravine.tres",
+    "unchanged": true,
+    "sha256": "c2245a8355fe8a2a5a8f610061c9614bcc5ab65ed1a371f881ddf96ac05a7892"
+  },
+  {
+    "path": "resources/default_arena.tres",
+    "unchanged": true,
+    "sha256": "c87f4fa5f01caebab43a43696a0e7485453dcdebc31b242aa9277d9130db7cc6"
+  },
+  {
+    "path": "resources/default_vehicle.tres",
+    "unchanged": true,
+    "sha256": "47abaea817dce865c2d973b14444e357b890185f9ff5b3ff28d4411e936f9965"
+  },
+  {
+    "path": "resources/red_quarry_arena.tres",
+    "unchanged": true,
+    "sha256": "d998dbc88378902fe971edb9da62ed1b248d91c929742e451a7b27d1d2883f03"
+  },
+  {
+    "path": "resources/iron_circuit.tres",
+    "unchanged": true,
+    "sha256": "743bfd4b1c62aac44ef48759cc4c46ae7fac4d74f7f360c9aab08697e9cebae6"
+  },
+  {
+    "path": "resources/oil_cauldron_arena.tres",
+    "unchanged": true,
+    "sha256": "5b986599151f2c4a09d7e8d0192634148a8ea38cea09adeff9e133c6d2bf1357"
+  },
+  {
+    "path": "resources/broken_crown.tres",
+    "unchanged": true,
+    "sha256": "60708fd86293b99efc3f14498965ae407c4fae03e1443f371c59b9282a67b91d"
+  },
+  {
+    "path": "resources/default_audio.tres",
+    "unchanged": true,
+    "sha256": "66cab854db626d4c49228f891d347cbe26dc8e125acc5606f9a7d991cc19eec5"
+  },
+  {
+    "path": "resources/dust_spiral.tres",
+    "unchanged": true,
+    "sha256": "c240699e9b52c412dad260b229b1ce0d0114738673d8e00bf9e0554065414afe"
+  },
+  {
+    "path": "resources/flooded_depot_arena.tres",
+    "unchanged": true,
+    "sha256": "f24e48843e01f9dea684333ebab47eaf94383f9390bcdf5c6aa427c9be64bcf6"
+  },
+  {
+    "path": "resources/steel_foundry_arena.tres",
+    "unchanged": true,
+    "sha256": "f265855c622887fb2b5935579cfedcbae35fd4ec3c4bbdfc91a65ae125fd582d"
+  },
+  {
+    "path": "resources/default_machine_gun.tres",
+    "unchanged": true,
+    "sha256": "a3595620d92f34f04c181facdbeb77579b5453f21b5b94cab3b97d811d2b043a"
+  },
+  {
+    "path": "resources/vehicle_catalog.tres",
+    "unchanged": true,
+    "sha256": "708c6c39c4c0f86b0e2549fdf124a315a7cbec868ff9c9c7f569c59f27b8c2e8"
+  },
+  {
+    "path": "resources/economy_config.tres",
+    "unchanged": true,
+    "sha256": "a230b1b3d4d292ab7c37222b8f813bad850e098ec4e99af3ce19170197c7fcff"
+  },
+  {
+    "path": "resources/frontier_express.tres",
+    "unchanged": true,
+    "sha256": "e8e2a9695341bfc1e65d03487255548db577365477130299c13e7614fda8ad96"
+  },
+  {
+    "path": "resources/vehicles/nomad.tres",
+    "unchanged": true,
+    "sha256": "74e360c94531ff5356ca028ea0104a70bee9287e1d7497b1280a3a2ff6f13d7c"
+  },
+  {
+    "path": "resources/vehicles/needle.tres",
+    "unchanged": true,
+    "sha256": "ef9fbc57803c1f3f227e177012b7e2e239d50c4b157dfb267461f8bbc3e822d9"
+  },
+  {
+    "path": "resources/vehicles/phantom.tres",
+    "unchanged": true,
+    "sha256": "333760530c829cd393b7fa639b63201cbe4d78cdfa67fdb352bada98f947e84b"
+  },
+  {
+    "path": "resources/vehicles/behemoth.tres",
+    "unchanged": true,
+    "sha256": "2d466c9606ff7afb67f9bed28250a279948984722002d5abf3100ed477782a52"
+  },
+  {
+    "path": "resources/vehicles/warhound.tres",
+    "unchanged": true,
+    "sha256": "fe043c81a3120e20a8338aed4376ec56dbf2b61891ba1eaa9eef78d9bb33fd32"
+  },
+  {
+    "path": "resources/vehicles/marauder.tres",
+    "unchanged": true,
+    "sha256": "432e0e183304748058a122e2f65f31bab820b297fa47cd8df902b614e93a488b"
+  },
+  {
+    "path": "resources/vehicles/viper.tres",
+    "unchanged": true,
+    "sha256": "06893a347a95e72535f92f2fff16f9dbc02be96e601b2a92fd59aa6f95b24d89"
+  },
+  {
+    "path": "resources/vehicles/dustfox.tres",
+    "unchanged": true,
+    "sha256": "71249649cfc1f1d5f8c743ee6289ad0e5fb84b92eda14f4f9479505360137506"
+  },
+  {
+    "path": "resources/vehicles/raider.tres",
+    "unchanged": true,
+    "sha256": "ce65855c2386aea32a94e7a426eb2fbd02400a77b4c0b7a02daaaa6bf8be7603"
+  },
+  {
+    "path": "resources/vehicles/wasteland_gt.tres",
+    "unchanged": true,
+    "sha256": "26ea436b3cf52c221c8e898d1d1467e099c2d3e7e00e62e55e5fbf0d75bba547"
+  },
+  {
+    "path": "resources/vehicles/crusher.tres",
+    "unchanged": true,
+    "sha256": "783cceef9f26429ad10d14a5da160287b8289f1360eb0435920e43a76fbb2040"
+  },
+  {
+    "path": "resources/vehicles/bastion.tres",
+    "unchanged": true,
+    "sha256": "0b64501a88c34bd794916b6535d882dbb821d94d937bd4e3516dc51365d71705"
+  },
+  {
+    "path": "resources/vehicles/elite/referee_biker.tres",
+    "unchanged": true,
+    "sha256": "04b5d891a2c0b1a1887feb0b85125d05e984046ba7526bf5c5f351f5123ebe5a"
+  },
+  {
+    "path": "resources/vehicles/elite/cerberus_support.tres",
+    "unchanged": true,
+    "sha256": "aa31f9032651d38e65989eb4f2ac2ad80e84cd6abc8a6df43a7d160001e08495"
+  },
+  {
+    "path": "resources/vehicles/elite/cerberus_flanker.tres",
+    "unchanged": true,
+    "sha256": "8606824237b8dd5ed06abdfc39c7c98ea5a0374e01d69b9dec91345bee1e519d"
+  },
+  {
+    "path": "resources/vehicles/elite/cerberus_vanguard.tres",
+    "unchanged": true,
+    "sha256": "dc4a4c6b41f2c69d55d52a1eb87d2c09c1ee5545b7b085280e2a804f0400cc13"
+  },
+  {
+    "path": "resources/vehicles/elite/referee_arbiter.tres",
+    "unchanged": true,
+    "sha256": "1566755e35c692e43b5c575d72df915bc763b19909631aaec8aa1ab81d5731fd"
+  },
+  {
+    "path": "resources/upgrades/dustfox_scavenger.tres",
+    "unchanged": true,
+    "sha256": "609300e818aa8d31a1d1b0b5d0d298d5262169165e6218c963084557781a1ed1"
+  },
+  {
+    "path": "resources/upgrades/armament_1.tres",
+    "unchanged": true,
+    "sha256": "ad09e1ff0616c23c1a7d53a5207dcf04d5b43ef80ea2c9a23870065131aeceaa"
+  },
+  {
+    "path": "resources/upgrades/warhound_hunter.tres",
+    "unchanged": true,
+    "sha256": "570c1804a85b56fe10d21ed095fac681c7598c76da6d2a5641b7b5d362974cc8"
+  },
+  {
+    "path": "resources/upgrades/bastion_fortress.tres",
+    "unchanged": true,
+    "sha256": "c99548ec6916e897882f115b2663c3dd4a5fdef13abb90c0d98e8d7ae5c15927"
+  },
+  {
+    "path": "resources/upgrades/needle_redline.tres",
+    "unchanged": true,
+    "sha256": "e03c41b8f3d183404d99ebcdb2ae26c73850c0237627b4044859999d684105a1"
+  },
+  {
+    "path": "resources/upgrades/engine_2.tres",
+    "unchanged": true,
+    "sha256": "a04750619c99c2ff236602fb367c023384cc543b424686dce4349f3c8d3291a2"
+  },
+  {
+    "path": "resources/upgrades/armor_1.tres",
+    "unchanged": true,
+    "sha256": "091f536bf68f1d874bde152193bfef642c95e99071fa51524b30506f84171d2e"
+  },
+  {
+    "path": "resources/upgrades/bastion_siege.tres",
+    "unchanged": true,
+    "sha256": "0599710e7eb836c66c574dbe3ea08ffd7a66a92244dc41d7ac00be548fc96cdd"
+  },
+  {
+    "path": "resources/upgrades/wheels_2.tres",
+    "unchanged": true,
+    "sha256": "b315c8cb8d6406ea567d9c65d23d142a1bfd8904e08bec437fc402fca169511a"
+  },
+  {
+    "path": "resources/upgrades/armor_2.tres",
+    "unchanged": true,
+    "sha256": "a528d9d68fd3340f423937d877cbbab8d07c57afae5360b36198804c68b63652"
+  },
+  {
+    "path": "resources/upgrades/engine_1.tres",
+    "unchanged": true,
+    "sha256": "7bd58b3b43b194a46da8ee6d81039ea19ad26be930ab859488db46ed8fa6ab0a"
+  },
+  {
+    "path": "resources/upgrades/engine_3.tres",
+    "unchanged": true,
+    "sha256": "640cb067812d19efd195e295265e1ff5daa959758b2945cfcf5778ec7020a2d4"
+  },
+  {
+    "path": "resources/upgrades/dustfox_runner.tres",
+    "unchanged": true,
+    "sha256": "e57f0b7468d50ebb1d34e28a515c23a3409c952997cd89d0b9a5ca53555a9e1f"
+  },
+  {
+    "path": "resources/upgrades/weapon_rate_1.tres",
+    "unchanged": true,
+    "sha256": "68142894509d0c18e8d7554be9d13ae9636194bd9ddb167c2bf2005f116daf92"
+  },
+  {
+    "path": "resources/upgrades/armament_3.tres",
+    "unchanged": true,
+    "sha256": "cede61a7bbdc23e39cbff89c47a2345215205eaaf7617c2eb7b48b7c48779ef9"
+  },
+  {
+    "path": "resources/upgrades/wheels_1.tres",
+    "unchanged": true,
+    "sha256": "aee062d9241508c1250c99698b5d0d42994f70f51aefb16496f65c7dfdb3e3ad"
+  },
+  {
+    "path": "resources/upgrades/needle_ghost.tres",
+    "unchanged": true,
+    "sha256": "62f3aed90c897d8028b7af905a9ac7bca060020cb4b756fe3eba45505103f6ea"
+  },
+  {
+    "path": "resources/upgrades/armor_3.tres",
+    "unchanged": true,
+    "sha256": "66504187eae98abd7c465a0ae88532dd84af9fb1f040f6e86f0fabf388efd8ae"
+  },
+  {
+    "path": "resources/upgrades/weapon_damage_1.tres",
+    "unchanged": true,
+    "sha256": "5bc35b6833e8b7358f1789540c8793d9ca2e96fd6175af15c8b73c4a6713f092"
+  },
+  {
+    "path": "resources/upgrades/handling_1.tres",
+    "unchanged": true,
+    "sha256": "0440a24f8cf2adb5b84fd5d12ab011f20b98b6a7118b5b6096e26058ba4b474d"
+  },
+  {
+    "path": "resources/upgrades/wheels_3.tres",
+    "unchanged": true,
+    "sha256": "b49c936079485cd4ca44554d372c6b4e8cfdc6f93a8099b33b544a4b5a4afbc6"
+  },
+  {
+    "path": "resources/upgrades/durability_1.tres",
+    "unchanged": true,
+    "sha256": "010c501600528693550f5e26e1f74b03b8cdd02a8a442281c2f6b9e47ffeee1a"
+  },
+  {
+    "path": "resources/upgrades/armament_2.tres",
+    "unchanged": true,
+    "sha256": "52129cd5dd4943ba8cca7e7216bda34c15d82d890fb3a6b53be4c5eb034d724f"
+  },
+  {
+    "path": "resources/upgrades/warhound_suppressor.tres",
+    "unchanged": true,
+    "sha256": "4d5da77c937f10503de09fd607fafd6c8c334a3fe03538038cf2c5c4caa2cf88"
+  },
+  {
+    "path": "resources/audio/menu_audio.tres",
+    "unchanged": true,
+    "sha256": "5926821f7c33f16dc4cb9b674af4a6ef60881d771d87e271bde016a32d32b070"
+  },
+  {
+    "path": "resources/weapons/flamethrower.tres",
+    "unchanged": true,
+    "sha256": "5378705c42ccf36198ea57d819ab2c4ad5898c15e896d520d44633b903729562"
+  },
+  {
+    "path": "resources/weapons/rocket_launcher.tres",
+    "unchanged": true,
+    "sha256": "d66aff5248f981075e1d44dd3c3b16f67d1c1305b55339c8b5de7ffc10b51e93"
+  },
+  {
+    "path": "resources/weapons/mine_layer.tres",
+    "unchanged": true,
+    "sha256": "f8e3b8b4928e0a7f4cf41dcf1225174886f4d66b46f5fb737edc9b8e909fe46d"
+  },
+  {
+    "path": "resources/weapons/emp_cannon.tres",
+    "unchanged": true,
+    "sha256": "76c65fa92c185b2a7300b9ac7b2d69697d63e66120de86dc7c1f235d9c9c0d8d"
+  },
+  {
+    "path": "resources/weapons/machine_gun.tres",
+    "unchanged": true,
+    "sha256": "01fd4732af19d5f1f59a405245c192f3a0089ef856f76c3f27fdd7d54425e7de"
+  },
+  {
+    "path": "resources/weapons/heavy_machine_gun.tres",
+    "unchanged": true,
+    "sha256": "cf68f5d50ec3d990b8eb2618cf515ac0e87c430068e0507279346c06f01d7202"
+  },
+  {
+    "path": "resources/weapons/referee_flamethrower.tres",
+    "unchanged": true,
+    "sha256": "cbd8781d4a93287a65e6826aaf72594ef89e5c3ac3ac545d5219340493625364"
+  },
+  {
+    "path": "resources/weapons/biker_pistol.tres",
+    "unchanged": true,
+    "sha256": "5dd6e15976b8e91a02c6388267bd9632d4914847437ea0452ca585771840a179"
+  },
+  {
+    "path": "resources/weapons/shotgun.tres",
+    "unchanged": true,
+    "sha256": "8578753db6d6bef8235cc07329e49447420b7712e47f97c23dce6a859630964c"
+  },
+  {
+    "path": "resources/ui/main_theme.tres",
+    "unchanged": true,
+    "sha256": "2283a9094d549c90e39f19c3429f882eb5455032d8da8b71fe2fc583104aa162"
+  }
+]

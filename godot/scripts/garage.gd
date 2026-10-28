@@ -15,6 +15,7 @@ const CATEGORY_LABELS := {
 }
 
 func _ready() -> void:
+	get_node("/root/Music").show_menu()
 	SceneTransition.warm(["res://scenes/PreRace.tscn", "res://scenes/MainMenu.tscn"])
 	_populate_selectors()
 	_populate_upgrades()

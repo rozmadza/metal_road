@@ -1,0 +1,38 @@
+ M docs/reports/METAL_ROAD_QA_REPORT.md
+ M docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
+ M project.godot
+ M scenes/ArenaBattle.tscn
+ M scenes/Main.tscn
+ M scripts/arena_bot.gd
+ M scripts/audio_manager.gd
+ M scripts/career.gd
+ M scripts/career_dialogue.gd
+ M scripts/controls_screen.gd
+ M scripts/garage.gd
+ M scripts/main_menu.gd
+ M scripts/pre_race.gd
+ M scripts/survival.gd
+ M tests/arena_music_smoke.gd
+?? assets/music/metal_road_apocalyptic_combat_loop_heavier.ogg
+?? assets/music/metal_road_apocalyptic_combat_loop_heavier.ogg.import
+?? assets/music/metal_road_arbiter_arena_de_combote_loop.ogg
+?? assets/music/metal_road_arbiter_arena_de_combote_loop.ogg.import
+?? assets/music/metal_road_garage_warm_desert_groove_loop.ogg
+?? assets/music/metal_road_garage_warm_desert_groove_loop.ogg.import
+?? docs/reports/METAL_ROAD_MUSIC_STATES.md
+?? docs/reports/METAL_ROAD_TACTICAL_WAVES_V1.md
+?? docs/reports/music-states-evidence/
+?? docs/reports/tactical-waves-v1-evidence/
+?? scripts/music_service.gd
+?? scripts/music_service.gd.uid
+?? scripts/survival_wave_tactics.gd
+?? scripts/survival_wave_tactics.gd.uid
+?? tests/analyze_music_boundaries.py
+?? tests/analyze_tactical_waves.py
+?? tests/instrument_tactical_probe.py
+?? tests/music_full_loop_capture.gd
+?? tests/music_states_visual.gd
+?? tests/tactical_wave_identity_smoke.gd
+?? tests/tactical_wave_identity_smoke.gd.uid
+?? tests/tactical_wave_probe.gd
+?? tests/tactical_wave_probe.gd.uid

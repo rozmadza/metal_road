@@ -8,6 +8,7 @@ var _event_buttons: Array[Button] = []
 
 
 func _ready() -> void:
+	get_node("/root/Music").show_menu()
 	%BackButton.pressed.connect(func(): SceneTransition.go(MENU_SCENE, "ВОЗВРАЩЕНИЕ В МЕНЮ"))
 	%StartButton.pressed.connect(_start_selected)
 	%ChampionshipButton.pressed.connect(_start_championship)

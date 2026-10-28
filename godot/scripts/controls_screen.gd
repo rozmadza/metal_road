@@ -8,6 +8,7 @@ var waiting_for: StringName = &""
 var buttons := {}
 
 func _ready() -> void:
+	get_node("/root/Music").show_menu()
 	Bindings.ensure_controller_defaults()
 	Bindings.load_custom_bindings()
 	for action in Bindings.ACTIONS:

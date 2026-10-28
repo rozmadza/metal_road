@@ -1,0 +1,20 @@
+PASS vehicle_catalog_cache_smoke
+PASS profile_recovery_smoke
+PASS garage_loadout_smoke
+PASS garage_smoke
+PASS pre_race_smoke
+PASS career_gameplay_smoke
+PASS race_finish_smoke
+PASS controls_smoke
+PASS survival_smoke
+PASS survival_playability_smoke
+PASS survival_boss_schedule_smoke
+PASS survival_biker_crew_smoke
+PASS survival_roguelite_smoke
+PASS survival_round_guard_smoke
+PASS survival_restart_smoke
+PASS survival_reward_feedback_smoke
+PASS tactical_arsenal_smoke
+PASS release_v1_smoke
+PASS release_candidate_smoke
+REGRESSION_RESULT failures=0 total=19

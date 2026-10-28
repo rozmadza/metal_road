@@ -1,0 +1,16 @@
+ godot/docs/reports/METAL_ROAD_QA_REPORT.md         |  16 +++
+ .../METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md        |  11 ++
+ godot/project.godot                                |   2 +
+ godot/scenes/ArenaBattle.tscn                      |   2 -
+ godot/scenes/Main.tscn                             |   2 -
+ godot/scripts/arena_bot.gd                         |  34 ++++-
+ godot/scripts/audio_manager.gd                     |  74 +++-------
+ godot/scripts/career.gd                            |   1 +
+ godot/scripts/career_dialogue.gd                   |   1 +
+ godot/scripts/controls_screen.gd                   |   1 +
+ godot/scripts/garage.gd                            |   1 +
+ godot/scripts/main_menu.gd                         |   1 +
+ godot/scripts/pre_race.gd                          |   1 +
+ godot/scripts/survival.gd                          |   9 +-
+ godot/tests/arena_music_smoke.gd                   | 150 +++++++++++++++++----
+ 15 files changed, 217 insertions(+), 89 deletions(-)

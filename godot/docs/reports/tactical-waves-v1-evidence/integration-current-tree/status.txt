@@ -1,0 +1,9 @@
+tactical_wave_identity_smoke exit=0
+survival_smoke exit=0
+survival_playability_smoke exit=0
+survival_restart_smoke exit=0
+race_finish_smoke exit=0
+career_gameplay_smoke exit=0
+garage_smoke exit=0
+pre_race_smoke exit=0
+release_candidate_smoke exit=0
