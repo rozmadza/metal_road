@@ -10,7 +10,7 @@
 
 ## Сохранение рабочего дерева
 
-На старте: ветка `codex/tactical-wave-identity-v1`, HEAD `3b8a9bc747539470326e907b15b4ceb5d674018e`. Существовали незакоммиченные v1/v2, QA и файлы арта владельца. Сохранены исходные status/diff и полная копия дерева вместе с прежним `.godot` в `/tmp/metal-road-arena-launch-before`. Reset/checkout/commit/push/merge не выполнялись.
+На старте: ветка `codex/tactical-wave-identity-v1`, HEAD `3b8a9bc747539470326e907b15b4ceb5d674018e`. Существовали незакоммиченные v1/v2, QA и файлы арта владельца. Сохранены исходные status/diff и полная копия дерева вместе с прежним `.godot` в `/tmp/metal-road-arena-launch-before`. Reset/checkout/commit/push/merge мной не выполнялись. Во время завершения документации обнаружен внешний commit `2bd1a1acb75f20ae7e59cbe69d8b3d0276e3a100` (автор в Git: Andrey Kitaev); HEAD изменился, содержимое проверенных production-скриптов осталось тем же. Внешний commit не отменялся и не переписывался.
 
 [Исходный status](arena-launch-button-evidence/initial-status.txt), [исходный diff](arena-launch-button-evidence/initial-diff.patch.txt), [только изменения исходников этой задачи](arena-launch-button-evidence/task-only-source.patch.txt), [проверка сохранности](arena-launch-button-evidence/preservation.json). Из772 ранее существовавших файлов scripts/resources/scenes/assets/tests768 совпадают побайтно, изменены только четыре скрипта, перечисленные ниже. Ни один из десяти PNG ракетницы — концепт, roof, четыре авторских исходника и четыре подготовленных изображения — не изменён. Все прежние отчёты сохранены; QA дополнен новой записью.
 

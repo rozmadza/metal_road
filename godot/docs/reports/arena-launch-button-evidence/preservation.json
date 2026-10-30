@@ -21,5 +21,8 @@
     "assets/weapons/rocket_launcher/Изображение ChatGPT 30 окт. 2026 г., 10_15_08-3.png": "7b685d11f4c09a93b67976ec711a41133d8db08b8deaeb0cca525c2929d6ca50"
   },
   "cache_before_contains_visual_class": false,
-  "cache_after_contains_visual_class": true
+  "cache_after_contains_visual_class": true,
+  "observed_final_head": "2bd1a1acb75f20ae7e59cbe69d8b3d0276e3a100",
+  "external_commit_observed": true,
+  "git_mutations_by_assistant": false
 }
