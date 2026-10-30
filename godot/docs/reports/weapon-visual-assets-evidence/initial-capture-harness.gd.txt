@@ -1,0 +1,131 @@
+extends SceneTree
+## Audit-only pose/capture harness. Production scripts and resources are unchanged.
+const IDS := ["machine_gun","heavy_machine_gun","shotgun","rocket_launcher","mine_layer","flamethrower","emp_cannon"]
+var world: Node2D
+var arena: Arena
+var source_car: Vehicle
+var target_car: Vehicle
+var bullets: Node2D
+var vfx: CombatVFX
+var camera: Camera2D
+var records: Array = []
+var configs: Array = []
+var current_id := ""
+var output := "res://visual-audit-output/"
+var impacts := 0
+
+func _initialize() -> void: run.call_deferred()
+
+func vector(v: Vector2) -> Array: return [v.x,v.y]
+
+func capture(phase: String) -> void:
+	await RenderingServer.frame_post_draw
+	var focus := source_car.gun.get_muzzle_position()
+	if current_id=="mine_layer": focus=source_car.position+Vector2(-source_car.config.length*0.44,0)
+	if bullets.get_child_count()>0:
+		focus=(bullets.get_child(0) as Bullet).global_position
+	if phase=="impact" and not vfx.events.is_empty(): focus=vfx.events[0].position
+	var data := {"weapon":current_id,"phase":phase,"file":current_id+"-"+phase+".png",
+		"focus_world":vector(focus),"focus_screen":vector(root.get_canvas_transform()*focus),
+		"source_position":vector(source_car.position),"target_position":vector(target_car.position),
+		"target_health":target_car.health,"damage_events":impacts,
+		"muzzle_flash_s":source_car.gun.muzzle_flash_time,"bullets":[],"vfx":[]}
+	for item in bullets.get_children():
+		var bullet:=item as Bullet
+		data.bullets.append({"position":vector(bullet.position),"age":bullet.age,"rotation":bullet.rotation,
+			"radius":bullet.radius,"detonated":bullet.detonated,"z_index":bullet.z_index})
+	for event in vfx.events:
+		data.vfx.append({"kind":str(event.kind),"position":vector(event.position),
+			"radius":event.radius,"remaining":event.time,"duration":event.duration})
+	root.get_texture().get_image().save_png(output+data.file)
+	records.append(data)
+
+func setup_cars(config: WeaponConfig) -> void:
+	for item in bullets.get_children(): item.free()
+	vfx.events.clear();vfx.queue_redraw()
+	impacts=0
+	source_car.freeze=false;target_car.freeze=false
+	source_car.reset_to(Vector2(450,830),0.0)
+	target_car.reset_to(Vector2(570,830),PI)
+	for _step in 4: await physics_frame
+	await process_frame
+	source_car.freeze=true;target_car.freeze=true
+	source_car.activate_temporary_weapon(config,999.0)
+	source_car.gun.set_firing(false)
+	for _step in 4: await process_frame
+
+func one_weapon(id: String) -> void:
+	current_id=id
+	var config:=load("res://resources/weapons/"+id+".tres") as WeaponConfig
+	var data := {"id":id,"type":config.weapon_type,"texture":config.texture.resource_path,
+		"speed":config.bullet_speed,"damage":config.bullet_damage,"lifetime":config.bullet_lifetime,
+		"radius":config.bullet_radius,"trail":config.trail_length,"splash":config.splash_radius,
+		"muzzle_offset":config.muzzle_offset,"spread":config.spread,"projectiles":config.projectiles_per_shot,
+		"fire_rate":config.fire_rate,"max_active":config.max_active_bullets,"effect_duration":config.effect_duration,
+		"effective_range":config.effective_range,"preview_scale":config.preview_scale,
+		"color":[config.bullet_color.r,config.bullet_color.g,config.bullet_color.b,config.bullet_color.a]}
+	configs.append(data)
+	await setup_cars(config)
+	await physics_frame
+	source_car.gun._shoot()
+	await capture("fire")
+	if id=="mine_layer":
+		source_car.position=Vector2(650,830)
+		for _step in 38: await physics_frame
+		await capture("flight")
+		var mine:=bullets.get_child(0) as Bullet
+		target_car.position=mine.position
+	else:
+		for _step in (5 if id=="flamethrower" else 2): await physics_frame
+		await capture("flight")
+	for _step in 180:
+		if impacts>0: break
+		await physics_frame
+	if impacts==0: printerr("VISUAL AUDIT NO HIT: ",id)
+	for _step in 5: await physics_frame
+	await capture("impact")
+	if id=="flamethrower":
+		await setup_cars(config)
+		source_car.gun.set_firing(true)
+		# Vehicle normally owns the fire command, so feed its real contract.
+		source_car.fire=true
+		for _step in 24: await physics_frame
+		await capture("continuous")
+		source_car.fire=false;source_car.gun.set_firing(false)
+	print("VISUAL AUDIT ",id," damage_events=",impacts)
+
+func run() -> void:
+	DirAccess.make_dir_recursive_absolute(output)
+	root.size=Vector2i(1280,720)
+	root.content_scale_size=Vector2i.ZERO
+	AudioServer.set_bus_mute(0,true)
+	PlayerProfile.path_override="res://visual-audit-output/profile.cfg"
+	LoadoutProfile.path_override="res://visual-audit-output/loadout.cfg"
+	LoadoutProfile.save_ids(&"raider",&"machine_gun")
+	seed(4217)
+	world=Node2D.new();root.add_child(world);current_scene=world
+	arena=load("res://scenes/Arena.tscn").instantiate() as Arena
+	world.add_child(arena)
+	bullets=Node2D.new();bullets.name="Bullets";bullets.add_to_group("bullets");world.add_child(bullets)
+	vfx=CombatVFX.new();vfx.z_index=4;world.add_child(vfx)
+	source_car=load("res://scenes/Vehicle.tscn").instantiate() as Vehicle
+	source_car.config=(load("res://resources/vehicles/raider.tres") as VehicleConfig).duplicate()
+	world.add_child(source_car);source_car.add_to_group("combatants")
+	target_car=load("res://scenes/Vehicle.tscn").instantiate() as Vehicle
+	target_car.config=(load("res://resources/vehicles/raider.tres") as VehicleConfig).duplicate()
+	world.add_child(target_car);target_car.add_to_group("combatants")
+	target_car.damaged.connect(func(_v,_amount,_source): impacts+=1)
+	camera=Camera2D.new();camera.position=Vector2(700,650);camera.zoom=Vector2.ONE
+	world.add_child(camera);camera.make_current()
+	for _step in 20: await process_frame
+	for id in IDS: await one_weapon(id)
+	var manifest := {"engine":Engine.get_version_info(),"display":DisplayServer.get_name(),
+		"viewport":[root.size.x,root.size.y],"camera_position":vector(camera.position),"zoom":vector(camera.zoom),
+		"vehicle_length":source_car.config.length,"vehicle_width":source_car.config.width,
+		"source_visual_size":vector(source_car.get_visual_size()),"configs":configs,"captures":records}
+	FileAccess.open(output+"manifest.json",FileAccess.WRITE).store_string(JSON.stringify(manifest))
+	await process_frame
+	world.free()
+	await process_frame
+	print("WEAPON VISUAL AUDIT COMPLETE")
+	quit()

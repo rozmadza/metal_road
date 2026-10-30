@@ -1,0 +1,42 @@
+extends SceneTree
+var output:="res://rocket-modes-output/"
+var images: Array=[]
+var records: Array=[]
+func _initialize() -> void: run.call_deferred()
+func snap(label:String,car:Vehicle) -> void:
+	await RenderingServer.frame_post_draw
+	images.append({"file":label+".png","image":root.get_texture().get_image()})
+	records.append({"phase":label,"alive":car.alive,"profile":car.gun.config.visual_profile.resource_path if car.gun.config.visual_profile!=null else "", "vfx":get_nodes_in_group("combat_vfx").size(),"bullets":get_nodes_in_group("bullets")[0].get_child_count() if not get_nodes_in_group("bullets").is_empty() else 0})
+func run() -> void:
+	DirAccess.make_dir_recursive_absolute(output)
+	root.size=Vector2i(1280,720);root.content_scale_size=Vector2i.ZERO
+	AudioServer.set_bus_mute(0,true)
+	PlayerProfile.path_override=output+"profile.cfg";LoadoutProfile.path_override=output+"loadout.cfg"
+	LoadoutProfile.save_ids(&"raider",&"machine_gun")
+	seed(4217)
+	for mode in ["survival","race","career"]:
+		CareerSession.clear_selection()
+		if mode=="career": CareerSession.select_event(&"scrapyard_contract")
+		var game:=load("res://scenes/Main.tscn" if mode=="race" else "res://scenes/ArenaBattle.tscn").instantiate() as Node
+		root.add_child(game);current_scene=game
+		await create_timer(1).timeout
+		var car:Vehicle=game.vehicle if mode=="race" else game.player
+		car.activate_temporary_weapon(load("res://resources/weapons/rocket_launcher.tres"),999)
+		for i in 3:
+			car.gun._shoot()
+			await create_timer(0.15).timeout
+			if i==0: await snap(mode+"-combat",car)
+			await create_timer(0.85).timeout
+		if mode=="survival":
+			game._on_retry_requested()
+			await process_frame;await physics_frame;await process_frame
+			await snap("survival-restart",game.player)
+		game.free();await process_frame
+	CareerSession.clear_selection()
+	for item in images: item.image.save_png(output+item.file)
+	FileAccess.open(output+"manifest.json",FileAccess.WRITE).store_string(JSON.stringify(records,"\t"))
+	for player in root.get_node("Music").get_children():
+		if player is AudioStreamPlayer:player.stop()
+	await create_timer(0.1).timeout
+	print("ROCKET MODES GRAPHICAL: COMPLETE")
+	quit.call_deferred()

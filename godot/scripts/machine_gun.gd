@@ -192,6 +192,10 @@ func _draw() -> void:
 	var muzzle_x := minf(config.muzzle_offset, shooter.config.length * 0.46)
 	if config.weapon_type == WeaponConfig.WeaponType.MINE:
 		muzzle_x = -shooter.config.length * 0.44
+	if config.visual_profile != null:
+		var flash_duration := 0.11 if config.weapon_type in [WeaponConfig.WeaponType.ROCKET, WeaponConfig.WeaponType.SHOTGUN] else 0.065
+		if config.visual_profile.draw_muzzle(self, Vector2(muzzle_x, 0), 1.0 - muzzle_flash_time / flash_duration):
+			return
 	var intensity := clampf(muzzle_flash_time / 0.08, 0.0, 1.0)
 	var flash_color := config.bullet_color
 	if config.weapon_type == WeaponConfig.WeaponType.EMP:

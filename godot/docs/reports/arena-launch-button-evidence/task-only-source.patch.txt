@@ -1,0 +1,111 @@
+--- before/scripts/weapon_config.gd
++++ after/scripts/weapon_config.gd
+@@ -1,6 +1,7 @@
+ extends Resource
+ class_name WeaponConfig
+ ## Tunable parameters for a weapon. Edit in the Inspector; no code changes.
++const VisualProfile = preload("res://scripts/weapon_visual_profile.gd")
+ 
+ enum WeaponType { BALLISTIC, SHOTGUN, ROCKET, MINE, FLAME, EMP }
+ 
+@@ -41,6 +42,6 @@
+ 
+ @export_group("Presentation")
+ ## Optional shared art; texture below remains the roof/HUD image.
+-@export var visual_profile: WeaponVisualProfile
++@export var visual_profile: VisualProfile
+ @export var texture: Texture2D
+ @export_range(0.15, 0.5, 0.01) var preview_scale: float = 0.28
+--- before/scripts/bullet.gd
++++ after/scripts/bullet.gd
+@@ -1,5 +1,6 @@
+ extends Node2D
+ class_name Bullet
++const VisualProfile = preload("res://scripts/weapon_visual_profile.gd")
+ ## A simple projectile (not a physics body). Moves in a straight line, is
+ ## drawn as a bright dot with a tracer tail, and frees itself after its
+ ## lifetime. `shooter` is stored so it can be ignored for damage later.
+@@ -18,7 +19,7 @@
+ var effect_duration := 0.0
+ var age := 0.0
+ var detonated := false
+-var visual_profile: WeaponVisualProfile
++var visual_profile: VisualProfile
+ var _explosion_owned_by_vfx := false
+ 
+ 
+--- before/scripts/combat_vfx.gd
++++ after/scripts/combat_vfx.gd
+@@ -1,6 +1,7 @@
+ extends Node2D
+ class_name CombatVFX
+ ## Shared transient world-space effects for all weapons and destructibles.
++const VisualProfile = preload("res://scripts/weapon_visual_profile.gd")
+ 
+ const MAX_EVENTS := 48
+ enum Priority { IMPACT, LARGE_IMPACT, IMPORTANT }
+@@ -20,7 +21,7 @@
+ 	if events.is_empty(): set_process(false)
+ 
+ 
+-func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0, visual_profile: WeaponVisualProfile = null) -> void:
++func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0, visual_profile: VisualProfile = null) -> void:
+ 	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48, "visual_profile": visual_profile}, Priority.IMPORTANT)
+ 
+ 
+@@ -59,7 +60,7 @@
+ 		var radius: float = event.radius
+ 		match event.kind:
+ 			&"explosion":
+-				var profile := event.get("visual_profile") as WeaponVisualProfile
++				var profile := event.get("visual_profile") as VisualProfile
+ 				if profile != null and profile.has_explosion():
+ 					profile.draw_explosion(self, center, radius, progress)
+ 					continue
+--- before/scripts/scene_transition.gd
++++ after/scripts/scene_transition.gd
+@@ -12,6 +12,7 @@
+ var _warm_queue: Array[String] = []
+ var _warming_path := ""
+ var _cache: Dictionary = {}
++var _error_dialog: AcceptDialog
+ 
+ 
+ func _ready() -> void:
+@@ -96,10 +97,7 @@
+ 		return
+ 	var error := ResourceLoader.load_threaded_request(_pending_path, "PackedScene", true)
+ 	if error != OK and error != ERR_BUSY:
+-		push_error("Could not start scene load: %s" % _pending_path)
+-		_loading = false
+-		_ready_to_poll = false
+-		_overlay.visible = false
++		_fail_transition()
+ 	else:
+ 		_ready_to_poll = true
+ 
+@@ -147,6 +145,7 @@
+ 	_overlay.visible = false
+ 	if error != OK:
+ 		push_error("Could not switch to loaded scene")
++		_show_load_error()
+ 	_start_next_warm.call_deferred()
+ 
+ 
+@@ -156,6 +155,16 @@
+ 	_loading = false
+ 	_ready_to_poll = false
+ 	_overlay.visible = false
++	_show_load_error()
++
++
++func _show_load_error() -> void:
++	if _error_dialog == null:
++		_error_dialog = AcceptDialog.new()
++		_error_dialog.title = "НЕ УДАЛОСЬ НАЧАТЬ ПЕРЕХОД"
++		_error_dialog.dialog_text = "Не удалось загрузить следующий экран.\nПовторите попытку. Если ошибка повторяется, перезапустите игру."
++		add_child(_error_dialog)
++	_error_dialog.popup_centered(Vector2i(520, 150))
+ 
+ 
+ func _start_next_warm() -> void:

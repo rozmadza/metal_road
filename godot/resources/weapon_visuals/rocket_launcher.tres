@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponVisualProfile" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapon_visual_profile.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/projectile_body.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/exhaust_strip.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/muzzle_sheet.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/explosion_sheet.png" id="5"]
+
+[resource]
+script = ExtResource("1")
+projectile_body = ExtResource("2")
+exhaust_strip = ExtResource("3")
+muzzle_sheet = ExtResource("4")
+explosion_sheet = ExtResource("5")

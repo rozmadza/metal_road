@@ -1,0 +1,315 @@
+{
+  "sources": [
+    {
+      "path": "assets/weapons/rocket_launcher/Изображение ChatGPT 30 окт. 2026 г., 10_15_05-1.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "sha256": "88d702195c0d584d94507b3a0756c55e54a0cc3e541c739b251677bc8344db80",
+      "transparent_pixels": 1215402,
+      "pixels": 1572864,
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/weapons/rocket_launcher/Изображение ChatGPT 30 окт. 2026 г., 10_15_06-2.png",
+      "size": [
+        1774,
+        887
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "sha256": "2253dfdbeb5f72a04024df111cbcb18a83a1142f73f2d916342a8c4041d8663b",
+      "transparent_pixels": 1073527,
+      "pixels": 1573538,
+      "alpha_extrema": [
+        0,
+        254
+      ]
+    },
+    {
+      "path": "assets/weapons/rocket_launcher/Изображение ChatGPT 30 окт. 2026 г., 10_15_08-3.png",
+      "size": [
+        1881,
+        836
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "sha256": "7b685d11f4c09a93b67976ec711a41133d8db08b8deaeb0cca525c2929d6ca50",
+      "transparent_pixels": 880906,
+      "pixels": 1572516,
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "assets/weapons/rocket_launcher/Изображение ChatGPT 30 окт. 2026 г., 10_15_09-4.png",
+      "size": [
+        1774,
+        887
+      ],
+      "format": "PNG",
+      "mode": "RGBA",
+      "sha256": "ade602cd8dcf82eaa9b232ce40064d3e5091d821b821f3f39c0f7fb49206c93d",
+      "transparent_pixels": 378954,
+      "pixels": 1573538,
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  ],
+  "muzzle_anchors": [
+    [
+      124,
+      210
+    ],
+    [
+      744,
+      210
+    ],
+    [
+      1368,
+      210
+    ],
+    [
+      107,
+      628
+    ],
+    [
+      730,
+      628
+    ],
+    [
+      1355,
+      628
+    ]
+  ],
+  "muzzle_uniform_scale": 0.135,
+  "muzzle_alpha": [
+    1,
+    1,
+    1,
+    0.9,
+    0.55,
+    0.08
+  ],
+  "explosion_alpha": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    0.8,
+    0.35,
+    0.04
+  ],
+  "outputs": [
+    {
+      "path": "assets/weapons/rocket_launcher/projectile_body.png",
+      "size": [
+        96,
+        64
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "frame_hashes": [
+        "dbcf68a38cb0cd46159dbc3e57770449cbd6f6e4d96fc2dfbef026f662c9fc0e"
+      ],
+      "frame_alpha_max": [
+        255
+      ],
+      "frame_bbox": [
+        [
+          4,
+          19,
+          92,
+          45
+        ]
+      ]
+    },
+    {
+      "path": "assets/weapons/rocket_launcher/exhaust_strip.png",
+      "size": [
+        64,
+        32
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "frame_hashes": [
+        "d9801fff9eb8f9093856a23e2f088bbfcba64545a1463fdfaf17643d5ef1e4c6"
+      ],
+      "frame_alpha_max": [
+        255
+      ],
+      "frame_bbox": [
+        [
+          0,
+          8,
+          60,
+          25
+        ]
+      ]
+    },
+    {
+      "path": "assets/weapons/rocket_launcher/muzzle_sheet.png",
+      "size": [
+        288,
+        128
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "frame_hashes": [
+        "0d9ad26bd89ba8f1ef61371c82447f4652121977862927e1c513a72eb6d4b892",
+        "7143851ee20a34b1d3213c33c450bc3fe4e424a2374a537235eb5439166d63e8",
+        "85262cb2afe6f98ae2fe87d878284bb774b2db807b273d977a1b7d0cc934ff36",
+        "d5ec867939943d3e8a0e32d24b70de0e5f89c8a876bf1e8e8d2f4624d941d88f",
+        "f1f692aabc45238b6addab9f9766790882fc5ee07c561555000e9bf1e34859e8",
+        "b747a0e235aacb5e25e41c00163db730922f5eca4466764010203fd9943872c0"
+      ],
+      "frame_alpha_max": [
+        255,
+        254,
+        254,
+        230,
+        140,
+        20
+      ],
+      "frame_bbox": [
+        [
+          16,
+          7,
+          81,
+          57
+        ],
+        [
+          16,
+          9,
+          85,
+          60
+        ],
+        [
+          16,
+          10,
+          81,
+          56
+        ],
+        [
+          16,
+          10,
+          86,
+          56
+        ],
+        [
+          16,
+          4,
+          87,
+          53
+        ],
+        [
+          16,
+          21,
+          82,
+          48
+        ]
+      ]
+    },
+    {
+      "path": "assets/weapons/rocket_launcher/explosion_sheet.png",
+      "size": [
+        1024,
+        512
+      ],
+      "mode": "RGBA",
+      "alpha_extrema": [
+        0,
+        255
+      ],
+      "frame_hashes": [
+        "5ceb3f16b5d4a303cbe5f52a090ac7979482f27602f7075f63e6b4c9668a5844",
+        "1a8000b9442d14f795f1d6759983c949230533cd16ced12d8c50bcd47e3beec2",
+        "968cff085a986938408762a1521785246690c8ccc5a6d7256e90ee488c0bb94d",
+        "81ffa374d12db93cc06108d0ae58dc8e86b4a2395b7acbb67324bdfaaabf257e",
+        "ac4b97093aa16efaca21d8242add84a7244090f73d75dc37dfe7b152b04f2964",
+        "8ab3b95561327e6ab6f6327d459da80b1d192ee4c70cd73e5aeac4351b9e5074",
+        "22c0057d1eb1fdac171f64392aceac8e64b624c705bae75c3d21d741f4737858",
+        "b4492a9bd9ba9db958326f6941d7a8ce2c1c7d5fdd6c8dde37cf03b770ee18de"
+      ],
+      "frame_alpha_max": [
+        253,
+        255,
+        255,
+        255,
+        255,
+        204,
+        89,
+        10
+      ],
+      "frame_bbox": [
+        [
+          8,
+          8,
+          248,
+          248
+        ],
+        [
+          8,
+          8,
+          248,
+          248
+        ],
+        [
+          6,
+          8,
+          248,
+          248
+        ],
+        [
+          6,
+          7,
+          248,
+          248
+        ],
+        [
+          7,
+          6,
+          250,
+          244
+        ],
+        [
+          6,
+          7,
+          251,
+          245
+        ],
+        [
+          12,
+          13,
+          249,
+          242
+        ],
+        [
+          17,
+          15,
+          243,
+          233
+        ]
+      ]
+    }
+  ]
+}

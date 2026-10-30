@@ -1,0 +1,24 @@
+import ctypes as c,sys,time
+from PIL import ImageGrab
+x=c.CDLL('libX11.so.6');xt=c.CDLL('libXtst.so.6')
+x.XOpenDisplay.restype=c.c_void_p;x.XOpenDisplay.argtypes=[c.c_char_p]
+x.XRaiseWindow.argtypes=[c.c_void_p,c.c_ulong];x.XSetInputFocus.argtypes=[c.c_void_p,c.c_ulong,c.c_int,c.c_ulong];x.XFlush.argtypes=[c.c_void_p]
+x.XStringToKeysym.restype=c.c_ulong;x.XStringToKeysym.argtypes=[c.c_char_p]
+x.XKeysymToKeycode.restype=c.c_uint;x.XKeysymToKeycode.argtypes=[c.c_void_p,c.c_ulong]
+xt.XTestFakeKeyEvent.argtypes=[c.c_void_p,c.c_uint,c.c_int,c.c_ulong]
+xt.XTestFakeMotionEvent.argtypes=[c.c_void_p,c.c_int,c.c_int,c.c_int,c.c_ulong]
+xt.XTestFakeButtonEvent.argtypes=[c.c_void_p,c.c_uint,c.c_int,c.c_ulong]
+d=x.XOpenDisplay(None)
+if not d:raise RuntimeError('X display unavailable')
+a=sys.argv[1:]
+if a[0]=='key':
+ if len(a)>2:
+  w=int(a[2],0);x.XRaiseWindow(d,w);x.XSetInputFocus(d,w,1,0);x.XFlush(d);time.sleep(.15)
+ code=x.XKeysymToKeycode(d,x.XStringToKeysym(a[1].encode()))
+ xt.XTestFakeKeyEvent(d,code,1,0);x.XFlush(d);time.sleep(.05);xt.XTestFakeKeyEvent(d,code,0,0);x.XFlush(d)
+elif a[0]=='focus':
+ w=int(a[1],0);x.XRaiseWindow(d,w);x.XSetInputFocus(d,w,1,0);x.XFlush(d)
+elif a[0]=='click':
+ xt.XTestFakeMotionEvent(d,-1,int(a[1]),int(a[2]),0);x.XFlush(d);time.sleep(.1)
+ xt.XTestFakeButtonEvent(d,1,1,0);x.XFlush(d);time.sleep(.05);xt.XTestFakeButtonEvent(d,1,0,0);x.XFlush(d)
+elif a[0]=='shot':ImageGrab.grab().save(a[1])

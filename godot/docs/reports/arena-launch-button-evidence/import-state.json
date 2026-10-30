@@ -1,0 +1,26 @@
+[
+  {
+    "image": "projectile_body.png",
+    "imported_before": false,
+    "imported_after": true,
+    "image_unchanged": true
+  },
+  {
+    "image": "exhaust_strip.png",
+    "imported_before": false,
+    "imported_after": true,
+    "image_unchanged": true
+  },
+  {
+    "image": "muzzle_sheet.png",
+    "imported_before": false,
+    "imported_after": true,
+    "image_unchanged": true
+  },
+  {
+    "image": "explosion_sheet.png",
+    "imported_before": false,
+    "imported_after": true,
+    "image_unchanged": true
+  }
+]

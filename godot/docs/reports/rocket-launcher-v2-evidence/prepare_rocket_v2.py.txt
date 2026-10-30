@@ -1,0 +1,55 @@
+from pathlib import Path
+from PIL import Image,ImageChops
+import json,hashlib
+root=Path('/home/andrey/PycharmProjects/metal_road/godot')
+folder=root/'assets/weapons/rocket_launcher'
+files=sorted(folder.glob('Изображение*.png'))
+body,exhaust,muzzle,explosion=[Image.open(p).convert('RGBA') for p in files]
+records=[]
+for p in files:
+ im=Image.open(p);h=im.getchannel('A').histogram()
+ records.append(dict(path=str(p.relative_to(root)),size=list(im.size),format=im.format,mode=im.mode,sha256=hashlib.sha256(p.read_bytes()).hexdigest(),transparent_pixels=h[0],pixels=im.width*im.height,alpha_extrema=im.getchannel('A').getextrema()))
+# Deterministic crop/resample/alpha preparation of owner's art, no synthesis.
+b=body.crop((60,304,1474,714));b.thumbnail((88,48),Image.LANCZOS)
+canvas=Image.new('RGBA',(96,64));canvas.alpha_composite(b,(4,32-b.height//2));canvas.save(folder/'projectile_body.png')
+# Preserve +X hot tip. Rightmost art pixel at60, hot centre aligned at y16.
+e=exhaust.crop((48,250,1710,720));e.thumbnail((60,24),Image.LANCZOS)
+canvas=Image.new('RGBA',(64,32));canvas.alpha_composite(e,(60-e.width,16-e.height//2));canvas.save(folder/'exhaust_strip.png')
+anchors=[(124,210),(744,210),(1368,210),(107,628),(730,628),(1355,628)]
+scale=.135
+mframes=[]
+for i,(ax,ay) in enumerate(anchors):
+ col=i%3;row=i//3
+ # Anchor position was visually inspected on each of six genuine source poses.
+ # Exclude illustrated metal nozzle; only flash/smoke is part of launch VFX.
+ source=muzzle.crop((ax,row*418,(col+1)*627,(row+1)*418))
+ patch=source.resize((round(source.width*scale),round(source.height*scale)),Image.LANCZOS)
+ frame=Image.new('RGBA',(96,64));frame.alpha_composite(patch,(16,32-round((ay-row*418)*scale)))
+ alpha=frame.getchannel('A');alpha=alpha.point(lambda v,f=[1,1,1,.9,.55,.08][i]:round(v*f))
+ frame.putalpha(alpha);mframes.append(frame)
+sheet=Image.new('RGBA',(288,128))
+for i,frame in enumerate(mframes):sheet.alpha_composite(frame,((i%3)*96,(i//3)*64))
+sheet.save(folder/'muzzle_sheet.png')
+eframes=[]
+for i in range(8):
+ col=i%4;row=i//4
+ # Common source grid centre/scale retains growth; never independently fit
+ # each pose to its own bounding box. Owner's sheet is not pixel-divisible.
+ x0=round(col*explosion.width/4);x1=round((col+1)*explosion.width/4)
+ y0=round(row*explosion.height/2);y1=round((row+1)*explosion.height/2)
+ patch=explosion.crop((x0,y0,x1,y1)).resize((248,248),Image.LANCZOS)
+ # Source sprites touch some borders. Fade 4px of the cropped perimeter,
+ # instead of wrapping adjacent frames into each other or inventing pixels.
+ mask=Image.new('L',(248,248));mask.putdata([round(255*min(1,min(x,y,247-x,247-y)/4)) for y in range(248) for x in range(248)])
+ alpha=ImageChops.multiply(patch.getchannel('A'),mask)
+ alpha=alpha.point(lambda v,f=[1,1,1,1,1,.8,.35,.04][i]:round(v*f));patch.putalpha(alpha)
+ frame=Image.new('RGBA',(256,256));frame.alpha_composite(patch,(4,4));eframes.append(frame)
+sheet=Image.new('RGBA',(1024,512))
+for i,frame in enumerate(eframes):sheet.alpha_composite(frame,((i%4)*256,(i//4)*256))
+sheet.save(folder/'explosion_sheet.png')
+result={'sources':records,'muzzle_anchors':anchors,'muzzle_uniform_scale':scale,'muzzle_alpha':[1,1,1,.9,.55,.08],'explosion_alpha':[1,1,1,1,1,.8,.35,.04],'outputs':[]}
+for name,frames in [('projectile_body.png',[Image.open(folder/'projectile_body.png')]),('exhaust_strip.png',[Image.open(folder/'exhaust_strip.png')]),('muzzle_sheet.png',mframes),('explosion_sheet.png',eframes)]:
+ im=Image.open(folder/name);result['outputs'].append(dict(path=str((folder/name).relative_to(root)),size=list(im.size),mode=im.mode,alpha_extrema=im.getchannel('A').getextrema(),frame_hashes=[hashlib.sha256(f.tobytes()).hexdigest() for f in frames],frame_alpha_max=[f.getchannel('A').getextrema()[1] for f in frames],frame_bbox=[f.getchannel('A').getbbox() for f in frames]))
+out=root/'docs/reports/rocket-launcher-v2-evidence';out.mkdir(exist_ok=True);(out/'.gdignore').touch()
+(out/'asset-preparation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2))
+print(json.dumps(result['outputs'],indent=2))

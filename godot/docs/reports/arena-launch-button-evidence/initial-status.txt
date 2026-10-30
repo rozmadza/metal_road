@@ -1,0 +1,31 @@
+ M docs/reports/METAL_ROAD_QA_REPORT.md
+ M resources/weapons/rocket_launcher.tres
+ M scripts/bullet.gd
+ M scripts/combat_vfx.gd
+ M scripts/machine_gun.gd
+ M scripts/weapon_config.gd
+?? "assets/weapons/rocket_launcher/ Variant A.png"
+?? assets/weapons/rocket_launcher/VISUAL_ASSETS.md
+?? assets/weapons/rocket_launcher/exhaust_strip.png
+?? assets/weapons/rocket_launcher/exhaust_strip.png.import
+?? assets/weapons/rocket_launcher/explosion_sheet.png
+?? assets/weapons/rocket_launcher/explosion_sheet.png.import
+?? assets/weapons/rocket_launcher/muzzle_sheet.png
+?? assets/weapons/rocket_launcher/muzzle_sheet.png.import
+?? assets/weapons/rocket_launcher/projectile_body.png
+?? assets/weapons/rocket_launcher/projectile_body.png.import
+?? "assets/weapons/rocket_launcher/\320\230\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265 ChatGPT 30 \320\276\320\272\321\202. 2026 \320\263., 10_15_05-1.png"
+?? "assets/weapons/rocket_launcher/\320\230\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265 ChatGPT 30 \320\276\320\272\321\202. 2026 \320\263., 10_15_06-2.png"
+?? "assets/weapons/rocket_launcher/\320\230\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265 ChatGPT 30 \320\276\320\272\321\202. 2026 \320\263., 10_15_08-3.png"
+?? "assets/weapons/rocket_launcher/\320\230\320\267\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265 ChatGPT 30 \320\276\320\272\321\202. 2026 \320\263., 10_15_09-4.png"
+?? docs/reports/METAL_ROAD_ROCKET_LAUNCHER_VISUAL_OVERHAUL_V1.md
+?? docs/reports/METAL_ROAD_ROCKET_LAUNCHER_VISUAL_OVERHAUL_V2.md
+?? docs/reports/METAL_ROAD_WEAPON_VISUAL_ASSETS_AUDIT.md
+?? docs/reports/rocket-launcher-v1-evidence/
+?? docs/reports/rocket-launcher-v2-evidence/
+?? docs/reports/weapon-visual-assets-evidence/
+?? resources/weapon_visuals/
+?? scripts/weapon_visual_profile.gd
+?? scripts/weapon_visual_profile.gd.uid
+?? tests/rocket_visual_profile_smoke.gd
+?? tests/rocket_visual_profile_smoke.gd.uid

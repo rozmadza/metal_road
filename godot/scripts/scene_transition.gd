@@ -12,6 +12,7 @@ var _ready_to_poll := false
 var _warm_queue: Array[String] = []
 var _warming_path := ""
 var _cache: Dictionary = {}
+var _error_dialog: AcceptDialog
 
 
 func _ready() -> void:
@@ -96,10 +97,7 @@ func _begin_transition() -> void:
 		return
 	var error := ResourceLoader.load_threaded_request(_pending_path, "PackedScene", true)
 	if error != OK and error != ERR_BUSY:
-		push_error("Could not start scene load: %s" % _pending_path)
-		_loading = false
-		_ready_to_poll = false
-		_overlay.visible = false
+		_fail_transition()
 	else:
 		_ready_to_poll = true
 
@@ -147,6 +145,7 @@ func _commit_scene(packed: PackedScene) -> void:
 	_overlay.visible = false
 	if error != OK:
 		push_error("Could not switch to loaded scene")
+		_show_load_error()
 	_start_next_warm.call_deferred()
 
 
@@ -156,6 +155,16 @@ func _fail_transition() -> void:
 	_loading = false
 	_ready_to_poll = false
 	_overlay.visible = false
+	_show_load_error()
+
+
+func _show_load_error() -> void:
+	if _error_dialog == null:
+		_error_dialog = AcceptDialog.new()
+		_error_dialog.title = "НЕ УДАЛОСЬ НАЧАТЬ ПЕРЕХОД"
+		_error_dialog.dialog_text = "Не удалось загрузить следующий экран.\nПовторите попытку. Если ошибка повторяется, перезапустите игру."
+		add_child(_error_dialog)
+	_error_dialog.popup_centered(Vector2i(520, 150))
 
 
 func _start_next_warm() -> void:

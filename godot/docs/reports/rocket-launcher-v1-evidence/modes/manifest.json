@@ -1,0 +1,30 @@
+[
+	{
+		"alive": true,
+		"bullets": 1,
+		"phase": "survival-combat",
+		"profile": "res://resources/weapon_visuals/rocket_launcher.tres",
+		"vfx": 1
+	},
+	{
+		"alive": true,
+		"bullets": 0,
+		"phase": "survival-restart",
+		"profile": "res://resources/weapon_visuals/rocket_launcher.tres",
+		"vfx": 1
+	},
+	{
+		"alive": true,
+		"bullets": 1,
+		"phase": "race-combat",
+		"profile": "res://resources/weapon_visuals/rocket_launcher.tres",
+		"vfx": 1
+	},
+	{
+		"alive": true,
+		"bullets": 1,
+		"phase": "career-combat",
+		"profile": "res://resources/weapon_visuals/rocket_launcher.tres",
+		"vfx": 1
+	}
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "path": "assets/weapons/emp_cannon/emp_cannon_roof.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "file_bytes": 1998108,
+    "alpha_range": [
+      0,
+      254
+    ],
+    "alpha_nonzero_bbox": [
+      0,
+      17,
+      1520,
+      1024
+    ],
+    "alpha_gt128_bbox": [
+      63,
+      214,
+      1476,
+      809
+    ],
+    "fully_transparent_fraction": 0.6329288482666016
+  },
+  {
+    "path": "assets/weapons/flamethrower/flamethrower_roof.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "file_bytes": 2150834,
+    "alpha_range": [
+      0,
+      254
+    ],
+    "alpha_nonzero_bbox": [
+      31,
+      0,
+      1488,
+      1024
+    ],
+    "alpha_gt128_bbox": [
+      75,
+      180,
+      1477,
+      839
+    ],
+    "fully_transparent_fraction": 0.5988801320393881
+  },
+  {
+    "path": "assets/weapons/heavy_machine_gun/heavy_machine_gun_roof.png",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "file_bytes": 2353366,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_nonzero_bbox": [
+      25,
+      0,
+      1754,
+      887
+    ],
+    "alpha_gt128_bbox": [
+      38,
+      53,
+      1728,
+      850
+    ],
+    "fully_transparent_fraction": 0.3481028103547547
+  },
+  {
+    "path": "assets/weapons/machine_gun/machine_gun_roof.png",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "file_bytes": 1089725,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_nonzero_bbox": [
+      186,
+      9,
+      1510,
+      846
+    ],
+    "alpha_gt128_bbox": [
+      307,
+      171,
+      1472,
+      701
+    ],
+    "fully_transparent_fraction": 0.7076956514555098
+  },
+  {
+    "path": "assets/weapons/mine_layer/mine_layer_roof.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "file_bytes": 2432871,
+    "alpha_range": [
+      0,
+      254
+    ],
+    "alpha_nonzero_bbox": [
+      0,
+      4,
+      1506,
+      1024
+    ],
+    "alpha_gt128_bbox": [
+      42,
+      76,
+      1500,
+      912
+    ],
+    "fully_transparent_fraction": 0.5098711649576823
+  },
+  {
+    "path": "assets/weapons/rocket_launcher/rocket_launcher_roof.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "file_bytes": 2309911,
+    "alpha_range": [
+      0,
+      254
+    ],
+    "alpha_nonzero_bbox": [
+      0,
+      13,
+      1506,
+      1024
+    ],
+    "alpha_gt128_bbox": [
+      72,
+      164,
+      1456,
+      841
+    ],
+    "fully_transparent_fraction": 0.5524876912434896
+  },
+  {
+    "path": "assets/weapons/shotgun/shotgun_roof.png",
+    "width": 1774,
+    "height": 887,
+    "mode": "RGBA",
+    "file_bytes": 1993687,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "alpha_nonzero_bbox": [
+      0,
+      9,
+      1744,
+      887
+    ],
+    "alpha_gt128_bbox": [
+      115,
+      121,
+      1653,
+      770
+    ],
+    "fully_transparent_fraction": 0.4530662748532288
+  }
+]

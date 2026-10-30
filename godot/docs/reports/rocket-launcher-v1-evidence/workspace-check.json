@@ -1,0 +1,12 @@
+{
+  "unchanged_tracked_files_compared": 761,
+  "changed_tracked_files": [
+    "resources/weapons/rocket_launcher.tres",
+    "scripts/bullet.gd",
+    "scripts/combat_vfx.gd",
+    "scripts/machine_gun.gd",
+    "scripts/weapon_config.gd"
+  ],
+  "concept_sha256": "802a0c66174ac1797c344795499f1e14d8caa11b02d7bc2b300725b7c0d5f0ad",
+  "concept_identical_to_initial_copy": true
+}

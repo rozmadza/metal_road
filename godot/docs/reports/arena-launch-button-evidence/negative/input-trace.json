@@ -1,0 +1,55 @@
+{
+	"display": "X11",
+	"failures": 0,
+	"input_events": [
+		{
+			"after_press_count": 1,
+			"before_press_count": 0,
+			"busy": false,
+			"button": "/root/Transition/@AcceptDialog@45/@HBoxContainer@41/@Button@43",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				404.0
+			],
+			"text": "OK",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 2,
+			"before_press_count": 1,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/SurvivalButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				388.0
+			],
+			"text": "ВЫЖИВАНИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 3,
+			"before_press_count": 2,
+			"busy": true,
+			"button": "/root/PreRace/Margin/Layout/Footer/StartButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				1103.0,
+				697.0
+			],
+			"text": "ВЫЙТИ НА АРЕНУ",
+			"window_id": 0
+		}
+	],
+	"transitions": 3
+}

@@ -1,6 +1,7 @@
 extends Resource
 class_name WeaponConfig
 ## Tunable parameters for a weapon. Edit in the Inspector; no code changes.
+const VisualProfile = preload("res://scripts/weapon_visual_profile.gd")
 
 enum WeaponType { BALLISTIC, SHOTGUN, ROCKET, MINE, FLAME, EMP }
 
@@ -40,5 +41,7 @@ enum WeaponType { BALLISTIC, SHOTGUN, ROCKET, MINE, FLAME, EMP }
 @export_range(0.0, 800.0, 10.0) var effective_range: float = 430.0
 
 @export_group("Presentation")
+## Optional shared art; texture below remains the roof/HUD image.
+@export var visual_profile: VisualProfile
 @export var texture: Texture2D
 @export_range(0.15, 0.5, 0.01) var preview_scale: float = 0.28

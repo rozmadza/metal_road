@@ -1,5 +1,6 @@
 extends Node2D
 class_name Bullet
+const VisualProfile = preload("res://scripts/weapon_visual_profile.gd")
 ## A simple projectile (not a physics body). Moves in a straight line, is
 ## drawn as a bright dot with a tracer tail, and frees itself after its
 ## lifetime. `shooter` is stored so it can be ignored for damage later.
@@ -18,6 +19,8 @@ var homing_strength := 0.0
 var effect_duration := 0.0
 var age := 0.0
 var detonated := false
+var visual_profile: VisualProfile
+var _explosion_owned_by_vfx := false
 
 
 func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_node: Node) -> void:
@@ -31,6 +34,7 @@ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_no
 	shooter = owner_node
 	weapon_type = config.weapon_type
 	weapon_id = config.weapon_id
+	visual_profile = config.visual_profile
 	splash_radius = config.splash_radius
 	homing_strength = config.homing_strength
 	effect_duration = config.effect_duration
@@ -48,7 +52,14 @@ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_no
 		add_to_group("weapon_hazards")
 		velocity = (owner_node as Vehicle).linear_velocity * 0.12 if owner_node is Vehicle else Vector2.ZERO
 	rotation = direction.angle()
+	set_process(visual_profile != null and visual_profile.has_projectile())
 	queue_redraw()
+
+
+func _process(_delta: float) -> void:
+	# Animation only; never consumes gameplay RNG or changes physics timing.
+	if not detonated:
+		queue_redraw()
 
 
 func _physics_process(delta: float) -> void:
@@ -190,7 +201,8 @@ func _detonate() -> void:
 		combat_audio.play_weapon_impact(weapon_type)
 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 	if vfx != null:
-		vfx.spawn_explosion(global_position, color, maxf(splash_radius, 42.0))
+		_explosion_owned_by_vfx = visual_profile != null and visual_profile.has_explosion()
+		vfx.spawn_explosion(global_position, color, maxf(splash_radius, 42.0), visual_profile)
 	for node in get_tree().get_nodes_in_group("combatants"):
 		var vehicle := node as Vehicle
 		if vehicle == null or vehicle == shooter or not vehicle.alive or _same_squad(vehicle):
@@ -276,6 +288,10 @@ func _same_squad(vehicle: Vehicle) -> bool:
 
 func _draw() -> void:
 	if detonated:
+		# Preserve the Bullet lifetime/cap accounting; only CombatVFX renders
+		# an asset explosion. Without CombatVFX retain the legacy flash.
+		if _explosion_owned_by_vfx:
+			return
 		draw_circle(Vector2.ZERO, maxf(16.0, splash_radius * 0.38), Color(color, 0.42))
 		draw_circle(Vector2.ZERO, maxf(6.0, splash_radius * 0.12), Color(1.0, 0.9, 0.55, 0.95))
 		return
@@ -288,6 +304,8 @@ func _draw() -> void:
 		draw_circle(Vector2.ZERO, 3.5, armed_color)
 		return
 	if weapon_type == WeaponConfig.WeaponType.ROCKET:
+		if visual_profile != null and visual_profile.draw_projectile(self, age):
+			return
 		draw_line(Vector2(-trail_length, 0), Vector2(-5, 0), Color(1.0, 0.34, 0.05, 0.8), radius * 1.5, true)
 		draw_rect(Rect2(-6, -radius, 13, radius * 2.0), color, true)
 		draw_circle(Vector2(7, 0), radius, Color(0.9, 0.92, 0.86))

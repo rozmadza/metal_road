@@ -1,0 +1,10 @@
+{
+  "scripts/weapon_visual_profile.gd": "0b0f7d6899ddb83015a1b78a384da29ecee410ce97889760f9d877405715a575",
+  "scripts/bullet.gd": "7f6283da886340533befc04ec806a5a292016cdabec92df7dbfe15af45c2cba4",
+  "scripts/machine_gun.gd": "72d96de40b5cab1f831575452ebd82e286c69f37c4c72205b70d963f04c5ff76",
+  "scripts/combat_vfx.gd": "8c62b76071b6335ab1655428c8dfb08d1223710dca96f8e2ed0c4df8aa43eaf1",
+  "scripts/weapon_config.gd": "ba95531412d02829173f0594dfc656fb91da4fc1dd1a45a295b738abe8bcaf6f",
+  "resources/weapon_visuals/rocket_launcher.tres": "c12af85f010110056577ec3bffa81f8a1b5519afd646209605211e83a9e5d6ea",
+  "resources/weapons/rocket_launcher.tres": "17c37b5009543c7dc0ba849447968d23e3e25afbd4bbcb9f91e73665572696c6",
+  "tests/rocket_visual_profile_smoke.gd": "f69d95e096b0369987f874c49456b7c5a07e7906a184a3b717577610a4389d16"
+}

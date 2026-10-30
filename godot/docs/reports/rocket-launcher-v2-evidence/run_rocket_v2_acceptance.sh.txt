@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -u
+for item in current:1280:1.0 current:1280:1.23 current:800:1.0 current:800:1.23 baseline:1280:1.0; do
+ IFS=: read -r variant res zoom <<< "$item"
+ project="/tmp/metal-road-rocket-v2-$variant"
+ flatpak run --filesystem="$project" org.godotengine.Godot --disable-vsync --path "$project" --script res://tests/rocket_v2_acceptance.gd -- "$res" "$zoom" > "/tmp/rocket-v2-acceptance-$variant-$res-z$zoom.log" 2>&1
+ code=$?
+ printf '%s %s %s exit=%s\n' "$variant" "$res" "$zoom" "$code"
+ if (( code != 0 )) || rg -q 'SCRIPT ERROR' "/tmp/rocket-v2-acceptance-$variant-$res-z$zoom.log"; then exit 1; fi
+done

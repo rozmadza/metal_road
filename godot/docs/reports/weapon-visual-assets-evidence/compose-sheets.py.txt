@@ -1,0 +1,55 @@
+from pathlib import Path
+from PIL import Image, ImageDraw, ImageFont
+import json, math
+root=Path('docs/reports/weapon-visual-assets-evidence')
+data=json.loads((root/'manifest.json').read_text())
+ids=[c['id'] for c in data['configs']]
+names=['Пулемёт','Тяжёлый пулемёт','Дробовик','Ракетница','Минный постановщик','Огнемёт','ЭМИ-пушка']
+font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',18)
+small=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',14)
+for scale,label in [(1,'native'),(2,'detail-2x')]:
+    cw,ch=(480,240) if scale==1 else (240,200)
+    cellw,cellh=cw*scale,ch*scale
+    out=Image.new('RGB',(cellw*3,64+(cellh+28)*7),(18,22,25))
+    draw=ImageDraw.Draw(out)
+    draw.text((12,7),'ТЕКУЩИЕ ЭФФЕКТЫ METAL ROAD — '+('1 unit = 1 px' if scale==1 else '2× фрагменты реальных скриншотов'),font=font,fill=(228,219,196))
+    for j,title in enumerate(['ВЫСТРЕЛ','ПОЛЁТ / ВЗВЕДЕНИЕ','ПОПАДАНИЕ']):
+        draw.text((j*cellw+12,36),title,font=small,fill=(208,172,91))
+    for i,(id,name) in enumerate(zip(ids,names)):
+        top=64+i*(cellh+28)
+        draw.text((12,top+4),name,font=font,fill=(230,225,212))
+        for j,phase in enumerate(['fire','flight','impact']):
+            capture=next(x for x in data['captures'] if x['weapon']==id and x['phase']==phase)
+            im=Image.open(root/capture['file']).convert('RGB')
+            x,y=capture['focus_screen']
+            crop=im.crop((round(x-cw/2),round(y-ch/2),round(x-cw/2)+cw,round(y-ch/2)+ch))
+            if scale!=1: crop=crop.resize((cellw,cellh),Image.NEAREST)
+            out.paste(crop,(j*cellw,top+28))
+    out.save(root/f'comparison-{label}.png')
+refs=[]
+for c,name in zip(data['configs'],names):
+    path=Path(c['texture'].replace('res://',''))
+    refs.append((path,name))
+refs += [(Path('assets/vehicles/raider/raider_clean.png'),'RAIDER — текущий кузов'),
+         (Path('assets/environment/arena/mud_ground.png'),'Текущее покрытие арены')]
+out=Image.new('RGB',(1200,910),(24,28,30));draw=ImageDraw.Draw(out)
+draw.text((12,12),'СУЩЕСТВУЮЩИЕ ИЗОБРАЖЕНИЯ — не ассеты снарядов',font=font,fill=(230,225,212))
+for i,(path,name) in enumerate(refs):
+    x=(i%3)*400;y=48+(i//3)*286
+    im=Image.open(path).convert('RGBA');original=im.size
+    im.thumbnail((376,224),Image.LANCZOS)
+    out.paste(im,(x+(400-im.width)//2,y+(224-im.height)//2),im)
+    draw.text((x+12,y+228),name,font=font,fill=(230,225,212))
+    draw.text((x+12,y+254),f'{original[0]}×{original[1]} · {path.name}',font=small,fill=(173,173,160))
+out.save(root/'existing-art-reference.png')
+# Check the phase evidence without asserting gameplay changes.
+checks=[]
+for id in ids:
+    states={r['phase']:r for r in data['captures'] if r['weapon']==id}
+    checks.append({'weapon':id,'fire_has_projectile':bool(states['fire']['bullets']),
+                   'fire_has_muzzle':states['fire']['muzzle_flash_s']>0,
+                   'flight_has_projectile':bool(states['flight']['bullets']),
+                   'impact_has_damage':states['impact']['damage_events']>0,
+                   'impact_has_vfx':bool(states['impact']['vfx'])})
+(root/'capture-checks.json').write_text(json.dumps(checks,indent=2))
+print('Capture checks:',len(checks),'weapons;',all(all(v for k,v in row.items() if k!='weapon') for row in checks))

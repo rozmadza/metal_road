@@ -1,0 +1,160 @@
+diff --git a/godot/docs/reports/METAL_ROAD_QA_REPORT.md b/godot/docs/reports/METAL_ROAD_QA_REPORT.md
+index 259c614..ff24dc6 100644
+--- a/godot/docs/reports/METAL_ROAD_QA_REPORT.md
++++ b/godot/docs/reports/METAL_ROAD_QA_REPORT.md
+@@ -1,5 +1,16 @@
+ # Metal Road — QA-отчёт
+ 
++## Rocket Launcher Visual Overhaul v2 — 2026-10-30
++
++[Отчёт, источники, подготовка и замеры](METAL_ROAD_ROCKET_LAUNCHER_VISUAL_OVERHAUL_V2.md), [сравнение реальных игровых кадров](rocket-launcher-v2-evidence/comparison-detail-2x.png). Все четыре подготовленных PNG назначены визуальному профилю: корпус96×64, выхлоп64×32, шесть разных кадров вспышки288×128 и восемь кадров взрыва1024×512. Использован арт владельца; оригиналы сохранены, кадры не дублировались. Подготовка выравнивает anchors/поля, исключает сопло из VFX и затухает поздний дым. Некоторые исходные взрывы касаются границ ячеек; мягкий край не восстанавливает отсутствующие детали. Художественная приёмка владельцем остаётся отдельной: оценить тонкий силуэт и короткую вспышку.
++
++**19/19 полного runner + 4/4 дополнительных PASS** с настоящими PNG, включая Rocket profile, VFX budget, Race combat и Restart100 (199→197 nodes, orphan0). Специальные biker/referee сохраняют null-профиль. Финальные логи без GDScript ошибок/texture-reference ошибок; shutdown ObjectDB/resources warnings прежних тестов сохранены в таблице. Промежуточный Parse Error тестового хеширования исправлен, исходный лог оставлен. Боевая конфигурация и исходники физики/AI/оружейной логики v1 не менялись.
++
++Графика RX580:1280×720/800×600 × zoom1.0/1.23, выстрел/движение/поворот/наведение/машина/препятствие/три цели/несколько ракет/Restart. После Restart во время полёта и взрыва0 старых Bullet/VFX. При70 запросах допущено48 взрывов. В двух uncapped6с окнах mean old0.859/0.867→new0.807/0.803мс; p99 old1.129/1.124→new1.049/1.000мс. В3с стресс-окне48 взрывов mean3.603→1.088мс, p99 5.108→2.256мс: это ограниченный стенд, не общий GPU/FPS вывод. Ресурсная подготовка old25.189/25.375→new35.382/36.136мс до активного боя; первый _shoot0.061–0.077мс, resource/video counters не увеличились. Первый GPU render-use отдельно не профилировался.
++
++В реальной ArenaBattle с обоими существующими кэшами после20 Restart nodes209→209/resources196→196; Godot VIDEO_MEM_USED примерно+2.90MiB против baseline, без роста от рестартов. Peak RSS сопоставимых процессов≈275MiB включает screenshot Image и драйвер. Это автоматизированные графические проверки и измерения, не ручное прохождение или многочасовой soak. Сцены Race/Career/Survival дополнительно запускались графически; полный субъективный просмотр всех стадий владельцем ещё требуется. Commit/push/merge не выполнялись.
++
++
+ ## Tactical Wave Identity v1 — 2026-10-28
+ 
+ [Технический отчёт, таблицы поведения и ограничения](METAL_ROAD_TACTICAL_WAVES_V1.md), [исходные данные](tactical-waves-v1-evidence/README.md). Ветка codex/tactical-wave-identity-v1 от обновлённого origin/main/1f04e96. Wave2: сборщики SCAVENGER с радиусом680 и боевые слоты с220; wave3: прежние реальные Vanguard/Flanker/Support, короткий боковой вход Flanker180/160; wave4: существующие BRAWLER/HUNTER и радиус supply400. Роли не требуют добавления элит: wave3 по-прежнему имеет одного Vanguard elite; позже появляются прежние Flanker и Support. Локальный выбор учитывает чужой live supply intent без глобального координатора. Профили выключены для skirmish/boss и Career.
+diff --git a/godot/resources/weapons/rocket_launcher.tres b/godot/resources/weapons/rocket_launcher.tres
+index 77a313e..be76d0b 100644
+--- a/godot/resources/weapons/rocket_launcher.tres
++++ b/godot/resources/weapons/rocket_launcher.tres
+@@ -1,10 +1,12 @@
+-[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
++[gd_resource type="Resource" script_class="WeaponConfig" load_steps=4 format=3]
+ 
+ [ext_resource type="Script" path="res://scripts/weapon_config.gd" id="1"]
+ [ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/rocket_launcher_roof.png" id="2"]
++[ext_resource type="Resource" path="res://resources/weapon_visuals/rocket_launcher.tres" id="3"]
+ 
+ [resource]
+ script = ExtResource("1")
++visual_profile = ExtResource("3")
+ weapon_id = &"rocket_launcher"
+ weapon_type = 2
+ display_name = "РАКЕТНИЦА"
+diff --git a/godot/scripts/bullet.gd b/godot/scripts/bullet.gd
+index b70306a..7fcd871 100644
+--- a/godot/scripts/bullet.gd
++++ b/godot/scripts/bullet.gd
+@@ -18,6 +18,8 @@ var homing_strength := 0.0
+ var effect_duration := 0.0
+ var age := 0.0
+ var detonated := false
++var visual_profile: WeaponVisualProfile
++var _explosion_owned_by_vfx := false
+ 
+ 
+ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_node: Node) -> void:
+@@ -31,6 +33,7 @@ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_no
+ 	shooter = owner_node
+ 	weapon_type = config.weapon_type
+ 	weapon_id = config.weapon_id
++	visual_profile = config.visual_profile
+ 	splash_radius = config.splash_radius
+ 	homing_strength = config.homing_strength
+ 	effect_duration = config.effect_duration
+@@ -48,9 +51,16 @@ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_no
+ 		add_to_group("weapon_hazards")
+ 		velocity = (owner_node as Vehicle).linear_velocity * 0.12 if owner_node is Vehicle else Vector2.ZERO
+ 	rotation = direction.angle()
++	set_process(visual_profile != null and visual_profile.has_projectile())
+ 	queue_redraw()
+ 
+ 
++func _process(_delta: float) -> void:
++	# Animation only; never consumes gameplay RNG or changes physics timing.
++	if not detonated:
++		queue_redraw()
++
++
+ func _physics_process(delta: float) -> void:
+ 	age += delta
+ 	if weapon_type == WeaponConfig.WeaponType.ROCKET:
+@@ -190,7 +200,8 @@ func _detonate() -> void:
+ 		combat_audio.play_weapon_impact(weapon_type)
+ 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
+ 	if vfx != null:
+-		vfx.spawn_explosion(global_position, color, maxf(splash_radius, 42.0))
++		_explosion_owned_by_vfx = visual_profile != null and visual_profile.has_explosion()
++		vfx.spawn_explosion(global_position, color, maxf(splash_radius, 42.0), visual_profile)
+ 	for node in get_tree().get_nodes_in_group("combatants"):
+ 		var vehicle := node as Vehicle
+ 		if vehicle == null or vehicle == shooter or not vehicle.alive or _same_squad(vehicle):
+@@ -276,6 +287,10 @@ func _same_squad(vehicle: Vehicle) -> bool:
+ 
+ func _draw() -> void:
+ 	if detonated:
++		# Preserve the Bullet lifetime/cap accounting; only CombatVFX renders
++		# an asset explosion. Without CombatVFX retain the legacy flash.
++		if _explosion_owned_by_vfx:
++			return
+ 		draw_circle(Vector2.ZERO, maxf(16.0, splash_radius * 0.38), Color(color, 0.42))
+ 		draw_circle(Vector2.ZERO, maxf(6.0, splash_radius * 0.12), Color(1.0, 0.9, 0.55, 0.95))
+ 		return
+@@ -288,6 +303,8 @@ func _draw() -> void:
+ 		draw_circle(Vector2.ZERO, 3.5, armed_color)
+ 		return
+ 	if weapon_type == WeaponConfig.WeaponType.ROCKET:
++		if visual_profile != null and visual_profile.draw_projectile(self, age):
++			return
+ 		draw_line(Vector2(-trail_length, 0), Vector2(-5, 0), Color(1.0, 0.34, 0.05, 0.8), radius * 1.5, true)
+ 		draw_rect(Rect2(-6, -radius, 13, radius * 2.0), color, true)
+ 		draw_circle(Vector2(7, 0), radius, Color(0.9, 0.92, 0.86))
+diff --git a/godot/scripts/combat_vfx.gd b/godot/scripts/combat_vfx.gd
+index 8bdf3a8..173284a 100644
+--- a/godot/scripts/combat_vfx.gd
++++ b/godot/scripts/combat_vfx.gd
+@@ -20,8 +20,8 @@ func _process(delta: float) -> void:
+ 	if events.is_empty(): set_process(false)
+ 
+ 
+-func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0) -> void:
+-	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48}, Priority.IMPORTANT)
++func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0, visual_profile: WeaponVisualProfile = null) -> void:
++	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48, "visual_profile": visual_profile}, Priority.IMPORTANT)
+ 
+ 
+ func spawn_impact(world_position: Vector2, color: Color = Color(1.0, 0.78, 0.25), large_hit: bool = false) -> void:
+@@ -59,6 +59,10 @@ func _draw() -> void:
+ 		var radius: float = event.radius
+ 		match event.kind:
+ 			&"explosion":
++				var profile := event.get("visual_profile") as WeaponVisualProfile
++				if profile != null and profile.has_explosion():
++					profile.draw_explosion(self, center, radius, progress)
++					continue
+ 				draw_circle(center, radius * (0.12 + progress * 0.62), Color(0.16, 0.08, 0.035, life * 0.42))
+ 				draw_circle(center + Vector2(-radius * 0.12, radius * 0.05), radius * (0.14 + progress * 0.25), Color(color, life * 0.3))
+ 				draw_circle(center + Vector2(radius * 0.1, -radius * 0.08), radius * (0.1 + progress * 0.18), Color(1.0, 0.76, 0.23, life * 0.42))
+diff --git a/godot/scripts/machine_gun.gd b/godot/scripts/machine_gun.gd
+index 2e2bc62..f866768 100644
+--- a/godot/scripts/machine_gun.gd
++++ b/godot/scripts/machine_gun.gd
+@@ -192,6 +192,10 @@ func _draw() -> void:
+ 	var muzzle_x := minf(config.muzzle_offset, shooter.config.length * 0.46)
+ 	if config.weapon_type == WeaponConfig.WeaponType.MINE:
+ 		muzzle_x = -shooter.config.length * 0.44
++	if config.visual_profile != null:
++		var flash_duration := 0.11 if config.weapon_type in [WeaponConfig.WeaponType.ROCKET, WeaponConfig.WeaponType.SHOTGUN] else 0.065
++		if config.visual_profile.draw_muzzle(self, Vector2(muzzle_x, 0), 1.0 - muzzle_flash_time / flash_duration):
++			return
+ 	var intensity := clampf(muzzle_flash_time / 0.08, 0.0, 1.0)
+ 	var flash_color := config.bullet_color
+ 	if config.weapon_type == WeaponConfig.WeaponType.EMP:
+diff --git a/godot/scripts/weapon_config.gd b/godot/scripts/weapon_config.gd
+index 757a04a..e0fbf97 100644
+--- a/godot/scripts/weapon_config.gd
++++ b/godot/scripts/weapon_config.gd
+@@ -40,5 +40,7 @@ enum WeaponType { BALLISTIC, SHOTGUN, ROCKET, MINE, FLAME, EMP }
+ @export_range(0.0, 800.0, 10.0) var effective_range: float = 430.0
+ 
+ @export_group("Presentation")
++## Optional shared art; texture below remains the roof/HUD image.
++@export var visual_profile: WeaponVisualProfile
+ @export var texture: Texture2D
+ @export_range(0.15, 0.5, 0.01) var preview_scale: float = 0.28

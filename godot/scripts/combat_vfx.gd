@@ -1,6 +1,7 @@
 extends Node2D
 class_name CombatVFX
 ## Shared transient world-space effects for all weapons and destructibles.
+const VisualProfile = preload("res://scripts/weapon_visual_profile.gd")
 
 const MAX_EVENTS := 48
 enum Priority { IMPACT, LARGE_IMPACT, IMPORTANT }
@@ -20,8 +21,8 @@ func _process(delta: float) -> void:
 	if events.is_empty(): set_process(false)
 
 
-func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0) -> void:
-	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48}, Priority.IMPORTANT)
+func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.08), radius: float = 80.0, visual_profile: VisualProfile = null) -> void:
+	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48, "visual_profile": visual_profile}, Priority.IMPORTANT)
 
 
 func spawn_impact(world_position: Vector2, color: Color = Color(1.0, 0.78, 0.25), large_hit: bool = false) -> void:
@@ -59,6 +60,10 @@ func _draw() -> void:
 		var radius: float = event.radius
 		match event.kind:
 			&"explosion":
+				var profile := event.get("visual_profile") as VisualProfile
+				if profile != null and profile.has_explosion():
+					profile.draw_explosion(self, center, radius, progress)
+					continue
 				draw_circle(center, radius * (0.12 + progress * 0.62), Color(0.16, 0.08, 0.035, life * 0.42))
 				draw_circle(center + Vector2(-radius * 0.12, radius * 0.05), radius * (0.14 + progress * 0.25), Color(color, life * 0.3))
 				draw_circle(center + Vector2(radius * 0.1, -radius * 0.08), radius * (0.1 + progress * 0.18), Color(1.0, 0.76, 0.23, life * 0.42))

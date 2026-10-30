@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -u
+for res in 1280 800; do
+ for zoom in 1.0 1.23; do
+  for variant in baseline current; do
+   project="/tmp/metal-road-rocket-v2-$variant"
+   label="$res-z$zoom"
+   flatpak run --filesystem="$project" org.godotengine.Godot --disable-vsync --delta-smoothing disable --max-fps 60 --path "$project" --script res://tests/rocket_v2_capture.gd -- "$res" "res://rocket-v2-output/$label/" "$zoom" > "/tmp/rocket-v2-$variant-$label.log" 2>&1
+   code=$?
+   printf '%s %s exit=%s\n' "$variant" "$label" "$code"
+   if (( code != 0 )) || rg -q 'SCRIPT ERROR' "/tmp/rocket-v2-$variant-$label.log"; then exit 1; fi
+  done
+ done
+done
+for repeat in 1 2; do
+ for variant in baseline current; do
+  project="/tmp/metal-road-rocket-v2-$variant"
+  label="uncapped-$repeat"
+  flatpak run --filesystem="$project" org.godotengine.Godot --disable-vsync --delta-smoothing disable --path "$project" --script res://tests/rocket_v2_capture.gd -- 1280 "res://rocket-v2-output/$label/" 1.0 > "/tmp/rocket-v2-$variant-$label.log" 2>&1
+  code=$?
+  printf '%s %s exit=%s\n' "$variant" "$label" "$code"
+  if (( code != 0 )) || rg -q 'SCRIPT ERROR' "/tmp/rocket-v2-$variant-$label.log"; then exit 1; fi
+ done
+done

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://co1ahhmiw5ppn"
+
+[deps]
+
+files=["res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.phase.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.wall.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.frames.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.fps.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.mean.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.p95.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.p99.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.max.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.physics.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.ai.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.ai.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.ai.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.projectiles.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.vfx.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.over.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.over.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.over.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.gpu.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.gpu.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.instrumented.translation"]
+
+source_file="res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.csv"
+dest_files=["res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.phase.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.wall.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.frames.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.fps.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.mean.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.p95.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.p99.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.max.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.physics.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.ai.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.ai.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.ai.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.projectiles.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.vfx.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.over.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.over.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.over.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.gpu.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.gpu.translation", "res://docs/reports/bonus-pickup-cache-evidence/full/analysis/windows.instrumented.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

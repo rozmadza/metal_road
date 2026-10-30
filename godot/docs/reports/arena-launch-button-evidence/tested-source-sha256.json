@@ -1,0 +1,8 @@
+{
+  "scripts/weapon_config.gd": "6a637c8585ac17554c64db09bb102ecbee6a9ff4fc380303422e1ec8f7c0fff9",
+  "scripts/bullet.gd": "9f43757149ff000c33e449dedecc4a1d95a7652c8bee404a95d4786b74ef3a77",
+  "scripts/combat_vfx.gd": "cb28a8433846ad06f19b4bcce313c832405b766f7df50f2bb044c17efa5f6492",
+  "scripts/scene_transition.gd": "0dbfd329a3b5762c4ce499b69515e78f04db664aa9cade22bb25d583bb7cd8f6",
+  "tests/arena_launch_gui_smoke.gd": "1e9e1af1307c1fe77487531c4d4dcf406d8465aed9bc1a43102a40e03f3116ef",
+  "tests/scene_transition_failure_smoke.gd": "a1455c6b686101c53ad524835954b5221a709c622b592a25df3f54e001ea949f"
+}

@@ -1,0 +1,923 @@
+{
+  "status": "PROPOSAL ONLY; files not created",
+  "assets": [
+    {
+      "code": "S01",
+      "proposed_path": "assets/vfx/weapons/machine_gun/projectile_core.png",
+      "exists_now": false,
+      "purpose": "Ядро обычного трассера",
+      "category": "static",
+      "frame_px": [
+        64,
+        32
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        64,
+        32
+      ],
+      "world_canvas_units": "16×8",
+      "pivot_px": [
+        32,
+        16
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Непрозрачное ядро ≤6 в диаметре; r=3",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S02",
+      "proposed_path": "assets/vfx/weapons/heavy_machine_gun/projectile_core.png",
+      "exists_now": false,
+      "purpose": "Отличимый рисунок тяжёлого трассера",
+      "category": "static",
+      "frame_px": [
+        96,
+        32
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        96,
+        32
+      ],
+      "world_canvas_units": "20×8",
+      "pivot_px": [
+        48,
+        16
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Ядро также ≤6; r=3, не увеличивать collider",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S03",
+      "proposed_path": "assets/vfx/weapons/shotgun/pellet.png",
+      "exists_now": false,
+      "purpose": "Одна дробина, повторяется 6 раз",
+      "category": "static",
+      "frame_px": [
+        32,
+        32
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        32,
+        32
+      ],
+      "world_canvas_units": "8×8",
+      "pivot_px": [
+        16,
+        16
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "r=3 для каждой из6 отдельных Bullet",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S04",
+      "proposed_path": "assets/vfx/weapons/rocket_launcher/projectile_body.png",
+      "exists_now": false,
+      "purpose": "Корпус ракеты с читаемым носом",
+      "category": "static",
+      "frame_px": [
+        96,
+        64
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        96,
+        64
+      ],
+      "world_canvas_units": "24×16",
+      "pivot_px": [
+        32,
+        32
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Pivot — центр проверки r=5; тело около18×10, нос не определяет контакт",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S05",
+      "proposed_path": "assets/vfx/weapons/mine_layer/mine_body.png",
+      "exists_now": false,
+      "purpose": "Металлический корпус и лепестки мины",
+      "category": "static",
+      "frame_px": [
+        128,
+        128
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "34×34",
+      "pivot_px": [
+        64,
+        64
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "Радиальная; наследовать нынешнее вращение0.8 рад/с",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Контакт r=9; корпус26/лепестки≈30 — косметика",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S06",
+      "proposed_path": "assets/vfx/weapons/mine_layer/indicator_mask.png",
+      "exists_now": false,
+      "purpose": "Отдельная маска индикатора взведения",
+      "category": "static",
+      "frame_px": [
+        32,
+        32
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        32,
+        32
+      ],
+      "world_canvas_units": "8×8",
+      "pivot_px": [
+        16,
+        16
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Только переключение по age≥0.55; не таймер взведения",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S07",
+      "proposed_path": "assets/vfx/weapons/shared/tracer_strip.png",
+      "exists_now": false,
+      "purpose": "Текстурный след обычных пуль/ЭМИ",
+      "category": "static",
+      "frame_px": [
+        128,
+        16
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        128,
+        16
+      ],
+      "world_canvas_units": "L=14 или18; ширина=0.9r",
+      "pivot_px": [
+        128,
+        8
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Правый конец в центре Bullet, полоса вдоль −X",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Только след: область попадания не растягивается",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "S08",
+      "proposed_path": "assets/vfx/weapons/rocket_launcher/exhaust_strip.png",
+      "exists_now": false,
+      "purpose": "Огненная сердцевина выхлопа ракеты",
+      "category": "static",
+      "frame_px": [
+        64,
+        32
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        64,
+        32
+      ],
+      "world_canvas_units": "17×10; светящееся ядро шириной7.5",
+      "pivot_px": [
+        64,
+        16
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Правый конец в Bullet local(−5,0), до local x=−22",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Без дополнительного урона по хвосту",
+      "integration": "Sprite2D / textured trail",
+      "optional": false
+    },
+    {
+      "code": "A01",
+      "proposed_path": "assets/vfx/weapons/flamethrower/packet_sheet.png",
+      "exists_now": false,
+      "purpose": "Органический пакет горящей смеси",
+      "category": "animated",
+      "frame_px": [
+        96,
+        96
+      ],
+      "atlas_grid": [
+        4,
+        2
+      ],
+      "atlas_px": [
+        384,
+        192
+      ],
+      "world_canvas_units": "26×26",
+      "pivot_px": [
+        48,
+        48
+      ],
+      "frames": 8,
+      "duration_s": 0.5,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Контакт r=7; ядро≤14, внешнее свечение декоративно",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "A02",
+      "proposed_path": "assets/vfx/weapons/emp_cannon/packet_sheet.png",
+      "exists_now": false,
+      "purpose": "Электрический сгусток/корона",
+      "category": "animated",
+      "frame_px": [
+        96,
+        96
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        288,
+        192
+      ],
+      "world_canvas_units": "24×24",
+      "pivot_px": [
+        48,
+        48
+      ],
+      "frames": 6,
+      "duration_s": null,
+      "loop_fps": 12,
+      "orientation": "+X вправо",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Контакт r=5; кольцо≈22 не collider",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M01",
+      "proposed_path": "assets/vfx/weapons/machine_gun/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Вспышка выстрела",
+      "category": "animated",
+      "frame_px": [
+        64,
+        64
+      ],
+      "atlas_grid": [
+        2,
+        2
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "24×24",
+      "pivot_px": [
+        16,
+        32
+      ],
+      "frames": 4,
+      "duration_s": 0.065,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "MachineGun local(min(muzzle_offset,0.46 длины),0)",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M02",
+      "proposed_path": "assets/vfx/weapons/heavy_machine_gun/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Вспышка выстрела",
+      "category": "animated",
+      "frame_px": [
+        64,
+        64
+      ],
+      "atlas_grid": [
+        2,
+        2
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "24×24",
+      "pivot_px": [
+        16,
+        32
+      ],
+      "frames": 4,
+      "duration_s": 0.065,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "MachineGun local(min(muzzle_offset,0.46 длины),0)",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M03",
+      "proposed_path": "assets/vfx/weapons/shotgun/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Вспышка выстрела",
+      "category": "animated",
+      "frame_px": [
+        96,
+        64
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        288,
+        128
+      ],
+      "world_canvas_units": "36×24",
+      "pivot_px": [
+        16,
+        32
+      ],
+      "frames": 6,
+      "duration_s": 0.11,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "MachineGun local(min(muzzle_offset,0.46 длины),0)",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M04",
+      "proposed_path": "assets/vfx/weapons/rocket_launcher/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Вспышка выстрела",
+      "category": "animated",
+      "frame_px": [
+        96,
+        64
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        288,
+        128
+      ],
+      "world_canvas_units": "36×24",
+      "pivot_px": [
+        16,
+        32
+      ],
+      "frames": 6,
+      "duration_s": 0.11,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "MachineGun local(min(muzzle_offset,0.46 длины),0)",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M05",
+      "proposed_path": "assets/vfx/weapons/mine_layer/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Пыль выпуска мины",
+      "category": "animated",
+      "frame_px": [
+        64,
+        64
+      ],
+      "atlas_grid": [
+        2,
+        2
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "24×24",
+      "pivot_px": [
+        32,
+        32
+      ],
+      "frames": 4,
+      "duration_s": 0.065,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "Задняя точка −0.44 длины шасси",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M06",
+      "proposed_path": "assets/vfx/weapons/flamethrower/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Вспышка выстрела",
+      "category": "animated",
+      "frame_px": [
+        64,
+        64
+      ],
+      "atlas_grid": [
+        2,
+        2
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "24×24",
+      "pivot_px": [
+        16,
+        32
+      ],
+      "frames": 4,
+      "duration_s": 0.065,
+      "loop_fps": null,
+      "orientation": "+X вправо",
+      "anchor": "MachineGun local(min(muzzle_offset,0.46 длины),0)",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "M07",
+      "proposed_path": "assets/vfx/weapons/emp_cannon/muzzle_sheet.png",
+      "exists_now": false,
+      "purpose": "Электрическая вспышка у сопла",
+      "category": "animated",
+      "frame_px": [
+        64,
+        64
+      ],
+      "atlas_grid": [
+        2,
+        2
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "32×32",
+      "pivot_px": [
+        32,
+        32
+      ],
+      "frames": 4,
+      "duration_s": 0.065,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "MachineGun local(min(muzzle_offset,0.46 длины),0)",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Никакой hit area; срок по существующему muzzle_flash_time",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "I01",
+      "proposed_path": "assets/vfx/weapons/shared/impact_metal_light_sheet.png",
+      "exists_now": false,
+      "purpose": "Лёгкие искры/осколки контакта",
+      "category": "animated",
+      "frame_px": [
+        128,
+        128
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        384,
+        256
+      ],
+      "world_canvas_units": "56×56",
+      "pivot_px": [
+        64,
+        64
+      ],
+      "frames": 6,
+      "duration_s": 0.24,
+      "loop_fps": null,
+      "orientation": "Радиальная; направление можно передать только как VFX metadata",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Канва2×28 не область нанесения урона",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "I02",
+      "proposed_path": "assets/vfx/weapons/shared/impact_metal_heavy_sheet.png",
+      "exists_now": false,
+      "purpose": "Более массивная фактура контакта HMG",
+      "category": "animated",
+      "frame_px": [
+        128,
+        128
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        384,
+        256
+      ],
+      "world_canvas_units": "56×56",
+      "pivot_px": [
+        64,
+        64
+      ],
+      "frames": 6,
+      "duration_s": 0.24,
+      "loop_fps": null,
+      "orientation": "Радиальная; направление можно передать только как VFX metadata",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Канва2×28 не область нанесения урона",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "I03",
+      "proposed_path": "assets/vfx/weapons/shared/impact_burn_sheet.png",
+      "exists_now": false,
+      "purpose": "Короткий контакт горящей смеси",
+      "category": "animated",
+      "frame_px": [
+        128,
+        128
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        384,
+        256
+      ],
+      "world_canvas_units": "56×56",
+      "pivot_px": [
+        64,
+        64
+      ],
+      "frames": 6,
+      "duration_s": 0.24,
+      "loop_fps": null,
+      "orientation": "Радиальная; направление можно передать только как VFX metadata",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Канва2×28 не область нанесения урона",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "I04",
+      "proposed_path": "assets/vfx/weapons/shared/impact_electric_sheet.png",
+      "exists_now": false,
+      "purpose": "Электрический контакт с машиной",
+      "category": "animated",
+      "frame_px": [
+        128,
+        128
+      ],
+      "atlas_grid": [
+        3,
+        2
+      ],
+      "atlas_px": [
+        384,
+        256
+      ],
+      "world_canvas_units": "56×56",
+      "pivot_px": [
+        64,
+        64
+      ],
+      "frames": 6,
+      "duration_s": 0.24,
+      "loop_fps": null,
+      "orientation": "Радиальная; направление можно передать только как VFX metadata",
+      "anchor": "Центр Bullet / центр попадания",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Канва2×28 не область нанесения урона",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "E01",
+      "proposed_path": "assets/vfx/weapons/rocket_launcher/explosion_sheet.png",
+      "exists_now": false,
+      "purpose": "Взрыв/разряд в мире",
+      "category": "animated",
+      "frame_px": [
+        256,
+        256
+      ],
+      "atlas_grid": [
+        4,
+        2
+      ],
+      "atlas_px": [
+        1024,
+        512
+      ],
+      "world_canvas_units": "210×210",
+      "pivot_px": [
+        128,
+        128
+      ],
+      "frames": 8,
+      "duration_s": 0.48,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "World position события CombatVFX",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Урон уже применён мгновенно по R=105; анимация не распространяет урон",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "E02",
+      "proposed_path": "assets/vfx/weapons/mine_layer/explosion_sheet.png",
+      "exists_now": false,
+      "purpose": "Взрыв/разряд в мире",
+      "category": "animated",
+      "frame_px": [
+        256,
+        256
+      ],
+      "atlas_grid": [
+        4,
+        2
+      ],
+      "atlas_px": [
+        1024,
+        512
+      ],
+      "world_canvas_units": "184×184",
+      "pivot_px": [
+        128,
+        128
+      ],
+      "frames": 8,
+      "duration_s": 0.48,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "World position события CombatVFX",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Урон уже применён мгновенно по R=92; анимация не распространяет урон",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "E03",
+      "proposed_path": "assets/vfx/weapons/emp_cannon/discharge_sheet.png",
+      "exists_now": false,
+      "purpose": "Взрыв/разряд в мире",
+      "category": "animated",
+      "frame_px": [
+        256,
+        256
+      ],
+      "atlas_grid": [
+        4,
+        2
+      ],
+      "atlas_px": [
+        1024,
+        512
+      ],
+      "world_canvas_units": "144×144",
+      "pivot_px": [
+        128,
+        128
+      ],
+      "frames": 8,
+      "duration_s": 0.48,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "World position события CombatVFX",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Урон уже применён мгновенно по R=72; анимация не распространяет урон",
+      "integration": "Shared SpriteFrames: AnimatedSprite2D or central CombatVFX frame renderer",
+      "optional": false
+    },
+    {
+      "code": "P01",
+      "proposed_path": "assets/vfx/weapons/shared/smoke_puff.png",
+      "exists_now": false,
+      "purpose": "Фактурный клуб дыма для выхлопа/взрыва",
+      "category": "particles",
+      "frame_px": [
+        128,
+        128
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        128,
+        128
+      ],
+      "world_canvas_units": "Начало8–18; финал20–40",
+      "pivot_px": [
+        64,
+        64
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "Радиальная; случайный визуальный угол",
+      "anchor": "Ограниченный world-space emitter",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Без hit area",
+      "integration": "GPUParticles2D texture",
+      "optional": true
+    },
+    {
+      "code": "P02",
+      "proposed_path": "assets/vfx/weapons/shared/spark_streak.png",
+      "exists_now": false,
+      "purpose": "Частица вытянутой металлической искры",
+      "category": "particles",
+      "frame_px": [
+        64,
+        16
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        64,
+        16
+      ],
+      "world_canvas_units": "4×1…10×2",
+      "pivot_px": [
+        32,
+        8
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "+X вдоль скорости частицы",
+      "anchor": "Контакт/взрыв",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Без hit area",
+      "integration": "GPUParticles2D texture",
+      "optional": true
+    },
+    {
+      "code": "P03",
+      "proposed_path": "assets/vfx/weapons/shared/ember.png",
+      "exists_now": false,
+      "purpose": "Короткоживущий уголёк",
+      "category": "particles",
+      "frame_px": [
+        32,
+        32
+      ],
+      "atlas_grid": [
+        1,
+        1
+      ],
+      "atlas_px": [
+        32,
+        32
+      ],
+      "world_canvas_units": "Диаметр2–5",
+      "pivot_px": [
+        16,
+        16
+      ],
+      "frames": 1,
+      "duration_s": null,
+      "loop_fps": null,
+      "orientation": "Радиальная",
+      "anchor": "Контакт/взрыв",
+      "format": "PNG RGBA8 sRGB straight alpha",
+      "transparent_background": true,
+      "collision_binding": "Без hit area",
+      "integration": "GPUParticles2D texture",
+      "optional": true
+    }
+  ]
+}

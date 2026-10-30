@@ -1,0 +1,398 @@
+[
+  {
+    "variant": "baseline",
+    "run": "1280-z1.0",
+    "load": {
+      "after_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53727193.0,
+        "video": 267597155.0
+      },
+      "after_resource": {
+        "resources": 139.0,
+        "rss": "unavailable",
+        "static": 51646437.0,
+        "video": 256796663.0
+      },
+      "before_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53721925.0,
+        "video": 267597155.0
+      },
+      "first_shot_ms": 0.065,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 25.507
+    },
+    "end": {
+      "resources": 146.0,
+      "rss": "unavailable",
+      "static": 113301777.0,
+      "video": 267758615.0
+    }
+  },
+  {
+    "variant": "baseline",
+    "run": "1280-z1.23",
+    "load": {
+      "after_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53726829.0,
+        "video": 267597155.0
+      },
+      "after_resource": {
+        "resources": 139.0,
+        "rss": "unavailable",
+        "static": 51646445.0,
+        "video": 256796663.0
+      },
+      "before_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53721561.0,
+        "video": 267597155.0
+      },
+      "first_shot_ms": 0.075,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 25.619
+    },
+    "end": {
+      "resources": 146.0,
+      "rss": "unavailable",
+      "static": 113301413.0,
+      "video": 267758615.0
+    }
+  },
+  {
+    "variant": "baseline",
+    "run": "800-z1.0",
+    "load": {
+      "after_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53726153.0,
+        "video": 261934163.0
+      },
+      "after_resource": {
+        "resources": 139.0,
+        "rss": "unavailable",
+        "static": 51646429.0,
+        "video": 256796663.0
+      },
+      "before_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53720885.0,
+        "video": 261934163.0
+      },
+      "first_shot_ms": 0.067,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 25.305
+    },
+    "end": {
+      "resources": 146.0,
+      "rss": "unavailable",
+      "static": 85034225.0,
+      "video": 262095623.0
+    }
+  },
+  {
+    "variant": "baseline",
+    "run": "800-z1.23",
+    "load": {
+      "after_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53726057.0,
+        "video": 261934163.0
+      },
+      "after_resource": {
+        "resources": 139.0,
+        "rss": "unavailable",
+        "static": 51646437.0,
+        "video": 256796663.0
+      },
+      "before_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53720789.0,
+        "video": 261934163.0
+      },
+      "first_shot_ms": 0.072,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 25.218
+    },
+    "end": {
+      "resources": 146.0,
+      "rss": "unavailable",
+      "static": 85034129.0,
+      "video": 262095623.0
+    }
+  },
+  {
+    "variant": "baseline",
+    "run": "uncapped-1",
+    "load": {
+      "after_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53727581.0,
+        "video": 269727347.0
+      },
+      "after_resource": {
+        "resources": 139.0,
+        "rss": "unavailable",
+        "static": 51646441.0,
+        "video": 256796663.0
+      },
+      "before_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53722313.0,
+        "video": 269727347.0
+      },
+      "first_shot_ms": 0.064,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 25.189
+    },
+    "end": {
+      "resources": 146.0,
+      "rss": "unavailable",
+      "static": 113697657.0,
+      "video": 269888807.0
+    }
+  },
+  {
+    "variant": "baseline",
+    "run": "uncapped-2",
+    "load": {
+      "after_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53727581.0,
+        "video": 269727347.0
+      },
+      "after_resource": {
+        "resources": 139.0,
+        "rss": "unavailable",
+        "static": 51646441.0,
+        "video": 256796663.0
+      },
+      "before_first_shot": {
+        "resources": 146.0,
+        "rss": "unavailable",
+        "static": 53722313.0,
+        "video": 269727347.0
+      },
+      "first_shot_ms": 0.061,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 25.375
+    },
+    "end": {
+      "resources": 146.0,
+      "rss": "unavailable",
+      "static": 113697657.0,
+      "video": 269888807.0
+    }
+  },
+  {
+    "variant": "current",
+    "run": "1280-z1.0",
+    "load": {
+      "after_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53734127.0,
+        "video": 270633651.0
+      },
+      "after_resource": {
+        "resources": 143.0,
+        "rss": "unavailable",
+        "static": 51653371.0,
+        "video": 259833159.0
+      },
+      "before_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53728859.0,
+        "video": 270633651.0
+      },
+      "first_shot_ms": 0.064,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 35.45
+    },
+    "end": {
+      "resources": 150.0,
+      "rss": "unavailable",
+      "static": 113237055.0,
+      "video": 270789927.0
+    }
+  },
+  {
+    "variant": "current",
+    "run": "1280-z1.23",
+    "load": {
+      "after_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53733763.0,
+        "video": 270633651.0
+      },
+      "after_resource": {
+        "resources": 143.0,
+        "rss": "unavailable",
+        "static": 51653379.0,
+        "video": 259833159.0
+      },
+      "before_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53728495.0,
+        "video": 270633651.0
+      },
+      "first_shot_ms": 0.068,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 35.895
+    },
+    "end": {
+      "resources": 150.0,
+      "rss": "unavailable",
+      "static": 113236691.0,
+      "video": 270789927.0
+    }
+  },
+  {
+    "variant": "current",
+    "run": "800-z1.0",
+    "load": {
+      "after_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53733087.0,
+        "video": 264970659.0
+      },
+      "after_resource": {
+        "resources": 143.0,
+        "rss": "unavailable",
+        "static": 51653363.0,
+        "video": 259833159.0
+      },
+      "before_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53727819.0,
+        "video": 264970659.0
+      },
+      "first_shot_ms": 0.066,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 35.548
+    },
+    "end": {
+      "resources": 150.0,
+      "rss": "unavailable",
+      "static": 84973615.0,
+      "video": 265126935.0
+    }
+  },
+  {
+    "variant": "current",
+    "run": "800-z1.23",
+    "load": {
+      "after_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53732991.0,
+        "video": 264970659.0
+      },
+      "after_resource": {
+        "resources": 143.0,
+        "rss": "unavailable",
+        "static": 51653371.0,
+        "video": 259833159.0
+      },
+      "before_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53727723.0,
+        "video": 264970659.0
+      },
+      "first_shot_ms": 0.098,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 36.011
+    },
+    "end": {
+      "resources": 150.0,
+      "rss": "unavailable",
+      "static": 84969407.0,
+      "video": 265126935.0
+    }
+  },
+  {
+    "variant": "current",
+    "run": "uncapped-1",
+    "load": {
+      "after_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53734515.0,
+        "video": 272763843.0
+      },
+      "after_resource": {
+        "resources": 143.0,
+        "rss": "unavailable",
+        "static": 51653375.0,
+        "video": 259833159.0
+      },
+      "before_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53729247.0,
+        "video": 272763843.0
+      },
+      "first_shot_ms": 0.077,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 35.382
+    },
+    "end": {
+      "resources": 150.0,
+      "rss": "unavailable",
+      "static": 113608199.0,
+      "video": 272920119.0
+    }
+  },
+  {
+    "variant": "current",
+    "run": "uncapped-2",
+    "load": {
+      "after_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53734515.0,
+        "video": 272763843.0
+      },
+      "after_resource": {
+        "resources": 143.0,
+        "rss": "unavailable",
+        "static": 51653375.0,
+        "video": 259833159.0
+      },
+      "before_first_shot": {
+        "resources": 150.0,
+        "rss": "unavailable",
+        "static": 53729247.0,
+        "video": 272763843.0
+      },
+      "first_shot_ms": 0.067,
+      "path": "res://resources/weapons/rocket_launcher.tres",
+      "resource_first_ms": 36.136
+    },
+    "end": {
+      "resources": 150.0,
+      "rss": "unavailable",
+      "static": 113608199.0,
+      "video": 272920119.0
+    }
+  }
+]

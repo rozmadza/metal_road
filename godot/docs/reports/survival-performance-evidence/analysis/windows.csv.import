@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://l7buwvqok6qe"
+
+[deps]
+
+files=["res://docs/reports/survival-performance-evidence/analysis/windows.phase.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.wall.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.frames.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.fps.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.mean.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.p95.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.p99.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.max.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.physics.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.ai.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.ai.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.ai.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.projectiles.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.vfx.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.over.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.over.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.over.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.gpu.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.gpu.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.instrumented.translation"]
+
+source_file="res://docs/reports/survival-performance-evidence/analysis/windows.csv"
+dest_files=["res://docs/reports/survival-performance-evidence/analysis/windows.phase.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.wall.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.frames.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.fps.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.mean.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.p95.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.p99.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.max.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.physics.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.ai.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.ai.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.ai.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.projectiles.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.vfx.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.over.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.over.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.over.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.gpu.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.gpu.translation", "res://docs/reports/survival-performance-evidence/analysis/windows.instrumented.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

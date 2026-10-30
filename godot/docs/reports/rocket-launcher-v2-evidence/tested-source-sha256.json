@@ -1,0 +1,14 @@
+{
+  "resources/weapon_visuals/rocket_launcher.tres": "1916c35561f1d0da98ea424e17f170fe8ed47eb65e6424d09d6449e18f893ba4",
+  "tests/rocket_visual_profile_smoke.gd": "97502e0a50f3e47d88da7745d6aaaebc5404f6b705d1cb1192b91db14d832003",
+  "scripts/weapon_visual_profile.gd": "0b0f7d6899ddb83015a1b78a384da29ecee410ce97889760f9d877405715a575",
+  "scripts/bullet.gd": "7f6283da886340533befc04ec806a5a292016cdabec92df7dbfe15af45c2cba4",
+  "scripts/machine_gun.gd": "72d96de40b5cab1f831575452ebd82e286c69f37c4c72205b70d963f04c5ff76",
+  "scripts/combat_vfx.gd": "8c62b76071b6335ab1655428c8dfb08d1223710dca96f8e2ed0c4df8aa43eaf1",
+  "scripts/weapon_config.gd": "ba95531412d02829173f0594dfc656fb91da4fc1dd1a45a295b738abe8bcaf6f",
+  "resources/weapons/rocket_launcher.tres": "17c37b5009543c7dc0ba849447968d23e3e25afbd4bbcb9f91e73665572696c6",
+  "assets/weapons/rocket_launcher/projectile_body.png": "29b4b60f43d1542eee85a31ce88b6e1d5d49eecbb5a9842547ab67da97af7df3",
+  "assets/weapons/rocket_launcher/exhaust_strip.png": "116f7f88905460c04daf8d7e59f19ed53a302cad2d8806ad8ccc9123de4bcc11",
+  "assets/weapons/rocket_launcher/muzzle_sheet.png": "a3d2a58fa3671d8141f270645c6748bb3b4d64ef6b6efca17c246fc5ad214f34",
+  "assets/weapons/rocket_launcher/explosion_sheet.png": "8e85493b09d7c58c696c427bff96c6799b2e2d9bc256973d998efa774fe380f1"
+}

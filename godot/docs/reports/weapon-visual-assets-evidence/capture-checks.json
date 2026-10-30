@@ -1,0 +1,58 @@
+[
+  {
+    "weapon": "machine_gun",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  },
+  {
+    "weapon": "heavy_machine_gun",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  },
+  {
+    "weapon": "shotgun",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  },
+  {
+    "weapon": "rocket_launcher",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  },
+  {
+    "weapon": "mine_layer",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  },
+  {
+    "weapon": "flamethrower",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  },
+  {
+    "weapon": "emp_cannon",
+    "fire_has_projectile": true,
+    "fire_has_muzzle": true,
+    "flight_has_projectile": true,
+    "impact_has_damage": true,
+    "impact_has_vfx": true
+  }
+]
