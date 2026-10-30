@@ -1,0 +1,165 @@
+[
+	{
+		"contacts": 0,
+		"old_vehicle_layer": 1,
+		"old_vehicle_mask": 1,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "before",
+		"player": "(480.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	},
+	{
+		"contacts": 0,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "death",
+		"player": "(480.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": 0.0,
+				"layer": 5,
+				"mask": 1,
+				"position": "(700.0, 850.0)",
+				"velocity": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"contacts": 0,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "wreck",
+		"player": "(480.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": 0.0,
+				"layer": 5,
+				"mask": 1,
+				"position": "(700.0, 850.0)",
+				"velocity": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"contacts": 0,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "contact",
+		"player": "(627.1976, 860.0)",
+		"velocity": "(96.93895, 0.0)",
+		"wrecks": [
+			{
+				"angle": 0.0,
+				"layer": 5,
+				"mask": 1,
+				"position": "(700.0, 850.0)",
+				"velocity": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "push",
+		"player": "(707.5707, 857.5068)",
+		"velocity": "(46.32435, -5.15034)",
+		"wrecks": [
+			{
+				"angle": -0.158775523304939,
+				"layer": 5,
+				"mask": 1,
+				"position": "(771.1862, 837.7071)",
+				"velocity": "(44.54084, -10.92492)"
+			}
+		]
+	},
+	{
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "shift",
+		"player": "(714.9399, 856.521)",
+		"velocity": "(0.012916, 0.077445)",
+		"wrecks": [
+			{
+				"angle": -0.171533569693565,
+				"layer": 5,
+				"mask": 1,
+				"position": "(782.2663, 834.9758)",
+				"velocity": "(0.769894, -0.189716)"
+			}
+		]
+	},
+	{
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "AI-detour",
+		"player": "(1040.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": -0.171540930867195,
+				"layer": 5,
+				"mask": 1,
+				"position": "(782.4456, 834.9318)",
+				"velocity": "(0.000017, -0.000004)"
+			}
+		]
+	},
+	{
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "AI-arrived",
+		"player": "(1040.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": -0.171540930867195,
+				"layer": 5,
+				"mask": 1,
+				"position": "(782.4456, 834.9318)",
+				"velocity": "(0.0, -0.0)"
+			}
+		]
+	},
+	{
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "restart",
+		"player": "(1040.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": -0.171540930867195,
+				"layer": 5,
+				"mask": 1,
+				"position": "(782.4456, 834.9318)",
+				"velocity": "(0.0, -0.0)"
+			}
+		]
+	}
+]

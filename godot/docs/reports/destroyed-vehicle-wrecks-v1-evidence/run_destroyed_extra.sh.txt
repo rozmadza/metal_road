@@ -1,0 +1,7 @@
+#!/bin/bash
+mkdir -p /tmp/destroyed-wreck-evidence/extra
+for name in handling_collision_smoke collision_damage_smoke damage_contract_smoke traffic_yield_policy_smoke traffic_recovery_smoke tactical_wave_identity_smoke bonus_placement_smoke arena_expansion_smoke rocket_visual_profile_smoke rocket_homing_v3_smoke ballistic_visual_profile_smoke combat_vfx_budget_smoke weapon_smoke race_combat_smoke survival_full_wave_recovery_smoke driving_reverse_response_smoke arena_music_smoke; do
+ timeout 180s flatpak run --filesystem=/tmp/destroyed-wreck-after org.godotengine.Godot --headless --path /tmp/destroyed-wreck-after --script "res://tests/$name.gd" > "/tmp/destroyed-wreck-evidence/extra/$name.log" 2>&1
+ code=$?
+ if ((code==0)) && ! rg -q 'SCRIPT ERROR|Parse Error|: FAIL| FAIL:' "/tmp/destroyed-wreck-evidence/extra/$name.log"; then printf 'PASS %s\n' "$name";else printf 'FAIL %s exit=%s\n' "$name" "$code";fi
+done

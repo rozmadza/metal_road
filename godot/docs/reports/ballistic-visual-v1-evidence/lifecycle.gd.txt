@@ -1,0 +1,24 @@
+extends SceneTree
+var output := "res://ballistic-lifecycle.json"
+func _initialize() -> void: run.call_deferred()
+func memory() -> Dictionary:
+	return {"static":Performance.get_monitor(Performance.MEMORY_STATIC),"video":Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED),"resources":Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT),"nodes":Performance.get_monitor(Performance.OBJECT_NODE_COUNT),"orphans":Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)}
+func run() -> void:
+	PlayerProfile.path_override="res://ballistic-lifecycle-profile.cfg"
+	LoadoutProfile.path_override="res://ballistic-lifecycle-loadout.cfg"
+	var game := load("res://scenes/ArenaBattle.tscn").instantiate() as Survival
+	root.add_child(game);current_scene=game
+	await create_timer(0.5).timeout
+	var before := memory();var counts:Array=[]
+	for i in 20:
+		for id in ["machine_gun","heavy_machine_gun"]:
+			game.player.activate_temporary_weapon(load("res://resources/weapons/"+id+".tres"),999)
+			game.player.gun._shoot()
+			game.get_node("CombatVFX").spawn_impact(game.player.position,Color.WHITE,false,game.player.gun.config.visual_profile)
+		game.start_round(1)
+		for frame in 4: await physics_frame
+		counts.append({"bullets":game.bullets.get_child_count(),"events":game.get_node("CombatVFX").events.size(),"memory":memory()})
+	var after := memory()
+	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"before":before,"after":after,"cycles":counts},"\t"))
+	print("BALLISTIC LIFECYCLE: ","PASS" if counts.all(func(c):return c.bullets==0 and c.events==0) else "FAIL")
+	game.free();await process_frame;quit()

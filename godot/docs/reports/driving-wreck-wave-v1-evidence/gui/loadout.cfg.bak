@@ -1,0 +1,7 @@
+[loadout]
+
+version=2
+vehicle=&"raider"
+weapon=&"rocket_launcher"
+survival_vehicle=&"raider"
+race_vehicle=&"raider"

@@ -91,9 +91,11 @@ func _create_obstacle_visuals() -> void:
 		var vertical := (rect.size.y > rect.size.x) != (texture_size.y > texture_size.x)
 		var target_size := rect.size * OBSTACLE_VISUAL_SCALE
 		var center := rect.position + rect.size * 0.5
-		_add_obstacle_footprint(_obstacle_polygons[index])
-		_add_obstacle_sprite(texture, center + WorldArtGuide.SHADOW_OFFSET, target_size, vertical, true)
-		_add_obstacle_sprite(texture, center, target_size, vertical, false)
+		# The central ground-level wreck must not overpaint car bodies at z=0.
+		var ground_wreck := config.structured_scrapyard and config.biome_id == &"scrapyard" and index == 0
+		_add_obstacle_footprint(_obstacle_polygons[index], -4 if ground_wreck else -1)
+		_add_obstacle_sprite(texture, center + WorldArtGuide.SHADOW_OFFSET, target_size, vertical, true, -3 if ground_wreck else 0)
+		_add_obstacle_sprite(texture, center, target_size, vertical, false, -2 if ground_wreck else 0)
 
 
 func _create_weather() -> void:
@@ -110,8 +112,9 @@ func apply_surface_to(vehicle: Vehicle) -> void:
 	vehicle.set_surface_modifier(grip, grip, self)
 
 
-func _add_obstacle_sprite(texture: Texture2D, position: Vector2, target_size: Vector2, vertical: bool, shadow: bool) -> void:
+func _add_obstacle_sprite(texture: Texture2D, position: Vector2, target_size: Vector2, vertical: bool, shadow: bool, layer: int = 0) -> void:
 	var sprite := Sprite2D.new()
+	sprite.z_index = layer
 	sprite.texture = texture
 	sprite.position = position
 	sprite.rotation = PI * 0.5 if vertical else 0.0
@@ -133,14 +136,14 @@ func _add_obstacle_sprite(texture: Texture2D, position: Vector2, target_size: Ve
 	add_child(sprite, true)
 
 
-func _add_obstacle_footprint(polygon: PackedVector2Array) -> void:
+func _add_obstacle_footprint(polygon: PackedVector2Array, layer: int = -1) -> void:
 	# Both the marker and physics use the same alpha-derived convex silhouette.
 	# Round heaps therefore read as round, while long vehicles remain elongated.
 	var fill := Polygon2D.new()
 	fill.name = "ObstacleFootprint"
 	fill.polygon = polygon
 	fill.color = WorldArtGuide.CONTACT_COLOR
-	fill.z_index = -1
+	fill.z_index = layer
 	add_child(fill, true)
 
 func _create_interactives() -> void:

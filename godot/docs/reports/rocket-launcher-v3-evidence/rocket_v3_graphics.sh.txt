@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -u
+for res in 1280 800; do
+ for zoom in 1.0 1.23; do
+  for v in before current; do
+   p="/tmp/rocket-v3-$v";label="$res-z$zoom"
+   flatpak run --filesystem="$p" org.godotengine.Godot --disable-vsync --max-fps 60 --path "$p" --script res://tests/rocket_v3_capture.gd -- "$res" "res://v3-output/$label/" "$zoom" > "/tmp/rocket-v3-$v-$label.log" 2>&1
+   printf '%s %s exit=%s\n' "$v" "$label" "$?"
+  done
+ done
+done
+for style in compact near; do
+ p=/tmp/rocket-v3-current
+ flatpak run --filesystem="$p" org.godotengine.Godot --disable-vsync --max-fps 60 --path "$p" --script res://tests/rocket_v3_capture.gd -- 1280 "res://v3-output/$style/" 1.0 "$style" > "/tmp/rocket-v3-style-$style.log" 2>&1
+ printf '%s exit=%s\n' "$style" "$?"
+done

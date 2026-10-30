@@ -1,0 +1,9 @@
+#!/bin/bash
+set -u
+logdir=/tmp/driving-v1-evidence/extra
+mkdir -p "$logdir"
+for name in vehicle_smoke vehicle_foundation_smoke handling_collision_smoke brake_reverse_recovery_smoke reverse_steering_smoke rolling_steering_smoke idle_steering_smoke handbrake_smoke traffic_yield_policy_smoke traffic_recovery_smoke arena_bot_navigation_integration tactical_wave_identity_smoke arena_expansion_smoke bonus_pickup_smoke bonus_placement_smoke survival_transition_stability_smoke damage_modules_smoke rocket_homing_v3_smoke rocket_visual_profile_smoke ballistic_visual_profile_smoke weapon_smoke combat_vfx_budget_smoke race_combat_smoke; do
+ timeout 180s flatpak run --filesystem=/tmp/driving-v1-after org.godotengine.Godot --headless --path /tmp/driving-v1-after --script "res://tests/$name.gd" > "$logdir/$name.log" 2>&1
+ code=$?
+ if ((code==0)) && ! rg -q 'SCRIPT ERROR|Parse Error|: FAIL| FAIL:' "$logdir/$name.log"; then printf 'PASS %s\n' "$name"; else printf 'FAIL %s exit=%s\n' "$name" "$code"; fi
+done

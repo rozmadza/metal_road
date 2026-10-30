@@ -12,7 +12,7 @@ func _ready() -> void:
 func show_choices(choices: Array[Dictionary], round_number: int, repair_percent: int) -> void:
 	_choices = choices
 	%Heading.text = "ВОЛНА %d ПРОЙДЕНА" % round_number
-	%Subheading.text = "ПОЛЕВОЙ РЕМОНТ %d%% · ВЫБЕРИТЕ ОДНО УСИЛЕНИЕ" % repair_percent
+	%Subheading.text = "КУЗОВ ДО 100%% В НАЧАЛЕ ВОЛНЫ · ВЫБЕРИТЕ УСИЛЕНИЕ" if repair_percent == 100 else "ПОЛЕВОЙ РЕМОНТ %d%% · ВЫБЕРИТЕ ОДНО УСИЛЕНИЕ" % repair_percent
 	for index in 3:
 		var button := get_node("Center/Panel/Layout/Choices/Choice%d" % (index + 1)) as Button
 		var perk: Dictionary = choices[index]

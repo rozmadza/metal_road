@@ -1,0 +1,157 @@
+extends SceneTree
+var world: Node2D
+var source_car: Vehicle
+var target_car: Vehicle
+var bullets: Node2D
+var vfx: CombatVFX
+var camera: Camera2D
+var pending: Array=[]
+var records: Array=[]
+var frame_ms: Array[float]=[]
+var monitoring:=false
+var last_tick:=0
+var output:="res://rocket-visual-output/"
+var viewport_size:=Vector2i(1280,720)
+var impacts:=0
+var zoom_value:=1.0
+var load_stats:={}
+var weapon_name:="machine_gun"
+var mixed:=false
+func memory() -> Dictionary:
+	var rss:="unavailable"
+	var f:=FileAccess.open("/proc/self/status",FileAccess.READ)
+	if f!=null:
+		for line in f.get_as_text().split("\n"):
+			if line.begins_with("VmRSS:"): rss=line
+	return {"rss":rss,"static":Performance.get_monitor(Performance.MEMORY_STATIC),"video":Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED),"resources":Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT)}
+
+func _initialize() -> void: run.call_deferred()
+func _process(_delta: float) -> bool:
+	var now:=Time.get_ticks_usec()
+	if monitoring and last_tick>0: frame_ms.append(float(now-last_tick)/1000.0)
+	last_tick=now
+	return false
+func capture(phase: String) -> void:
+	await RenderingServer.frame_post_draw
+	var bs: Array=[]
+	for b in bullets.get_children():
+		bs.append({"position":[b.position.x,b.position.y],"rotation":b.rotation,"age":b.age,"detonated":b.detonated,"radius":b.radius,"z":b.z_index})
+	var record:={"phase":phase,"file":phase+".png","bullets":bs,"vfx_count":vfx.events.size(),"damage_events":impacts,"target_hp":target_car.health,"source_velocity":[source_car.linear_velocity.x,source_car.linear_velocity.y],"muzzle_timer":source_car.gun.muzzle_flash_time}
+	pending.append({"file":record.file,"image":root.get_texture().get_image()})
+	records.append(record)
+func reset_cars() -> void:
+	for b in bullets.get_children(): b.free()
+	vfx.events.clear();vfx.queue_redraw()
+	source_car.freeze=false;target_car.freeze=false
+	source_car.reset_to(Vector2(450,830),0)
+	target_car.reset_to(Vector2(650,830),PI)
+	for i in 4: await physics_frame
+	source_car.freeze=true;target_car.freeze=true
+	source_car.set_physics_process(false); target_car.set_physics_process(false)
+	source_car.gun.set_physics_process(true)
+	source_car.activate_temporary_weapon(load("res://resources/weapons/"+weapon_name+".tres"),999)
+	source_car.gun.set_firing(false)
+	impacts=0
+	await process_frame
+func percentile(sorted: Array[float], p:float) -> float:
+	return sorted[clampi(int(ceil(p*sorted.size()))-1,0,sorted.size()-1)]
+func run() -> void:
+	var args:=OS.get_cmdline_user_args()
+	if args.size()>0 and args[0]=="800": viewport_size=Vector2i(800,600)
+	if args.size()>1: output=args[1]
+	if args.size()>2: zoom_value=float(args[2])
+	if args.size()>3: weapon_name=args[3]
+	if args.size()>4: mixed=args[4]=="mixed"
+	var t:=Time.get_ticks_usec()
+	var retained_config:=load("res://resources/weapons/"+weapon_name+".tres") as WeaponConfig
+	load_stats={"resource_first_ms":float(Time.get_ticks_usec()-t)/1000,"after_resource":memory(),"path":retained_config.resource_path}
+	DirAccess.make_dir_recursive_absolute(output)
+	root.size=viewport_size; root.content_scale_size=Vector2i.ZERO
+	AudioServer.set_bus_mute(0,true)
+	PlayerProfile.path_override=output+"profile.cfg";LoadoutProfile.path_override=output+"loadout.cfg"
+	LoadoutProfile.save_ids(&"raider",&"machine_gun")
+	seed(4217)
+	world=Node2D.new();root.add_child(world);current_scene=world
+	world.add_child(load("res://scenes/Arena.tscn").instantiate())
+	bullets=Node2D.new();bullets.add_to_group("bullets");world.add_child(bullets)
+	vfx=CombatVFX.new();vfx.z_index=4;world.add_child(vfx)
+	source_car=load("res://scenes/Vehicle.tscn").instantiate();world.add_child(source_car);source_car.add_to_group("combatants")
+	target_car=load("res://scenes/Vehicle.tscn").instantiate();world.add_child(target_car);target_car.add_to_group("combatants")
+	target_car.damaged.connect(func(_v,_amount,_s): impacts+=1)
+	camera=Camera2D.new();camera.position=Vector2(570,750);camera.zoom=Vector2.ONE*zoom_value;world.add_child(camera);camera.make_current()
+	for i in 20: await process_frame
+	await reset_cars()
+	await physics_frame
+	var before_first:=memory()
+	var shot_start:=Time.get_ticks_usec()
+	source_car.gun._shoot()
+	load_stats.first_shot_ms=float(Time.get_ticks_usec()-shot_start)/1000
+	load_stats.before_first_shot=before_first;load_stats.after_first_shot=memory()
+	await capture("fire")
+	for i in 6: await physics_frame
+	await capture("flight")
+	for i in 150:
+		if impacts>0: break
+		await physics_frame
+	await capture("impact")
+	for i in 9: await physics_frame
+	await capture("explosion")
+	await reset_cars()
+	source_car.freeze=false;source_car.linear_velocity=Vector2(120,0)
+	source_car.gun._shoot()
+	for i in 5: await physics_frame
+	await capture("moving")
+	source_car.angular_velocity=4.0
+	for i in 5: await physics_frame
+	source_car.gun._shoot();await capture("turning")
+	await reset_cars()
+	# Physical wall at the same clear lane; let the actual Bullet query hit it.
+	var wall:=StaticBody2D.new();wall.position=Vector2(530,830)
+	var shape:=CollisionShape2D.new();var rect:=RectangleShape2D.new();rect.size=Vector2(12,80);shape.shape=rect;wall.add_child(shape);world.add_child(wall)
+	await physics_frame
+	source_car.gun._shoot()
+	for i in 50:
+		if not vfx.events.is_empty(): break
+		await physics_frame
+	await capture("obstacle")
+	wall.free()
+	await reset_cars()
+	# Four real gun instances, each using the same ordinary projectile cap.
+	var extra: Array=[]
+	for i in 3:
+		var car:=load("res://scenes/Vehicle.tscn").instantiate() as Vehicle
+		world.add_child(car);car.position=Vector2(450,750-i*60);car.freeze=true
+		car.set_physics_process(false);car.activate_temporary_weapon(load("res://resources/weapons/"+("heavy_machine_gun" if mixed and i%2==0 else weapon_name)+".tres"),999)
+		extra.append(car)
+	await physics_frame
+	source_car.gun._shoot()
+	for car in extra: car.gun._shoot()
+	for i in 6: await physics_frame
+	await capture("overview")
+	# Comparable graphical fixture timing; no PNG encoding during sampling.
+	for i in 30: await process_frame
+	frame_ms.clear();last_tick=0;monitoring=true
+	var measure_start:=Time.get_ticks_usec()
+	var next_shot:=0
+	while Time.get_ticks_usec()-measure_start<6000000:
+		var elapsed:=Time.get_ticks_usec()-measure_start
+		if elapsed>=next_shot:
+			next_shot+=333333
+			source_car.gun._shoot()
+			for car in extra:
+				if car.gun._active_bullet_count()<8: car.gun._shoot()
+		await process_frame
+	monitoring=false
+	var sorted:=frame_ms.duplicate();sorted.sort()
+	var total:=0.0
+	for value in sorted: total+=value
+	var stats:={"samples":sorted.size(),"mean_ms":total/maxi(1,sorted.size()),"p95_ms":percentile(sorted,0.95),"p99_ms":percentile(sorted,0.99),"max_ms":sorted.back(),"over_16_67":0,"over_33_33":0,"over_100":0}
+	for value in sorted:
+		if value>16.67: stats.over_16_67+=1
+		if value>33.33: stats.over_33_33+=1
+		if value>100: stats.over_100+=1
+	for p in pending: p.image.save_png(output+p.file)
+	FileAccess.open(output+"manifest.json",FileAccess.WRITE).store_string(JSON.stringify({"engine":Engine.get_version_info(),"display":DisplayServer.get_name(),"viewport":[root.size.x,root.size.y],"zoom":zoom_value,"load":load_stats,"memory_end":memory(),"captures":records,"timing":stats,"frame_ms":frame_ms},"\t"))
+	world.free();await process_frame
+	print("ROCKET GRAPHICAL: ",JSON.stringify(stats))
+	quit()

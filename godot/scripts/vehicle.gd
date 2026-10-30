@@ -12,6 +12,9 @@ const VISUAL_SCALE := 1.72
 const COLLISION_SCALE := Vector2(1.63, 1.58)
 ## Scenery should punish a crash without competing with weapon or car-ram damage.
 const STATIC_IMPACT_DAMAGE_SCALE := 0.25
+## Player gear selection only; AI's direct signed throttle is unaffected.
+const PLAYER_REVERSE_DELAY := 0.15
+const PLAYER_REVERSE_STOP_SPEED := 2.0
 
 @export var config: VehicleConfig
 
@@ -152,8 +155,8 @@ func apply_player_control(gas: float, brake_input: float, steering: float, firin
 		_reverse_hold = 0.0
 		_player_reverse = false
 	elif not _player_reverse:
-		_reverse_hold = _reverse_hold + delta if get_speed() <= 2.0 else 0.0
-		_player_reverse = _reverse_hold >= 0.35
+		_reverse_hold = _reverse_hold + delta if absf(get_forward_speed()) <= PLAYER_REVERSE_STOP_SPEED else 0.0
+		_player_reverse = _reverse_hold >= PLAYER_REVERSE_DELAY
 	if _player_reverse:
 		apply_control(-0.6 * brake_input, 0.0, steering, firing)
 	else:

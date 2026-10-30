@@ -1,0 +1,23 @@
+extends SceneTree
+const PrototypeArena=preload("res://experiments/movable_wreck_arena.gd")
+var shots:Array=[]
+func _initialize() -> void:run.call_deferred()
+func shot(name:String) -> void:
+	await RenderingServer.frame_post_draw
+	shots.append({"name":name,"image":root.get_texture().get_image()})
+func run() -> void:
+	root.size=Vector2i(1280,720);root.content_scale_size=Vector2i.ZERO
+	var arena:=PrototypeArena.new();arena.config=load("res://resources/default_arena.tres");root.add_child(arena)
+	var camera:=Camera2D.new();camera.position=Vector2(700,420);arena.add_child(camera);camera.make_current()
+	var car:=load("res://scenes/Vehicle.tscn").instantiate() as Vehicle
+	car.position=Vector2(600,430);root.add_child(car)
+	await physics_frame;car.linear_velocity=Vector2(165,0)
+	await shot("before-impact")
+	for frame in 45:await physics_frame
+	await shot("physical-impact")
+	car.apply_control(0,0,0)
+	for frame in 180:await physics_frame
+	await shot("settled")
+	for item in shots:item.image.save_png("/tmp/driving-v1-evidence/prototype/"+item.name+".png")
+	print("PROTOTYPE GRAPHIC displacement=",arena.wreck.position.distance_to(Vector2(700,420))," rotation=",arena.wreck.rotation," velocity=",arena.wreck.linear_velocity)
+	car.free();arena.free();await process_frame;quit()

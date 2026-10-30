@@ -1,0 +1,238 @@
+{
+	"after": {
+		"nodes": 197.0,
+		"orphans": 0.0,
+		"resources": 205.0,
+		"static": 58499953.0,
+		"video": 385501269.0
+	},
+	"before": {
+		"nodes": 197.0,
+		"orphans": 0.0,
+		"resources": 205.0,
+		"static": 58573421.0,
+		"video": 374850309.0
+	},
+	"cycles": [
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58474389.0,
+				"video": 374850309.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58478077.0,
+				"video": 374850309.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58479789.0,
+				"video": 376980501.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58481145.0,
+				"video": 379110693.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58482613.0,
+				"video": 379110693.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58483833.0,
+				"video": 379110693.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58485325.0,
+				"video": 379110693.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58486545.0,
+				"video": 379110693.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58487965.0,
+				"video": 379110693.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58489665.0,
+				"video": 383371077.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58486381.0,
+				"video": 383371077.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58487601.0,
+				"video": 383371077.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58489021.0,
+				"video": 383371077.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58490497.0,
+				"video": 385501269.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58491917.0,
+				"video": 385501269.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58493137.0,
+				"video": 385501269.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58494557.0,
+				"video": 385501269.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58495777.0,
+				"video": 385501269.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58497197.0,
+				"video": 385501269.0
+			}
+		},
+		{
+			"bullets": 0,
+			"events": 0,
+			"memory": {
+				"nodes": 197.0,
+				"orphans": 0.0,
+				"resources": 205.0,
+				"static": 58498633.0,
+				"video": 385501269.0
+			}
+		}
+	]
+}

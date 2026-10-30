@@ -1,5 +1,26 @@
 # Metal Road — QA-отчёт
 
+## Destroyed Vehicle Wrecks v1 — 2026-10-30
+
+В обычном Survival dead Vehicle заменяется физическим RigidBody2D с исходным hull/артом: layer5/mask1, z−1, масса≥1400, damping/CCD. Cover блокирует6летающих типов снарядов с одним contact VFX; мина сохраняет прежнюю реакцию на живые машины. Dynamic navigation overlay обновляет локальные клетки radius caches, не перестраивает всю сетку на каждый tick. TTL25с (+contact grace≤2с/fade0.35), cap5, Restart/menu/session guards проверены. Прежние Vehicle physics, full-wave HP, Tactical Waves, музыка и оружейные ресурсы сохранены.
+
+Финальный runner19/19, дополнительные17/17, новые lifecycle/physics/combat-nav/supply PASS. GUI Menu→Survival→Start→оружейная смерть→контакт/толкание/поворот→native AI→Restart→Menu→повторный вход PASS в1280/800. Штатные6сценариев8AI×1/3/5wreck×2seed PASS с TTL25; часть целей достигается после удаления cover. Дополнительный120s-stress с5wreck не пройден: сохраняется риск долгих заторов. Не выдавать это за универсальное исправление recovery; полная приёмка длительных плотных блокировок открыта. [Отчёт/кадры/метрики](METAL_ROAD_DESTROYED_VEHICLE_WRECKS_V1.md).
+
+## Driving / Wreck / Wave Recovery v1 — 2026-10-30
+
+Player reverse gate0.15с по продольной скорости: тяга после stop≈0.133с, скорость<−2 через0.217–0.233с вместо0.417–0.433с;12before/after keyboard/RT-LT сценариев PASS. Центральный static wreck: footprint−4/shadow−3/art−2/car0, графика1280/800 и реальные коллизии проверены. RigidBody wreck оставлен opt-in experiments (прошли удар/затухание/границы/nav/AI), не подключён в production из-за cover/dynamic-nav контрактов.
+
+Survival перед новой волной восстанавливает только кузов до effective max один раз; модули сохраняются, dead/stale callbacks не воскрешают. Career30/45% и Repair Pickup сохранены. Полный финальный runner19/19 и23дополнительных checks PASS, новые независимые tests reverse/HP/layers/prototype PASS, GUI menu/Garage/launch/Restart/Race/Career PASS. Полный отчёт и ограничения: [Driving v1](METAL_ROAD_DRIVING_WRECK_WAVE_RECOVERY_V1.md). Ручная оценка владельца остаётся открытой; field_mechanic потерял пользу в обычном Survival, требуется отдельное решение.
+
+## Rocket Launcher v3 — 2026-10-30
+
+[Отчёт, таблицы и ограничения](METAL_ROAD_ROCKET_LAUNCHER_V3.md), [сравнение v2/v3](rocket-launcher-v3-evidence/v2-v3-native.png). Реализованы компактный профиль корпуса/хвоста, offset и быстрое затухание вспышки, одно производное explosion-sheet с основным масштабом0.8 и слабой периферией12%. R105, damage42, speed380, lifetime2.3, ammo/fire/reload сохранены. Только Rocket Launcher получил0.3rad/s и абсолютный бюджет коррекции8°. Диагностический вариант0.3 безcap оставлял до39.8° и не выбран.
+
+864 контролируемые Vehicle/Bullet проверки, seed4217/7124/1901,180/400/700units и30/60/120Hz: contact hits baseline60/72,A21/72,weak uncapped36/72,B30/72 при каждом шаге. У B5° компенсируются,20° остаются промахом, при потере цели курс сохраняется; cap<=8°. Frozen цели перемещены заданными траекториями, не естественным AI; это не общий баланс оружия. Все исходные PNG сохранены. Видимая ширина корпуса≈5.5 вместо ориентира8–9 оставлена пропорциональной исходнику; утолщение и общий художественный результат требуют владельческой приёмки.
+
+19/19 полного runner,5/5 дополнительных и отдельный GUI-запуск PASS; Restart100199→197/orphan0, графические Restart очищают Bullet/VFX, budget48. Полная матрица1280/800×zoom1/1.23, несколько машин/поздний дым/три варианта оформления сохранены. P0 в рабочем проекте не воспроизвёлся после штатного импорта. Короткие uncapped48VFX окна близки к v2, основной v3 mean≈1.096 против1.082мс,p99≈2.326 против2.202; дополнительные v3 окна p99≈2.205–2.254. Это не доказанный общий прирост FPS или решённая GPU-производительность. Node/resource/video counters после20Restart стабильны, shutdown warnings сохранены в логах. Ручное художественное подтверждение, длительный бой и физический геймпад не заявляются. Следующий шаг в рамках этой записи — ручная приёмка v3, не переработка остальных видов оружия.
+
+
 ## P0: запуск через «Выйти на арену» — 2026-10-30
 
 [Причина, fix и реальные GUI-проверки](METAL_ROAD_ARENA_LAUNCH_BUTTON_FIX.md), [кадр боя после F5 и OS-клика](arena-launch-button-evidence/editor-f5/fight.png). Дефект воспроизведён в фактической рабочей папке: отсутствовала регистрация WeaponVisualProfile и все четыре remap `.ctex` новых PNG. Ранее импортировались только тестовые копии — это пропущенный этап интеграции. После явных preload в WeaponConfig/Bullet/CombatVFX GUI-нажатие было принято, но BonusCache.prepare всё ещё отменял старт из-за отсутствующих texture imports. Штатный импорт выполнен именно в рабочей папке; PNG/баланс не менялись. SceneTransition теперь показывает понятный диалог отказа и допускает повтор после OK.
@@ -464,4 +485,8 @@ Retry и клавиатурный Restart используют coalesced deferre
 - **P2:** крупные координаторы `Game`/`Survival` и прямые node-path связи повышают риск регрессий.
 - **P2:** долгий баланс AI, оружия и волн покрыт слабее, чем deterministic smoke.
 - **P3:** часть визуальных review-скриптов проверяет кадр, но не субъективную читаемость при движении.
+
+# Ballistic visuals v1 — 2026-10-30
+
+MG и Heavy MG получили отдельные WeaponVisualProfile, подготовленные PNG и один impact через CombatVFX. Боевые параметры сохранены. Полный runner на окончательном дереве: 19/19 PASS; дополнительные ballistic/rocket visual/weapon/VFX budget/Race combat/rocket homing: 6/6 PASS. Графическая матрица16 процессов, GUI menu/Garage/battle/Restart/Race/Career PASS; 20 графических Restart очищают новые эффекты, штатный Restart100 PASS. Предшествующий Rocket v3 сохранён. Детали, замеры, исходный FAIL и ограничения: [отчёт](METAL_ROAD_BALLISTIC_VISUAL_OVERHAUL_V1.md). Художественная приёмка за владельцем; warnings shutdown сохранены и не объявлены доказанными runtime-утечками.
 

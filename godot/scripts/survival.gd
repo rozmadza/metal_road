@@ -70,6 +70,9 @@ var bonus_spawner: BonusSpawner
 var career_event: Dictionary = {}
 var arena_hazards: ArenaHazardDirector
 var _wave_plan: Dictionary = {}
+var _body_recovery_round := 0
+const WreckContainer = preload("res://scripts/destroyed_vehicle_wrecks.gd")
+var destroyed_wrecks: Node2D
 var _run_perks: Array[Dictionary] = []
 var _perk_ids: Array = []
 var _perk_effects: Array = []
@@ -161,6 +164,10 @@ func _ready() -> void:
 
 
 func _setup_arena_systems() -> void:
+	if career_event.is_empty():
+		destroyed_wrecks = WreckContainer.new()
+		destroyed_wrecks.name = "DestroyedVehicleWrecks"
+		arena.add_child(destroyed_wrecks)
 	_setup_spike_strips()
 	arena_hazards = ArenaHazardDirector.new()
 	arena_hazards.name = "ArenaHazardDirector"
@@ -213,6 +220,7 @@ func _restore_arena() -> void:
 
 func _finish_session() -> void:
 	_session_finished = true
+	if is_instance_valid(destroyed_wrecks): destroyed_wrecks.stop()
 	_round_generation += 1
 	_referee_spawn_pending = false
 	_round_start_pending = -1
@@ -337,6 +345,10 @@ func _unhandled_input(event: InputEvent) -> void:
 # ---------------------------------------------------------------------------
 
 func start_round(round_number: int) -> void:
+	# Only Restart may revive a session. Duplicate/stale future-wave requests
+	# must not heal a dead player or replay the same wave's repair.
+	if round_number > 1 and (not player.alive or _session_finished):
+		return
 	if round_number == 1:
 		audio.enable_survival_metal()
 	_round_generation += 1
@@ -350,6 +362,7 @@ func start_round(round_number: int) -> void:
 		_restore_arena()
 	_session_finished = false
 	if round_number == 1:
+		_body_recovery_round = 1
 		_kills = 0
 		_weapon_kills = 0
 		_damage_dealt = 0.0
@@ -419,8 +432,18 @@ func start_round(round_number: int) -> void:
 	if round_number == 1:
 		player.reset_to(spawns[0], 0.0)
 	else:
+		if is_instance_valid(destroyed_wrecks): destroyed_wrecks.clear_spawn_area(spawns[0],player.config)
 		var repair_fraction := 0.3 + (0.15 if &"wave_repair" in _perk_effects else 0.0)
-		player.reset_for_next_wave(spawns[0], 0.0, repair_fraction)
+		if career_event.is_empty():
+			# Reposition/reset transient state, retain both damaged modules, and
+			# restore only body HP using the post-perk effective configuration.
+			player.reset_for_next_wave(spawns[0], 0.0, 0.0)
+			if round_number > _body_recovery_round:
+				player.health = player.config.max_health
+				_body_recovery_round = round_number
+			player.queue_redraw()
+		else:
+			player.reset_for_next_wave(spawns[0], 0.0, repair_fraction)
 	player.add_to_group("combatants")
 	_round_enemy_total = enemy_count
 	for i in enemy_count:
@@ -493,6 +516,7 @@ func _spawn_bot(spawn: Vector2, index: int, force_boss: bool = false) -> Vehicle
 		bot.config = RivalRoster.vehicle_config(rival, rival_level, index)
 		bot.set_meta("rival_id", rival.id)
 	bot.config = _scaled_bot_config(bot.config, is_elite, is_boss)
+	if is_instance_valid(destroyed_wrecks): destroyed_wrecks.clear_spawn_area(spawn,bot.config)
 	bot.set_meta("elite", is_elite)
 	bot.set_meta("boss", is_boss)
 	bot.set_meta("exclusive_vehicle", is_elite or is_boss)
@@ -895,6 +919,9 @@ func _active_crew_count() -> int:
 func _on_vehicle_died(vehicle: Vehicle) -> void:
 	if not _events_allowed(): return
 	if vehicle != player and not _enemies.has(vehicle): return
+	if vehicle != player and career_event.is_empty():
+		if vehicle.has_meta("survival_death_processed"): return
+		vehicle.set_meta("survival_death_processed",true)
 	audio.play_explosion()
 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 	if vfx != null: vfx.spawn_explosion(vehicle.global_position, Color(1.0, 0.36, 0.06), 90.0)
@@ -938,7 +965,13 @@ func _on_vehicle_died(vehicle: Vehicle) -> void:
 		if vehicle.last_weapon_id != &"":
 			_weapon_kills += 1
 		_award_credits(PlayerProfile.economy().survival_kill_reward)
-	# Keep wrecks owned until the next round, so they can be cleaned up.
+	if career_event.is_empty() and is_instance_valid(destroyed_wrecks):
+		# HUD previously kept a frozen dead boss until the next wave. The new
+		# handoff frees that Vehicle; do not expose its stale handle to HUD.
+		if vehicle == _boss: _boss = null
+		# Includes car-based elites, riders and Arbiter, using each actual hull.
+		vehicle.tree_exiting.connect(func(): _enemies.erase(vehicle), CONNECT_ONE_SHOT)
+		destroyed_wrecks.queue_vehicle(vehicle)
 	if _alive_enemies() == 0:
 		_complete_combat_phase()
 	else:
@@ -1076,7 +1109,7 @@ func _on_retry_requested() -> void:
 func _offer_upgrade() -> void:
 	_choosing_perk = true
 	var choices := SurvivalRunData.perk_choices(_round, _perk_ids)
-	var repair_percent := 45 if &"wave_repair" in _perk_effects else 30
+	var repair_percent := 100 if career_event.is_empty() else (45 if &"wave_repair" in _perk_effects else 30)
 	upgrade_draft.show_choices(choices, _round, repair_percent)
 	if DisplayServer.get_name() == "headless":
 		# Keep automated round/death checks deterministic: Second Wind changes
@@ -1095,7 +1128,7 @@ func _select_perk_deferred(perk: Dictionary, generation: int) -> void:
 
 
 func _on_perk_selected(perk: Dictionary) -> void:
-	if not _choosing_perk or _session_finished: return
+	if not _choosing_perk or _session_finished or not player.alive: return
 	_choosing_perk = false
 	upgrade_draft.hide()
 	get_viewport().gui_release_focus()

@@ -68,7 +68,7 @@ func _check_wave_one_and_repair() -> void:
 	var damaged_health := _game.player.health
 	_game.start_round(2)
 	var repaired_health := _game.player.health
-	_check(repaired_health > damaged_health and repaired_health < original_health, "between-wave repair is partial")
+	_check(repaired_health > damaged_health and is_equal_approx(repaired_health, original_health), "between-wave body HP is fully restored")
 
 
 func _check_elite_wave() -> void:

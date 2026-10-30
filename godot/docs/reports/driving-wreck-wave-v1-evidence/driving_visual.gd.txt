@@ -1,0 +1,51 @@
+extends SceneTree
+var game:Survival
+var output:="res://driving-visual/"
+var shots:Array=[]
+var records:Array=[]
+func _initialize() -> void:run.call_deferred()
+func capture(name:String) -> void:
+	await RenderingServer.frame_post_draw
+	shots.append({"name":name,"image":root.get_texture().get_image()})
+	records.append({"name":name,"health":game.player.health,"max":game.player.config.max_health,"round":game._round,"engine":game.player.damage.engine,"wheels":game.player.damage.wheels})
+func freeze_bots() -> void:
+	for car in game._enemies:
+		car.freeze=true;car.set_physics_process(false);car.gun.set_physics_process(false)
+		for child in car.get_children():
+			if child is ArenaBot: child.set_physics_process(false)
+func run() -> void:
+	var args:=OS.get_cmdline_user_args()
+	if args.size()>0 and args[0]=="800":root.size=Vector2i(800,600)
+	else:root.size=Vector2i(1280,720)
+	root.content_scale_size=Vector2i.ZERO
+	if args.size()>1:output=args[1]
+	DirAccess.make_dir_recursive_absolute(output)
+	PlayerProfile.path_override=output+"profile.cfg";LoadoutProfile.path_override=output+"loadout.cfg"
+	game=load("res://scenes/ArenaBattle.tscn").instantiate();root.add_child(game);current_scene=game
+	game.set_physics_process(false);freeze_bots()
+	var center:=game.arena.config.obstacles[0].get_center()
+	game.player.reset_to(center+Vector2(-85,12),0)
+	for i in 5:await physics_frame
+	game.player.apply_control(0.8,0,0);game.player.linear_velocity=Vector2(90,0)
+	for i in 25:await physics_frame
+	game.player.freeze=true;game.player.apply_control(0,0,0)
+	game.camera.snap_to_target()
+	await capture("wreck-contact")
+	game.player.health=25;game.player.damage.engine=19;game.player.damage.wheels=23
+	game.hud.update_status(game.player,game._alive_enemies(),game._round,0)
+	await capture("damaged-wave1")
+	game.start_round(2);freeze_bots();game.player.freeze=true
+	await capture("wave2-recovery")
+	var frames:Array[float]=[];var physics:Array[float]=[];var last:=Time.get_ticks_usec()
+	for i in 180:
+		await process_frame
+		var now:=Time.get_ticks_usec();frames.append((now-last)/1000.0);last=now
+		physics.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)*1000)
+	frames.sort();physics.sort()
+	var sum:=0.0
+	for value in frames:sum+=value
+	var stats:={"mean":sum/frames.size(),"p95":frames[170],"p99":frames[178],"max":frames.back(),"physics_p95":physics[170],"resources":Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT),"video":Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED)}
+	for shot in shots:shot.image.save_png(output+shot.name+".png")
+	FileAccess.open(output+"manifest.json",FileAccess.WRITE).store_string(JSON.stringify({"records":records,"performance":stats},"\t"))
+	print("DRIVING GRAPHICAL: ",JSON.stringify(stats))
+	game.free();await process_frame;quit()

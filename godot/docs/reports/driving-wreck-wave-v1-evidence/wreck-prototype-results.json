@@ -1,0 +1,21 @@
+[
+	{
+		"car_max_speed": 18.0,
+		"displacement": 0.450044125318527,
+		"input_speed": 18.0,
+		"moving_frames": 72,
+		"rotation": 0.00463071698322892,
+		"settled_speed": 0.214646995067596
+	},
+	{
+		"car_max_speed": 165.0,
+		"displacement": 6.11620378494263,
+		"input_speed": 210.0,
+		"moving_frames": 88,
+		"rotation": 0.0592347122728825,
+		"settled_speed": 0.307914048433304
+	},
+	{
+		"AI_min_distance": 74.0293197631836
+	}
+]

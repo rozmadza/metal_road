@@ -1,0 +1,103 @@
+{
+	"display": "X11",
+	"failures": 2,
+	"input_events": [
+		{
+			"after_press_count": 1,
+			"before_press_count": 0,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/SurvivalButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				388.0
+			],
+			"text": "ВЫЖИВАНИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 2,
+			"before_press_count": 1,
+			"busy": true,
+			"button": "/root/PreRace/Margin/Layout/Footer/StartButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				1103.0,
+				697.0
+			],
+			"text": "ВЫЙТИ НА АРЕНУ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 3,
+			"before_press_count": 2,
+			"busy": false,
+			"button": "/root/ArenaBattle/HUD/PauseOverlay/@CenterContainer@85/@PanelContainer@86/@VBoxContainer@87/@Button@91",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				400.0,
+				346.0
+			],
+			"text": "НАЧАТЬ ЗАНОВО",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 4,
+			"before_press_count": 3,
+			"busy": true,
+			"button": "/root/ArenaBattle/HUD/PauseOverlay/@CenterContainer@85/@PanelContainer@86/@VBoxContainer@87/@Button@92",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				400.0,
+				404.0
+			],
+			"text": "В ГЛАВНОЕ МЕНЮ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 5,
+			"before_press_count": 4,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/SurvivalButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				348.0
+			],
+			"text": "ВЫЖИВАНИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 5,
+			"before_press_count": 5,
+			"busy": false,
+			"button": "/root/PreRace/Margin/Layout/Footer/StartButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				863.0,
+				637.0
+			],
+			"text": "ВЫЙТИ НА АРЕНУ",
+			"window_id": 0
+		}
+	],
+	"transitions": 5
+}

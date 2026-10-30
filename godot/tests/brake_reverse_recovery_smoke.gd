@@ -32,7 +32,7 @@ func run() -> void:
 		if reverse_time < 0.0 and car.get_forward_speed() < -2.0: reverse_time = elapsed
 	check(early_speed > 80.0, "full-speed braking retains momentum after 0.3 seconds")
 	check(stop_time > 0.7, "braking has a progressive stopping interval")
-	check(reverse_time > stop_time + 0.3, "reverse begins only after a stationary gear-change pause")
+	check(reverse_time >= stop_time + 0.1 and reverse_time <= stop_time + 0.3, "reverse follows the shorter stationary gear-change pause")
 	check(reverse_time > 0.0, "holding brake eventually engages reverse")
 	print("BRAKE timing: stop=", stop_time, " reverse=", reverse_time, " speed at 0.3s=", early_speed)
 	car.apply_player_control(0.0, 0.0, 0.0, false, 1.0 / 60.0)

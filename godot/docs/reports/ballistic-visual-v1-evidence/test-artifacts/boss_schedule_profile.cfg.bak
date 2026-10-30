@@ -1,0 +1,101 @@
+[profile]
+
+save_version=10
+credits=52460
+owned_vehicles=PackedStringArray("raider", "marauder", "bastion")
+owned_weapons=PackedStringArray("machine_gun")
+vehicle_states={
+"bastion": {
+"best_finish": 0,
+"best_time": 0.0,
+"build": &"factory",
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+},
+"marauder": {
+"best_finish": 0,
+"best_time": 0.0,
+"build": &"factory",
+"damage_dealt": 0.0,
+"kills": 0,
+"races": 0,
+"survival_best_round": 0,
+"upgrades": [],
+"wins": 0
+},
+"raider": {
+"best_finish": 0,
+"best_time": 0.0,
+"build": &"factory",
+"damage_dealt": 2086.0375,
+"kills": 12,
+"races": 4,
+"survival_best_round": 5,
+"upgrades": [],
+"wins": 2
+}
+}
+weapon_upgrades=PackedStringArray()
+career={
+"bosses_defeated": [],
+"career_level": 9,
+"championship_active": false,
+"championship_complete": false,
+"championship_index": 0,
+"championship_points": {
+"bolt": 0,
+"grit": 0,
+"nyx": 0,
+"razor": 0,
+"zero": 0,
+"ВЫ": 0
+},
+"championship_tier": 0,
+"completed_events": [&"scrapyard_contract", &"oil_cauldron"],
+"completed_objectives": [&"scrapyard_contract", &"oil_cauldron"],
+"daily_best": {},
+"daily_claims": [],
+"driver_id": &"",
+"event_medals": {
+"oil_cauldron": 3,
+"scrapyard_contract": 2
+},
+"last_rival_news": ["RAZOR: УРОВЕНЬ 8 · ДВ 2 · БР 2 · ХД 1 · ОР 2 · СП 1", "BOLT: УРОВЕНЬ 8 · ДВ 1 · БР 2 · ХД 2 · ОР 2 · СП 1", "NYX: УРОВЕНЬ 8 · ДВ 2 · БР 2 · ХД 1 · ОР 2 · СП 1"],
+"personal_rival_id": &"bolt",
+"rival_levels": {
+"bolt": 8,
+"grit": 8,
+"nyx": 8,
+"razor": 8,
+"zero": 8
+},
+"rivalry_scores": {
+"bolt": 5,
+"grit": 0,
+"nyx": 1,
+"razor": 4,
+"zero": 0
+},
+"season_points": {
+"bolt": 12,
+"grit": 5,
+"nyx": 8,
+"player": 20,
+"razor": 8,
+"zero": 3
+},
+"season_scored_events": [&"scrapyard_contract", &"oil_cauldron"],
+"survival_daily_claims": [],
+"survival_records": {
+"best_combo": 8,
+"best_round": 5,
+"best_score": 36764,
+"boss_kills": 0,
+"daily_scores": {}
+},
+"tutorial_complete": false
+}

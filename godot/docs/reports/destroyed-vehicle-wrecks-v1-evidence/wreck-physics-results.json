@@ -1,0 +1,42 @@
+[
+	{
+		"angle": -0.0965649038553238,
+		"car": "raider",
+		"car_center_inside_frames": 0,
+		"contacts": 2,
+		"impact_displacement": 1.18283557891846,
+		"pushed": 36.6460723876953,
+		"settled_speed": 0.000849573872983456,
+		"speed": 18.0
+	},
+	{
+		"angle": -0.114570654928684,
+		"car": "raider",
+		"car_center_inside_frames": 0,
+		"contacts": 2,
+		"impact_displacement": 12.5813999176025,
+		"pushed": 46.2974433898926,
+		"settled_speed": 0.000849896518047899,
+		"speed": 165.0
+	},
+	{
+		"angle": -0.0780517533421516,
+		"car": "behemoth",
+		"car_center_inside_frames": 0,
+		"contacts": 6,
+		"impact_displacement": 1.94909274578094,
+		"pushed": 42.9924964904785,
+		"settled_speed": 0.000978688942268491,
+		"speed": 18.0
+	},
+	{
+		"angle": -0.0974945202469826,
+		"car": "behemoth",
+		"car_center_inside_frames": 0,
+		"contacts": 7,
+		"impact_displacement": 14.4977569580078,
+		"pushed": 55.6281471252441,
+		"settled_speed": 0.000978869502432644,
+		"speed": 165.0
+	}
+]

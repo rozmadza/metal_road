@@ -1,0 +1,295 @@
+{
+	"display": "X11",
+	"failures": 0,
+	"input_events": [
+		{
+			"after_press_count": 1,
+			"before_press_count": 0,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/SurvivalButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				388.0
+			],
+			"text": "ВЫЖИВАНИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 2,
+			"before_press_count": 1,
+			"busy": true,
+			"button": "/root/PreRace/Margin/Layout/Footer/StartButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				1103.0,
+				697.0
+			],
+			"text": "ВЫЙТИ НА АРЕНУ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 3,
+			"before_press_count": 2,
+			"busy": true,
+			"button": "/root/ArenaBattle/HUD/PauseOverlay/@CenterContainer@85/@PanelContainer@86/@VBoxContainer@87/@Button@92",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				464.0
+			],
+			"text": "В ГЛАВНОЕ МЕНЮ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 4,
+			"before_press_count": 3,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/GarageButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				442.0
+			],
+			"text": "ГАРАЖ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 5,
+			"before_press_count": 4,
+			"busy": true,
+			"button": "/root/Garage/Margin/Layout/Actions/SurvivalButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				1049.0,
+				680.0
+			],
+			"text": "ВЫЖИВАНИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 7,
+			"before_press_count": 6,
+			"busy": false,
+			"button": "/root/ArenaBattle/HUD/PauseOverlay/@CenterContainer@211/@PanelContainer@212/@VBoxContainer@213/@Button@217",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				406.0
+			],
+			"text": "НАЧАТЬ ЗАНОВО",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 8,
+			"before_press_count": 7,
+			"busy": true,
+			"button": "/root/ArenaBattle/HUD/PauseOverlay/@CenterContainer@211/@PanelContainer@212/@VBoxContainer@213/@Button@218",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				464.0
+			],
+			"text": "В ГЛАВНОЕ МЕНЮ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 9,
+			"before_press_count": 8,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/SurvivalButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				388.0
+			],
+			"text": "ВЫЖИВАНИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 11,
+			"before_press_count": 10,
+			"busy": true,
+			"button": "/root/ArenaBattle/HUD/PauseOverlay/@CenterContainer@335/@PanelContainer@336/@VBoxContainer@337/@Button@342",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				464.0
+			],
+			"text": "В ГЛАВНОЕ МЕНЮ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 12,
+			"before_press_count": 11,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/RaceButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				280.0
+			],
+			"text": "ГОНКА",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 14,
+			"before_press_count": 13,
+			"busy": true,
+			"button": "/root/Main/HUD/PauseOverlay/@CenterContainer@486/@PanelContainer@487/@VBoxContainer@488/@Button@493",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				464.0
+			],
+			"text": "В ГЛАВНОЕ МЕНЮ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 15,
+			"before_press_count": 14,
+			"busy": true,
+			"button": "/root/MainMenu/Content/Layout/Left/MenuBox/CareerButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				195.5,
+				334.0
+			],
+			"text": "КАРЬЕРА",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 16,
+			"before_press_count": 15,
+			"busy": true,
+			"button": "/root/DriverSelect/Margin/Layout/Body/ProfilePanel/Profile/Info/ConfirmButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				1012.5,
+				597.0
+			],
+			"text": "ВЫБРАТЬ И НАЧАТЬ КАРЬЕРУ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 17,
+			"before_press_count": 16,
+			"busy": true,
+			"button": "/root/Career/Margin/Layout/Body/DetailsPanel/Details/StartButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				919.5,
+				606.0
+			],
+			"text": "ВЫБРАТЬ МАШИНУ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 18,
+			"before_press_count": 17,
+			"busy": true,
+			"button": "/root/PreRace/Margin/Layout/Footer/StartButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				1103.0,
+				677.0
+			],
+			"text": "НАЧАТЬ СОБЫТИЕ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 19,
+			"before_press_count": 18,
+			"busy": true,
+			"button": "/root/CareerDialogue/@MarginContainer@556/@VBoxContainer@557/@HBoxContainer@574/@Button@577",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				976.5,
+				673.0
+			],
+			"text": "ПРОПУСТИТЬ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 20,
+			"before_press_count": 19,
+			"busy": true,
+			"button": "/root/Main/HUD/PauseOverlay/@CenterContainer@659/@PanelContainer@660/@VBoxContainer@661/@Button@666",
+			"connections": 1,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				640.0,
+				464.0
+			],
+			"text": "В ГЛАВНОЕ МЕНЮ",
+			"window_id": 0
+		},
+		{
+			"after_press_count": 21,
+			"before_press_count": 20,
+			"busy": true,
+			"button": "/root/Career/Margin/Layout/Footer/BackButton",
+			"connections": 2,
+			"disabled": false,
+			"hovered": "",
+			"mouse_filter": 0,
+			"position": [
+				139.0,
+				675.0
+			],
+			"text": "НАЗАД",
+			"window_id": 0
+		}
+	],
+	"transitions": 21
+}

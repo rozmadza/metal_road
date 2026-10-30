@@ -16,6 +16,8 @@ var weapon_type: WeaponConfig.WeaponType = WeaponConfig.WeaponType.BALLISTIC
 var weapon_id: StringName = &"machine_gun"
 var splash_radius := 0.0
 var homing_strength := 0.0
+var homing_max_turn := 0.0
+var homing_turn_used := 0.0
 var effect_duration := 0.0
 var age := 0.0
 var detonated := false
@@ -37,6 +39,8 @@ func setup(position: Vector2, direction: Vector2, config: WeaponConfig, owner_no
 	visual_profile = config.visual_profile
 	splash_radius = config.splash_radius
 	homing_strength = config.homing_strength
+	homing_max_turn = config.homing_max_turn
+	homing_turn_used = 0.0
 	effect_duration = config.effect_duration
 	# Flame already has the muzzle velocity of the burning mixture.  In world
 	# space it must also inherit the carrier velocity; otherwise a fast vehicle
@@ -86,6 +90,9 @@ func _physics_process(delta: float) -> void:
 	# cover, otherwise the physics point query consumes the bullet first.
 	if _check_destructible_hit():
 		return
+	if _hits_wreck(previous_position):
+		_impact()
+		return
 	if _hits_obstacle():
 		_impact()
 		return
@@ -96,6 +103,17 @@ func _physics_process(delta: float) -> void:
 
 ## True when the bullet has flown into a wall or arena obstacle. Bullets stop
 ## at cover instead of passing through it.
+func _hits_wreck(previous_position: Vector2) -> bool:
+	# A separate cover bit selects only wrecks, never live RigidBody vehicles.
+	# Sweep the existing centre line; a fast bullet cannot skip a narrow bike.
+	var query := PhysicsRayQueryParameters2D.create(previous_position,global_position,4)
+	query.hit_from_inside = true
+	var contact := get_world_2d().direct_space_state.intersect_ray(query)
+	if contact.is_empty(): return false
+	global_position = contact.position
+	return true
+
+
 func _hits_obstacle() -> bool:
 	var world := get_world_2d()
 	if world == null:
@@ -120,7 +138,8 @@ func _check_destructible_hit() -> bool:
 			if splash_radius > 0.0:
 				_detonate()
 			else:
-				node.take_damage(damage, &"body", shooter)
+				node.take_damage(damage, &"body", shooter if is_instance_valid(shooter) else null)
+				_emit_impact(global_position)
 				queue_free()
 			return true
 	return false
@@ -164,7 +183,7 @@ func _check_crew_hit(previous_position: Vector2) -> bool:
 			crew.take_weapon_damage(damage, shooter if is_instance_valid(shooter) else null)
 			var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 			if vfx != null:
-				vfx.spawn_impact(contact, color)
+				vfx.spawn_impact(contact, color, false, visual_profile)
 			queue_free()
 		return true
 	return false
@@ -173,7 +192,7 @@ func _check_crew_hit(previous_position: Vector2) -> bool:
 func _apply_hit(vehicle: Vehicle, amount: float) -> void:
 	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 	if vfx != null:
-		vfx.spawn_impact(global_position, color)
+		vfx.spawn_impact(global_position, color, false, visual_profile)
 	# EMP remains primarily a control weapon, but its electrical discharge also
 	# burns a small, visible amount of body HP. Body damage already shares a
 	# portion with the engine module, preserving the intended system disruption.
@@ -188,8 +207,16 @@ func _impact() -> void:
 	else:
 		var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
 		if vfx != null:
-			vfx.spawn_impact(global_position, color)
+			vfx.spawn_impact(global_position, color, false, visual_profile)
 		queue_free()
+
+
+func _emit_impact(point: Vector2) -> void:
+	# Destructible contacts previously had no projectile feedback. Restrict the
+	# addition to the two new profiles; keep other weapons' presentation intact.
+	if visual_profile == null or not visual_profile.ballistic: return
+	var vfx := get_tree().get_first_node_in_group("combat_vfx") as CombatVFX
+	if vfx != null: vfx.spawn_impact(point, color, false, visual_profile)
 
 
 func _detonate() -> void:
@@ -215,7 +242,7 @@ func _detonate() -> void:
 		if is_instance_valid(node) and node.has_method("take_damage"):
 			var distance := global_position.distance_to(node.global_position)
 			if distance <= splash_radius:
-				node.take_damage(damage * lerpf(1.0, 0.3, distance / maxf(splash_radius, 1.0)), &"body", shooter)
+				node.take_damage(damage * lerpf(1.0, 0.3, distance / maxf(splash_radius, 1.0)), &"body", shooter if is_instance_valid(shooter) else null)
 	for node in get_tree().get_nodes_in_group("escaping_crew"):
 		var crew := node as EscapingCrew
 		if crew == null or not crew._active:
@@ -275,13 +302,17 @@ func _guide_rocket(delta: float) -> void:
 		aim_point += target_crew.escape_direction * target_crew.run_speed * travel_time
 	var desired := global_position.direction_to(aim_point).angle()
 	var current := velocity.angle()
-	var next := rotate_toward(current, desired, homing_strength * delta)
+	var step := homing_strength * delta
+	if homing_max_turn > 0.0:
+		step = minf(step, maxf(0.0, homing_max_turn - homing_turn_used))
+	var next := rotate_toward(current, desired, step)
+	homing_turn_used += absf(angle_difference(current, next))
 	velocity = Vector2.RIGHT.rotated(next) * velocity.length()
 	rotation = next
 
 
 func _same_squad(vehicle: Vehicle) -> bool:
-	if not shooter is Vehicle: return false
+	if not is_instance_valid(shooter) or not shooter is Vehicle: return false
 	var squad: StringName = shooter.get_meta("squad_id", &"")
 	return squad != &"" and StringName(vehicle.get_meta("squad_id", &"")) == squad
 
@@ -313,6 +344,8 @@ func _draw() -> void:
 	if weapon_type == WeaponConfig.WeaponType.FLAME:
 		draw_circle(Vector2.ZERO, radius * 1.6, Color(color, 0.42))
 		draw_circle(Vector2.ZERO, radius * 0.7, Color(1.0, 0.92, 0.38, 0.9))
+		return
+	if weapon_type == WeaponConfig.WeaponType.BALLISTIC and visual_profile != null and visual_profile.ballistic and visual_profile.draw_projectile(self, age):
 		return
 	if weapon_type == WeaponConfig.WeaponType.EMP:
 		draw_arc(Vector2.ZERO, radius * 2.0, 0.0, TAU, 12, Color(color, 0.72), 2.0, true)

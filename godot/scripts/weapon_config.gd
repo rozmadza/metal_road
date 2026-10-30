@@ -36,6 +36,8 @@ enum WeaponType { BALLISTIC, SHOTGUN, ROCKET, MINE, FLAME, EMP }
 @export_range(0.0, 240.0, 1.0) var splash_radius: float = 0.0
 ## Radians per second used by guided rockets.
 @export_range(0.0, 8.0, 0.1) var homing_strength: float = 0.0
+## Total absolute steering budget in radians; zero preserves legacy unlimited steering.
+@export_range(0.0, 3.14, 0.01) var homing_max_turn: float = 0.0
 ## EMP control disruption or mine arming time, depending on the weapon type.
 @export_range(0.0, 10.0, 0.1) var effect_duration: float = 0.0
 @export_range(0.0, 800.0, 10.0) var effective_range: float = 430.0

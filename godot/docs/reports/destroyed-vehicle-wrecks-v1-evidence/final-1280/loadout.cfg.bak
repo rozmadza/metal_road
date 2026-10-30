@@ -1,0 +1,6 @@
+[loadout]
+
+version=2
+vehicle=&"raider"
+weapon=&"machine_gun"
+survival_vehicle=&"raider"

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/projectile_body.png" id="2"]
 [ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/exhaust_strip.png" id="3"]
 [ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/muzzle_sheet.png" id="4"]
-[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/explosion_sheet.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/weapons/rocket_launcher/explosion_polished_sheet.png" id="5"]
 
 [resource]
 script = ExtResource("1")
@@ -12,3 +12,9 @@ projectile_body = ExtResource("2")
 exhaust_strip = ExtResource("3")
 muzzle_sheet = ExtResource("4")
 explosion_sheet = ExtResource("5")
+projectile_size = Vector2(20.4, 13.6)
+exhaust_size = Vector2(11, 6)
+exhaust_offset = Vector2(-5.3, 0)
+muzzle_size = Vector2(18, 12.46154)
+muzzle_offset = Vector2(-6, 0)
+muzzle_fade = true

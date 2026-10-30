@@ -1,0 +1,128 @@
+extends SceneTree
+var game:Survival
+var images:Array=[]
+var records:Array=[]
+var samples:Array[float]=[]
+var sampling:=false
+var last_tick:=0
+var output:="res://rocket-v2-acceptance/"
+var zoom_value:=1.0
+var profile:WeaponVisualProfile
+var cfg:WeaponConfig
+func _initialize() -> void:run.call_deferred()
+func _process(_delta:float) -> bool:
+	var now:=Time.get_ticks_usec()
+	if sampling and last_tick>0:samples.append(float(now-last_tick)/1000)
+	last_tick=now
+	return false
+func mem() -> Dictionary:
+	return {"static":Performance.get_monitor(Performance.MEMORY_STATIC),"video":Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED),"resources":Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT),"nodes":Performance.get_monitor(Performance.OBJECT_NODE_COUNT)}
+func snap(label:String) -> void:
+	await RenderingServer.frame_post_draw
+	images.append({"name":label,"image":root.get_texture().get_image()})
+	var bs:Array=[]
+	for b in game.bullets.get_children():
+		if b is Bullet:bs.append({"age":b.age,"angle":b.rotation,"detonated":b.detonated,"owned_by_vfx":b._explosion_owned_by_vfx})
+	records.append({"label":label,"bullets":bs,"events":game.get_node("CombatVFX").events.size()})
+func freeze_cars() -> void:
+	game.set_process(false);game.set_physics_process(false)
+	for car in get_nodes_in_group("combatants"):
+		car.freeze=true;car.set_physics_process(false);car.gun.set_physics_process(false)
+		var ai:=car.get_node_or_null("ArenaBot")
+		if ai:ai.set_physics_process(false)
+func restart() -> float:
+	var start:=Time.get_ticks_usec()
+	game._on_retry_requested()
+	await process_frame;await physics_frame;await process_frame
+	freeze_cars()
+	return float(Time.get_ticks_usec()-start)/1000
+func run() -> void:
+	var args:=OS.get_cmdline_user_args()
+	root.size=Vector2i(800,600) if args.size()>0 and args[0]=="800" else Vector2i(1280,720)
+	if args.size()>1:zoom_value=float(args[1])
+	output+="%s-z%s/"%[root.size.x,zoom_value]
+	if args.size()>2:output+=args[2]+"/"
+	DirAccess.make_dir_recursive_absolute(output)
+	AudioServer.set_bus_mute(0,true)
+	PlayerProfile.path_override=output+"profile.cfg";LoadoutProfile.path_override=output+"loadout.cfg"
+	LoadoutProfile.save_ids(&"raider",&"machine_gun");CareerSession.clear_selection();seed(4217)
+	game=load("res://scenes/ArenaBattle.tscn").instantiate();root.add_child(game);current_scene=game
+	await create_timer(.3).timeout;freeze_cars()
+	var camera:=Camera2D.new();camera.position=Vector2(570,750);camera.zoom=Vector2.ONE*zoom_value;game.add_child(camera);camera.make_current()
+	for car in get_nodes_in_group("combatants"):car.position=Vector2(1000,300)
+	game.player.position=Vector2(450,830);game.player.rotation=0
+	cfg=load("res://resources/weapons/rocket_launcher.tres").duplicate();profile=cfg.visual_profile
+	if args.size()>2:
+		cfg.homing_strength=1.25 if args[2]=="baseline" else (0.0 if args[2]=="A" else .3)
+		cfg.homing_max_turn=0.13962634 if args[2]=="B" else 0.0
+	game.player.activate_temporary_weapon(cfg,999)
+	game.player.gun._shoot()
+	await snap("restart-flight-before")
+	for car in get_nodes_in_group("combatants"):
+		if car!=game.player:
+			car.position=Vector2(650,900)
+			break
+	for i in 12:await physics_frame
+	await snap("homing-turn")
+	var flight_restart:=await restart()
+	await snap("restart-flight-after")
+	game.player.position=Vector2(450,830);game.player.rotation=0
+	game.player.activate_temporary_weapon(cfg,999)
+	var targets:Array=[]
+	for car in get_nodes_in_group("combatants"):
+		if car!=game.player:targets.append(car)
+	while targets.size()<3:
+		var car:=load("res://scenes/Vehicle.tscn").instantiate() as Vehicle
+		game.add_child(car);car.add_to_group("combatants");car.freeze=true;car.set_physics_process(false);car.gun.set_physics_process(false)
+		targets.append(car)
+	for i in targets.size():targets[i].position=Vector2(650+(i%2)*20,830+(i-1)*30)
+	var hp:Array=[]
+	for car in targets:hp.append(car.health)
+	game.player.gun._shoot()
+	for i in 120:
+		if game.get_node("CombatVFX").events.any(func(e):return e.kind==&"explosion"):break
+		await physics_frame
+	await snap("cluster-impact")
+	var damage:Array=[]
+	for i in targets.size():damage.append(hp[i]-targets[i].health)
+	var blast_restart:=await restart()
+	await snap("restart-explosion-after")
+	game.player.position=Vector2(450,830);game.player.rotation=0;game.player.activate_temporary_weapon(cfg,999)
+	var fx:=game.get_node("CombatVFX") as CombatVFX
+	# Visual pose inspection: real renderer, manually sampled existing timers.
+	game.player.gun.set_physics_process(false)
+	for i in 6:
+		game.player.gun.muzzle_flash_time=.11*(1.0-(i+.5)/6.0);game.player.gun.queue_redraw()
+		await snap("muzzle-frame-%d"%i)
+	game.player.gun.muzzle_flash_time=0;game.player.gun.queue_redraw()
+	fx.events.clear();fx.spawn_explosion(Vector2(650,830),cfg.bullet_color,105,profile);fx.set_process(false)
+	for i in 8:
+		fx.events[0].time=.48*(1.0-(i+.5)/8.0);fx.queue_redraw()
+		await snap("explosion-frame-%d"%i)
+	fx.events.clear();fx.queue_redraw()
+	var before:=mem();var times:Array=[]
+	for i in 20:times.append(await restart())
+	var after:=mem()
+	# Active 48-event alpha-overdraw stress; admission cap remains unchanged.
+	fx=game.get_node("CombatVFX");fx.events.clear()
+	for i in 70:fx.spawn_explosion(Vector2(570+(i%8)*9,750+(i%6)*9),cfg.bullet_color,105,profile)
+	var admitted:=fx.events.size();await snap("mass-explosions-48")
+	for i in 30:await process_frame
+	last_tick=0;samples.clear();sampling=true
+	var start:=Time.get_ticks_usec();var next:=0
+	while Time.get_ticks_usec()-start<3000000:
+		if Time.get_ticks_usec()-start>=next:
+			next+=100000
+			for i in 70:fx.spawn_explosion(Vector2(570+(i%8)*9,750+(i%6)*9),cfg.bullet_color,105,profile)
+		await process_frame
+	sampling=false;fx.events.clear();fx.queue_redraw()
+	await create_timer(.6).timeout
+	var result:={"zoom":zoom_value,"viewport":[root.size.x,root.size.y],"captures":records,"cluster_damage":damage,"flight_restart_ms":flight_restart,"explosion_restart_ms":blast_restart,"before_restart20":before,"after_restart20":after,"restart_ms":times,"mass_admitted":admitted,"mass_frame_ms":samples,"after_mass":mem()}
+	for item in images:item.image.save_png(output+item.name+".png")
+	FileAccess.open(output+"manifest.json",FileAccess.WRITE).store_string(JSON.stringify(result,"\t"))
+	game.free();await process_frame
+	for player in root.get_node("Music").get_children():
+		if player is AudioStreamPlayer:player.stop()
+	await create_timer(.1).timeout
+	print("ROCKET ACCEPTANCE COMPLETE damage=",damage," admitted=",admitted)
+	quit.call_deferred()

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponVisualProfile" load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/weapon_visual_profile.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/vfx/weapons/heavy_machine_gun/projectile_core.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/vfx/weapons/shared/tracer_strip.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/vfx/weapons/heavy_machine_gun/muzzle_aligned_sheet.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/vfx/weapons/shared/impact_metal_heavy_sheet.png" id="5"]
+[resource]
+script = ExtResource("1")
+ballistic = true
+projectile_body = ExtResource("2")
+tracer_texture = ExtResource("3")
+muzzle_sheet = ExtResource("4")
+impact_sheet = ExtResource("5")
+projectile_pivot = Vector2(0.5, 0.5)
+muzzle_grid = Vector2i(2, 2)
+muzzle_frames = 4
+muzzle_pivot = Vector2(0.09375, 0.5)
+muzzle_fade = true
+projectile_size = Vector2(15, 5)
+tracer_size = Vector2(23, 3.5)
+muzzle_size = Vector2(25, 25)
+impact_size = Vector2(34, 34)

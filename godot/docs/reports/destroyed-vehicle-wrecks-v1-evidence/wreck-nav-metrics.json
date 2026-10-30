@@ -1,0 +1,23 @@
+[
+	{
+		"max_ms": 0.05,
+		"mean_ms": 0.0307666666666667,
+		"p95_ms": 0.046,
+		"same_grid": true,
+		"wrecks": 1
+	},
+	{
+		"max_ms": 0.11,
+		"mean_ms": 0.0794,
+		"p95_ms": 0.102,
+		"same_grid": true,
+		"wrecks": 3
+	},
+	{
+		"max_ms": 0.146,
+		"mean_ms": 0.1009,
+		"p95_ms": 0.139,
+		"same_grid": true,
+		"wrecks": 5
+	}
+]

@@ -1,0 +1,9 @@
+{
+  "scripts/bullet.gd": "49d39f39bc4404315b96e38b0b4e49d0ecdfa7b1c8aa791720e3d4afa7a59133",
+  "scripts/weapon_config.gd": "f4cddd715963892aa1b8a9d9d2f613d262ad6050a3923ca4922cf3bdef209cd7",
+  "scripts/weapon_visual_profile.gd": "dc76979f3ebae4111a55aa9146b94bd37e60728b783c072b5162a80632a7f712",
+  "resources/weapons/rocket_launcher.tres": "f4297319386c9f34e01c42a13fdcf9b27f5cf8b8d6c108d1cb508cdd203d33f1",
+  "resources/weapon_visuals/rocket_launcher.tres": "9370340cba465b2f4fcf06e6bae3e90803297a32ba198d572fac67f7290535cf",
+  "assets/weapons/rocket_launcher/explosion_polished_sheet.png": "12c5e1ba6d30a3d83ed6d7d72eae56e6cb22e9d044158783281125e7f66c8ead",
+  "tests/rocket_homing_v3_smoke.gd": "a710fcc28ffd7e4fc4be9026f54025c8c553e94819daedab0b1c10c78d9f8808"
+}

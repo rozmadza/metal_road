@@ -1,0 +1,105 @@
+extends "res://tests/arena_launch_gui_smoke.gd"
+var game:Survival
+var telemetry:Array=[]
+var contact_count:=0
+func record(label:String,target=null) -> void:
+	var bodies:Array=[]
+	for node in get_nodes_in_group("vehicle_wrecks"):
+		bodies.append({"vehicle_id":node.config.vehicle_id,"mass":node.mass,"position":node.global_position,"angle":node.rotation,"velocity":node.linear_velocity,"layer":node.collision_layer,"mask":node.collision_mask,"visual_offset":node.get_node("Chassis").position,"hull":node.hull.points})
+	var actors:Array=[]
+	for car in game._enemies:
+		if not is_instance_valid(car) or not car.alive:continue
+		var driver:ArenaBot=car.get_node("ArenaBot")
+		actors.append({"position":car.position,"velocity":car.linear_velocity,"goal":driver._intent_goal,"route":driver._route_status,"reverse":driver._reversing})
+	telemetry.append({"phase":label,"physics_frame":Engine.get_physics_frames(),"tick_us":Time.get_ticks_usec(),"AI":actors,"contacts":contact_count,"player":game.player.global_position,"velocity":game.player.linear_velocity,"old_vehicle_valid":is_instance_valid(target),"old_vehicle_layer":target.collision_layer if is_instance_valid(target) else -1,"old_vehicle_mask":target.collision_mask if is_instance_valid(target) else -1,"old_vehicle_position":target.global_position if is_instance_valid(target) else Vector2.ZERO,"wrecks":bodies})
+func run() -> void:
+	var args:=OS.get_cmdline_user_args()
+	output=args[0].trim_suffix("/")+"/"
+	DirAccess.make_dir_recursive_absolute(output)
+	PlayerProfile.path_override=output+"profile.cfg";LoadoutProfile.path_override=output+"loadout.cfg";MainMenu.settings_path_override=output+"settings.cfg"
+	PlayerProfile.save({"credits":0,"vehicles":[&"raider"],"weapons":[&"machine_gun"],"vehicle_states":{},"weapon_upgrades":[]})
+	LoadoutProfile.save_ids(&"raider",&"machine_gun")
+	var settings:=ConfigFile.new();settings.set_value("settings","fullscreen",false);settings.set_value("settings","resolution_index",0);settings.save(MainMenu.settings_path_override)
+	scene_changed.connect(func():transitions+=1)
+	change_scene_to_file("res://scenes/MainMenu.tscn")
+	if not await wait_scene("res://scenes/MainMenu.tscn"):finish();return
+	if args.size()>1 and args[1]=="800":
+		root.size=Vector2i(800,600);root.content_scale_size=Vector2i.ZERO
+		for frame in 3:await process_frame
+	if not await launch("SurvivalButton","keyboard" if args.size()>1 and args[1]=="800" else "mouse"):finish();return
+	game=current_scene
+	root.size=Vector2i(800,600) if args.size()>1 and args[1]=="800" else Vector2i(1280,720)
+	root.content_scale_size=Vector2i.ZERO
+	game.set_physics_process(false)
+	for car in game._enemies:
+		car.freeze=true;car.set_physics_process(false);car.gun.set_enabled(false)
+		car.get_node("ArenaBot").set_physics_process(false)
+	var target:Vehicle=game._enemies[0]
+	target.reset_to(Vector2(700,850),0)
+	game._enemies[1].reset_to(Vector2(1250,150),0)
+	game.player.reset_to(Vector2(480,850),0)
+	for frame in 4:await physics_frame
+	for car in game._enemies:car.freeze=true
+	game.player.set_physics_process(false);game.player.apply_control(0,0,0)
+	game.player.activate_temporary_weapon(load("res://resources/weapons/heavy_machine_gun.tres"),120)
+	game.camera.snap_to_target();record("before",target);await capture("bot-before")
+	game.player.gun.set_firing(true)
+	for frame in 1200:
+		await physics_frame
+		if not is_instance_valid(target) or not target.alive:break
+	game.player.gun.set_firing(false)
+	check(not is_instance_valid(target) or not target.alive,"ordinary bot killed by actual heavy MG projectiles")
+	record("death",target);await capture("explosion")
+	for frame in 60:await physics_frame
+	record("wreck",target);await capture("wreck-born")
+	var expected:=ResourceLoader.exists("res://scripts/destroyed_vehicle_wreck.gd")
+	var covers:=get_nodes_in_group("vehicle_wrecks")
+	if expected:check(covers.size()==1,"one physical wreck after weapon kill")
+	var origin:Vector2=covers[0].position if not covers.is_empty() else Vector2(700,850)
+	game.player.reset_to(Vector2(595,860),0)
+	for frame in 4:await physics_frame
+	game.player.apply_control(0.7,0,0)
+	game.player.body_entered.connect(func(body):
+		if body.is_in_group("vehicle_wrecks"):contact_count+=1)
+	for frame in 90:
+		await physics_frame
+		if contact_count>0:break
+	record("contact",target);await capture("contact")
+	for frame in 100:await physics_frame
+	record("push",target);await capture("push")
+	game.player.apply_control(0,1,0)
+	for frame in 60:await physics_frame
+	record("shift",target);await capture("shift-rotation")
+	if expected:
+		check(contact_count>0,"real vehicle/wreck body_entered contact")
+		check(not covers.is_empty() and covers[0].position.distance_to(origin)>1,"player physically pushed wreck")
+		check(not covers.is_empty() and absf(covers[0].rotation)>0.001,"off-centre impact rotates wreck")
+	# Existing ordinary AI pursues the real player across the new cover.
+	game.player.reset_to(Vector2(1040,850),0)
+	var other:Vehicle=game._enemies.filter(func(c):return is_instance_valid(c) and c.alive)[0]
+	other.reset_to(Vector2(500,850),0)
+	for frame in 4:await physics_frame
+	game.player.freeze=true
+	other.freeze=false
+	other.get_node("ArenaBot").set_physics_process(true)
+	var reached:=false
+	for frame in 1200:
+		await physics_frame
+		if frame==150:record("AI-detour");await capture("AI-detour")
+		if other.position.distance_to(game.player.position)<100:reached=true;break
+	check(reached,"ordinary AI reaches player beyond death location")
+	record("AI-arrived");await capture("AI-arrived")
+	await pause_action("НАЧАТЬ ЗАНОВО")
+	for frame in 4:await physics_frame
+	check(get_nodes_in_group("vehicle_wrecks").is_empty(),"Restart removes old wreck bodies")
+	record("restart");await capture("restart")
+	await pause_action("В ГЛАВНОЕ МЕНЮ")
+	if not await wait_scene("res://scenes/MainMenu.tscn"):finish();return
+	check(get_nodes_in_group("vehicle_wrecks").is_empty(),"menu exit frees wrecks")
+	if not await launch("SurvivalButton","keyboard"):finish();return
+	game=current_scene
+	check(get_nodes_in_group("vehicle_wrecks").is_empty(),"re-entry starts clean")
+	FileAccess.open(output+"telemetry.json",FileAccess.WRITE).store_string(JSON.stringify(telemetry,"\t"))
+	for item in shots:item.image.save_png(output+item.name+".png")
+	print("DESTROYED WRECK GUI: ","PASS" if failures==0 else "FAIL")
+	quit(0 if failures==0 else 1)

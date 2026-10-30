@@ -1,0 +1,16 @@
+from PIL import Image
+import math
+from pathlib import Path
+source=Image.open('/home/andrey/PycharmProjects/metal_road/godot/assets/weapons/rocket_launcher/explosion_sheet.png').convert('RGBA')
+for style,scale in [('compact',.72),('medium',.8),('near',.94)]:
+ atlas=Image.new('RGBA',source.size)
+ for i in range(8):
+  original=source.crop((i%4*256,i//4*256,(i%4+1)*256,(i//4+1)*256))
+  frame=original.copy();pixels=frame.load()
+  for y in range(256):
+   for x in range(256):
+    r=math.hypot(x-128,y-128);w=.12*min(1,max(0,(r-82)/20));c=pixels[x,y];pixels[x,y]=(*c[:3],round(c[3]*w))
+  n=round(256*scale);core=original.resize((n,n),Image.LANCZOS);frame.alpha_composite(core,((256-n)//2,(256-n)//2));atlas.alpha_composite(frame,(i%4*256,i//4*256))
+ if style=='medium':dest=Path('/home/andrey/PycharmProjects/metal_road/godot/assets/weapons/rocket_launcher/explosion_polished_sheet.png')
+ else:dest=Path('/tmp/rocket-v3-current')/(style+'.png')
+ atlas.save(dest)

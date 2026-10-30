@@ -1,0 +1,57 @@
+ M docs/reports/METAL_ROAD_QA_REPORT.md
+ M docs/reports/METAL_ROAD_SURVIVAL_IMPROVEMENT_PLAN.md
+ M resources/weapon_visuals/rocket_launcher.tres
+ M resources/weapons/heavy_machine_gun.tres
+ M resources/weapons/machine_gun.tres
+ M resources/weapons/rocket_launcher.tres
+ M scripts/arena.gd
+ M scripts/arena_navigation.gd
+ M scripts/bullet.gd
+ M scripts/combat_vfx.gd
+ M scripts/survival.gd
+ M scripts/survival_upgrade_overlay.gd
+ M scripts/vehicle.gd
+ M scripts/weapon_config.gd
+ M scripts/weapon_visual_profile.gd
+ M tests/brake_reverse_recovery_smoke.gd
+ M tests/rocket_visual_profile_smoke.gd
+ M tests/survival_roguelite_smoke.gd
+?? assets/vfx/
+?? assets/weapons/rocket_launcher/explosion_polished_sheet.png
+?? assets/weapons/rocket_launcher/explosion_polished_sheet.png.import
+?? docs/reports/METAL_ROAD_AI_MAIN_INTEGRATION.md
+?? docs/reports/METAL_ROAD_BALLISTIC_VISUAL_OVERHAUL_V1.md
+?? docs/reports/METAL_ROAD_DESTROYED_VEHICLE_WRECKS_V1.md
+?? docs/reports/METAL_ROAD_DRIVING_WRECK_WAVE_RECOVERY_V1.md
+?? docs/reports/METAL_ROAD_ROCKET_LAUNCHER_V3.md
+?? docs/reports/ballistic-visual-v1-evidence/
+?? docs/reports/destroyed-vehicle-wrecks-v1-evidence/
+?? docs/reports/driving-wreck-wave-v1-evidence/
+?? docs/reports/rocket-launcher-v3-evidence/
+?? experiments/
+?? resources/weapon_visuals/heavy_machine_gun.tres
+?? resources/weapon_visuals/machine_gun.tres
+?? scripts/destroyed_vehicle_wreck.gd
+?? scripts/destroyed_vehicle_wreck.gd.uid
+?? scripts/destroyed_vehicle_wrecks.gd
+?? scripts/destroyed_vehicle_wrecks.gd.uid
+?? tests/ballistic_visual_profile_smoke.gd
+?? tests/ballistic_visual_profile_smoke.gd.uid
+?? tests/destroyed_wrecks_ai_smoke.gd
+?? tests/destroyed_wrecks_ai_smoke.gd.uid
+?? tests/destroyed_wrecks_combat_navigation_smoke.gd
+?? tests/destroyed_wrecks_combat_navigation_smoke.gd.uid
+?? tests/destroyed_wrecks_lifecycle_smoke.gd
+?? tests/destroyed_wrecks_lifecycle_smoke.gd.uid
+?? tests/destroyed_wrecks_physics_smoke.gd
+?? tests/destroyed_wrecks_physics_smoke.gd.uid
+?? tests/driving_reverse_response_smoke.gd
+?? tests/driving_reverse_response_smoke.gd.uid
+?? tests/movable_wreck_prototype_smoke.gd
+?? tests/movable_wreck_prototype_smoke.gd.uid
+?? tests/rocket_homing_v3_smoke.gd
+?? tests/rocket_homing_v3_smoke.gd.uid
+?? tests/survival_full_wave_recovery_smoke.gd
+?? tests/survival_full_wave_recovery_smoke.gd.uid
+?? tests/wreck_layer_smoke.gd
+?? tests/wreck_layer_smoke.gd.uid

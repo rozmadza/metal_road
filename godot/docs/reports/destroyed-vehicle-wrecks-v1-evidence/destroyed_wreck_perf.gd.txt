@@ -1,0 +1,67 @@
+extends SceneTree
+var game:Survival
+var frames:Array[float]=[]
+var physics:Array[float]=[]
+var last:=0
+var measuring:=false
+var peak_wrecks:=0
+var peak_bullets:=0
+var peak_vfx:=0
+var output:="res://wreck-perf.json"
+func _initialize() -> void:run.call_deferred()
+func _process(_delta:float) -> bool:
+	var now:=Time.get_ticks_usec()
+	if measuring and last>0:
+		frames.append((now-last)/1000.0)
+		physics.append(Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS)*1000)
+		peak_wrecks=maxi(peak_wrecks,get_nodes_in_group("vehicle_wrecks").size())
+		peak_bullets=maxi(peak_bullets,game.bullets.get_child_count())
+		peak_vfx=maxi(peak_vfx,game.get_node("CombatVFX").events.size())
+	last=now;return false
+func memory() -> Dictionary:
+	return {"static":Performance.get_monitor(Performance.MEMORY_STATIC),"video":Performance.get_monitor(Performance.RENDER_VIDEO_MEM_USED),"resources":Performance.get_monitor(Performance.OBJECT_RESOURCE_COUNT),"nodes":Performance.get_monitor(Performance.OBJECT_NODE_COUNT),"orphans":Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)}
+func bodies(node:Node) -> int:
+	var count:=1 if node is PhysicsBody2D else 0
+	for child in node.get_children():count+=bodies(child)
+	return count
+func run() -> void:
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	PlayerProfile.path_override="res://wreck-perf-profile.cfg";LoadoutProfile.path_override="res://wreck-perf-loadout.cfg"
+	game=load("res://scenes/ArenaBattle.tscn").instantiate();root.add_child(game);current_scene=game
+	game.set_physics_process(false)
+	game.player.health=100000;game.player.config.max_health=100000
+	game.player.reset_to(Vector2(700,850),0)
+	for i in 4:await physics_frame
+	game.player.health=100000
+	game.player.freeze=true
+	for i in 6:game._spawn_bot(Vector2(150+i*185,150),i+2)
+	for enemy in game._enemies:
+		enemy.health=100000
+		enemy.activate_temporary_weapon(load("res://resources/weapons/heavy_machine_gun.tres" if enemy.get_index()%2==0 else "res://resources/weapons/machine_gun.tres"),120)
+	var before:=memory()
+	measuring=true;last=0
+	for i in 5:
+		var victim:=game._spawn_bot(Vector2(430+i*125,650),i+10)
+		victim.take_weapon_damage(1000000,&"body",game.player,&"rocket_launcher")
+	await create_timer(8.0).timeout
+	measuring=false
+	var body_count:=bodies(game)
+	frames.sort();physics.sort()
+	var total:=0.0
+	for value in frames:total+=value
+	var timing:={"samples":frames.size(),"mean_ms":total/frames.size(),"p95_ms":frames[int(frames.size()*0.95)],"p99_ms":frames[int(frames.size()*0.99)],"max_ms":frames.back(),"physics_p95_ms":physics[int(physics.size()*0.95)],"physics_max_ms":physics.back(),"wrecks":peak_wrecks,"bullets":peak_bullets,"vfx":peak_vfx,"physics_bodies":body_count,"AI":game._alive_enemies()}
+	var active_memory:=memory()
+	var cold_timing:=timing.duplicate()
+	frames.clear();physics.clear();last=0;measuring=true
+	await create_timer(8.0).timeout
+	measuring=false;frames.sort();physics.sort();total=0.0
+	for value in frames:total+=value
+	var warm_timing:={"samples":frames.size(),"mean_ms":total/frames.size(),"p95_ms":frames[int(frames.size()*0.95)],"p99_ms":frames[int(frames.size()*0.99)],"max_ms":frames.back(),"physics_p95_ms":physics[int(physics.size()*0.95)],"physics_max_ms":physics.back()}
+	var restarts:Array=[]
+	for i in 20:
+		game._on_retry_requested()
+		for frame in 4:await physics_frame
+		restarts.append(memory())
+	FileAccess.open(output,FileAccess.WRITE).store_string(JSON.stringify({"timing":cold_timing,"warm_timing":warm_timing,"before":before,"active":active_memory,"restarts":restarts,"final_wrecks":get_nodes_in_group("vehicle_wrecks").size(),"frames_ms":frames},"\t"))
+	print("WRECK PERF ",JSON.stringify(timing)," final ",JSON.stringify(memory()))
+	game.free();await process_frame;quit()

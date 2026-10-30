@@ -84,6 +84,9 @@ func run() -> void:
 	check(not no_vfx._explosion_owned_by_vfx, "no VFX service retains legacy bullet flash")
 	for path in BonusWeaponCache.PATHS:
 		if path.ends_with("rocket_launcher.tres"): continue
+		if path.get_file() in ["machine_gun.tres", "heavy_machine_gun.tres"]:
+			check((load(path) as WeaponConfig).visual_profile.ballistic, "dedicated ballistic presentation: "+path.get_file())
+			continue
 		check((load(path) as WeaponConfig).visual_profile==null,"other weapon remains procedural: "+path.get_file())
 	for id in ["biker_pistol", "referee_flamethrower"]:
 		check((load("res://resources/weapons/"+id+".tres") as WeaponConfig).visual_profile==null,"special weapon fallback: "+id)

@@ -1,0 +1,37 @@
+{
+	"performance": {
+		"max": 27.589,
+		"mean": 16.5670888888889,
+		"p95": 16.897,
+		"p99": 17.108,
+		"physics_p95": 10.906,
+		"resources": 205.0,
+		"video": 385708355.0
+	},
+	"records": [
+		{
+			"engine": 70.0,
+			"health": 100.0,
+			"max": 100.0,
+			"name": "wreck-contact",
+			"round": 1,
+			"wheels": 60.0
+		},
+		{
+			"engine": 19.0,
+			"health": 25.0,
+			"max": 100.0,
+			"name": "damaged-wave1",
+			"round": 1,
+			"wheels": 23.025
+		},
+		{
+			"engine": 34.3,
+			"health": 47.5,
+			"max": 100.0,
+			"name": "wave2-recovery",
+			"round": 2,
+			"wheels": 34.1425
+		}
+	]
+}

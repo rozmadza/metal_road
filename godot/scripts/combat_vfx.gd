@@ -25,8 +25,8 @@ func spawn_explosion(world_position: Vector2, color: Color = Color(1.0, 0.4, 0.0
 	_add_event({"kind": &"explosion", "position": world_position, "color": color, "radius": radius, "time": 0.48, "duration": 0.48, "visual_profile": visual_profile}, Priority.IMPORTANT)
 
 
-func spawn_impact(world_position: Vector2, color: Color = Color(1.0, 0.78, 0.25), large_hit: bool = false) -> void:
-	_add_event({"kind": &"impact", "position": world_position, "color": color, "radius": 28.0, "time": 0.24, "duration": 0.24}, Priority.LARGE_IMPACT if large_hit else Priority.IMPACT)
+func spawn_impact(world_position: Vector2, color: Color = Color(1.0, 0.78, 0.25), large_hit: bool = false, visual_profile: VisualProfile = null) -> void:
+	_add_event({"kind": &"impact", "position": world_position, "color": color, "radius": 28.0, "time": 0.24, "duration": 0.24, "visual_profile": visual_profile}, Priority.LARGE_IMPACT if large_hit else Priority.IMPACT)
 
 
 func spawn_pickup(world_position: Vector2, color: Color = Color(0.25, 0.92, 1.0)) -> void:
@@ -75,6 +75,10 @@ func _draw() -> void:
 					var start := center + direction * radius * progress * 0.18
 					draw_line(start, center + direction * spark_length * (0.35 + progress * 0.65), Color(color, life), 2.2 * life + 0.8, true)
 			&"impact":
+				var profile := event.get("visual_profile") as VisualProfile
+				if profile != null and profile.has_impact():
+					profile.draw_impact(self, center, progress)
+					continue
 				for spark_index in 7:
 					var direction := Vector2.RIGHT.rotated(float(spark_index) * 2.17)
 					draw_line(center + direction * 3.0, center + direction * radius * progress, Color(color, life), 2.0, true)

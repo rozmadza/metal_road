@@ -1,0 +1,72 @@
+[
+	{
+		"old_vehicle_layer": 1,
+		"old_vehicle_mask": 1,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "before",
+		"player": "(480.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	},
+	{
+		"old_vehicle_layer": 0,
+		"old_vehicle_mask": 0,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "death",
+		"player": "(480.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	},
+	{
+		"old_vehicle_layer": 0,
+		"old_vehicle_mask": 0,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "wreck",
+		"player": "(480.0, 850.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	},
+	{
+		"old_vehicle_layer": 0,
+		"old_vehicle_mask": 0,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "contact",
+		"player": "(627.1976, 860.0)",
+		"velocity": "(96.93895, 0.0)",
+		"wrecks": []
+	},
+	{
+		"old_vehicle_layer": 0,
+		"old_vehicle_mask": 0,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "push",
+		"player": "(812.0477, 860.0)",
+		"velocity": "(113.2846, 0.0)",
+		"wrecks": []
+	},
+	{
+		"old_vehicle_layer": 0,
+		"old_vehicle_mask": 0,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "shift",
+		"player": "(852.4473, 860.0)",
+		"velocity": "(-0.0, 0.0)",
+		"wrecks": []
+	},
+	{
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "restart",
+		"player": "(80.0, 80.0)",
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	}
+]

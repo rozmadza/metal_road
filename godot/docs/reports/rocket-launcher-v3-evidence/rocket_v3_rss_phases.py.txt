@@ -1,0 +1,19 @@
+from pathlib import Path
+import time,json
+records=[];deadline=time.monotonic()+30
+while time.monotonic()<deadline:
+ for p in Path('/proc').glob('[0-9]*'):
+  try:
+   if 'godot' not in (p/'comm').read_text().lower():continue
+   cmd=(p/'cmdline').read_bytes().split(b'\0')
+   if b'res://tests/rocket_v3_rss_probe.gd' not in cmd:continue
+   args=[c.decode(errors='replace') for c in cmd]
+   path=args[args.index('--path')+1]
+   label=args[args.index('--')+2] if '--' in args else ''
+   status=(p/'status').read_text().splitlines()
+   rss=next(int(l.split()[1]) for l in status if l.startswith('VmRSS:'))
+   records.append(dict(pid=p.name,path=path,label=label,kib=rss,phase=(Path(path)/'v3-rss-phase.txt').read_text() if (Path(path)/'v3-rss-phase.txt').exists() else 'startup'))
+  except (OSError,ValueError,StopIteration):pass
+ time.sleep(.05)
+Path('/tmp/rocket-v3-rss-phases.json').write_text(json.dumps(records,indent=2))
+print('RSS samples',len(records))

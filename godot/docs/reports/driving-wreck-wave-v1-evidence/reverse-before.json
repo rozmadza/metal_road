@@ -1,0 +1,122 @@
+[
+	{
+		"broken": false,
+		"input": "keyboard",
+		"lag": 0.416666666666667,
+		"negative": 1.43333333333333,
+		"reverse_thrust": 1.35,
+		"speed_0_3": 113.403221130371,
+		"stop": 1.01666666666667,
+		"vehicle": "raider"
+	},
+	{
+		"broken": true,
+		"input": "keyboard",
+		"lag": 0.433333333333333,
+		"negative": 1.31666666666667,
+		"reverse_thrust": 1.21666666666667,
+		"speed_0_3": 90.560676574707,
+		"stop": 0.883333333333333,
+		"vehicle": "raider"
+	},
+	{
+		"broken": false,
+		"input": "gamepad",
+		"lag": 0.416666666666667,
+		"negative": 1.43333333333333,
+		"reverse_thrust": 1.35,
+		"speed_0_3": 113.403221130371,
+		"stop": 1.01666666666667,
+		"vehicle": "raider"
+	},
+	{
+		"broken": true,
+		"input": "gamepad",
+		"lag": 0.433333333333333,
+		"negative": 1.31666666666667,
+		"reverse_thrust": 1.21666666666667,
+		"speed_0_3": 90.560676574707,
+		"stop": 0.883333333333333,
+		"vehicle": "raider"
+	},
+	{
+		"broken": false,
+		"input": "keyboard",
+		"lag": 0.433333333333333,
+		"negative": 1.23333333333333,
+		"reverse_thrust": 1.13333333333333,
+		"speed_0_3": 75.7522583007812,
+		"stop": 0.8,
+		"vehicle": "bastion"
+	},
+	{
+		"broken": true,
+		"input": "keyboard",
+		"lag": 0.433333333333333,
+		"negative": 1.11666666666667,
+		"reverse_thrust": 1.01666666666667,
+		"speed_0_3": 58.585750579834,
+		"stop": 0.683333333333333,
+		"vehicle": "bastion"
+	},
+	{
+		"broken": false,
+		"input": "gamepad",
+		"lag": 0.433333333333333,
+		"negative": 1.23333333333333,
+		"reverse_thrust": 1.13333333333333,
+		"speed_0_3": 75.7522583007812,
+		"stop": 0.8,
+		"vehicle": "bastion"
+	},
+	{
+		"broken": true,
+		"input": "gamepad",
+		"lag": 0.433333333333333,
+		"negative": 1.11666666666667,
+		"reverse_thrust": 1.01666666666667,
+		"speed_0_3": 58.585750579834,
+		"stop": 0.683333333333333,
+		"vehicle": "bastion"
+	},
+	{
+		"broken": false,
+		"input": "keyboard",
+		"lag": 0.433333333333333,
+		"negative": 1.2,
+		"reverse_thrust": 1.1,
+		"speed_0_3": 70.2423629760742,
+		"stop": 0.766666666666667,
+		"vehicle": "behemoth"
+	},
+	{
+		"broken": true,
+		"input": "keyboard",
+		"lag": 0.433333333333333,
+		"negative": 1.08333333333333,
+		"reverse_thrust": 0.983333333333333,
+		"speed_0_3": 53.9064903259277,
+		"stop": 0.65,
+		"vehicle": "behemoth"
+	},
+	{
+		"broken": false,
+		"input": "gamepad",
+		"lag": 0.433333333333333,
+		"negative": 1.2,
+		"reverse_thrust": 1.1,
+		"speed_0_3": 70.2423629760742,
+		"stop": 0.766666666666667,
+		"vehicle": "behemoth"
+	},
+	{
+		"broken": true,
+		"input": "gamepad",
+		"lag": 0.433333333333333,
+		"negative": 1.08333333333333,
+		"reverse_thrust": 0.983333333333333,
+		"speed_0_3": 53.9064903259277,
+		"stop": 0.65,
+		"vehicle": "behemoth"
+	}
+]

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+for item in current:1280:1.0 current:800:1.0 current:1280:1.23 current:800:1.23 before:1280:1.0; do
+ IFS=: read -r v res zoom <<< "$item"; p="/tmp/rocket-v3-$v"
+ flatpak run --filesystem="$p" org.godotengine.Godot --disable-vsync --path "$p" --script res://tests/rocket_v3_acceptance.gd -- "$res" "$zoom" > "/tmp/rocket-v3-accept-$v-$res-$zoom.log" 2>&1
+ printf '%s %s %s exit=%s\n' "$v" "$res" "$zoom" "$?"
+done
+for variant in baseline A B; do
+ p=/tmp/rocket-v3-current
+ flatpak run --filesystem="$p" org.godotengine.Godot --disable-vsync --path "$p" --script res://tests/rocket_v3_acceptance.gd -- 1280 1.0 "$variant" > "/tmp/rocket-v3-guidance-$variant.log" 2>&1
+ printf 'guidance %s exit=%s\n' "$variant" "$?"
+done

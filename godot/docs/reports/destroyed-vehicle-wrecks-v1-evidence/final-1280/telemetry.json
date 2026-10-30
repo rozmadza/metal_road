@@ -1,0 +1,298 @@
+[
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 80.0)",
+				"position": "(700.0, 850.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			},
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1250.0, 150.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			}
+		],
+		"contacts": 0,
+		"old_vehicle_layer": 1,
+		"old_vehicle_mask": 1,
+		"old_vehicle_position": "(700.0, 850.0)",
+		"old_vehicle_valid": true,
+		"phase": "before",
+		"physics_frame": 46,
+		"player": "(480.0, 850.0)",
+		"tick_us": 2410635,
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	},
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1250.0, 150.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			}
+		],
+		"contacts": 0,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "death",
+		"physics_frame": 302,
+		"player": "(480.0, 850.0)",
+		"tick_us": 6677230,
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": 0.0,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(700.0, 850.0)",
+				"vehicle_id": "dustfox",
+				"velocity": "(0.0, 0.0)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1250.0, 150.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			}
+		],
+		"contacts": 0,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "wreck",
+		"physics_frame": 362,
+		"player": "(480.0, 850.0)",
+		"tick_us": 7677244,
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": 0.0,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(700.0, 850.0)",
+				"vehicle_id": "dustfox",
+				"velocity": "(0.0, 0.0)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1250.0, 150.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			}
+		],
+		"contacts": 1,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "contact",
+		"physics_frame": 407,
+		"player": "(635.4323, 860.1405)",
+		"tick_us": 8427272,
+		"velocity": "(27.31261, 8.429445)",
+		"wrecks": [
+			{
+				"angle": -0.00974935106933117,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(701.2775, 849.8997)",
+				"vehicle_id": "dustfox",
+				"velocity": "(53.55458, -6.021032)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1250.0, 150.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			}
+		],
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "push",
+		"physics_frame": 507,
+		"player": "(712.2004, 856.967)",
+		"tick_us": 10093928,
+		"velocity": "(46.27711, -5.57273)",
+		"wrecks": [
+			{
+				"angle": -0.167782723903656,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(775.6346, 836.591)",
+				"vehicle_id": "dustfox",
+				"velocity": "(44.44178, -11.32938)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1250.0, 150.0)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(0.0, 0.0)"
+			}
+		],
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "shift",
+		"physics_frame": 567,
+		"player": "(719.5604, 855.9142)",
+		"tick_us": 11093905,
+		"velocity": "(0.013618, 0.077309)",
+		"wrecks": [
+			{
+				"angle": -0.180537387728691,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(786.6896, 833.7589)",
+				"vehicle_id": "dustfox",
+				"velocity": "(0.768174, -0.196707)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(794.2891, 567.7765)",
+				"position": "(684.2139, 695.9984)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(84.41701, -107.2659)"
+			}
+		],
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "AI-detour",
+		"physics_frame": 722,
+		"player": "(1040.0, 850.0)",
+		"tick_us": 13677293,
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": -0.180544644594193,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(786.8687, 833.7132)",
+				"vehicle_id": "dustfox",
+				"velocity": "(0.000017, -0.000004)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(1040.0, 850.0)",
+				"position": "(1013.429, 753.8561)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(65.62215, 88.14186)"
+			}
+		],
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "AI-arrived",
+		"physics_frame": 999,
+		"player": "(1040.0, 850.0)",
+		"tick_us": 18293788,
+		"velocity": "(0.0, 0.0)",
+		"wrecks": [
+			{
+				"angle": -0.180544644594193,
+				"hull": "[(-33.415, -13.825), (-27.3025, -19.75), (27.3025, -19.75), (33.415, -13.825), (33.415, 13.825), (27.3025, 19.75), (-27.3025, 19.75), (-33.415, 13.825), (-33.415, -13.825)]",
+				"layer": 5,
+				"mask": 1,
+				"mass": 1400.0,
+				"position": "(786.8687, 833.7132)",
+				"vehicle_id": "dustfox",
+				"velocity": "(0.0, -0.0)",
+				"visual_offset": "(0.0, 0.0)"
+			}
+		]
+	},
+	{
+		"AI": [
+			{
+				"goal": "(80.0, 80.0)",
+				"position": "(1319.977, 80.06312)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(-0.822557, 2.26203)"
+			},
+			{
+				"goal": "(80.0, 62.0)",
+				"position": "(1319.933, 919.9832)",
+				"reverse": 0.0,
+				"route": "EXACT",
+				"velocity": "(-2.415433, -0.603858)"
+			}
+		],
+		"contacts": 2,
+		"old_vehicle_layer": -1,
+		"old_vehicle_mask": -1,
+		"old_vehicle_position": "(0.0, 0.0)",
+		"old_vehicle_valid": false,
+		"phase": "restart",
+		"physics_frame": 1009,
+		"player": "(80.0, 80.0)",
+		"tick_us": 18460594,
+		"velocity": "(0.0, 0.0)",
+		"wrecks": []
+	}
+]

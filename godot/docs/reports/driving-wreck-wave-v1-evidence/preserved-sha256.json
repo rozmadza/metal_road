@@ -1,0 +1,15 @@
+{
+  "resources/weapons/rocket_launcher.tres": "f4297319386c9f34e01c42a13fdcf9b27f5cf8b8d6c108d1cb508cdd203d33f1",
+  "resources/weapons/machine_gun.tres": "1a41b83884b6ed843aff502a1c68510f797fb964167d6275ec91b0a12f38ee87",
+  "resources/weapons/heavy_machine_gun.tres": "8260b021d5467e5a7e624471c54558d3544a364ac3c66823cbdfe0476c47afe0",
+  "resources/weapon_visuals/rocket_launcher.tres": "9370340cba465b2f4fcf06e6bae3e90803297a32ba198d572fac67f7290535cf",
+  "resources/weapon_visuals/machine_gun.tres": "b00d26c8bf8cd01a7613f59134e55ad6b18979899a1b75c55cb1c48a7f1a2632",
+  "resources/weapon_visuals/heavy_machine_gun.tres": "647f440bfeb4946904e4cfdfa09e43da6df6cade9df1767145f3303ce271bf3c",
+  "scripts/arena_bot.gd": "6efc283fe959de61854bcde63ecd6eaba34feecd28fb8f8ccf682dfd9842b0de",
+  "scripts/arena_navigation.gd": "f301c7219cf56dd63a6aadea23f494352f6b2e7a3a40d380ee67377e3e115d11",
+  "scripts/bullet.gd": "a462474b5ec2a03823ece5cdac80de5bad4a181b5869eeb10b34639f29b873a1",
+  "scripts/combat_vfx.gd": "bfcfe74c7a135e8186e01cb2b700daadc50f518428779dab1c569bc1f1fe559c",
+  "scripts/bonus_pickup.gd": "3a47ef0ca26b6c5e967022f030e3e407b1263f98ed00a9e6f51b13b59260a240",
+  "resources/default_arena.tres": "c87f4fa5f01caebab43a43696a0e7485453dcdebc31b242aa9277d9130db7cc6",
+  "scripts/survival_run_data.gd": "06cb60c8197b9857d65a140ca3e8d8a1d5dfb98b664c0c61190e57f5f9147bff"
+}

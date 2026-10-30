@@ -1,0 +1,19 @@
+from pathlib import Path
+import shutil,json,hashlib
+from PIL import Image
+root=Path('/home/andrey/PycharmProjects/metal_road/godot')
+before=Path('/tmp/ballistic-before')
+shutil.copytree(root,before,ignore=shutil.ignore_patterns('.git','docs'),dirs_exist_ok=True)
+inventory=[]
+for p in sorted((root/'assets/vfx').rglob('*.png')):
+ im=Image.open(p)
+ inventory.append(dict(path=str(p.relative_to(root)),size=im.size,mode=im.mode,sha256=hashlib.sha256(p.read_bytes()).hexdigest()))
+for name in ['machine_gun','heavy_machine_gun']:
+ p=root/'assets/vfx/weapons'/name/'muzzle_sheet.png'
+ im=Image.open(p);out=Image.new('RGBA',im.size)
+ for i in range(4):
+  frame=im.crop((i%2*64,i//2*64,i%2*64+64,i//2*64+64))
+  box=frame.getbbox();crop=frame.crop(box)
+  out.alpha_composite(crop,(i%2*64+6,i//2*64+32-crop.height//2))
+ out.save(p.with_name('muzzle_aligned_sheet.png'))
+Path('/tmp/ballistic-inventory.json').write_text(json.dumps(inventory,indent=2))

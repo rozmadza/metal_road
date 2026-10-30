@@ -1,0 +1,65 @@
+[
+  {
+    "path": "assets/vfx/weapons/heavy_machine_gun/muzzle_sheet.png",
+    "size": [
+      128,
+      128
+    ],
+    "mode": "RGBA",
+    "sha256": "be52a3d4bf6a7f3017eea5e12d3b04702b4cfd517bf36d1a47c0c4c7835bc84f"
+  },
+  {
+    "path": "assets/vfx/weapons/heavy_machine_gun/projectile_core.png",
+    "size": [
+      96,
+      32
+    ],
+    "mode": "RGBA",
+    "sha256": "7d55e33bb88747831287f2c0d81fd9d6ff61f989b5904d4592b3e7723f223e6d"
+  },
+  {
+    "path": "assets/vfx/weapons/machine_gun/muzzle_sheet.png",
+    "size": [
+      128,
+      128
+    ],
+    "mode": "RGBA",
+    "sha256": "1bc3149937528cf4d182693a62474cf060b47da580c5e7218505d5adae416546"
+  },
+  {
+    "path": "assets/vfx/weapons/machine_gun/projectile_core.png",
+    "size": [
+      64,
+      32
+    ],
+    "mode": "RGBA",
+    "sha256": "e093a8a6913eed3493466ad928fd04368b9822cd0c82fd34443c0b513feed184"
+  },
+  {
+    "path": "assets/vfx/weapons/shared/impact_metal_heavy_sheet.png",
+    "size": [
+      384,
+      256
+    ],
+    "mode": "RGBA",
+    "sha256": "3ded68342a8fb68684ee940ff48cf902ba24bb1cb636b79b76beca1ede7067e4"
+  },
+  {
+    "path": "assets/vfx/weapons/shared/impact_metal_light_sheet.png",
+    "size": [
+      384,
+      256
+    ],
+    "mode": "RGBA",
+    "sha256": "7bef92f5ce79daa61b35310eac4f864121ac68bf5ff842628cd49f5cbe26d83f"
+  },
+  {
+    "path": "assets/vfx/weapons/shared/tracer_strip.png",
+    "size": [
+      128,
+      16
+    ],
+    "mode": "RGBA",
+    "sha256": "02cffe7117f8f932bcf9994a5a579504b7cfa15d117b6988d35698a41a17e577"
+  }
+]
